@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>SHELBY HIVER | Premium Streetwear &amp; Elevated Essentials</title>
+<meta name="description" content="Shelby Hiver — High-luxury 220 GSM heavyweight streetwear. Shop the live T-shirt collection ₹599–₹899. Drop 001 (Hoodies, Bottoms) arriving soon. Order via WhatsApp +91 9286511557.">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  --obsidian: #050505;
+  --pitch:    #000000;
+  --carbon:   #0d0d0d;
+  --charcoal: #141414;
+  --graphite: #1e1e1e;
+  --slate:    #282828;
+  --white:    #ffffff;
+  --off-white:#f4f4f6;
+  --silver:   #d0d0d6;
+  --muted:    #888890;
+  --ghost:    rgba(255,255,255,.06);
+  --wa:       #25d366;
+  --wa-dark:  #1ab454;
+  --gold:     #c9a96e;
+
+  --f-display:'Space Grotesk', sans-serif;
+  --f-body:   'Plus Jakarta Sans', sans-serif;
+  --f-mono:   'Space Grotesk', sans-serif;
+
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:var(--obsidian);color:var(--off-white);
+     font-family:var(--f-body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+     overflow-x:hidden;max-width:100%;}
+body{overflow-x:hidden;min-height:100vh;max-width:100%;width:100%;}
+img{max-width:100%;display:block;user-select:none;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;background:none;border:none;cursor:pointer;color:inherit;}
+::selection{background:var(--white);color:var(--pitch);}
+
+/* hard overflow clamp — nothing escapes the viewport */
+section,header,footer,.container,.hero,.manifesto,.lookbook,
+.tshirts,.coming-soon,.drop-sec,.newsletter,.city-banner{max-width:100%;overflow-x:hidden;}
+
+/* containers */
+.container{max-width:1480px;margin:0 auto;padding:0 36px;}
+@media(max-width:768px){.container{padding:0 20px;}}
+
+/* ——— TYPOGRAPHY ——— */
+.eyebrow{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--muted);font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--white);
+  border-radius:50%;box-shadow:0 0 10px rgba(255,255,255,.9);flex-shrink:0;}
+
+/* ——— BUTTONS ——— */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px 34px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:700;
+  border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04);
+  backdrop-filter:blur(10px);color:var(--white);
+  position:relative;overflow:hidden;transition:all .4s var(--ease);cursor:pointer;
+}
+.btn::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transform:translateX(-100%);transition:transform .55s var(--ease);
+}
+.btn:hover::before{transform:translateX(100%);}
+.btn:hover{border-color:var(--white);background:rgba(255,255,255,.1);
+  transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,255,255,.12);}
+.btn.solid{background:var(--white);color:var(--pitch);border-color:var(--white);}
+.btn.solid:hover{background:#e8e8e8;box-shadow:0 12px 32px rgba(255,255,255,.3);transform:translateY(-2px);}
+.btn.wa-btn{background:var(--wa);color:#000;border-color:var(--wa);}
+.btn.wa-btn:hover{background:var(--wa-dark);border-color:var(--wa-dark);
+  box-shadow:0 12px 30px rgba(37,211,102,.45);transform:translateY(-2px);}
+.btn .arrow{transition:transform .35s var(--ease);}
+.btn:hover .arrow{transform:translateX(4px);}
+
+/* ——— GRAIN OVERLAY ——— */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ——— CUSTOM CURSOR ——— */
+@media(min-width:1025px){
+  .cr,.crd{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+  .cr{width:22px;height:22px;border:1px solid rgba(255,255,255,.65);border-radius:50%;
+      transition:width .25s,height .25s,background .25s,border-color .25s,opacity .15s;opacity:0;}
+  .crd{width:4px;height:4px;background:var(--white);border-radius:50%;}
+  .cr.vis{opacity:1;}
+  .cr.big{width:62px;height:62px;background:rgba(255,255,255,.07);border-color:var(--white);backdrop-filter:blur(2px);}
+  a,button,.product-card,.look-card{cursor:none;}
+}
+@media(max-width:1024px){.cr,.crd{display:none;}}
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+#preloader{position:fixed;inset:0;z-index:9998;background:var(--pitch);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .7s var(--ease),visibility .7s;}
+#preloader.done{opacity:0;visibility:hidden;pointer-events:none;}
+.pl-logo{width:88px;height:88px;margin-bottom:22px;object-fit:contain;
+  animation:plPulse 2s ease-in-out infinite;}
+@keyframes plPulse{0%,100%{transform:scale(.96);opacity:.85;}
+  50%{transform:scale(1.05);opacity:1;filter:drop-shadow(0 0 28px rgba(255,255,255,.55));}}
+.pl-name{font-family:var(--f-display);font-size:13px;font-weight:800;
+  letter-spacing:.44em;text-transform:uppercase;color:var(--white);margin-bottom:6px;}
+.pl-tag{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);}
+.pl-bar{width:200px;height:1.5px;background:var(--slate);margin-top:32px;overflow:hidden;}
+.pl-fill{height:100%;width:0;background:linear-gradient(90deg,#555,var(--white));
+  animation:plFill .9s var(--ease) forwards;}
+@keyframes plFill{to{width:100%;}}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{height:34px;background:#000;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;overflow:hidden;z-index:302;position:relative;}
+.ticker-track{display:flex;gap:32px;white-space:nowrap;animation:marquee 34s linear infinite;}
+.ticker-track:hover{animation-play-state:paused;}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tick{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);
+  font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#999;}
+.tick b{color:var(--white);}
+.tick .gr{color:#4ade80;font-weight:700;}
+.tick-dot{width:4px;height:4px;border-radius:50%;background:var(--white);opacity:.5;flex-shrink:0;}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:fixed;top:34px;left:0;right:0;z-index:300;height:82px;
+  display:flex;align-items:center;
+  border-bottom:1px solid transparent;
+  transition:all .45s var(--ease);
+}
+.site-header.scrolled{
+  top:0;height:70px;
+  background:rgba(5,5,5,.92);backdrop-filter:blur(22px) saturate(160%);
+  border-bottom:1px solid rgba(255,255,255,.09);
+  box-shadow:0 12px 32px rgba(0,0,0,.65);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;width:100%;}
+
+.brand-link{display:flex;align-items:center;gap:13px;z-index:2;}
+.brand-logo{width:40px;height:40px;object-fit:contain;
+  transition:transform .35s var(--ease),filter .35s;}
+.brand-link:hover .brand-logo{transform:scale(1.08);
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.4));}
+.brand-name-group{display:flex;flex-direction:column;}
+.brand-name{font-family:var(--f-display);font-size:14px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--white);line-height:1.1;}
+.brand-sub{font-family:var(--f-mono);font-size:7.5px;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--muted);}
+
+.nav-c{display:flex;align-items:center;gap:34px;}
+@media(max-width:1100px){.nav-c{display:none;}}
+.nav-a{font-family:var(--f-mono);font-size:10.5px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(255,255,255,.72);padding:6px 0;position:relative;
+  transition:color .3s;}
+.nav-a:hover{color:var(--white);}
+.nav-a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:1px;
+  background:var(--white);box-shadow:0 0 8px rgba(255,255,255,.8);transition:width .3s var(--ease);}
+.nav-a:hover::after{width:100%;}
+.nav-badge{font-size:7.5px;padding:2px 6px;border-radius:9px;margin-left:4px;vertical-align:middle;}
+.badge-live{background:var(--wa);color:#000;font-weight:800;}
+.badge-cs{background:rgba(255,255,255,.1);color:#aaa;border:1px solid rgba(255,255,255,.2);}
+
+.header-actions{display:flex;align-items:center;gap:14px;}
+.h-act{display:inline-flex;align-items:center;gap:7px;font-family:var(--f-mono);
+  font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.8);padding:8px 12px;transition:all .25s;}
+.h-act:hover{color:var(--white);background:rgba(255,255,255,.06);}
+.h-act svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2;}
+.bag-ct{width:18px;height:18px;background:var(--white);color:var(--pitch);
+  font-family:var(--f-mono);font-size:9.5px;font-weight:800;
+  border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  margin-left:2px;transition:transform .3s var(--ease);}
+.bag-ct.bump{transform:scale(1.4);}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:8px;}
+@media(max-width:1100px){.hamburger{display:flex;}.h-act .lbl{display:none;}}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--white);}
+
+/* ============================================================
+   HERO — CLEAN TWO-COLUMN, ZERO BACKGROUND/TEXT CLASH
+   ============================================================ */
+.hero{
+  position:relative;min-height:100vh;display:flex;align-items:center;
+  padding:128px 0 90px;overflow:hidden;
+  background:
+    radial-gradient(ellipse 70% 80% at 75% 40%, #181818 0%, #090909 55%, #030303 100%);
+}
+/* Subtle ambient light streaks — no photo behind text */
+.hero::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(115deg, rgba(255,255,255,.02) 0px, transparent 420px),
+    linear-gradient(250deg, rgba(255,255,255,.025) 0px, transparent 380px);
+}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;
+  position:relative;z-index:10;width:100%;}
+@media(max-width:1080px){.hero-grid{grid-template-columns:1fr;gap:48px;}}
+
+/* Left */
+.hero-brand-emblem{
+  display:inline-flex;align-items:center;gap:16px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);
+  padding:10px 22px 10px 14px;border-radius:40px;margin-bottom:26px;
+  backdrop-filter:blur(10px);
+}
+.hero-emblem-logo{width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 0 16px rgba(255,255,255,.45));}
+.hero-emblem-text{display:flex;flex-direction:column;}
+.emblem-title{font-family:var(--f-display);font-size:13px;font-weight:700;letter-spacing:.2em;color:var(--white);line-height:1.2;}
+.emblem-sub{font-family:var(--f-mono);font-size:9px;letter-spacing:.16em;color:#4ade80;}
+.hero-mobile-showcase{display:none;}
+.desc-mobile{display:none;}
+.desc-desktop{display:inline;}
+
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px;}
+.h-badge{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.18em;
+  text-transform:uppercase;padding:6px 14px;border-radius:20px;font-weight:700;}
+.h-badge-green{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);color:#4ade80;}
+.h-badge-white{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:var(--white);}
+
+.hero-h1{font-family:var(--f-display);font-size:clamp(48px,7vw,102px);font-weight:800;
+  line-height:.92;letter-spacing:-.03em;text-transform:uppercase;color:var(--white);
+  margin-bottom:10px;}
+.hero-h1 .outline{-webkit-text-stroke:1.5px rgba(255,255,255,.85);color:transparent;
+  transition:color .4s;}
+.hero-h1:hover .outline{color:rgba(255,255,255,.88);}
+
+.hero-price-tag{display:inline-flex;align-items:baseline;gap:10px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);
+  padding:10px 22px;margin:22px 0 18px;}
+.price-big{font-family:var(--f-mono);font-size:24px;font-weight:800;color:var(--white);}
+.price-note{font-family:var(--f-mono);font-size:11px;color:#4ade80;letter-spacing:.1em;text-transform:uppercase;}
+
+.hero-desc{font-size:16px;line-height:1.72;color:#b8b8c0;max-width:540px;margin-bottom:34px;}
+.hero-desc strong{color:var(--white);font-weight:600;}
+
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px;}
+
+.hero-specs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+  padding-top:26px;border-top:1px solid rgba(255,255,255,.1);max-width:580px;}
+@media(max-width:640px){.hero-specs{grid-template-columns:1fr;gap:12px;}}
+.spec-v{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px;}
+.spec-l{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+
+/* Right — clean visual card */
+.hero-visual{position:relative;aspect-ratio:4/5;background:#111;
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 30px 80px rgba(0,0,0,.85);overflow:hidden;}
+.hero-visual img{width:100%;height:100%;object-fit:cover;
+  transition:transform .7s var(--ease),filter .7s;filter:contrast(1.1) brightness(.88);}
+.hero-visual:hover img{transform:scale(1.04);filter:contrast(1.15) brightness(.95);}
+.hero-float-card{position:absolute;bottom:22px;left:18px;right:18px;
+  background:rgba(8,8,8,.9);backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.2);padding:16px 20px;
+  display:flex;justify-content:space-between;align-items:center;border-radius:3px;}
+.hfc-info h4{font-family:var(--f-display);font-size:13px;font-weight:800;
+  text-transform:uppercase;margin-bottom:4px;}
+.hfc-info p{font-family:var(--f-mono);font-size:10px;color:#4ade80;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(28px);
+  transition:opacity .85s var(--ease),transform .85s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+
+/* ============================================================
+   SECTION SCAFFOLDING
+   ============================================================ */
+section{position:relative;}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;
+  gap:28px;flex-wrap:wrap;margin-bottom:56px;}
+.sec-head h2{font-family:var(--f-display);font-size:clamp(34px,4.8vw,66px);
+  font-weight:800;letter-spacing:-.02em;text-transform:uppercase;line-height:1;margin-top:10px;}
+.sec-head-note{font-size:14px;line-height:1.65;color:#9999a2;max-width:440px;}
+
+/* ============================================================
+   01 MANIFESTO / BRAND STORY
+   ============================================================ */
+.manifesto{padding:140px 0;background:var(--obsidian);
+  border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.manifesto-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:80px;align-items:center;}
+@media(max-width:1000px){.manifesto-grid{grid-template-columns:1fr;gap:52px;}}
+.manifesto h2{font-family:var(--f-display);font-size:clamp(40px,5.8vw,86px);
+  font-weight:800;line-height:.94;letter-spacing:-.025em;text-transform:uppercase;
+  margin:16px 0 28px;}
+.manifesto p{font-size:16px;line-height:1.8;color:#9a9aa2;max-width:520px;margin-bottom:36px;}
+
+.feat-pills{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:36px;}
+.feat-pill{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);
+  padding:18px 20px;transition:border-color .3s,background .3s;}
+.feat-pill:hover{border-color:rgba(255,255,255,.25);background:rgba(255,255,255,.045);}
+.feat-pill h4{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--white);margin-bottom:6px;}
+.feat-pill p{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+/* editorial card with hotspots */
+.ed-card{position:relative;aspect-ratio:3/4;background:#101010;
+  border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.9);overflow:hidden;}
+.ed-card img{width:100%;height:100%;object-fit:cover;
+  transition:transform .75s var(--ease),filter .75s;filter:contrast(1.1) brightness(.88);}
+.ed-card:hover img{transform:scale(1.04);filter:contrast(1.15) brightness(.95);}
+.hotspot{position:absolute;width:28px;height:28px;border-radius:50%;
+  background:rgba(255,255,255,.22);backdrop-filter:blur(8px);
+  border:1.5px solid var(--white);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;z-index:20;transition:all .3s;}
+.hotspot::before{content:"+";font-size:15px;font-weight:700;color:var(--white);}
+.hotspot:hover{transform:scale(1.2);background:var(--white);}
+.hotspot:hover::before{color:var(--pitch);}
+.hs-pip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(6px);
+  background:rgba(5,5,5,.95);border:1px solid rgba(255,255,255,.28);
+  padding:6px 14px;font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--white);white-space:nowrap;pointer-events:none;
+  opacity:0;transition:all .3s var(--ease);}
+.hotspot:hover .hs-pip{opacity:1;transform:translateX(-50%) translateY(0);}
+.hs-1{top:36%;left:52%;}
+.hs-2{bottom:26%;left:44%;}
+
+/* ============================================================
+   02 ACTIVE T-SHIRT COLLECTION
+   ============================================================ */
+.tshirts{padding:130px 0;background:var(--carbon);}
+
+.tshirt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+@media(max-width:1200px){.tshirt-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.tshirt-grid{grid-template-columns:1fr;}}
+
+.pc{background:#111;border:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;
+  transition:border-color .4s var(--ease),transform .4s var(--ease),box-shadow .4s;}
+.pc:hover{border-color:rgba(255,255,255,.3);transform:translateY(-6px);
+  box-shadow:0 22px 55px rgba(0,0,0,.85);}
+
+.pc-media{position:relative;aspect-ratio:3/4;background:#1a1a1a;overflow:hidden;cursor:pointer;}
+.pc-media img.pri{width:100%;height:100%;object-fit:cover;
+  transition:transform .65s var(--ease),opacity .5s;}
+.pc-media img.sec{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transform:scale(1.04);transition:opacity .5s var(--ease),transform .65s;}
+.pc:hover .pc-media img.pri{transform:scale(1.05);}
+.pc:hover .pc-media img.sec{opacity:1;transform:scale(1);}
+
+.pc-badge{position:absolute;top:12px;left:12px;font-family:var(--f-mono);font-size:8.5px;
+  letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;
+  background:rgba(0,0,0,.84);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.2);color:var(--white);font-weight:700;z-index:5;}
+.pc-badge.live-badge{background:rgba(37,211,102,.88);color:#000;border-color:var(--wa);}
+
+.wish-btn{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:50%;
+  background:rgba(5,5,5,.72);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  z-index:5;transition:all .3s;}
+.wish-btn:hover{background:var(--white);color:var(--pitch);transform:scale(1.1);}
+.wish-btn.wishlisted{background:#e63946;border-color:#e63946;color:var(--white);}
+
+/* Quick add bar */
+.quick-bar{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(0deg,rgba(5,5,5,.96) 0%,rgba(5,5,5,.75) 70%,transparent 100%);
+  padding:14px;display:flex;flex-direction:column;gap:8px;
+  transform:translateY(100%);opacity:0;transition:all .35s var(--ease);z-index:6;}
+.pc:hover .quick-bar{transform:translateY(0);opacity:1;}
+.sz-row{display:flex;justify-content:center;gap:6px;}
+.sz{font-family:var(--f-mono);font-size:9.5px;font-weight:700;
+  width:30px;height:28px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:var(--white);
+  transition:all .2s;}
+.sz:hover,.sz.sel{background:var(--white);color:var(--pitch);border-color:var(--white);}
+.qadd-btn{width:100%;padding:10px;background:var(--white);color:var(--pitch);
+  font-family:var(--f-mono);font-size:10px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;transition:background .3s;}
+.qadd-btn:hover{background:#e0e0e0;}
+
+.pc-info{padding:20px 18px 22px;display:flex;flex-direction:column;flex:1;}
+.pc-sku{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:4px;}
+.pc-name{font-family:var(--f-display);font-size:15px;font-weight:700;
+  color:var(--white);margin-bottom:3px;}
+.pc-fabric{font-family:var(--f-mono);font-size:10.5px;color:#4ade80;margin-bottom:10px;}
+
+/* Inline size picker in card */
+.card-sz-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
+.card-sz{font-family:var(--f-mono);font-size:9.5px;font-weight:700;padding:4px 9px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
+  color:var(--white);transition:all .2s;}
+.card-sz:hover,.card-sz.sel{background:var(--white);color:var(--pitch);border-color:var(--white);}
+
+.pc-price-row{display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid rgba(255,255,255,.07);margin-top:auto;}
+.pc-price{font-family:var(--f-mono);font-size:17px;font-weight:800;color:var(--white);}
+.color-dots{display:flex;gap:5px;}
+.cd{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,.35);}
+
+.pc-btns{display:flex;gap:8px;margin-top:14px;}
+.pc-btn-add{flex:1;padding:10px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.22);font-family:var(--f-mono);font-size:9.5px;
+  letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--white);transition:all .25s;}
+.pc-btn-add:hover{background:var(--white);color:var(--pitch);}
+.pc-btn-wa{padding:10px 14px;background:var(--wa);border:1px solid var(--wa);
+  font-family:var(--f-mono);font-size:9.5px;font-weight:700;color:#000;
+  display:flex;align-items:center;gap:6px;transition:all .25s;}
+.pc-btn-wa:hover{background:var(--wa-dark);}
+
+/* ============================================================
+   CITY BANNER (ATMOSPHERE SECTION)
+   ============================================================ */
+.city-banner{position:relative;padding:220px 0;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;text-align:center;}
+.city-bg{position:absolute;inset:0;}
+.city-bg img{width:100%;height:100%;object-fit:cover;
+  filter:contrast(1.12) brightness(.62);transform:scale(1.04);transition:transform 8s ease;}
+.city-banner:hover .city-bg img{transform:scale(1.08);}
+.city-scrim{position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 50%,rgba(0,0,0,.25) 0%,rgba(5,5,5,.88) 88%),
+             linear-gradient(180deg,#050505 0%,transparent 18%,transparent 82%,#050505 100%);}
+.city-inner{position:relative;z-index:10;max-width:900px;padding:0 24px;}
+.city-h2{font-family:var(--f-display);font-size:clamp(50px,9.5vw,134px);font-weight:800;
+  line-height:.9;letter-spacing:-.03em;text-transform:uppercase;color:var(--white);margin-bottom:22px;}
+.city-sub{font-family:var(--f-mono);font-size:12px;letter-spacing:.28em;
+  text-transform:uppercase;color:#c0c0c8;margin-bottom:36px;}
+
+/* ============================================================
+   03 EDITORIAL LOOKBOOK
+   ============================================================ */
+.lookbook{padding:140px 0;background:var(--obsidian);}
+.look-masonry{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;}
+.lk{position:relative;overflow:hidden;background:#111;
+  border:1px solid rgba(255,255,255,.07);cursor:pointer;}
+.lk img{width:100%;height:100%;object-fit:cover;
+  transition:transform .8s var(--ease),filter .6s;filter:contrast(1.08) brightness(.85);}
+.lk:hover img{transform:scale(1.06);filter:contrast(1.14) brightness(.96);}
+.lk-overlay{position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 38%,rgba(0,0,0,.86) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:26px;}
+.lk-meta{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+.lk-title{font-family:var(--f-display);font-size:17px;font-weight:700;
+  text-transform:uppercase;color:var(--white);margin-bottom:6px;}
+.lk-tag{font-family:var(--f-mono);font-size:9.5px;color:var(--white);
+  opacity:0;transform:translateY(8px);transition:all .35s var(--ease);}
+.lk:hover .lk-tag{opacity:1;transform:none;}
+
+/* Masonry layout */
+.lk-1{grid-column:span 7;aspect-ratio:4/5;}
+.lk-2{grid-column:span 5;aspect-ratio:4/5;}
+.lk-3,.lk-4,.lk-5{grid-column:span 4;aspect-ratio:3/4;}
+@media(max-width:900px){
+  .lk-1,.lk-2,.lk-3,.lk-4,.lk-5{grid-column:span 12;aspect-ratio:4/5;}
+}
+
+/* ============================================================
+   COMING SOON SECTION
+   ============================================================ */
+.coming-soon{padding:130px 0;background:var(--carbon);
+  border-top:1px solid rgba(255,255,255,.06);}
+.cs-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+@media(max-width:1024px){.cs-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.cs-grid{grid-template-columns:1fr;}}
+
+.cs-card{background:#0e0e0e;border:1px dashed rgba(255,255,255,.13);overflow:hidden;}
+.cs-media{aspect-ratio:3/4;background:#141414;position:relative;overflow:hidden;
+  filter:grayscale(.75) brightness(.6);}
+.cs-media img{width:100%;height:100%;object-fit:cover;}
+.cs-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+.cs-pill{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;padding:6px 14px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);
+  color:var(--white);border-radius:20px;font-weight:700;}
+.cs-info{padding:18px 20px;}
+.cs-name{font-family:var(--f-display);font-size:14px;font-weight:700;color:#ccc;margin-bottom:4px;}
+.cs-sub{font-family:var(--f-mono);font-size:10.5px;color:var(--muted);margin-bottom:14px;}
+.cs-wa-btn{display:flex;align-items:center;gap:6px;justify-content:center;
+  width:100%;padding:10px;border:1px solid rgba(255,255,255,.16);
+  font-family:var(--f-mono);font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:#aaa;transition:all .25s;}
+.cs-wa-btn:hover{border-color:var(--wa);color:var(--wa);}
+
+/* ============================================================
+   04 DROP COUNTDOWN + VIP CARD
+   ============================================================ */
+.drop-sec{padding:140px 0;background:var(--obsidian);
+  border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.drop-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+@media(max-width:1060px){.drop-grid{grid-template-columns:1fr;gap:56px;}}
+
+.drop-info h2{font-family:var(--f-display);font-size:clamp(36px,5.2vw,72px);
+  font-weight:800;line-height:.95;letter-spacing:-.025em;text-transform:uppercase;
+  margin:14px 0 18px;}
+.drop-body{font-size:15px;line-height:1.72;color:#9a9aa2;max-width:480px;margin-bottom:34px;}
+
+.countdown-row{display:flex;gap:14px;margin-bottom:34px;}
+.cd-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+  padding:16px 18px;min-width:80px;text-align:center;}
+.cd-num{font-family:var(--f-mono);font-size:32px;font-weight:700;
+  color:var(--white);line-height:1;margin-bottom:5px;font-variant-numeric:tabular-nums;}
+.cd-lbl{font-family:var(--f-mono);font-size:8.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--muted);}
+
+.vip-form{display:flex;gap:10px;margin-top:6px;}
+.vip-form input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);
+  padding:13px 16px;font-family:var(--f-mono);font-size:11.5px;color:var(--white);outline:none;
+  transition:border-color .3s;}
+.vip-form input:focus{border-color:var(--white);}
+
+/* Holographic VIP Pass */
+.vip-wrap{perspective:1100px;}
+.vip-card{background:linear-gradient(135deg,#181818 0%,#0c0c0c 55%,#1d1d1d 100%);
+  border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:34px;
+  position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.88);
+  transition:transform .5s var(--ease);}
+.vip-card::before{content:"";position:absolute;inset:-140%;
+  background:conic-gradient(from 180deg at 50% 50%,transparent 0deg,rgba(255,255,255,.11) 60deg,transparent 120deg);
+  animation:vipSpin 9s linear infinite;pointer-events:none;}
+@keyframes vipSpin{to{transform:rotate(360deg);}}
+.vip-head{display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:38px;position:relative;z-index:2;}
+.vip-head img{width:34px;}
+.vip-tag-gold{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,169,110,.4);
+  padding:4px 10px;border-radius:20px;}
+.vip-chip{width:42px;height:30px;background:linear-gradient(135deg,#d4af37,#aa8c2c);
+  border-radius:5px;margin-bottom:22px;position:relative;z-index:2;}
+.vip-serial{font-family:var(--f-mono);font-size:17px;letter-spacing:.26em;
+  color:var(--white);margin-bottom:22px;position:relative;z-index:2;}
+.vip-foot{display:flex;justify-content:space-between;align-items:flex-end;
+  position:relative;z-index:2;}
+.vip-label{font-family:var(--f-mono);font-size:8.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.vip-holder{font-family:var(--f-display);font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
+
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
+.newsletter{padding:130px 0;background:var(--charcoal);}
+.news-inner{max-width:620px;margin:0 auto;text-align:center;}
+.news-inner h2{font-family:var(--f-display);font-size:clamp(28px,4.5vw,54px);
+  font-weight:800;letter-spacing:-.02em;text-transform:uppercase;margin:10px 0 14px;}
+.news-inner p{color:var(--muted);font-size:15px;margin-bottom:32px;}
+.news-form{display:flex;max-width:440px;margin:0 auto;
+  border-bottom:1px solid rgba(255,255,255,.2);}
+.news-form input{flex:1;background:none;border:none;color:var(--white);
+  font-size:14px;padding:10px 4px;outline:none;font-family:var(--f-mono);letter-spacing:.06em;}
+.news-form input::placeholder{color:var(--muted);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;}
+.news-form button{background:none;border:none;color:var(--white);
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;padding:8px 4px;transition:color .25s;}
+.news-form button:hover{color:var(--wa);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{background:var(--pitch);padding:100px 0 30px;border-top:1px solid rgba(255,255,255,.07);}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr;gap:44px;
+  padding-bottom:70px;border-bottom:1px solid rgba(255,255,255,.07);}
+@media(max-width:1024px){.foot-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr;}}
+.foot-brand img{width:44px;margin-bottom:14px;}
+.foot-brand .fn{font-family:var(--f-display);font-size:13px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;}
+.foot-brand p{font-size:12.5px;color:#777;line-height:1.7;max-width:270px;}
+.foot-col h5{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--silver);margin:0 0 16px;font-weight:700;}
+.foot-col a{display:block;font-size:12.5px;color:#6a6a72;margin-bottom:11px;
+  transition:color .25s,transform .25s;}
+.foot-col a:hover{color:var(--white);transform:translateX(4px);}
+.foot-col a.wa-link{color:#25d366;font-weight:700;}
+.foot-col a.wa-link:hover{color:#4ade80;}
+
+.foot-mid{display:flex;align-items:center;justify-content:space-between;
+  padding:32px 0;border-bottom:1px solid rgba(255,255,255,.07);flex-wrap:wrap;gap:18px;}
+.pay-badges{display:flex;gap:10px;flex-wrap:wrap;}
+.pay-pill{font-family:var(--f-mono);font-size:9.5px;padding:4px 10px;
+  border:1px solid rgba(255,255,255,.14);color:#888;border-radius:3px;}
+
+.foot-bot{display:flex;justify-content:space-between;align-items:center;
+  padding-top:28px;font-family:var(--f-mono);font-size:10px;
+  color:#555;letter-spacing:.06em;flex-wrap:wrap;gap:12px;}
+
+.foot-mark{text-align:center;margin-top:56px;user-select:none;pointer-events:none;overflow:hidden;}
+.foot-mark span{font-family:var(--f-display);font-size:clamp(78px,21vw,350px);
+  font-weight:900;line-height:.75;letter-spacing:-.04em;color:#0d0d0d;display:block;}
+
+/* ============================================================
+   CART DRAWER
+   ============================================================ */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.8);backdrop-filter:blur(10px);
+  z-index:500;opacity:0;visibility:hidden;transition:all .4s var(--ease);}
+.scrim.on{opacity:1;visibility:visible;}
+
+.cart-drawer{position:fixed;top:0;right:0;bottom:0;width:min(470px,92vw);
+  background:#0c0c0c;border-left:1px solid rgba(255,255,255,.12);z-index:510;
+  transform:translateX(100%);transition:transform .45s var(--ease);
+  display:flex;flex-direction:column;padding:28px;
+  box-shadow:-20px 0 65px rgba(0,0,0,.95);}
+.cart-drawer.on{transform:translateX(0);}
+.cart-head{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.09);}
+.cart-head h3{font-family:var(--f-display);font-size:15px;letter-spacing:.12em;
+  text-transform:uppercase;}
+.close-x{font-size:19px;color:var(--muted);padding:4px;transition:color .2s;}
+.close-x:hover{color:var(--white);}
+.wa-notice{background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.22);
+  padding:12px 14px;margin-top:14px;display:flex;align-items:flex-start;gap:10px;
+  font-size:11px;color:#ddd;line-height:1.45;border-radius:3px;}
+.wa-badge{background:var(--wa);color:#000;font-family:var(--f-mono);font-weight:800;
+  font-size:8.5px;padding:2px 7px;border-radius:2px;flex-shrink:0;margin-top:1px;}
+
+/* shipping meter */
+.ship-meter{padding:12px 0 14px;border-bottom:1px solid rgba(255,255,255,.07);}
+.ship-txt{font-family:var(--f-mono);font-size:10.5px;color:var(--white);margin-bottom:7px;}
+.meter-track{height:3px;background:#222;border-radius:2px;overflow:hidden;}
+.meter-fill{height:100%;background:var(--wa);border-radius:2px;transition:width .4s;}
+
+.cart-items{flex:1;overflow-y:auto;padding:16px 0;display:flex;flex-direction:column;gap:14px;}
+.ci{display:flex;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.05);}
+.ci-thumb{width:70px;height:88px;background:#181818;flex-shrink:0;overflow:hidden;}
+.ci-thumb img{width:100%;height:100%;object-fit:cover;}
+.ci-det{flex:1;display:flex;flex-direction:column;}
+.ci-name{font-family:var(--f-display);font-size:12.5px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.ci-var{font-family:var(--f-mono);font-size:10px;color:#4ade80;margin-bottom:7px;}
+.ci-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;}
+.qty-ctrl{display:flex;align-items:center;border:1px solid rgba(255,255,255,.18);}
+.q-btn{width:26px;height:26px;display:flex;align-items:center;justify-content:center;
+  font-size:14px;color:var(--white);}
+.q-val{font-family:var(--f-mono);font-size:10.5px;padding:0 8px;}
+.ci-price{font-family:var(--f-mono);font-size:13px;font-weight:700;color:var(--white);}
+
+.cart-foot{padding-top:18px;border-top:1px solid rgba(255,255,255,.09);
+  display:flex;flex-direction:column;gap:14px;}
+.cart-sub{display:flex;justify-content:space-between;align-items:center;}
+.cart-sub .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);}
+.cart-sub .amt{font-family:var(--f-mono);font-size:20px;font-weight:800;color:var(--white);}
+.promo-row{display:flex;gap:8px;}
+.promo-row input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);
+  padding:9px 12px;font-family:var(--f-mono);font-size:10.5px;color:var(--white);outline:none;}
+.promo-row input:focus{border-color:var(--white);}
+.promo-row button{padding:9px 16px;background:rgba(255,255,255,.12);
+  font-family:var(--f-mono);font-size:9.5px;color:var(--white);
+  text-transform:uppercase;transition:background .25s;}
+.promo-row button:hover{background:rgba(255,255,255,.25);}
+.wa-checkout-btn{width:100%;padding:16px;background:var(--wa);color:#000;
+  font-family:var(--f-mono);font-size:11.5px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;
+  justify-content:center;gap:10px;transition:all .3s;}
+.wa-checkout-btn:hover{background:var(--wa-dark);box-shadow:0 10px 28px rgba(37,211,102,.45);transform:translateY(-2px);}
+.wa-checkout-btn svg{width:20px;height:20px;fill:currentColor;}
+.cart-foot-note{font-family:var(--f-mono);font-size:9px;text-align:center;color:#666;}
+
+/* ============================================================
+   SEARCH OVERLAY
+   ============================================================ */
+.search-modal{position:fixed;inset:0;background:rgba(5,5,5,.97);backdrop-filter:blur(26px);
+  z-index:600;display:flex;flex-direction:column;padding:44px 60px;
+  opacity:0;visibility:hidden;transition:all .4s var(--ease);}
+.search-modal.on{opacity:1;visibility:visible;}
+.srch-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;}
+.srch-input{width:100%;max-width:880px;margin:0 auto;display:block;}
+.srch-field{width:100%;background:transparent;border:none;
+  border-bottom:2px solid rgba(255,255,255,.28);padding:18px 0;
+  font-family:var(--f-display);font-size:clamp(30px,5vw,62px);color:var(--white);outline:none;
+  transition:border-color .3s;}
+.srch-field:focus{border-color:var(--white);}
+.srch-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px;}
+.srch-chip{padding:7px 14px;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);font-family:var(--f-mono);font-size:10.5px;
+  color:var(--white);border-radius:20px;cursor:pointer;transition:all .25s;}
+.srch-chip:hover{background:var(--white);color:var(--pitch);}
+
+/* ============================================================
+   FLOATING WHATSAPP
+   ============================================================ */
+.floating-wa{position:fixed;bottom:28px;right:28px;z-index:460;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:12px 20px;background:var(--wa);color:#000;border-radius:50px;
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:800;
+  box-shadow:0 12px 32px rgba(37,211,102,.5);transition:all .3s var(--ease);}
+.floating-wa:hover{transform:translateY(-3px) scale(1.04);
+  box-shadow:0 18px 40px rgba(37,211,102,.65);}
+.floating-wa svg{width:18px;height:18px;fill:#000;}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+#toasts{position:fixed;bottom:28px;left:28px;z-index:9997;
+  display:flex;flex-direction:column;gap:8px;}
+.toast{background:rgba(16,16,16,.97);border:1px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(12px);padding:11px 18px;color:var(--white);
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 10px 28px rgba(0,0,0,.8);animation:toastIn .4s var(--ease) forwards;}
+@keyframes toastIn{from{transform:translateX(-100%);opacity:0;}to{transform:none;opacity:1;}}
+
+/* MOBILE NAV */
+#mobile-nav{
+  position:fixed;inset:0;background:rgba(0,0,0,.97);backdrop-filter:blur(14px);
+  z-index:500; /* above header */
+  display:flex;flex-direction:column;justify-content:center;padding:0 32px;
+  transform:translateY(-100%);transition:transform .48s var(--ease);
+}
+#mobile-nav.open{transform:none;}
+
+/* links — compact, readable size */
+#mobile-nav a{
+  display:block;
+  font-family:var(--f-display);
+  font-size:clamp(18px,5vw,24px);
+  font-weight:800;
+  text-transform:uppercase;
+  padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+  color:var(--white);
+  letter-spacing:.04em;
+  transition:color .2s,padding-left .2s;
+}
+#mobile-nav a:hover{color:rgba(255,255,255,.6);padding-left:6px;}
+#mobile-nav a.wa-mob{color:var(--wa);margin-top:8px;border-bottom:none;}
+
+/* close button — large tap target */
+#mobile-nav .mn-close{
+  position:absolute;top:0;right:0;
+  width:60px;height:60px;
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:none;
+  color:var(--white);font-size:22px;
+  cursor:pointer;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE — comprehensive
+   ============================================================ */
+
+/* 768px and below */
+@media(max-width:768px){
+
+  /* — TICKER — hide on mobile */
+  .ticker{display:none;}
+
+  /* — HEADER — clean, luxury, glassmorphic — */
+  .site-header{
+    top:0;height:58px;
+    background:rgba(6,6,6,.94);backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .brand-logo{width:30px !important;height:30px !important;}
+  .brand-name{font-size:12.5px;letter-spacing:.15em;}
+  .brand-sub{display:none;}
+  .header-actions{gap:4px;display:flex;align-items:center;}
+  .header-actions a.h-act{display:none;} /* floating WA button is active on mobile */
+  .h-act{padding:6px 8px;font-size:9.5px;}
+  .h-act .lbl{display:none;} /* clean icon-only on mobile */
+  .h-act svg{width:18px;height:18px;}
+  .bag-ct{width:16px;height:16px;font-size:8.5px;}
+  .hamburger{display:flex !important;flex-direction:column;gap:5px;padding:8px 6px;cursor:pointer;}
+  .hamburger span{display:block;width:20px;height:1.5px;background:var(--white);}
+
+  /* — HERO — structured, atmospheric streetwear vibe, zero congestion — */
+  .hero{
+    padding:66px 0 34px;
+    min-height:auto;
+    background:
+      radial-gradient(circle at 50% 10%, rgba(35,35,35,.5) 0%, rgba(8,8,8,.98) 60%, #030303 100%);
+  }
+  .hero-grid{grid-template-columns:1fr;gap:0;}
+  .hero-text{display:flex;flex-direction:column;align-items:center;text-align:center;}
+
+  /* Brand emblem in mobile hero — BOLD & QUITE BIG */
+  .hero-brand-emblem{
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    margin:0 auto 14px;padding:0;
+    background:none;border:none;box-shadow:none;
+  }
+  .hero-emblem-logo{
+    width:72px !important;height:72px !important;object-fit:contain;
+    filter:drop-shadow(0 0 20px rgba(255,255,255,.45));
+  }
+  .hero-emblem-text{
+    display:flex;align-items:center;gap:8px;
+  }
+  .emblem-title{font-size:11px;letter-spacing:.22em;font-weight:700;color:var(--white);}
+  .emblem-sub{font-size:8px;letter-spacing:.16em;color:#4ade80;}
+
+  /* Badges */
+  .hero-badges{justify-content:center;gap:6px;margin-bottom:12px;flex-wrap:nowrap;}
+  .h-badge{font-size:8px;padding:4px 9px;letter-spacing:.08em;white-space:nowrap;}
+
+  /* Headline */
+  .hero-h1{
+    font-family:var(--f-display);
+    font-size:clamp(34px,9.5vw,44px);
+    font-weight:900;line-height:.96;letter-spacing:-.02em;
+    margin-bottom:14px;text-align:center;
+  }
+  .hero-h1 .outline{-webkit-text-stroke:1.2px rgba(255,255,255,.85);color:transparent;}
+
+  /* Mobile Hero Visual Showcase Card */
+  .hero-mobile-showcase{
+    display:block;width:100%;max-width:330px;margin:0 auto 14px;
+  }
+  .hms-card{
+    position:relative;width:100%;height:200px;border-radius:10px;
+    border:1px solid rgba(255,255,255,.16);overflow:hidden;
+    box-shadow:0 14px 36px rgba(0,0,0,.9), 0 0 24px rgba(255,255,255,.04);
+    background:#111;
+  }
+  .hms-img{
+    width:100% !important;height:100% !important;object-fit:cover;object-position:center 20%;
+    filter:contrast(1.08) brightness(.88);
+  }
+  .hms-glass-pill{
+    position:absolute;bottom:8px;left:8px;right:8px;
+    background:rgba(8,8,8,.88);backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.18);border-radius:6px;
+    padding:7px 11px;display:flex;align-items:center;justify-content:space-between;
+  }
+  .hms-pill-left{display:flex;flex-direction:column;text-align:left;}
+  .hms-tag{font-family:var(--f-mono);font-size:7.5px;letter-spacing:.14em;color:#4ade80;font-weight:700;}
+  .hms-price{font-family:var(--f-mono);font-size:12.5px;font-weight:800;color:var(--white);}
+  .hms-cta{
+    font-family:var(--f-mono);font-size:8px;font-weight:700;letter-spacing:.1em;
+    background:var(--white);color:#000;padding:6px 10px;border-radius:3px;
+    text-transform:uppercase;
+  }
+
+  /* Hide redundant desktop items */
+  .desktop-only-price{display:none !important;}
+  .hero-visual{display:none !important;}
+  .hero-float-card{display:none !important;}
+
+  /* Description — punchy, less content */
+  .desc-desktop{display:none;}
+  .desc-mobile{display:inline;}
+  .hero-desc{
+    font-size:12px;line-height:1.5;color:#9b9ba4;
+    max-width:310px;margin:0 auto 14px;text-align:center;
+  }
+
+  /* CTAs — 2 columns side by side */
+  .hero-ctas{
+    display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    width:100%;max-width:330px;margin:0 auto 16px;
+  }
+  .hero-ctas .btn{
+    width:100%;justify-content:center;
+    padding:11px 8px;font-size:9px;letter-spacing:.08em;
+  }
+
+  /* Specs — 3 micro columns */
+  .hero-specs{
+    display:grid !important;grid-template-columns:repeat(3,1fr) !important;
+    gap:6px;padding-top:12px;border-top:1px solid rgba(255,255,255,.09);
+    width:100%;max-width:330px;margin:0 auto;
+  }
+  .spec-v{font-size:10.5px;font-weight:700;color:var(--white);}
+  .spec-l{font-size:7px;letter-spacing:.08em;color:var(--muted);}
+
+  /* — T-SHIRT GRID — clean 2-column luxury cards — */
+  .tshirts{padding:46px 0;}
+  .tshirt-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,1fr) !important;
+    gap:10px !important;
+  }
+  .pc{border-radius:4px;}
+  .pc-info{padding:10px 10px 12px;}
+  .pc-sku{font-size:7.5px;letter-spacing:.12em;margin-bottom:2px;}
+  .pc-name{font-size:11.5px;font-weight:700;line-height:1.3;margin-bottom:2px;}
+  .pc-fabric{font-size:8.5px;color:#888;margin-bottom:6px;}
+  .pc-desc{display:none !important;} /* removes congestion */
+  .card-sz{min-width:20px;height:20px;font-size:8px;padding:0 3px;}
+  .pc-price{font-size:13px;}
+  .pc-btns{gap:5px;}
+  .pc-btn-add,.pc-btn-wa{font-size:8.5px;padding:8px 4px;}
+
+  /* — SECTION HEADS — */
+  .sec-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:22px;}
+  .sec-head h2{font-size:clamp(22px,6.8vw,32px);}
+  .sec-head-note{max-width:100%;font-size:12px;line-height:1.5;}
+
+  /* — MANIFESTO — */
+  .manifesto{padding:48px 0;}
+  .manifesto-grid{grid-template-columns:1fr;gap:22px;}
+  .manifesto h2{font-size:clamp(24px,7.2vw,34px);margin:8px 0 12px;}
+  .manifesto p{font-size:12.5px;line-height:1.55;margin-bottom:18px;}
+  .feat-pills{grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+  .feat-pill{padding:10px 10px;border-radius:4px;}
+  .feat-pill h4{font-size:9px;margin-bottom:3px;letter-spacing:.1em;}
+  .feat-pill p{font-size:10px;line-height:1.35;color:#777;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .ed-card{display:none;}  /* hide editorial card on mobile */
+  .hotspot{width:22px;height:22px;}
+
+  /* — CITY BANNER — */
+  .city-banner{padding:60px 0;}
+  .city-h2{margin-bottom:12px;font-size:clamp(24px,7vw,34px);}
+  .city-sub{font-size:9px;letter-spacing:.14em;margin-bottom:18px;}
+
+  /* — LOOKBOOK — */
+  .lookbook{padding:48px 0;}
+  .lk-1,.lk-2{grid-column:span 12;aspect-ratio:4/5;}
+  .lk-3,.lk-4,.lk-5{grid-column:span 6;aspect-ratio:3/4;}
+  .lk-overlay{padding:12px;}
+  .lk-meta{font-size:8px;margin-bottom:2px;}
+  .lk-title{font-size:12px;}
+  .lk-tag{opacity:1;transform:none;font-size:8.5px;}
+
+  /* — COMING SOON — */
+  .coming-soon{padding:48px 0;}
+  .cs-grid{grid-template-columns:repeat(2,1fr) !important;gap:10px;}
+  .cs-media{aspect-ratio:3/4;}
+  .cs-info{padding:10px 10px 12px;}
+  .cs-name{font-size:11.5px;margin-bottom:2px;}
+  .cs-sub{font-size:9px;margin-bottom:8px;}
+  .cs-wa-btn{font-size:8px;padding:7px;}
+
+  /* — DROP / VIP — */
+  .drop-sec{padding:54px 0;}
+  .drop-grid{grid-template-columns:1fr;gap:36px;}
+  .countdown-row{gap:8px;justify-content:center;}
+  .cd-box{min-width:54px;padding:10px 8px;}
+  .cd-num{font-size:22px;}
+  .cd-lbl{font-size:7px;}
+  .vip-form{flex-direction:column;gap:8px;}
+  .vip-form .btn{width:100%;justify-content:center;padding:12px;}
+
+  /* — VIP CARD — */
+  .vip-serial{font-size:13px;letter-spacing:.14em;word-break:break-all;}
+  .vip-card{padding:20px;border-radius:10px;}
+  .vip-chip{width:36px;height:24px;margin-bottom:16px;}
+  .vip-head{margin-bottom:24px;}
+
+  /* — NEWSLETTER — */
+  .newsletter{padding:48px 0;}
+  .news-inner{padding:0 4px;}
+  .news-inner h2{font-size:clamp(20px,5.5vw,30px);}
+  .news-inner p{font-size:12.5px;margin-bottom:18px;}
+  .news-form{max-width:100%;}
+
+  /* — FOOTER — */
+  footer{padding:44px 0 20px;}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:24px;padding-bottom:28px;}
+  .foot-brand{grid-column:span 2;}
+  .foot-brand p{font-size:11.5px;}
+  .foot-col h5{font-size:9px;margin-bottom:10px;}
+  .foot-col a{font-size:11px;margin-bottom:7px;}
+  .foot-mid{flex-direction:column;align-items:flex-start;gap:16px;}
+  .foot-mid form{width:100%;display:flex;gap:8px;}
+  .foot-mid input{flex:1;}
+  .foot-bot{flex-direction:column;align-items:flex-start;gap:6px;font-size:8px;padding-top:16px;}
+
+  /* — CART DRAWER — */
+  .cart-drawer{width:100%;border-left:none;border-top:1px solid rgba(255,255,255,.12);
+    top:auto;border-radius:18px 18px 0 0;padding:20px 18px 24px;}
+  .cart-drawer{transform:translateY(100%);}
+  .cart-drawer.on{transform:translateY(0);}
+
+  /* — SEARCH MODAL — */
+  .search-modal{padding:28px 18px;}
+  .srch-top{margin-bottom:24px;}
+  .srch-field{font-size:clamp(20px,5.5vw,32px);}
+
+  /* — FLOATING WA — mobile: sleek compact circular badge */
+  .floating-wa{
+    bottom:18px;right:18px;
+    width:46px;height:46px;padding:0;
+    border-radius:50%;gap:0;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(37,211,102,.5);
+  }
+  .floating-wa span{display:none;}
+  .floating-wa svg{width:22px;height:22px;}
+
+  /* logo and image protection */
+  .brand-logo{width:30px !important;height:30px !important;}
+  .hero-emblem-logo{width:24px !important;height:24px !important;}
+  .pl-logo{width:70px !important;height:70px !important;}
+  .vip-head img{width:30px !important;height:auto !important;}
+
+  /* prevent horizontal scroll */
+  *{max-width:100%;}
+  .hero-price-tag{flex-wrap:wrap;max-width:100%;}
+  .countdown-row{flex-wrap:wrap;}
+  #flatlay{padding:48px 0;}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="cr" id="cr"></div>
+<div class="crd" id="crd"></div>
+<div id="toasts"></div>
+
+<!-- ============================================================
+     PRELOADER
+     ============================================================ -->
+<div id="preloader">
+  <img src="assets/logo.png" class="pl-logo" alt="SH">
+  <div class="pl-name">Shelby Hiver</div>
+  <div class="pl-tag">Engineered for the aesthetic</div>
+  <div class="pl-bar"><div class="pl-fill"></div></div>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver%20Atelier!%20I%20want%20to%20enquire%20about%20the%20T-Shirts." target="_blank" class="floating-wa" aria-label="Order via WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.97.814 2.796.814 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.767-5.767-5.767zm0 10.457c-.822 0-1.631-.225-2.339-.646l-.167-.1-1.579.414.421-1.539-.109-.174c-.458-.731-.7-1.578-.7-2.454 0-2.476 2.015-4.491 4.493-4.491 2.477 0 4.492 2.015 4.492 4.491 0 2.477-2.015 4.492-4.491 4.492z"/></svg>
+  <span>Order via WhatsApp</span>
+</a>
+
+<!-- ============================================================
+     TOP TICKER
+     ============================================================ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="tick"><span class="gr">● 220 GSM T-SHIRTS LIVE</span></div><div class="tick-dot"></div>
+    <div class="tick">PRICE: <b>₹599 – ₹899</b></div><div class="tick-dot"></div>
+    <div class="tick">DIRECT WHATSAPP ORDER: <b>+91 9286511557</b></div><div class="tick-dot"></div>
+    <div class="tick">DROP 001 <b>(HOODIES &amp; BOTTOMS)</b> — ARRIVING SOON</div><div class="tick-dot"></div>
+    <div class="tick">STRICTLY LIMITED BATCH · NO RESTOCKS</div><div class="tick-dot"></div>
+    <div class="tick">450 GSM FRENCH TERRY HOODIE — COMING SOON</div><div class="tick-dot"></div>
+    <!-- duplicate for seamless loop -->
+    <div class="tick"><span class="gr">● 220 GSM T-SHIRTS LIVE</span></div><div class="tick-dot"></div>
+    <div class="tick">PRICE: <b>₹599 – ₹899</b></div><div class="tick-dot"></div>
+    <div class="tick">DIRECT WHATSAPP ORDER: <b>+91 9286511557</b></div><div class="tick-dot"></div>
+    <div class="tick">DROP 001 <b>(HOODIES &amp; BOTTOMS)</b> — ARRIVING SOON</div><div class="tick-dot"></div>
+    <div class="tick">STRICTLY LIMITED BATCH · NO RESTOCKS</div><div class="tick-dot"></div>
+    <div class="tick">450 GSM FRENCH TERRY HOODIE — COMING SOON</div><div class="tick-dot"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SITE HEADER
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+
+    <a href="#" class="brand-link">
+      <img src="assets/logo.png" alt="Shelby Hiver" class="brand-logo">
+      <div class="brand-name-group">
+        <span class="brand-name">Shelby Hiver</span>
+        <span class="brand-sub">Atelier Edition · 2026</span>
+      </div>
+    </a>
+
+    <nav class="nav-c">
+      <a href="#tshirts" class="nav-a">T-Shirts <span class="nav-badge badge-live">LIVE NOW</span></a>
+      <a href="#coming-soon" class="nav-a">Hoodies <span class="nav-badge badge-cs">SOON</span></a>
+      <a href="#coming-soon" class="nav-a">Bottoms <span class="nav-badge badge-cs">SOON</span></a>
+      <a href="#lookbook" class="nav-a">Lookbook</a>
+      <a href="#drop" class="nav-a">Drop 001</a>
+      <a href="#manifesto" class="nav-a">Manifesto</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="https://wa.me/919286511557" target="_blank" class="h-act" style="color:#4ade80;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 015.19 12a19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        <span class="lbl">+91 9286511557</span>
+      </a>
+      <button class="h-act" id="openSearch" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span class="lbl">Search</span>
+      </button>
+      <button class="h-act" id="openCart" aria-label="Bag">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="lbl">Bag</span>
+        <span class="bag-ct" id="bagCount">0</span>
+      </button>
+      <button class="hamburger" id="openMob" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div id="mobile-nav">
+  <button class="mn-close" id="closeMob" aria-label="Close menu">✕</button>
+  <a href="#tshirts" onclick="closeMobileNav()">T-Shirts <small style="color:#4ade80;font-size:9px;margin-left:4px;vertical-align:middle;">LIVE</small></a>
+  <a href="#coming-soon" onclick="closeMobileNav()">Hoodies <small style="color:#888;font-size:9px;margin-left:4px;">Soon</small></a>
+  <a href="#coming-soon" onclick="closeMobileNav()">Bottoms <small style="color:#888;font-size:9px;margin-left:4px;">Soon</small></a>
+  <a href="#lookbook" onclick="closeMobileNav()">Lookbook</a>
+  <a href="#drop" onclick="closeMobileNav()">Drop 001</a>
+  <a href="#manifesto" onclick="closeMobileNav()">Manifesto</a>
+  <a href="https://wa.me/919286511557" target="_blank" class="wa-mob" onclick="closeMobileNav()">WhatsApp Atelier →</a>
+</div>
+
+<main>
+
+<!-- ============================================================
+     HERO — CLEAN SPLIT-COLUMN, NO TEXT/PHOTO CLASH
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT: all text, zero background image behind it -->
+      <div class="hero-text reveal">
+        <!-- Brand Logo Emblem -->
+        <div class="hero-brand-emblem">
+          <img src="assets/logo.png" alt="Shelby Hiver" class="hero-emblem-logo">
+          <div class="hero-emblem-text">
+            <span class="emblem-title">SHELBY HIVER</span>
+            <span class="emblem-sub">ATELIER · 2026 EDITION</span>
+          </div>
+        </div>
+
+        <div class="hero-badges">
+          <span class="h-badge h-badge-green">● OFFICIAL LAUNCH ACTIVE</span>
+          <span class="h-badge h-badge-white">220 GSM HEAVYWEIGHT COTTON</span>
+        </div>
+
+        <h1 class="hero-h1">SHELBY<br><span class="outline">HIVER</span></h1>
+
+        <!-- Mobile Editorial Showcase Card (Sets the luxury vibe on mobile) -->
+        <div class="hero-mobile-showcase">
+          <div class="hms-card">
+            <img src="assets/model-tee.jpg" alt="Shelby Hiver 220 GSM Streetwear" class="hms-img">
+            <div class="hms-glass-pill">
+              <div class="hms-pill-left">
+                <span class="hms-tag">220 GSM COLLECTION</span>
+                <span class="hms-price">₹599 – ₹899</span>
+              </div>
+              <a href="#tshirts" class="hms-cta">Shop Drop ↓</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-price-tag desktop-only-price">
+          <span class="price-big">₹599 – ₹899</span>
+          <span class="price-note">T-Shirts Live · Drop 001 Coming Soon</span>
+        </div>
+
+        <p class="hero-desc">
+          <span class="desc-desktop">Engineered for the nocturnal aesthetic — <strong>220 GSM high-density combed cotton</strong>, architectural boxy drop-shoulder cut, pre-shrunk, bio-washed and built to outlast the cycle.</span>
+          <span class="desc-mobile">Architectural drop-shoulder silhouette. <strong>220 GSM combed cotton</strong>, pre-shrunk &amp; bio-washed.</span>
+        </p>
+
+        <div class="hero-ctas">
+          <a href="#tshirts" class="btn solid">Shop T-Shirts <span class="arrow">↓</span></a>
+          <a href="https://wa.me/919286511557?text=Hello!%20I'd%20like%20to%20order%20a%20Shelby%20Hiver%20220%20GSM%20T-Shirt." target="_blank" class="btn wa-btn">WhatsApp Order <span class="arrow">↗</span></a>
+        </div>
+
+        <div class="hero-specs">
+          <div><div class="spec-v">220 GSM</div><div class="spec-l">Heavy Cotton</div></div>
+          <div><div class="spec-v">BOXY CUT</div><div class="spec-l">Drop Silhouette</div></div>
+          <div><div class="spec-v">WHATSAPP</div><div class="spec-l">Direct Dispatch</div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT: clean photo card, no text clashing with image -->
+      <div class="hero-visual reveal">
+        <img src="assets/model-tee.jpg" alt="Shelby Hiver 220 GSM T-Shirt Editorial">
+        <div class="hero-float-card">
+          <div class="hfc-info">
+            <h4>Architectural White Tee</h4>
+            <p>220 GSM Heavyweight · ₹599</p>
+          </div>
+          <button class="btn solid" style="padding:9px 16px;font-size:9.5px;" onclick="addToCart('SH-TEE-01','L')">+ Bag</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     01 MANIFESTO
+     ============================================================ -->
+<section class="manifesto" id="manifesto">
+  <div class="container">
+    <div class="manifesto-grid">
+
+      <div class="reveal">
+        <span class="eyebrow">01 / The Shelby Philosophy</span>
+        <h2 class="manifesto-h2">LESS NOISE.<br>MORE PRESENCE.</h2>
+        <p>Shelby Hiver exists in the tension between architectural minimalism and raw streetwear energy. We obsess over pattern drafting, material weight, and the precise moment where a garment stops being clothing and becomes attitude.</p>
+
+        <div class="feat-pills">
+          <div class="feat-pill">
+            <h4>220 GSM Heavyweight Drape</h4>
+            <p>Custom-milled high-density combed cotton that holds its architectural silhouette wear after wear.</p>
+          </div>
+          <div class="feat-pill">
+            <h4>Nocturnal Palette</h4>
+            <p>Deep sulphur blacks, cold ash greys and pure optical whites built for after-hours distinction.</p>
+          </div>
+          <div class="feat-pill">
+            <h4>Zero Shrinkage</h4>
+            <p>Pre-shrunk bio-washed process ensures your silhouette stays exactly how it was intended.</p>
+          </div>
+          <div class="feat-pill">
+            <h4>WhatsApp Direct</h4>
+            <p>Bypass the middleman. Order directly, get personalised dispatch updates on WhatsApp.</p>
+          </div>
+        </div>
+
+        <a href="#tshirts" class="btn">Explore T-Shirts <span class="arrow">→</span></a>
+      </div>
+
+      <div class="ed-card reveal">
+        <img src="assets/model-hoodie.jpg" alt="Shelby Hiver Editorial">
+        <div class="hotspot hs-1">
+          <span class="hs-pip">460 GSM Heavy Terry · Coming in Drop 001</span>
+        </div>
+        <div class="hotspot hs-2">
+          <span class="hs-pip">Stacked Silhouette · Waterproof Hardware</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 ACTIVE T-SHIRT COLLECTION
+     ============================================================ -->
+<section class="tshirts" id="tshirts">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">02 / Active Collection · Immediate Dispatch</span>
+        <h2>The 220 GSM Edit</h2>
+      </div>
+      <p class="sec-head-note">Crafted with 220 GSM 100% heavy combed cotton, double-stitched ribbed collar, and signature minimalist SH branding. Add to bag and checkout directly via WhatsApp.</p>
+    </div>
+
+    <div class="tshirt-grid reveal" id="tshirtGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CITY CAMPAIGN BANNER
+     ============================================================ -->
+<section class="city-banner">
+  <div class="city-bg"><img src="assets/city-night.jpg" alt="Shelby Hiver Nocturnal City Campaign"></div>
+  <div class="city-scrim"></div>
+  <div class="city-inner reveal">
+    <span class="eyebrow" style="color:var(--white);margin-bottom:18px;">Atmosphere &amp; Intent</span>
+    <h2 class="city-h2">BUILT FOR<br>THE NIGHT.</h2>
+    <p class="city-sub">Engineered for motion. Cut for the quiet authorities of the city.</p>
+    <a href="#tshirts" class="btn solid">Shop The Active Collection <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 EDITORIAL LOOKBOOK
+     ============================================================ -->
+<section class="lookbook" id="lookbook">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow">03 / Autumn Archive 2026</span>
+        <h2>Editorial Lookbook</h2>
+      </div>
+      <a href="#tshirts" class="btn">Shop The Looks <span class="arrow">→</span></a>
+    </div>
+
+    <div class="look-masonry reveal">
+      <div class="lk lk-1" onclick="openCart()">
+        <img src="assets/model-hoodie.jpg" alt="Look 01">
+        <div class="lk-overlay">
+          <span class="lk-meta">Look 01 · Tokyo Brutalist</span>
+          <div class="lk-title">Nocturnal Drift — Coming Drop 001</div>
+          <span class="lk-tag">View Drop 001 →</span>
+        </div>
+      </div>
+      <div class="lk lk-2" onclick="addToCart('SH-TEE-01','L')">
+        <img src="assets/model-tee.jpg" alt="Look 02">
+        <div class="lk-overlay">
+          <span class="lk-meta">Look 02 · Gallery Minimal</span>
+          <div class="lk-title">Architectural 220 GSM Tee — ₹599</div>
+          <span class="lk-tag">Add To Bag →</span>
+        </div>
+      </div>
+      <div class="lk lk-3" onclick="addToCart('SH-TEE-04','M')">
+        <img src="assets/model-cap.jpg" alt="Look 03">
+        <div class="lk-overlay">
+          <span class="lk-meta">Look 03 · Night Silhouette</span>
+          <div class="lk-title">SH Cap · Accessories Coming Soon</div>
+          <span class="lk-tag">Join Waitlist →</span>
+        </div>
+      </div>
+      <div class="lk lk-4" onclick="addToCart('SH-TEE-03','L')">
+        <img src="assets/detail-tag.jpg" alt="Look 04">
+        <div class="lk-overlay">
+          <span class="lk-meta">Look 04 · Tactile Craft</span>
+          <div class="lk-title">Signature Heavyweight Tee — ₹899</div>
+          <span class="lk-tag">Add To Bag →</span>
+        </div>
+      </div>
+      <div class="lk lk-5" onclick="addToCart('SH-TEE-02','L')">
+        <img src="assets/model-pants.jpg" alt="Look 05">
+        <div class="lk-overlay">
+          <span class="lk-meta">Look 05 · Street Silhouette</span>
+          <div class="lk-title">Boxy Tee + Stacked Pants — Soon</div>
+          <span class="lk-tag">Add Tee To Bag →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMING SOON — DROP 001 PREVIEW
+     ============================================================ -->
+<section class="coming-soon" id="coming-soon">
+  <div class="container">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" style="color:#777;">Drop 001 Preview · Under Construction</span>
+        <h2 style="color:#888;">Coming to Drop 001</h2>
+      </div>
+      <p class="sec-head-note" style="color:#666;">Currently operating exclusively with our 220 GSM T-Shirt line. The following pieces launch with Drop 001. Join the WhatsApp waitlist for early access.</p>
+    </div>
+
+    <div class="cs-grid reveal">
+      <div class="cs-card">
+        <div class="cs-media">
+          <img src="assets/model-hoodie.jpg" alt="Core Hoodie">
+          <div class="cs-overlay"><span class="cs-pill">COMING SOON</span><span style="font-family:var(--f-mono);font-size:9px;color:#ccc;">Drop 001</span></div>
+        </div>
+        <div class="cs-info">
+          <div class="cs-name">Nocturnal Core Hoodie</div>
+          <div class="cs-sub">460 GSM Looped French Terry · Brutalist Boxy</div>
+          <a href="https://wa.me/919286511557?text=Hey!%20Please%20add%20me%20to%20the%20Core%20Hoodie%20waitlist%20for%20Drop%20001." target="_blank" class="cs-wa-btn">Notify Me on WhatsApp ↗</a>
+        </div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-media">
+          <img src="assets/detail-tag.jpg" alt="Sweatshirt">
+          <div class="cs-overlay"><span class="cs-pill">COMING SOON</span><span style="font-family:var(--f-mono);font-size:9px;color:#ccc;">Drop 001</span></div>
+        </div>
+        <div class="cs-info">
+          <div class="cs-name">Monogram Terry Sweatshirt</div>
+          <div class="cs-sub">420 GSM Heavy Terry · Tonal Embroidery</div>
+          <a href="https://wa.me/919286511557?text=Hey!%20Add%20me%20to%20the%20Sweatshirt%20waitlist%20for%20Drop%20001." target="_blank" class="cs-wa-btn">Notify Me on WhatsApp ↗</a>
+        </div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-media">
+          <img src="assets/model-pants.jpg" alt="Sweatpants">
+          <div class="cs-overlay"><span class="cs-pill">COMING SOON</span><span style="font-family:var(--f-mono);font-size:9px;color:#ccc;">Drop 001</span></div>
+        </div>
+        <div class="cs-info">
+          <div class="cs-name">Stacked Sweatpants</div>
+          <div class="cs-sub">Relaxed Knee Articulation · Zip Welt Pockets</div>
+          <a href="https://wa.me/919286511557?text=Hey!%20Add%20me%20to%20the%20Sweatpants%20waitlist%20for%20Drop%20001." target="_blank" class="cs-wa-btn">Notify Me on WhatsApp ↗</a>
+        </div>
+      </div>
+      <div class="cs-card">
+        <div class="cs-media">
+          <img src="assets/model-cap.jpg" alt="Cap">
+          <div class="cs-overlay"><span class="cs-pill">COMING SOON</span><span style="font-family:var(--f-mono);font-size:9px;color:#ccc;">Drop 001</span></div>
+        </div>
+        <div class="cs-info">
+          <div class="cs-name">Structured Atelier SH Cap</div>
+          <div class="cs-sub">3D High-Density Embroidery · Matte Buckle</div>
+          <a href="https://wa.me/919286511557?text=Hey!%20Add%20me%20to%20the%20SH%20Cap%20waitlist%20for%20Drop%20001." target="_blank" class="cs-wa-btn">Notify Me on WhatsApp ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 DROP 001 COUNTDOWN + VIP PASS
+     ============================================================ -->
+<section class="drop-sec" id="drop">
+  <div class="container drop-grid">
+
+    <div class="drop-info reveal">
+      <span class="eyebrow">Drop 001 · Access Registration</span>
+      <h2>THE PRIVATE<br>HIVER DROP.</h2>
+      <p class="drop-body">Only registered VIP access holders receive early WhatsApp notification before Drop 001 goes public. Generate your pass below and we will reach out to you first — guaranteed.</p>
+
+      <div class="countdown-row" id="countdown">
+        <div class="cd-box"><div class="cd-num" id="cdD">10</div><div class="cd-lbl">Days</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Hours</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Mins</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Secs</div></div>
+      </div>
+
+      <form class="vip-form" onsubmit="generatePass(event)">
+        <input type="text" id="vipName" placeholder="Enter your name for the VIP pass" required>
+        <button type="submit" class="btn solid">Generate Pass →</button>
+      </form>
+    </div>
+
+    <div class="vip-wrap reveal">
+      <div class="vip-card" id="vipCard">
+        <div class="vip-head">
+          <img src="assets/logo.png" alt="SH">
+          <span class="vip-tag-gold">SHELBY VIP ACCESS</span>
+        </div>
+        <div class="vip-chip"></div>
+        <div class="vip-serial" id="vipSerial">SH-2026 — 8849 — VIP</div>
+        <div class="vip-foot">
+          <div>
+            <div class="vip-label">Issued To</div>
+            <div class="vip-holder" id="vipHolder">ALEXANDER VANE</div>
+          </div>
+          <div>
+            <div class="vip-label">Drop Access</div>
+            <div class="vip-holder" style="color:var(--gold);font-size:11px;">CONFIRMED · TIER 01</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ATELIER FLATLAY SHOWCASE
+     ============================================================ -->
+<section style="padding:100px 0;background:#000;border-top:1px solid rgba(255,255,255,.06);" id="flatlay">
+  <div class="container">
+    <div class="sec-head reveal" style="margin-bottom:30px;">
+      <div>
+        <span class="eyebrow">Atelier Campaign Visual</span>
+        <h2>Shelby Hiver Archive</h2>
+      </div>
+    </div>
+    <div style="border:1px solid rgba(255,255,255,.14);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.9);" class="reveal">
+      <img src="shelby.png" alt="Shelby Hiver Atelier Flatlay" style="width:100%;height:auto;display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWSLETTER
+     ============================================================ -->
+<section class="newsletter">
+  <div class="container">
+    <div class="news-inner reveal">
+      <span class="eyebrow">Stay in the Hiver</span>
+      <h2>GET DROP ALERTS.</h2>
+      <p>Be first to know when Drop 001 (Hoodies, Bottoms) drops. No spam, just drops.</p>
+      <form class="news-form" onsubmit="handleNewsletter(event)">
+        <input type="email" id="newsEmail" placeholder="Your email for drop alerts" required>
+        <button type="submit">Join →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+
+    <div class="foot-grid">
+
+      <div class="foot-brand">
+        <img src="assets/logo.png" alt="Shelby Hiver">
+        <div class="fn">Shelby Hiver</div>
+        <p>High-luxury premium streetwear, engineered for the nocturnal aesthetic. Direct-to-consumer via WhatsApp Atelier.</p>
+      </div>
+
+      <div class="foot-col">
+        <h5>Collection (Live)</h5>
+        <a href="#tshirts">Essential Minimalist Tee — ₹599</a>
+        <a href="#tshirts">Boxy Drop-Shoulder Tee — ₹749</a>
+        <a href="#tshirts">Signature Heavyweight Tee — ₹899</a>
+        <a href="#tshirts">Monochrome Archive Tee — ₹799</a>
+      </div>
+
+      <div class="foot-col">
+        <h5>Coming — Drop 001</h5>
+        <a href="#coming-soon">460 GSM Core Hoodie</a>
+        <a href="#coming-soon">420 GSM Sweatshirt</a>
+        <a href="#coming-soon">Stacked Sweatpants</a>
+        <a href="#coming-soon">Structured SH Cap</a>
+      </div>
+
+      <div class="foot-col">
+        <h5>WhatsApp Atelier</h5>
+        <a href="https://wa.me/919286511557" target="_blank" class="wa-link">+91 9286511557 →</a>
+        <a href="https://wa.me/919286511557" target="_blank">Place an Order</a>
+        <a href="https://wa.me/919286511557" target="_blank">Track My Order</a>
+        <a href="https://wa.me/919286511557" target="_blank">Size Concierge</a>
+        <a href="https://wa.me/919286511557" target="_blank">Drop 001 Waitlist</a>
+      </div>
+
+      <div class="foot-col">
+        <h5>Legal &amp; Policies</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Return &amp; Exchange</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Delivery Info</a>
+        <a href="#">Accessibility</a>
+      </div>
+
+    </div>
+
+    <div class="foot-mid">
+      <div>
+        <span class="eyebrow" style="margin-bottom:8px;display:block;">Drop Dispatch — WhatsApp</span>
+        <p style="font-size:12px;color:#777;margin-bottom:12px;">Get private early access to Drop 001 (Hoodies, Bottoms) via WhatsApp.</p>
+        <form style="display:flex;gap:8px;" onsubmit="handleNewsletter(event)">
+          <input type="email" id="footEmail" placeholder="Email for drop alerts"
+            style="flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);
+            padding:11px 14px;font-family:var(--f-mono);font-size:10.5px;color:var(--white);outline:none;">
+          <button type="submit" class="btn solid" style="padding:11px 20px;font-size:9.5px;">Join →</button>
+        </form>
+      </div>
+      <div class="pay-badges">
+        <span class="pay-pill">UPI India</span>
+        <span class="pay-pill">Google Pay</span>
+        <span class="pay-pill">PhonePe</span>
+        <span class="pay-pill">Visa / MC</span>
+        <span class="pay-pill">Net Banking</span>
+      </div>
+    </div>
+
+    <div class="foot-bot">
+      <span>© 2026 SHELBY HIVER ATELIER. ALL RIGHTS RESERVED.</span>
+      <span>DIRECT WHATSAPP: +91 9286511557</span>
+      <span>220 GSM COMBED COTTON · ZERO SHRINKAGE · PRE-SHRUNK</span>
+    </div>
+
+  </div>
+</footer>
+
+<!-- ============================================================
+     CART DRAWER
+     ============================================================ -->
+<div class="scrim" id="cartScrim"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-head">
+    <h3>Bag (<span id="cartHeaderCount">0</span>)</h3>
+    <button class="close-x" id="closeCart">✕</button>
+  </div>
+  <div class="wa-notice">
+    <span class="wa-badge">WHATSAPP</span>
+    <span>We run direct-to-consumer via WhatsApp. Checkout sends your full cart to our atelier instantly.</span>
+  </div>
+  <div class="ship-meter">
+    <div class="ship-txt" id="shipTxt">Add ₹1,000 more for priority WhatsApp dispatch!</div>
+    <div class="meter-track"><div class="meter-fill" id="meterFill" style="width:0%"></div></div>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="promo-row">
+      <input type="text" id="promoInput" placeholder="Promo Code (Try: HIVER10)">
+      <button onclick="applyPromo()">Apply</button>
+    </div>
+    <div class="cart-sub">
+      <span class="lbl">Subtotal</span>
+      <span class="amt" id="cartSubtotal">₹ 0</span>
+    </div>
+    <button class="wa-checkout-btn" onclick="checkoutWA()">
+      <svg viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.53 1.97.814 2.796.814 3.18 0 5.767-2.587 5.767-5.766.001-3.182-2.585-5.767-5.767-5.767zm0 10.457c-.822 0-1.631-.225-2.339-.646l-.167-.1-1.579.414.421-1.539-.109-.174c-.458-.731-.7-1.578-.7-2.454 0-2.476 2.015-4.491 4.493-4.491 2.477 0 4.492 2.015 4.492 4.491 0 2.477-2.015 4.492-4.491 4.492zm2.593-3.376c-.142-.071-.84-.415-.97-.463-.13-.047-.225-.071-.32.071-.095.142-.367.463-.45.558-.083.095-.166.107-.308.036-.142-.071-.6-.221-1.144-.706-.423-.377-.709-.843-.792-.985-.083-.142-.009-.219.062-.29.064-.064.142-.166.213-.249.071-.083.095-.142.142-.237.047-.095.024-.178-.012-.249-.036-.071-.32-.771-.439-1.056-.115-.278-.232-.24-.32-.244l-.273-.004c-.095 0-.249.036-.379.178-.13.142-.498.486-.498 1.185 0 .699.509 1.375.58 1.47.071.095 1.002 1.53 2.428 2.146.339.147.604.234.81.3.34.108.65.093.895.056.273-.041.84-.344.959-.676.119-.332.119-.617.083-.676-.036-.059-.13-.095-.272-.166z"/></svg>
+      Buy Now on WhatsApp →
+    </button>
+    <p class="cart-foot-note">Redirects to WhatsApp Business (+91 9286511557) with your order pre-filled</p>
+  </div>
+</aside>
+
+<!-- ============================================================
+     SEARCH OVERLAY
+     ============================================================ -->
+<div class="search-modal" id="searchModal">
+  <div class="srch-top">
+    <div class="eyebrow">Search The Collection</div>
+    <button style="font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);" id="closeSearch">Close ✕</button>
+  </div>
+  <div class="srch-input">
+    <input class="srch-field" id="searchField" placeholder="Search T-shirts, hoodies, drops..." oninput="liveSearch(this.value)">
+    <div class="srch-chips">
+      <span class="srch-chip" onclick="doSearch('220 GSM Tee')">220 GSM Tee</span>
+      <span class="srch-chip" onclick="doSearch('Heavyweight')">Heavyweight</span>
+      <span class="srch-chip" onclick="doSearch('Boxy')">Boxy Fit</span>
+      <span class="srch-chip" onclick="doSearch('White')">White Tee</span>
+      <span class="srch-chip" onclick="doSearch('Black')">Black Tee</span>
+    </div>
+    <div id="searchResults" style="margin-top:32px;"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* ——— DATA ——— */
+const WA = "919286511557";
+
+const TEES = [
+  {
+    id:"SH-TEE-01", sku:"SH / TEE-01",
+    name:"SH Essential Minimalist Tee",
+    fabric:"220 GSM Heavy Combed Cotton · Pre-Shrunk",
+    price:599, badge:"LAUNCH SPECIAL", isLive:true,
+    img:"assets/model-tee.jpg", altImg:"assets/model-tee.jpg",
+    desc:"220 GSM dense-knit combed organic cotton with clean minimalist SH chest embroidery. Structured ribbed collar stays firm.",
+    sizes:["S","M","L","XL"], colors:["#ffffff","#000000"]
+  },
+  {
+    id:"SH-TEE-02", sku:"SH / TEE-02",
+    name:"SH Boxy Drop-Shoulder Tee",
+    fabric:"220 GSM Dense Knit · Bio-Washed",
+    price:749, badge:"BESTSELLER", isLive:false,
+    img:"assets/model-hoodie.jpg", altImg:"assets/model-hoodie.jpg",
+    desc:"Extended drop shoulders and wider boxy sleeves for a modern streetwear silhouette. Zero shrinkage guaranteed.",
+    sizes:["S","M","L","XL","XXL"], colors:["#0a0a0a","#222"]
+  },
+  {
+    id:"SH-TEE-03", sku:"SH / TEE-03",
+    name:"SH Signature Heavyweight Tee",
+    fabric:"220 GSM French Single Jersey",
+    price:899, badge:"PREMIUM ARCHIVE", isLive:false,
+    img:"assets/detail-tag.jpg", altImg:"assets/detail-tag.jpg",
+    desc:"Top-tier heavyweight tee with raised high-density SH monogram and reinforced double-stitched ribbed collar that never sags.",
+    sizes:["M","L","XL","XXL"], colors:["#050505"]
+  },
+  {
+    id:"SH-TEE-04", sku:"SH / TEE-04",
+    name:"SH Monochrome Archive Tee",
+    fabric:"220 GSM Bio-Washed Luxury Cotton",
+    price:799, badge:"LIMITED EDITION", isLive:false,
+    img:"assets/model-pants.jpg", altImg:"assets/model-pants.jpg",
+    desc:"Pure monochrome tonal styling engineered for high-rotation daily wear with premium anti-pilling compact combed yarns.",
+    sizes:["S","M","L","XL"], colors:["#000","#1c1c1c"]
+  }
+];
+
+/* ——— CART STATE ——— */
+let CART = [];
+let discount = 1.0;
+const selectedSizes = {};
+TEES.forEach(t => selectedSizes[t.id] = t.sizes[0]);
+
+/* ——— RENDER T-SHIRT CATALOG ——— */
+function renderTees() {
+  const grid = document.getElementById("tshirtGrid");
+  grid.innerHTML = "";
+  TEES.forEach(tee => {
+    const card = document.createElement("div");
+    card.className = "pc";
+    card.innerHTML = `
+      <div class="pc-media">
+        <img class="pri" src="${tee.img}" alt="${tee.name}" loading="lazy">
+        <img class="sec" src="${tee.altImg}" alt="${tee.name}" loading="lazy">
+        <span class="pc-badge ${tee.isLive ? 'live-badge' : ''}">${tee.badge}${tee.isLive ? ' · LIVE' : ''}</span>
+        <div class="quick-bar">
+          <div class="sz-row">
+            ${tee.sizes.map(s => `<button class="sz ${selectedSizes[tee.id]===s?'sel':''}" onclick="pickSz(event,'${tee.id}','${s}')">${s}</button>`).join('')}
+          </div>
+          <button class="qadd-btn" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">Quick Add +</button>
+        </div>
+      </div>
+      <div class="pc-info">
+        <div class="pc-sku">${tee.sku}</div>
+        <h3 class="pc-name">${tee.name}</h3>
+        <div class="pc-fabric">${tee.fabric}</div>
+        <p class="pc-desc" style="font-size:12px;color:#8a8a92;line-height:1.5;margin-bottom:14px;">${tee.desc}</p>
+        <div style="margin-bottom:12px;">
+          <span style="font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Size</span>
+          <div class="card-sz-row" id="szrow-${tee.id}">
+            ${tee.sizes.map(s=>`<button class="card-sz ${selectedSizes[tee.id]===s?'sel':''}" onclick="pickSz2('${tee.id}','${s}',this)">${s}</button>`).join('')}
+          </div>
+        </div>
+        <div class="pc-price-row">
+          <span class="pc-price">₹ ${(tee.price * discount).toLocaleString()}</span>
+          <div class="color-dots">${tee.colors.map(c=>`<span class="cd" style="background:${c}"></span>`).join('')}</div>
+        </div>
+        <div class="pc-btns">
+          <button class="pc-btn-add" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">+ Add To Bag</button>
+          <button class="pc-btn-wa" onclick="directWA('${tee.id}')">WA Buy ↗</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function pickSz(e, id, sz) {
+  e.stopPropagation();
+  selectedSizes[id] = sz;
+  e.currentTarget.parentElement.querySelectorAll('.sz').forEach(b => b.classList.remove('sel'));
+  e.currentTarget.classList.add('sel');
+}
+
+function pickSz2(id, sz, btn) {
+  selectedSizes[id] = sz;
+  document.querySelectorAll(`#szrow-${id} .card-sz`).forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  // sync quick bar
+  document.querySelectorAll(`[onclick*="${id}"] .sz`).forEach(b => {
+    b.classList.toggle('sel', b.textContent.trim() === sz);
+  });
+}
+
+/* ——— ADD TO CART ——— */
+function addToCart(id, sizeArg) {
+  const sz = sizeArg || selectedSizes[id] || TEES.find(t=>t.id===id).sizes[0];
+  const existing = CART.find(i => i.id===id && i.size===sz);
+  if (existing) { existing.qty++; }
+  else { CART.push({id, size:sz, qty:1}); }
+  const tee = TEES.find(t=>t.id===id);
+  toast(`Added ${tee.name} (${sz}) to Bag`);
+  renderCart();
+  showCart();
+  const b = document.getElementById("bagCount");
+  b.classList.add("bump"); setTimeout(()=>b.classList.remove("bump"),300);
+}
+
+function updateQty(idx, d) {
+  CART[idx].qty += d;
+  if (CART[idx].qty <= 0) CART.splice(idx,1);
+  renderCart();
+}
+
+/* ——— RENDER CART ——— */
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  const count = CART.reduce((s,i)=>s+i.qty, 0);
+  document.getElementById("bagCount").textContent = count;
+  document.getElementById("cartHeaderCount").textContent = count;
+
+  if (!CART.length) {
+    container.innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--muted);font-family:var(--f-mono);"><p style="margin-bottom:14px;">YOUR BAG IS EMPTY</p><button class="btn" style="font-size:9.5px;padding:9px 18px;" onclick="hideCart()">Browse T-Shirts →</button></div>`;
+    document.getElementById("cartSubtotal").textContent = "₹ 0";
+    document.getElementById("meterFill").style.width = "0%";
+    document.getElementById("shipTxt").textContent = "Add items to unlock WhatsApp dispatch.";
+    return;
+  }
+
+  let total = 0;
+  container.innerHTML = "";
+  CART.forEach((item, idx) => {
+    const tee = TEES.find(t=>t.id===item.id);
+    const lineTotal = Math.round(tee.price * item.qty * discount);
+    total += lineTotal;
+    const row = document.createElement("div");
+    row.className = "ci";
+    row.innerHTML = `
+      <div class="ci-thumb"><img src="${tee.img}" alt="${tee.name}"></div>
+      <div class="ci-det">
+        <div class="ci-name">${tee.name}</div>
+        <div class="ci-var">Size: ${item.size} · 220 GSM Cotton</div>
+        <div class="ci-row">
+          <div class="qty-ctrl">
+            <button class="q-btn" onclick="updateQty(${idx},-1)">−</button>
+            <span class="q-val">${item.qty}</span>
+            <button class="q-btn" onclick="updateQty(${idx},1)">+</button>
+          </div>
+          <span class="ci-price">₹ ${lineTotal.toLocaleString()}</span>
+        </div>
+      </div>`;
+    container.appendChild(row);
+  });
+
+  document.getElementById("cartSubtotal").textContent = `₹ ${total.toLocaleString()}`;
+
+  // Shipping meter — threshold ₹1,999
+  const pct = Math.min(100, Math.round((total/1999)*100));
+  document.getElementById("meterFill").style.width = pct + "%";
+  const shipTxt = document.getElementById("shipTxt");
+  shipTxt.innerHTML = total >= 1999
+    ? `✓ <b>Priority WhatsApp dispatch unlocked!</b>`
+    : `Add <b>₹${(1999-total).toLocaleString()}</b> more for priority dispatch!`;
+}
+
+/* ——— WHATSAPP CHECKOUT ——— */
+function checkoutWA() {
+  if (!CART.length) { toast("Bag is empty — add a T-shirt first!"); return; }
+  let lines = "", grand = 0;
+  CART.forEach(item => {
+    const tee = TEES.find(t=>t.id===item.id);
+    const lt = Math.round(tee.price * item.qty * discount);
+    grand += lt;
+    lines += `• ${tee.name} | Size: ${item.size} | Qty: ${item.qty} | ₹${lt}\n`;
+  });
+  if (discount < 1) lines += `• Promo Discount Applied (${Math.round((1-discount)*100)}% OFF)\n`;
+  const msg = `Hello Shelby Hiver Atelier! 👋\n\nI'd like to place an order:\n\n${lines}\n💰 TOTAL: ₹${grand.toLocaleString()}\n\nPlease share payment details (UPI/QR/Bank) and confirm dispatch timeline.\n\nMy delivery details:\nName: \nAddress: \nPin Code: \nPhone: `;
+  toast("Opening WhatsApp checkout...");
+  setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank"), 400);
+}
+
+/* ——— DIRECT BUY ——— */
+function directWA(id) {
+  const tee = TEES.find(t=>t.id===id);
+  const sz = selectedSizes[id] || tee.sizes[0];
+  const msg = `Hello Shelby Hiver! 👋\n\nI'd like to order:\n• ${tee.name}\n• Size: ${sz}\n• Fabric: ${tee.fabric}\n• Price: ₹${tee.price}\n\nPlease confirm availability and share payment details. Thank you!`;
+  toast(`Opening WhatsApp for ${tee.name}...`);
+  setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,"_blank"), 300);
+}
+
+/* ——— PROMO CODE ——— */
+function applyPromo() {
+  const v = document.getElementById("promoInput").value.trim().toUpperCase();
+  if (v === "HIVER10") { discount = 0.9; toast("PROMO APPLIED: 10% OFF"); renderTees(); renderCart(); }
+  else if (v === "LAUNCH15") { discount = 0.85; toast("PROMO APPLIED: 15% OFF LAUNCH"); renderTees(); renderCart(); }
+  else { toast("Invalid promo code — try HIVER10"); }
+}
+
+/* ——— CART UI ——— */
+function showCart() {
+  document.getElementById("cartDrawer").classList.add("on");
+  document.getElementById("cartScrim").classList.add("on");
+}
+function hideCart() {
+  document.getElementById("cartDrawer").classList.remove("on");
+  document.getElementById("cartScrim").classList.remove("on");
+}
+document.getElementById("openCart").addEventListener("click", showCart);
+document.getElementById("closeCart").addEventListener("click", hideCart);
+document.getElementById("cartScrim").addEventListener("click", hideCart);
+
+/* ——— SEARCH ——— */
+const searchModal = document.getElementById("searchModal");
+document.getElementById("openSearch").addEventListener("click",()=>{
+  searchModal.classList.add("on");
+  setTimeout(()=>document.getElementById("searchField").focus(),200);
+});
+document.getElementById("closeSearch").addEventListener("click",()=>searchModal.classList.remove("on"));
+function doSearch(q){ document.getElementById("searchField").value=q; liveSearch(q); }
+function liveSearch(q) {
+  const area = document.getElementById("searchResults");
+  q = q.toLowerCase().trim();
+  if (!q) { area.innerHTML=""; return; }
+  const hits = TEES.filter(t => t.name.toLowerCase().includes(q) || t.fabric.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+  if (!hits.length) { area.innerHTML=`<p style="color:var(--muted);font-family:var(--f-mono);">No results for "${q}".</p>`; return; }
+  area.innerHTML = `<h6 style="font-family:var(--f-mono);font-size:9.5px;color:var(--muted);margin-bottom:14px;">RESULTS (${hits.length})</h6>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
+      ${hits.map(t=>`<div style="background:#141414;padding:12px;border:1px solid #222;cursor:pointer;" onclick="searchModal.classList.remove('on');addToCart('${t.id}','${t.sizes[0]}')">
+        <img src="${t.img}" style="aspect-ratio:3/4;object-fit:cover;margin-bottom:8px;">
+        <div style="font-family:var(--f-display);font-size:12px;font-weight:700;">${t.name}</div>
+        <div style="font-family:var(--f-mono);font-size:11px;color:#aaa;margin-top:3px;">₹ ${t.price}</div>
+      </div>`).join('')}
+    </div>`;
+}
+
+/* ——— VIP PASS GENERATOR ——— */
+function generatePass(e) {
+  e.preventDefault();
+  const name = document.getElementById("vipName").value.trim().toUpperCase();
+  document.getElementById("vipHolder").textContent = name;
+  document.getElementById("vipSerial").textContent = "SH-2026 — " + Math.floor(1000+Math.random()*9000) + " — VIP";
+  const card = document.getElementById("vipCard");
+  card.style.transition = "transform .6s var(--ease)";
+  card.style.transform = "rotateY(360deg)";
+  setTimeout(()=>card.style.transform="",700);
+  toast(`VIP Pass generated for ${name}`);
+}
+
+/* ——— COUNTDOWN (Drop 001 in 10 days) ——— */
+const dropDate = new Date();
+dropDate.setDate(dropDate.getDate() + 10);
+dropDate.setHours(dropDate.getHours() + 12, 0, 0, 0);
+function tick() {
+  const d = Math.max(0, dropDate - new Date());
+  document.getElementById("cdD").textContent = String(Math.floor(d/86400000)).padStart(2,"0");
+  document.getElementById("cdH").textContent = String(Math.floor(d%86400000/3600000)).padStart(2,"0");
+  document.getElementById("cdM").textContent = String(Math.floor(d%3600000/60000)).padStart(2,"0");
+  document.getElementById("cdS").textContent = String(Math.floor(d%60000/1000)).padStart(2,"0");
+}
+tick(); setInterval(tick,1000);
+
+/* ——— SCROLL REVEAL ——— */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+/* ——— HEADER SCROLL ——— */
+const hdr = document.getElementById("siteHeader");
+window.addEventListener("scroll",()=>hdr.classList.toggle("scrolled",scrollY>28),{passive:true});
+
+/* ——— MOBILE NAV ——— */
+const mob = document.getElementById("mobile-nav");
+const openMobBtn = document.getElementById("openMob");
+const closeMobBtn = document.getElementById("closeMob");
+
+function openMobileNav(){mob.classList.add("open");document.body.style.overflow="hidden";}
+function closeMobileNav(){mob.classList.remove("open");document.body.style.overflow="";}
+
+openMobBtn.addEventListener("click", openMobileNav);
+closeMobBtn.addEventListener("click", closeMobileNav);
+
+// tap outside nav content to close
+mob.addEventListener("click", function(e){
+  if(e.target === mob) closeMobileNav();
+});
+
+/* ——— CUSTOM CURSOR ——— */
+if(matchMedia("(min-width:1025px)").matches){
+  const cr=document.getElementById("cr"),crd=document.getElementById("crd");
+  window.addEventListener("mousemove",e=>{
+    cr.style.left=e.clientX+"px";cr.style.top=e.clientY+"px";
+    crd.style.left=e.clientX+"px";crd.style.top=e.clientY+"px";
+    cr.classList.add("vis");
+  });
+  document.querySelectorAll("a,button,.pc,.lk,.cs-card,.ed-card,.hero-visual").forEach(el=>{
+    el.addEventListener("mouseenter",()=>cr.classList.add("big"));
+    el.addEventListener("mouseleave",()=>cr.classList.remove("big"));
+  });
+}
+
+/* ——— NEWSLETTER ——— */
+function handleNewsletter(e) {
+  e.preventDefault();
+  const el = e.target.querySelector("input[type=email]");
+  toast(`Drop alerts activated for ${el.value}`);
+  el.value="";
+}
+
+/* ——— TOAST ——— */
+function toast(msg) {
+  const tc = document.getElementById("toasts");
+  const t = document.createElement("div");
+  t.className="toast"; t.textContent=msg;
+  tc.appendChild(t);
+  setTimeout(()=>{t.style.opacity="0";t.style.transition="opacity .4s";setTimeout(()=>t.remove(),400);},2800);
+}
+
+/* ——— PRELOADER ——— */
+window.addEventListener("load",()=>setTimeout(()=>document.getElementById("preloader").classList.add("done"),800));
+
+/* ——— ESC ——— */
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){ hideCart(); searchModal.classList.remove("on"); mob.classList.remove("open"); }
+});
+
+/* ——— INIT ——— */
+renderTees();
+renderCart();
+</script>
+</body>
+</html>
