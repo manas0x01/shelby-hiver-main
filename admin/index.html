@@ -1,0 +1,2699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <title>SHELBY HIVER | Atelier Admin &amp; Command Center</title>
+  <link rel="icon" type="image/png" href="../assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --gold: #c9a96e;
+      --gold-dark: #aa8c2c;
+      --obsidian: #050505;
+      --carbon: #0d0d0d;
+      --charcoal: #141414;
+      --card-bg: #111111;
+      --card-hover: #161616;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text-primary: #ffffff;
+      --text-secondary: #a8a8b2;
+      --text-muted: #70707a;
+      --wa: #25d366;
+      --danger: #e63946;
+      --f-display: 'Space Grotesk', sans-serif;
+      --f-body: 'Plus Jakarta Sans', sans-serif;
+      --f-mono: 'Space Grotesk', monospace;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--obsidian);
+      color: var(--text-primary);
+      font-family: var(--f-body);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* Ambient noise background */
+    .noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 0%, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+      z-index: 0;
+    }
+
+    /* ============================================================
+       01 ADMIN AUTH LOGIN SCREEN
+       ============================================================ */
+    .admin-auth-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: var(--obsidian);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .admin-auth-card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 40px 32px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
+      position: relative;
+      z-index: 2;
+    }
+
+    .admin-auth-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .admin-auth-logo img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .admin-auth-logo strong {
+      font-family: var(--f-display);
+      font-size: 13.5px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #fff;
+      display: block;
+    }
+
+    .admin-auth-logo small {
+      font-family: var(--f-mono);
+      font-size: 8.5px;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .admin-auth-title {
+      font-family: var(--f-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .admin-auth-sub {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .auth-error-banner {
+      background: rgba(230, 57, 70, 0.15);
+      border: 1px solid rgba(230, 57, 70, 0.35);
+      color: #e63946;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      padding: 9px 12px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .admin-field {
+      margin-bottom: 16px;
+    }
+
+    .admin-field label {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .admin-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .admin-input-wrap input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      padding: 12px 14px;
+      font-family: var(--f-mono);
+      font-size: 12px;
+      color: #fff;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .admin-input-wrap input:focus {
+      border-color: var(--gold);
+    }
+
+    .admin-btn-primary {
+      width: 100%;
+      padding: 13px;
+      background: var(--text-primary);
+      color: var(--obsidian);
+      border: none;
+      border-radius: 4px;
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all .2s var(--ease);
+      margin-top: 10px;
+    }
+
+    .admin-btn-primary:hover {
+      opacity: .92;
+      transform: translateY(-1px);
+    }
+
+    .admin-btn-demo {
+      width: 100%;
+      padding: 9px;
+      background: rgba(201, 169, 110, 0.1);
+      border: 1px dashed rgba(201, 169, 110, 0.4);
+      color: var(--gold);
+      border-radius: 4px;
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all .2s;
+    }
+    .admin-btn-demo:hover {
+      background: rgba(201, 169, 110, 0.2);
+    }
+
+    .admin-auth-foot-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .admin-auth-foot-link:hover {
+      color: #fff;
+    }
+
+    /* ============================================================
+       02 MAIN ADMIN APP LAYOUT (SIDEBAR + CONTENT)
+       ============================================================ */
+    .admin-app {
+      display: none;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .admin-app.active {
+      display: flex;
+    }
+
+    @media (max-width: 900px) {
+      .admin-app.active {
+        flex-direction: column;
+      }
+    }
+
+    /* Sidebar Navigation */
+    .admin-sidebar {
+      width: 260px;
+      background: var(--carbon);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .mobile-logout-btn {
+      display: none;
+    }
+
+    .sidebar-head-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-scroll-hint {
+      display: none;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: .05em;
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .admin-sidebar {
+        width: 100%;
+        height: auto;
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(13, 13, 13, 0.96);
+        backdrop-filter: blur(12px);
+      }
+
+      .sidebar-head {
+        padding: 10px 14px;
+      }
+
+      .mobile-logout-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(230, 57, 70, 0.12);
+        border: 1px solid rgba(230, 57, 70, 0.35);
+        color: var(--danger);
+        width: 30px;
+        height: 30px;
+        border-radius: 4px;
+        font-size: 12px;
+        cursor: pointer;
+        transition: background .2s;
+      }
+
+      .sidebar-nav {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 6px 12px;
+        gap: 6px;
+        -webkit-overflow-scrolling: touch;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .sidebar-nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+        border-radius: 999px;
+        flex-shrink: 0;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .sidebar-foot {
+        display: none;
+      }
+
+      .table-scroll-hint {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+    }
+
+    .sidebar-head {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-brand img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .sidebar-brand strong {
+      font-family: var(--f-display);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .sidebar-brand small {
+      font-family: var(--f-mono);
+      font-size: 8px;
+      letter-spacing: .15em;
+      color: var(--gold);
+      display: block;
+    }
+
+    .sidebar-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--f-mono);
+      font-size: 8px;
+      font-weight: 800;
+      color: var(--wa);
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    .sidebar-live-pill .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--wa);
+      animation: livePulse 1.5s infinite;
+    }
+
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(1.3); }
+    }
+
+    .sidebar-nav {
+      padding: 18px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .nav-item.active {
+      background: var(--text-primary);
+      color: var(--obsidian);
+      font-weight: 800;
+    }
+
+    .nav-item .icon {
+      font-size: 14px;
+    }
+
+    .nav-item .badge {
+      margin-left: auto;
+      font-size: 9px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      color: inherit;
+    }
+
+    .sidebar-foot {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar-user {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .user-avatar {
+      width: 28px;
+      height: 28px;
+      background: var(--gold);
+      color: #000;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-info strong {
+      display: block;
+      font-size: 11.5px;
+      line-height: 1.2;
+    }
+
+    .user-info small {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 14px;
+      padding: 6px;
+      transition: color .2s;
+    }
+    .logout-btn:hover {
+      color: var(--danger);
+    }
+
+    /* Main Content Area */
+    .admin-main {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+      max-width: 1360px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    @media (max-width: 840px) {
+      .admin-main {
+        padding: 14px 12px 60px;
+      }
+      .admin-topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .page-title {
+        font-size: 19px;
+        line-height: 1.25;
+      }
+      .topbar-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .btn-outline,
+      .btn-gold {
+        justify-content: center;
+        width: 100%;
+        padding: 10px 8px;
+        font-size: 11px;
+      }
+    }
+
+    .admin-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .page-title {
+      font-family: var(--f-display);
+      font-size: clamp(20px, 3.2vw, 30px);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      font-family: var(--f-mono);
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--text-primary);
+      background: var(--card-hover);
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: var(--gold);
+      color: #050505;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 4px;
+      cursor: pointer;
+      border: none;
+      transition: all .2s;
+    }
+    .btn-gold:hover {
+      background: var(--gold-dark);
+      transform: translateY(-1px);
+    }
+
+    /* KPI Cards Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 1050px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+      }
+      .kpi-card {
+        padding: 12px 10px !important;
+      }
+      .kpi-val {
+        font-size: 18px !important;
+      }
+      .kpi-label {
+        font-size: 9px !important;
+      }
+      .kpi-sub {
+        font-size: 8px !important;
+      }
+    }
+
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .kpi-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .kpi-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-label {
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .kpi-icon {
+      font-size: 16px;
+      opacity: .8;
+    }
+
+    .kpi-val {
+      font-family: var(--f-mono);
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .kpi-sub {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      color: var(--wa);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .kpi-sub.neutral {
+      color: var(--text-muted);
+    }
+
+    /* Sections / View Containers */
+    .admin-view {
+      display: none;
+    }
+
+    .admin-view.active {
+      display: block;
+    }
+
+    /* Split Overview Layout */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 991px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .panel-title {
+      font-family: var(--f-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Real-Time Live Activity Feed */
+    .activity-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+
+    .act-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+    }
+
+    .act-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .act-dot.order { background: var(--wa); }
+    .act-dot.vip { background: var(--gold); }
+    .act-dot.cart { background: #3b82f6; }
+
+    .act-text {
+      flex: 1;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+
+    .act-text strong {
+      color: #fff;
+    }
+
+    .act-time {
+      font-family: var(--f-mono);
+      font-size: 9px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Data Tables (Orders & Products) */
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-bottom: 24px;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+      min-width: 640px;
+    }
+
+    @media (max-width: 600px) {
+      .data-table th,
+      .data-table td {
+        padding: 10px 12px;
+        font-size: 11px;
+      }
+      .btn-action {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.02);
+      font-weight: 700;
+    }
+
+    .data-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .prod-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .prod-cell img {
+      width: 44px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: var(--charcoal);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-family: var(--f-mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-pill.pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .status-pill.dispatched {
+      background: rgba(59, 130, 246, 0.15);
+      color: #3b82f6;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+    }
+
+    .status-pill.delivered {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.35);
+    }
+
+    .table-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 5px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--f-mono);
+      font-size: 10px;
+      transition: all .2s;
+    }
+
+    .btn-action:hover {
+      background: var(--card-hover);
+      color: #fff;
+      border-color: var(--border-strong);
+    }
+
+    .btn-action.wa {
+      color: var(--wa);
+      border-color: rgba(37, 211, 102, 0.35);
+    }
+    .btn-action.wa:hover {
+      background: var(--wa);
+      color: #000;
+    }
+
+    .btn-action.danger {
+      color: var(--danger);
+      border-color: rgba(230, 57, 70, 0.3);
+    }
+    .btn-action.danger:hover {
+      background: var(--danger);
+      color: #fff;
+    }
+
+    /* ============================================================
+       03 ADD/EDIT PRODUCT MODAL
+       ============================================================ */
+    .modal-scrim {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-scrim.active {
+      display: flex;
+    }
+
+    .product-modal-card {
+      width: 100%;
+      max-width: 680px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--card-bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
+      padding: 30px;
+    }
+
+    @media (max-width: 600px) {
+      .product-modal-card {
+        padding: 18px 14px;
+        max-height: 88vh;
+        border-radius: 10px;
+      }
+      .modal-head {
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+      }
+      .modal-title {
+        font-size: 16px;
+      }
+      .size-check-row {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+      }
+      .size-check-item {
+        justify-content: center;
+        padding: 8px 4px;
+        font-size: 11px;
+      }
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .modal-title {
+      font-family: var(--f-display);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--f-mono);
+      font-size: 10.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .form-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      font-family: var(--f-mono);
+      font-size: 12px;
+      padding: 10px 12px;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--gold);
+    }
+
+    /* Image Drop / File Upload */
+    .image-upload-box {
+      border: 2px dashed var(--border-strong);
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      background: rgba(255, 255, 255, 0.02);
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .image-upload-box:hover {
+      border-color: var(--gold);
+      background: rgba(201, 169, 110, 0.05);
+    }
+
+    /* Multi-Image Gallery Styles */
+    .gallery-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .gallery-thumb-card {
+      position: relative;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--charcoal);
+      aspect-ratio: 3 / 4;
+      transition: all .2s;
+    }
+
+    .gallery-thumb-card.primary {
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 10px rgba(201, 169, 110, 0.25);
+    }
+
+    .gallery-thumb-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-badge {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      right: 4px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-family: var(--f-mono);
+      font-size: 8px;
+      font-weight: 700;
+      color: #fff;
+      text-align: center;
+      padding: 2px 0;
+      border-radius: 3px;
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .gallery-thumb-card.primary .gallery-badge {
+      background: var(--gold);
+      color: #050505;
+      font-weight: 800;
+      border-color: var(--gold);
+    }
+
+    .gallery-del-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all .2s;
+      z-index: 2;
+    }
+
+    .gallery-del-btn:hover {
+      background: var(--danger);
+      border-color: var(--danger);
+    }
+
+    .gallery-make-pri {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: var(--f-mono);
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 5px;
+      border-radius: 3px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .gallery-make-pri:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    .image-upload-box.drag-over {
+      border-color: var(--gold);
+      background: rgba(201, 169, 110, 0.12);
+      box-shadow: 0 0 20px rgba(201, 169, 110, 0.25);
+    }
+
+    .preset-looks-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+      align-items: center;
+    }
+
+    .preset-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .preset-chip:hover {
+      background: rgba(201, 169, 110, 0.15);
+      border-color: var(--gold);
+      color: #fff;
+    }
+
+    .gallery-move-btn {
+      position: absolute;
+      bottom: 22px;
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: all .15s;
+    }
+
+    .gallery-move-btn:hover {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    .gallery-move-left {
+      left: 4px;
+    }
+
+    .gallery-move-right {
+      right: 4px;
+    }
+
+    .gallery-count-badge {
+      font-family: var(--f-mono);
+      font-size: 10px;
+      color: var(--gold);
+      background: rgba(201, 169, 110, 0.12);
+      padding: 2px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(201, 169, 110, 0.3);
+      font-weight: 700;
+    }
+
+    /* Size Checkboxes */
+    .size-check-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .size-check-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--f-mono);
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Toast notification */
+    #adminToasts {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .admin-toast {
+      background: #111;
+      border: 1px solid var(--gold);
+      color: #fff;
+      font-family: var(--f-mono);
+      font-size: 11.5px;
+      padding: 12px 18px;
+      border-radius: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      animation: toastIn .3s var(--ease);
+    }
+
+    @keyframes toastIn {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="noise"></div>
+  <div id="adminToasts"></div>
+
+  <!-- ============================================================
+     01 ADMIN LOGIN SCREEN (BEFORE ADMIN PANEL ACCESS)
+     ============================================================ -->
+  <div class="admin-auth-screen" id="adminAuthScreen">
+    <div class="admin-auth-card">
+      <div class="admin-auth-logo">
+        <img src="../assets/logo.png" alt="Shelby Hiver">
+        <div>
+          <strong>Shelby Hiver</strong>
+          <small>Atelier Command Center</small>
+        </div>
+      </div>
+
+      <h1 class="admin-auth-title">Atelier Sign In</h1>
+      <p class="admin-auth-sub">Restricted personnel access. Enter your administrator credentials to manage products, live orders, and VIP allocations.</p>
+
+      <div class="auth-error-banner" id="adminErrorBanner"></div>
+
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
+        <div class="admin-field">
+          <label for="adminEmail">Admin Email / Username</label>
+          <div class="admin-input-wrap">
+            <input type="text" id="adminEmail" placeholder="admin@shelbyhiver.com" required autocomplete="username">
+          </div>
+        </div>
+
+        <div class="admin-field">
+          <label for="adminPassword">Security Key / Password</label>
+          <div class="admin-input-wrap">
+            <input type="password" id="adminPassword" placeholder="••••••••••••" required autocomplete="current-password">
+          </div>
+        </div>
+
+        <button type="submit" class="admin-btn-primary">
+          <span>Authorize Access</span>
+          <span>→</span>
+        </button>
+
+        <button type="button" class="admin-btn-demo" onclick="quickFillAdmin()">
+          ⚡ 1-Click Fill Admin Credentials
+        </button>
+      </form>
+
+      <a href="../" class="admin-auth-foot-link">← Return to Public Storefront</a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+     02 MAIN ADMIN DASHBOARD & COMMAND PANEL
+     ============================================================ -->
+  <div class="admin-app" id="adminApp">
+    
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-head">
+        <div class="sidebar-brand">
+          <img src="../assets/logo.png" alt="SH">
+          <div>
+            <strong>Shelby Hiver</strong>
+            <small>Admin Panel</small>
+          </div>
+        </div>
+        <div class="sidebar-head-right">
+          <div class="sidebar-live-pill">
+            <span class="dot"></span> LIVE
+          </div>
+          <button class="mobile-logout-btn" onclick="handleAdminLogout()" title="Sign Out">✕</button>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" onclick="switchAdminView('overview', this)">
+          <span class="icon">📊</span>
+          <span>Overview</span>
+        </button>
+        <button class="nav-item" onclick="switchAdminView('orders', this)">
+          <span class="icon">🛍️</span>
+          <span>Live Orders</span>
+          <span class="badge" id="sidebarOrdersBadge">0</span>
+        </button>
+        <button class="nav-item" onclick="switchAdminView('products', this)">
+          <span class="icon">👕</span>
+          <span>Products</span>
+          <span class="badge" id="sidebarProductsBadge">8</span>
+        </button>
+        <button class="nav-item" onclick="switchAdminView('vip', this)">
+          <span class="icon">👑</span>
+          <span>VIP Members</span>
+          <span class="badge" id="sidebarVipBadge">0</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="sidebar-user">
+          <div class="user-avatar">AD</div>
+          <div class="user-info">
+            <strong>Head of Atelier</strong>
+            <small>admin@shelbyhiver.com</small>
+          </div>
+        </div>
+        <button class="logout-btn" onclick="handleAdminLogout()" title="Sign Out">✕</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Body -->
+    <main class="admin-main">
+      
+      <!-- Topbar Header -->
+      <div class="admin-topbar">
+        <div>
+          <h1 class="page-title" id="pageTitle">Atelier Overview &amp; Live Real-Time Metrics</h1>
+          <p style="font-family:var(--f-mono);font-size:11px;color:var(--text-muted);margin-top:2px;">Real-time sync connected with live customer storefront.</p>
+        </div>
+        <div class="topbar-actions">
+          <a href="../" target="_blank" class="btn-outline">
+            <span>Storefront</span>
+            <span>↗</span>
+          </a>
+          <button class="btn-gold" onclick="openAddProductModal()">
+            <span>+ Add Silhouette</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live KPI Metrics Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-label">Gross Revenue</span>
+            <span class="kpi-icon">💰</span>
+          </div>
+          <div class="kpi-val" id="kpiRevenue">₹ 0</div>
+          <div class="kpi-sub">↑ Real-Time Orders Revenue</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-label">Active Live Visitors</span>
+            <span class="kpi-icon">🟢</span>
+          </div>
+          <div class="kpi-val" id="kpiVisitors">18</div>
+          <div class="kpi-sub">● Real-Time Shoppers Active</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-label">Total Orders</span>
+            <span class="kpi-icon">📦</span>
+          </div>
+          <div class="kpi-val" id="kpiOrders">0</div>
+          <div class="kpi-sub neutral" id="kpiOrdersSub">All-time WhatsApp &amp; site orders</div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-head">
+            <span class="kpi-label">Active Silhouettes</span>
+            <span class="kpi-icon">👕</span>
+          </div>
+          <div class="kpi-val" id="kpiProducts">8</div>
+          <div class="kpi-sub neutral">Heavyweight Collection Live</div>
+        </div>
+      </div>
+
+      <!-- VIEW 1: OVERVIEW & ACTIVITY -->
+      <section class="admin-view active" id="view-overview">
+        <div class="overview-grid">
+          
+          <!-- Recent Orders Stream -->
+          <div class="panel-box">
+            <div class="panel-head">
+              <h2 class="panel-title">Recent Live Customer Orders</h2>
+              <button class="btn-outline" style="font-size:10px;padding:4px 8px;" onclick="switchAdminView('orders')">View All →</button>
+            </div>
+            <div class="table-scroll-hint"><span>⇄ Swipe table horizontally</span></div>
+            <div class="table-container" style="border:none;margin-bottom:0;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="overviewOrdersBody">
+                  <!-- Injected by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Real-Time Activity Feed -->
+          <div class="panel-box">
+            <div class="panel-head">
+              <h2 class="panel-title">Real-Time Store Activity Stream</h2>
+              <span class="sidebar-live-pill"><span class="dot"></span> STREAMING</span>
+            </div>
+            <div class="activity-feed" id="activityFeed">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VIEW 2: ORDERS MANAGEMENT -->
+      <section class="admin-view" id="view-orders">
+        <div class="panel-box" style="margin-bottom:24px;">
+          <div class="panel-head" style="margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+            <h2 class="panel-title">All Customer Orders</h2>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn-outline" onclick="simulateTestOrder()">+ Simulate Test Order</button>
+              <button class="btn-outline" onclick="clearAllOrders()">Clear Orders</button>
+            </div>
+          </div>
+
+          <div class="table-scroll-hint"><span>⇄ Swipe table horizontally to inspect all columns</span></div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Order Ref</th>
+                  <th>Date &amp; Time</th>
+                  <th>Customer Info</th>
+                  <th>Items &amp; Sizes</th>
+                  <th>Total (₹)</th>
+                  <th>Dispatch Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTableBody">
+                <!-- Injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: PRODUCTS & INVENTORY MANAGEMENT -->
+      <section class="admin-view" id="view-products">
+        <div class="panel-box" style="margin-bottom:24px;">
+          <div class="panel-head" style="margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+            <div>
+              <h2 class="panel-title">Product Catalogue Silhouettes</h2>
+              <p style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-muted);margin-top:2px;">Add or modify garments. Changes sync directly to the live customer storefront.</p>
+            </div>
+            <button class="btn-gold" onclick="openAddProductModal()">+ Upload New Silhouette</button>
+          </div>
+
+          <div class="table-scroll-hint"><span>⇄ Swipe table horizontally to inspect all columns</span></div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Silhouette</th>
+                  <th>SKU</th>
+                  <th>Category</th>
+                  <th>Fabric / GSM</th>
+                  <th>Price / MRP</th>
+                  <th>Sizes</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="productsTableBody">
+                <!-- Injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: VIP MEMBERS -->
+      <section class="admin-view" id="view-vip">
+        <div class="panel-box">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Registered VIP Members Database</h2>
+              <p style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-muted);margin-top:2px;">Customers who registered an account or VIP pass on the storefront.</p>
+            </div>
+          </div>
+
+          <div class="table-scroll-hint"><span>⇄ Swipe table horizontally to inspect all columns</span></div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>VIP Member Name</th>
+                  <th>Email</th>
+                  <th>WhatsApp Phone</th>
+                  <th>Pass Serial</th>
+                  <th>Tier</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="vipTableBody">
+                <!-- Injected by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ============================================================
+     03 ADD / EDIT PRODUCT MODAL (IMAGE FILE UPLOADER & DETAILS)
+     ============================================================ -->
+  <div class="modal-scrim" id="productModal">
+    <div class="product-modal-card">
+      <div class="modal-head">
+        <h2 class="modal-title" id="prodModalTitle">Upload New Luxury Silhouette</h2>
+        <button class="logout-btn" onclick="closeProductModal()">✕</button>
+      </div>
+
+      <form id="productForm" onsubmit="saveProduct(event)">
+        <input type="hidden" id="editProductId" value="">
+
+        <!-- Image Upload Section (Multi-Image Enabled) -->
+        <div class="form-group">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+            <label style="margin-bottom:0;">Product Imagery Gallery (Upload Multiple Photos / Angles)</label>
+            <span class="gallery-count-badge" id="galleryCountBadge">0 Photos</span>
+          </div>
+
+          <div class="image-upload-box" id="imageUploadBox" 
+               onclick="document.getElementById('productFileInput').click()"
+               ondragover="handleDragOver(event)" 
+               ondragleave="handleDragLeave(event)" 
+               ondrop="handleDrop(event)">
+            <input type="file" id="productFileInput" accept="image/*" multiple style="display:none;" onchange="handleProductMultipleImages(this)">
+            <div style="font-size:28px;margin-bottom:6px;">📸</div>
+            <strong style="font-family:var(--f-display);font-size:13.5px;display:block;">Drop Multiple Photos Here or Click to Browse</strong>
+            <small style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);display:block;margin-top:2px;">
+              Select multiple photos at once: Front view, Back view, Fabric close-up, Model angles
+            </small>
+            <span style="display:inline-block;margin-top:6px;font-family:var(--f-mono);font-size:9.5px;color:var(--gold);background:rgba(201,169,110,0.1);padding:2px 8px;border-radius:3px;">
+              High-res canvas compression enabled • Fast sync &amp; zero lag
+            </span>
+          </div>
+
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input type="text" id="addImgUrlInput" class="form-control" placeholder="Or enter Image URL / preset path (e.g. assets/tee-black.jpg)">
+            <button type="button" class="btn-outline" style="white-space:nowrap;padding:10px 14px;" onclick="addUrlToGallery()">+ Add Photo</button>
+          </div>
+
+          <!-- Quick Lookbook Presets -->
+          <div class="preset-looks-row">
+            <span style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);">Quick Presets:</span>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/model-tee.jpg')">+ Model Front</button>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/tee-black.jpg')">+ Black Flat</button>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/tee-white.jpg')">+ White Flat</button>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/tee-wash.jpg')">+ Acid Wash</button>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/detail-tag.jpg')">+ Woven Tag</button>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/model-hoodie.jpg')">+ Hoodie Shot</button>
+            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/model-pants.jpg')">+ Tactical Pants</button>
+          </div>
+
+          <!-- Multi-Image Live Grid -->
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;">
+            <span style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-secondary);font-weight:700;">Uploaded Gallery Order:</span>
+            <button type="button" class="btn-action danger" style="padding:2px 8px;font-size:9.5px;" onclick="clearGallery()">Clear All Photos</button>
+          </div>
+          <div class="gallery-preview-grid" id="galleryPreviewGrid">
+            <!-- Injected by JS -->
+          </div>
+          <small style="display:block;font-family:var(--f-mono);font-size:9.5px;color:var(--text-muted);margin-top:8px;">
+            💡 <strong>Card Cover Tip:</strong> The 1st image (gold border) displays as the main storefront card. The 2nd image is shown on mouse hover. Click <strong>★ Primary</strong> on any photo or use <strong>← / →</strong> to reorder.
+          </small>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="prodName">Silhouette Title / Name</label>
+            <input type="text" id="prodName" class="form-control" placeholder="e.g. SH Oversized Heavy Vintage Tee" required>
+          </div>
+
+          <div class="form-group">
+            <label for="prodSku">SKU Code</label>
+            <input type="text" id="prodSku" class="form-control" placeholder="e.g. SH / TEE-05" required>
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="prodCategory">Category</label>
+            <select id="prodCategory" class="form-control">
+              <option value="tees">Oversized Tees (220 GSM)</option>
+              <option value="hoodies">French Terry Hoodies</option>
+              <option value="acid">Acid Wash Archive</option>
+              <option value="bottoms">Tactical Cargos &amp; Bottoms</option>
+              <option value="accessories">Caps &amp; Accessories</option>
+              <option value="capsule">Capsule Sets</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="prodBadge">Badge Label</label>
+            <input type="text" id="prodBadge" class="form-control" placeholder="e.g. NEW ARRIVAL, 220 GSM, DROP 001">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="prodPrice">Selling Price (₹)</label>
+            <input type="number" id="prodPrice" class="form-control" placeholder="e.g. 799" required oninput="calcDiscount()">
+          </div>
+
+          <div class="form-group">
+            <label for="prodMrp">Original MRP (₹)</label>
+            <input type="number" id="prodMrp" class="form-control" placeholder="e.g. 1499" required oninput="calcDiscount()">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="prodFabric">Fabric &amp; Weight</label>
+            <input type="text" id="prodFabric" class="form-control" placeholder="e.g. 220 GSM 100% Super-Combed Cotton" required>
+          </div>
+
+          <div class="form-group">
+            <label for="prodFit">Silhouette Fit</label>
+            <input type="text" id="prodFit" class="form-control" placeholder="e.g. Boxy Drop-Shoulder Relaxed Fit" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Available Sizes</label>
+          <div class="size-check-row">
+            <label class="size-check-item"><input type="checkbox" name="sizes" value="S" checked> S</label>
+            <label class="size-check-item"><input type="checkbox" name="sizes" value="M" checked> M</label>
+            <label class="size-check-item"><input type="checkbox" name="sizes" value="L" checked> L</label>
+            <label class="size-check-item"><input type="checkbox" name="sizes" value="XL" checked> XL</label>
+            <label class="size-check-item"><input type="checkbox" name="sizes" value="XXL"> XXL</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="prodDesc">Product Description</label>
+          <textarea id="prodDesc" class="form-control" rows="3" placeholder="Detailed architectural description of cut, fabric, and collar construction..."></textarea>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:20px;">
+          <button type="submit" class="admin-btn-primary" style="margin-top:0;">Publish to Storefront</button>
+          <button type="button" class="btn-outline" onclick="closeProductModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================
+     04 REAL-TIME ADMIN JAVASCRIPT ENGINE
+     ============================================================ -->
+  <script>
+    const ADMIN_SESSION_KEY = 'sh_admin_auth_v1';
+    const PRODUCTS_KEY = 'sh_products_db';
+    const ORDERS_KEY = 'sh_orders_db';
+    const VIP_USERS_KEY = 'sh_auth_users_v2';
+
+    // Initial 8 Default Products (fallback seed)
+    const SEED_PRODUCTS = [
+      {
+        id: "SH-TEE-01",
+        sku: "SH / TEE-01",
+        category: "tees",
+        name: "SH Essential Minimalist 220 GSM Tee",
+        subtitle: "Luxury Heavyweight · Pure Combed Cotton",
+        price: 599,
+        mrp: 1199,
+        discountText: "50% OFF",
+        badge: "LAUNCH SPECIAL",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 142,
+        img: "../assets/model-tee.jpg",
+        altImg: "../assets/tee-white.jpg",
+        images: ["../assets/model-tee.jpg", "../assets/tee-white.jpg", "../assets/detail-tag.jpg"],
+        fabric: "220 GSM 100% Super-Combed Cotton",
+        fit: "Boxy Relaxed Oversized Fit",
+        colors: [
+          { name: "Vintage Bone White", hex: "#f4f4f6" },
+          { name: "Obsidian Black", hex: "#0a0a0a" }
+        ],
+        sizes: ["S", "M", "L", "XL"],
+        desc: "Engineered from ultra-dense 220 GSM combed organic cotton. Features a structured 1-inch ribbed lycra collar that never rolls or sags, reinforced shoulder tape, and a clean minimalist SH monogram on the chest.",
+        specs: {
+          "Fabric Weight": "220 GSM Dense Interlock Jersey",
+          "Fiber Content": "100% Super-Combed Bio-Washed Cotton",
+          "Silhouette": "Boxy Drop-Shoulder Streetwear Cut",
+          "Collar": "Heavy Ribbed Lycra Neckband (Anti-Sag)",
+          "Shrinkage": "0% Pre-Shrunk Guarantee"
+        }
+      },
+      {
+        id: "SH-TEE-02",
+        sku: "SH / TEE-02",
+        category: "tees",
+        name: "SH Boxy Drop-Shoulder Heavy Tee",
+        subtitle: "220 GSM Dense Knit · Streetwear Silhouette",
+        price: 749,
+        mrp: 1399,
+        discountText: "46% OFF",
+        badge: "BESTSELLER",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 218,
+        img: "../assets/tee-black.jpg",
+        altImg: "../assets/model-tee.jpg",
+        images: ["../assets/tee-black.jpg", "../assets/model-tee.jpg", "../assets/detail-tag.jpg"],
+        fabric: "220 GSM Dense Knit Cotton · Bio-Washed",
+        fit: "Extended Drop Shoulders · Wide Sleeves",
+        colors: [
+          { name: "Jet Obsidian", hex: "#050505" },
+          { name: "Deep Charcoal", hex: "#1f1f23" }
+        ],
+        sizes: ["S", "M", "L", "XL", "XXL"],
+        desc: "Extended drop shoulders, elongated boxy sleeves, and a sculpted drape. Heavy bio-washed cotton delivers substantial body while feeling buttery soft against the skin.",
+        specs: {
+          "Fabric Weight": "220 GSM Combed Ring-Spun Cotton",
+          "Treatment": "Silicone Softened & Bio-Washed",
+          "Silhouette": "Extended Drop Shoulder Streetwear Fit"
+        }
+      },
+      {
+        id: "SH-TEE-03",
+        sku: "SH / TEE-03",
+        category: "tees",
+        name: "SH Signature Monogram Archive Tee",
+        subtitle: "Subtle Chest Typography · 220 GSM",
+        price: 899,
+        mrp: 1599,
+        discountText: "44% OFF",
+        badge: "SIGNATURE",
+        isLive: true,
+        rating: 5.0,
+        reviewCount: 88,
+        img: "../assets/tee-grey.jpg",
+        altImg: "../assets/tee-black.jpg",
+        images: ["../assets/tee-grey.jpg", "../assets/tee-black.jpg", "../assets/detail-tag.jpg"],
+        fabric: "220 GSM Ultra-Soft Combed Cotton",
+        fit: "Commanding Architectural Cut",
+        colors: [
+          { name: "Ash Heather Grey", hex: "#4a4a52" },
+          { name: "Obsidian Black", hex: "#0c0c0c" }
+        ],
+        sizes: ["S", "M", "L", "XL"],
+        desc: "A collector's staple. Displays a micro-embossed rubberized high-density monogram on the chest and raw tonal embroidery.",
+        specs: {
+          "Fabric Weight": "220 GSM Luxury Heavyweight",
+          "Print Tech": "Micro-Embossed Rubberized Monogram"
+        }
+      },
+      {
+        id: "SH-HOD-01",
+        sku: "SH / HOD-01",
+        category: "hoodies",
+        name: "SH Nocturnal French Terry Hoodie",
+        subtitle: "450 GSM Heavy Loopback · Double Hood",
+        price: 1899,
+        mrp: 3499,
+        discountText: "46% OFF",
+        badge: "DROP 001",
+        isLive: false,
+        rating: 4.9,
+        reviewCount: 64,
+        img: "../assets/model-hoodie.jpg",
+        altImg: "../assets/campaign-model-hoodie-1789367293436.jpg",
+        images: ["../assets/model-hoodie.jpg", "../assets/campaign-model-hoodie-1789367293436.jpg"],
+        fabric: "450 GSM 100% Cotton French Terry",
+        fit: "Architectural Structured Boxy Cut",
+        colors: [
+          { name: "Pitch Black", hex: "#080808" }
+        ],
+        sizes: ["S", "M", "L", "XL"],
+        desc: "Heavyweight 450 GSM diagonal loopback French Terry. Built with a structured double-layer self-fabric hood that stands rigid without drawstrings.",
+        specs: {
+          "Fabric Weight": "450 GSM High-Density Loopback Terry",
+          "Hood": "Double-Layer Stand-up Structure"
+        }
+      }
+    ];
+
+    // Initial Orders Seed (if empty)
+    const SEED_ORDERS = [
+      {
+        id: "ORD-892401",
+        customerName: "Aarav K.",
+        customerEmail: "aarav.k@gmail.com",
+        customerPhone: "9876543210",
+        items: [{ id: "SH-TEE-01", name: "SH Essential Minimalist 220 GSM Tee", size: "L", qty: 2, price: 599 }],
+        total: 1198,
+        status: "Pending Dispatch",
+        paymentMethod: "Prepaid UPI",
+        createdAt: new Date(Date.now() - 1000 * 60 * 18).toISOString()
+      },
+      {
+        id: "ORD-892398",
+        customerName: "Rohan M.",
+        customerEmail: "rohan.street@yahoo.com",
+        customerPhone: "9823456789",
+        items: [{ id: "SH-TEE-02", name: "SH Boxy Drop-Shoulder Heavy Tee", size: "XL", qty: 1, price: 749 }],
+        total: 749,
+        status: "In Transit",
+        paymentMethod: "Prepaid UPI",
+        createdAt: new Date(Date.now() - 1000 * 60 * 85).toISOString()
+      },
+      {
+        id: "ORD-892340",
+        customerName: "Alexander Vane",
+        customerEmail: "vip@shelbyhiver.com",
+        customerPhone: "9286511557",
+        items: [{ id: "SH-HOD-01", name: "SH Nocturnal French Terry Hoodie", size: "L", qty: 1, price: 1899 }],
+        total: 1899,
+        status: "Delivered",
+        paymentMethod: "Prepaid UPI",
+        createdAt: new Date(Date.now() - 1000 * 60 * 360).toISOString()
+      }
+    ];
+
+    /* ——— DATA ACCESSORS ——— */
+    function getAdminProducts() {
+      try {
+        const stored = localStorage.getItem(PRODUCTS_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      localStorage.setItem(PRODUCTS_KEY, JSON.stringify(SEED_PRODUCTS));
+      return SEED_PRODUCTS;
+    }
+
+    function saveAdminProducts(prods) {
+      try {
+        localStorage.setItem(PRODUCTS_KEY, JSON.stringify(prods));
+      } catch (err) {
+        console.error("Local storage error:", err);
+        toast("⚠️ Storage limit reached. Please reduce image sizes or clear test items.");
+        return;
+      }
+      // Dispatch storage event for same-window listeners
+      window.dispatchEvent(new Event('storage'));
+      renderProductsView();
+      updateKPICounters();
+    }
+
+    function getAdminOrders() {
+      try {
+        const stored = localStorage.getItem(ORDERS_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) return parsed;
+        }
+      } catch (e) {}
+      localStorage.setItem(ORDERS_KEY, JSON.stringify(SEED_ORDERS));
+      return SEED_ORDERS;
+    }
+
+    function saveAdminOrders(orders) {
+      localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+      window.dispatchEvent(new Event('storage'));
+      renderOrdersView();
+      renderOverviewView();
+      updateKPICounters();
+    }
+
+    const DEFAULT_VIP_USERS = [
+      {
+        id: 'usr-manas-001',
+        name: 'Manas',
+        email: 'manas@shelbyhiver.com',
+        phone: '+91 9286511557',
+        tier: 'FOUNDER VIP',
+        serial: 'SH-2026 — 0001 — FOUNDER'
+      },
+      {
+        id: 'usr-vip-001',
+        name: 'Alexander Vane',
+        email: 'vip@shelbyhiver.com',
+        phone: '+91 9876543210',
+        tier: 'TIER 01',
+        serial: 'SH-2026 — 8849 — VIP'
+      }
+    ];
+
+    function getAdminVipUsers() {
+      try {
+        const stored = localStorage.getItem(VIP_USERS_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {}
+      return DEFAULT_VIP_USERS;
+    }
+
+    /* ——— AUTHENTICATION CONTROLLER ——— */
+    function checkAdminAuth() {
+      const isAuth = localStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+      const screen = document.getElementById("adminAuthScreen");
+      const app = document.getElementById("adminApp");
+
+      if (isAuth) {
+        if (screen) screen.style.display = "none";
+        if (app) app.classList.add("active");
+        initDashboard();
+      } else {
+        if (screen) screen.style.display = "flex";
+        if (app) app.classList.remove("active");
+      }
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("adminEmail").value.trim().toLowerCase();
+      const pwd = document.getElementById("adminPassword").value.trim();
+      const err = document.getElementById("adminErrorBanner");
+
+      // Valid admin credentials check
+      if ((email === "admin@shelbyhiver.com" || email === "admin") && (pwd === "admin2026" || pwd === "shelbyadmin")) {
+        localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+        toast("Administrator Access Authorized ✓");
+        checkAdminAuth();
+      } else {
+        err.textContent = "Invalid Admin Credentials. Use admin@shelbyhiver.com / admin2026";
+        err.style.display = "block";
+      }
+    }
+
+    function quickFillAdmin() {
+      document.getElementById("adminEmail").value = "admin@shelbyhiver.com";
+      document.getElementById("adminPassword").value = "admin2026";
+      toast("Filled Administrator Credentials");
+    }
+
+    function handleAdminLogout() {
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      toast("Administrator Session Terminated");
+      checkAdminAuth();
+    }
+
+    /* ——— VIEW NAVIGATION ——— */
+    function switchAdminView(viewName, btn) {
+      document.querySelectorAll(".admin-view").forEach(v => v.classList.remove("active"));
+      const target = document.getElementById(`view-${viewName}`);
+      if (target) target.classList.add("active");
+
+      document.querySelectorAll(".nav-item").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+
+      const titleMap = {
+        overview: "Atelier Overview & Live Real-Time Metrics",
+        orders: "Customer Orders Stream & Dispatch Tracking",
+        products: "Product Catalogue Management & Uploads",
+        vip: "Registered VIP Members & Atelier Allocations"
+      };
+      document.getElementById("pageTitle").textContent = titleMap[viewName] || "Atelier Admin";
+    }
+
+    /* ——— DASHBOARD INITIALIZATION & REAL-TIME SYNC ——— */
+    function initDashboard() {
+      updateKPICounters();
+      renderOverviewView();
+      renderOrdersView();
+      renderProductsView();
+      renderVipView();
+      startLiveVisitorPulse();
+    }
+
+    // Cross-tab real-time sync with storefront
+    window.addEventListener('storage', () => {
+      updateKPICounters();
+      renderOverviewView();
+      renderOrdersView();
+      renderProductsView();
+      renderVipView();
+      toast("Real-Time Storefront Sync Updated ✓");
+    });
+
+    /* ——— KPI CALCULATOR ——— */
+    function updateKPICounters() {
+      const orders = getAdminOrders();
+      const prods = getAdminProducts();
+      const vips = getAdminVipUsers();
+
+      const totalRev = orders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
+      document.getElementById("kpiRevenue").textContent = `₹ ${totalRev.toLocaleString()}`;
+      document.getElementById("kpiOrders").textContent = orders.length;
+      document.getElementById("kpiProducts").textContent = prods.length;
+
+      const sidebarOrders = document.getElementById("sidebarOrdersBadge");
+      if (sidebarOrders) sidebarOrders.textContent = orders.length;
+      const sidebarProds = document.getElementById("sidebarProductsBadge");
+      if (sidebarProds) sidebarProds.textContent = prods.length;
+      const sidebarVips = document.getElementById("sidebarVipBadge");
+      if (sidebarVips) sidebarVips.textContent = vips.length;
+    }
+
+    /* ——— RENDER OVERVIEW & RECENT ORDERS ——— */
+    function renderOverviewView() {
+      const orders = getAdminOrders().slice(0, 5);
+      const tbody = document.getElementById("overviewOrdersBody");
+      if (!tbody) return;
+
+      tbody.innerHTML = orders.map(o => `
+        <tr>
+          <td><strong>${o.id}</strong></td>
+          <td>${o.customerName}</td>
+          <td>${o.items.map(i => `${i.name.split(' ')[1] || i.name} (${i.size})`).join(', ')}</td>
+          <td><strong>₹ ${Number(o.total).toLocaleString()}</strong></td>
+          <td><span class="status-pill ${getStatusClass(o.status)}">${o.status}</span></td>
+        </tr>
+      `).join('');
+
+      // Populate Live Activity Feed
+      const feed = document.getElementById("activityFeed");
+      if (feed) {
+        feed.innerHTML = `
+          <div class="act-item">
+            <span class="act-dot order"></span>
+            <div class="act-text">New WhatsApp checkout order <strong>${orders[0] ? orders[0].id : 'ORD-892401'}</strong> for ₹${orders[0] ? orders[0].total : '1,198'} received.</div>
+            <span class="act-time">2m ago</span>
+          </div>
+          <div class="act-item">
+            <span class="act-dot vip"></span>
+            <div class="act-text">VIP Member <strong>Alexander Vane</strong> session active (Tier 01 Pass verified).</div>
+            <span class="act-time">14m ago</span>
+          </div>
+          <div class="act-item">
+            <span class="act-dot cart"></span>
+            <div class="act-text">Customer added <strong>SH Essential Minimalist 220 GSM Tee (L)</strong> to shopping bag.</div>
+            <span class="act-time">28m ago</span>
+          </div>
+          <div class="act-item">
+            <span class="act-dot"></span>
+            <div class="act-text">Pincode check <strong>110001 (New Delhi)</strong>: Express 48h dispatch confirmed.</div>
+            <span class="act-time">41m ago</span>
+          </div>
+        `;
+      }
+    }
+
+    function getStatusClass(status) {
+      if (!status) return 'pending';
+      const s = status.toLowerCase();
+      if (s.includes('deliver')) return 'delivered';
+      if (s.includes('transit') || s.includes('dispatch')) return 'dispatched';
+      return 'pending';
+    }
+
+    /* ——— RENDER FULL ORDERS VIEW ——— */
+    function renderOrdersView() {
+      const orders = getAdminOrders();
+      const tbody = document.getElementById("ordersTableBody");
+      if (!tbody) return;
+
+      if (!orders.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:30px;">No orders found. Click "+ Simulate Test Order" above to generate a test order.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = orders.map((o, idx) => `
+        <tr>
+          <td><strong>${o.id}</strong></td>
+          <td style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);">${formatDate(o.createdAt)}</td>
+          <td>
+            <strong>${o.customerName}</strong>
+            <div style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);">${o.customerPhone} · ${o.customerEmail}</div>
+          </td>
+          <td>
+            ${o.items.map(i => `<span style="display:block;font-size:11.5px;">• ${i.name} <small style="color:var(--gold);">(${i.size}) × ${i.qty}</small></span>`).join('')}
+          </td>
+          <td><strong style="font-family:var(--f-mono);font-size:13px;">₹ ${Number(o.total).toLocaleString()}</strong></td>
+          <td>
+            <select class="form-control" style="padding:4px 8px;font-size:10px;width:auto;" onchange="updateOrderStatus('${o.id}', this.value)">
+              <option value="Pending Dispatch" ${o.status === 'Pending Dispatch' ? 'selected' : ''}>Pending Dispatch</option>
+              <option value="In Transit" ${o.status === 'In Transit' ? 'selected' : ''}>In Transit</option>
+              <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+              <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+            </select>
+          </td>
+          <td>
+            <div class="table-actions">
+              <a href="https://wa.me/${o.customerPhone}?text=Hello%20${encodeURIComponent(o.customerName)}!%20Regarding%20your%20Shelby%20Hiver%20Order%20${o.id}%20status:%20${encodeURIComponent(o.status)}." target="_blank" class="btn-action wa" title="WhatsApp Customer">
+                💬 WA
+              </a>
+              <button class="btn-action danger" onclick="deleteOrder('${o.id}')" title="Delete Order">✕</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function updateOrderStatus(id, newStatus) {
+      const orders = getAdminOrders();
+      const ord = orders.find(o => o.id === id);
+      if (ord) {
+        ord.status = newStatus;
+        saveAdminOrders(orders);
+        toast(`Order ${id} status updated to: ${newStatus}`);
+      }
+    }
+
+    function deleteOrder(id) {
+      if (!confirm(`Delete Order ${id}?`)) return;
+      let orders = getAdminOrders();
+      orders = orders.filter(o => o.id !== id);
+      saveAdminOrders(orders);
+      toast(`Order ${id} removed.`);
+    }
+
+    function simulateTestOrder() {
+      const prods = getAdminProducts();
+      const p = prods[Math.floor(Math.random() * prods.length)];
+      const names = ["Kabir V.", "Ishaan S.", "Devansh P.", "Zaid M.", "Tara B."];
+      const name = names[Math.floor(Math.random() * names.length)];
+      const orderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+
+      const newOrder = {
+        id: orderId,
+        customerName: name,
+        customerEmail: `${name.toLowerCase().replace(' ', '.')}@gmail.com`,
+        customerPhone: "91" + Math.floor(7000000000 + Math.random() * 2999999999),
+        items: [{ id: p.id, name: p.name, size: p.sizes[0] || "L", qty: 1, price: p.price }],
+        total: p.price,
+        status: "Pending Dispatch",
+        paymentMethod: "Prepaid UPI",
+        createdAt: new Date().toISOString()
+      };
+
+      const orders = getAdminOrders();
+      orders.unshift(newOrder);
+      saveAdminOrders(orders);
+      toast(`Simulated Live Order ${orderId} placed for ₹${p.price}!`);
+    }
+
+    function clearAllOrders() {
+      if (!confirm("Clear all order history?")) return;
+      saveAdminOrders([]);
+      toast("Orders database cleared.");
+    }
+
+    /* ——— IMAGE URL RESOLVER FOR ADMIN ——— */
+    function resolveAdminImg(src) {
+      if (!src) return '../assets/model-tee.jpg';
+      if (src.startsWith('data:') || src.startsWith('http://') || src.startsWith('https://')) {
+        return src;
+      }
+      if (src.startsWith('/')) {
+        return src;
+      }
+      if (src.startsWith('../')) {
+        return src;
+      }
+      if (src.startsWith('assets/')) {
+        return '../' + src;
+      }
+      return '../' + src;
+    }
+
+    /* ——— RENDER PRODUCTS VIEW ——— */
+    function renderProductsView() {
+      const prods = getAdminProducts();
+      const tbody = document.getElementById("productsTableBody");
+      if (!tbody) return;
+
+      tbody.innerHTML = prods.map(p => {
+        const photoCount = Array.isArray(p.images) ? p.images.length : (p.img ? 1 : 0);
+        return `
+        <tr>
+          <td>
+            <div class="prod-cell">
+              <img src="${resolveAdminImg(p.img)}" alt="${p.name}" onerror="this.src='../assets/model-tee.jpg'">
+              <div>
+                <strong>${p.name}</strong>
+                <div style="font-family:var(--f-mono);font-size:9.5px;color:var(--gold);margin-top:2px;">${p.badge || 'STANDARD'}</div>
+                <div style="font-family:var(--f-mono);font-size:9px;color:var(--text-muted);margin-top:2px;">
+                  📸 ${photoCount} angle${photoCount === 1 ? '' : 's'} in gallery
+                </div>
+              </div>
+            </div>
+          </td>
+          <td style="font-family:var(--f-mono);font-size:11px;">${p.sku}</td>
+          <td><span class="status-pill pending">${p.category}</span></td>
+          <td style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-secondary);">${p.fabric}</td>
+          <td>
+            <strong style="font-family:var(--f-mono);font-size:12.5px;">₹ ${p.price}</strong>
+            <del style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);margin-left:4px;">₹ ${p.mrp}</del>
+          </td>
+          <td>
+            <div style="display:flex;gap:3px;">
+              ${p.sizes.map(s => `<span style="font-family:var(--f-mono);font-size:9px;padding:1px 4px;background:rgba(255,255,255,0.08);border-radius:2px;">${s}</span>`).join('')}
+            </div>
+          </td>
+          <td>
+            <div class="table-actions">
+              <button class="btn-action" onclick="openEditProductModal('${p.id}')">Edit</button>
+              <button class="btn-action danger" onclick="deleteProduct('${p.id}')">Delete</button>
+            </div>
+          </td>
+        </tr>
+      `;
+      }).join('');
+    }
+
+    /* ——— MULTI-IMAGE GALLERY MANAGEMENT ——— */
+    let currentProductGallery = [];
+
+    function updateGalleryBadge() {
+      const badge = document.getElementById("galleryCountBadge");
+      if (badge) {
+        const count = currentProductGallery.length;
+        badge.textContent = `${count} Photo${count === 1 ? '' : 's'}`;
+      }
+    }
+
+    function renderGalleryPreview() {
+      const grid = document.getElementById("galleryPreviewGrid");
+      if (!grid) return;
+      updateGalleryBadge();
+
+      if (!currentProductGallery.length) {
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:18px;color:var(--text-muted);font-family:var(--f-mono);font-size:11px;border:1px dashed var(--border-color);border-radius:6px;background:rgba(255,255,255,0.01);">No photos in gallery. Drop multiple files above, click to browse, or select quick presets.</div>`;
+        return;
+      }
+
+      grid.innerHTML = currentProductGallery.map((imgSrc, idx) => `
+        <div class="gallery-thumb-card ${idx === 0 ? 'primary' : ''}">
+          <img src="${resolveAdminImg(imgSrc)}" alt="Photo ${idx + 1}" onerror="this.src='../assets/model-tee.jpg'">
+          ${idx > 0 ? `<button type="button" class="gallery-make-pri" onclick="makeGalleryPrimary(${idx})" title="Set as Main Card Cover">★ Primary</button>` : ''}
+          <button type="button" class="gallery-del-btn" onclick="deleteGalleryImage(${idx})" title="Remove Photo">✕</button>
+          ${idx > 0 ? `<button type="button" class="gallery-move-btn gallery-move-left" onclick="moveGalleryImage(${idx}, -1)" title="Move Left">←</button>` : ''}
+          ${idx < currentProductGallery.length - 1 ? `<button type="button" class="gallery-move-btn gallery-move-right" onclick="moveGalleryImage(${idx}, 1)" title="Move Right">→</button>` : ''}
+          <div class="gallery-badge">${idx === 0 ? '★ Primary (Cover)' : (idx === 1 ? 'Hover View' : `Angle #${idx + 1}`)}</div>
+        </div>
+      `).join('');
+    }
+
+    /* Offscreen canvas auto-downscaling to guarantee high performance & prevent localStorage quota limit */
+    function compressImageFile(file) {
+      return new Promise((resolve) => {
+        if (!file.type || !file.type.startsWith('image/') || file.type.includes('svg')) {
+          const reader = new FileReader();
+          reader.onload = e => resolve(e.target.result);
+          reader.onerror = () => resolve('');
+          reader.readAsDataURL(file);
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            let width = img.width;
+            let height = img.height;
+            const maxDimension = 1400;
+
+            if (width > maxDimension || height > maxDimension) {
+              if (width > height) {
+                height = Math.round((height * maxDimension) / width);
+                width = maxDimension;
+              } else {
+                width = Math.round((width * maxDimension) / height);
+                height = maxDimension;
+              }
+            }
+
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            try {
+              const compressed = canvas.toDataURL('image/jpeg', 0.85);
+              resolve(compressed);
+            } catch(err) {
+              resolve(e.target.result);
+            }
+          };
+          img.onerror = () => resolve(e.target.result);
+          img.src = e.target.result;
+        };
+        reader.onerror = () => resolve('');
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function processImageFiles(files) {
+      if (!files || !files.length) return;
+      toast(`Processing ${files.length} photo${files.length > 1 ? 's' : ''}...`);
+      let count = 0;
+      for (const file of files) {
+        try {
+          const base64 = await compressImageFile(file);
+          if (base64) {
+            currentProductGallery.push(base64);
+            count++;
+          }
+        } catch(err) {
+          console.error("Compression error:", err);
+        }
+      }
+      renderGalleryPreview();
+      toast(`Added ${count} photo${count > 1 ? 's' : ''} to gallery ✓`);
+    }
+
+    function handleProductMultipleImages(input) {
+      if (input.files && input.files.length) {
+        processImageFiles(Array.from(input.files));
+        input.value = "";
+      }
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const box = document.getElementById("imageUploadBox");
+      if (box) box.classList.add("drag-over");
+    }
+
+    function handleDragLeave(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const box = document.getElementById("imageUploadBox");
+      if (box) box.classList.remove("drag-over");
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const box = document.getElementById("imageUploadBox");
+      if (box) box.classList.remove("drag-over");
+      if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) {
+        processImageFiles(Array.from(e.dataTransfer.files));
+      }
+    }
+
+    function addUrlToGallery() {
+      const input = document.getElementById("addImgUrlInput");
+      const val = input.value.trim();
+      if (!val) {
+        toast("Please enter an image URL or preset path first");
+        return;
+      }
+      currentProductGallery.push(val);
+      input.value = "";
+      renderGalleryPreview();
+      toast("Image added to gallery ✓");
+    }
+
+    function addPresetToGallery(path) {
+      currentProductGallery.push(path);
+      renderGalleryPreview();
+      toast("Preset image added to gallery ✓");
+    }
+
+    function clearGallery() {
+      if (!currentProductGallery.length) return;
+      if (!confirm("Remove all photos from this gallery?")) return;
+      currentProductGallery = [];
+      renderGalleryPreview();
+      toast("Gallery cleared");
+    }
+
+    function deleteGalleryImage(idx) {
+      if (idx >= 0 && idx < currentProductGallery.length) {
+        currentProductGallery.splice(idx, 1);
+        renderGalleryPreview();
+        toast("Photo removed from gallery");
+      }
+    }
+
+    function moveGalleryImage(idx, dir) {
+      const newIdx = idx + dir;
+      if (newIdx < 0 || newIdx >= currentProductGallery.length) return;
+      const item = currentProductGallery.splice(idx, 1)[0];
+      currentProductGallery.splice(newIdx, 0, item);
+      renderGalleryPreview();
+    }
+
+    function makeGalleryPrimary(idx) {
+      if (idx > 0 && idx < currentProductGallery.length) {
+        const item = currentProductGallery.splice(idx, 1)[0];
+        currentProductGallery.unshift(item);
+        renderGalleryPreview();
+        toast("Set as primary card photo ✓");
+      }
+    }
+
+    /* ——— PRODUCT MODAL CONTROLLER ——— */
+    function openAddProductModal() {
+      document.getElementById("prodModalTitle").textContent = "Upload New Luxury Silhouette";
+      document.getElementById("editProductId").value = "";
+      document.getElementById("productForm").reset();
+      document.getElementById("prodSku").value = "SH / " + Math.floor(100 + Math.random() * 900);
+      currentProductGallery = ["assets/model-tee.jpg", "assets/tee-black.jpg"];
+      renderGalleryPreview();
+      document.getElementById("productModal").classList.add("active");
+    }
+
+    function openEditProductModal(id) {
+      const prods = getAdminProducts();
+      const p = prods.find(item => item.id === id);
+      if (!p) return;
+
+      document.getElementById("prodModalTitle").textContent = "Edit Silhouette: " + p.name;
+      document.getElementById("editProductId").value = p.id;
+      document.getElementById("prodName").value = p.name;
+      document.getElementById("prodSku").value = p.sku;
+      document.getElementById("prodCategory").value = p.category;
+      document.getElementById("prodBadge").value = p.badge || "";
+      document.getElementById("prodPrice").value = p.price;
+      document.getElementById("prodMrp").value = p.mrp;
+      document.getElementById("prodFabric").value = p.fabric;
+      document.getElementById("prodFit").value = p.fit;
+      document.getElementById("prodDesc").value = p.desc || "";
+
+      // Load all product gallery images
+      if (Array.isArray(p.images) && p.images.length) {
+        currentProductGallery = [...p.images];
+      } else if (p.img) {
+        currentProductGallery = [p.img];
+        if (p.altImg && p.altImg !== p.img) currentProductGallery.push(p.altImg);
+      } else {
+        currentProductGallery = ["assets/model-tee.jpg"];
+      }
+      renderGalleryPreview();
+
+      // check sizes
+      document.querySelectorAll('input[name="sizes"]').forEach(cb => {
+        cb.checked = p.sizes.includes(cb.value);
+      });
+
+      document.getElementById("productModal").classList.add("active");
+    }
+
+    function closeProductModal() {
+      document.getElementById("productModal").classList.remove("active");
+    }
+
+    function calcDiscount() {
+      // helper calculation
+    }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      const editId = document.getElementById("editProductId").value;
+      const name = document.getElementById("prodName").value.trim();
+      const sku = document.getElementById("prodSku").value.trim();
+      const category = document.getElementById("prodCategory").value;
+      const badge = document.getElementById("prodBadge").value.trim() || "220 GSM LIVE";
+      const price = Number(document.getElementById("prodPrice").value);
+      const mrp = Number(document.getElementById("prodMrp").value);
+      const fabric = document.getElementById("prodFabric").value.trim();
+      const fit = document.getElementById("prodFit").value.trim();
+      const desc = document.getElementById("prodDesc").value.trim();
+
+      // Gallery Images Handling
+      const gallery = currentProductGallery.length > 0 ? [...currentProductGallery] : ["assets/model-tee.jpg"];
+      const primaryImg = gallery[0];
+      const altImg = gallery[1] || gallery[0];
+
+      const sizes = [];
+      document.querySelectorAll('input[name="sizes"]:checked').forEach(cb => sizes.push(cb.value));
+      if (!sizes.length) sizes.push("L");
+
+      const discPct = mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
+      const discountText = `${discPct}% OFF`;
+
+      const prods = getAdminProducts();
+
+      if (editId) {
+        // Edit existing
+        const idx = prods.findIndex(p => p.id === editId);
+        if (idx !== -1) {
+          prods[idx] = {
+            ...prods[idx],
+            name, sku, category, badge, price, mrp, discountText, fabric, fit, desc,
+            img: primaryImg,
+            altImg: altImg,
+            images: gallery,
+            sizes
+          };
+          toast(`Updated silhouette with ${gallery.length} photos: ${name}`);
+        }
+      } else {
+        // Create new
+        const newId = "SH-PROD-" + Date.now();
+        const newProduct = {
+          id: newId,
+          sku, category, name,
+          subtitle: `${fabric} · ${fit}`,
+          price, mrp, discountText,
+          badge,
+          isLive: true,
+          rating: 5.0,
+          reviewCount: 1,
+          img: primaryImg,
+          altImg: altImg,
+          images: gallery,
+          fabric, fit,
+          colors: [{ name: "Obsidian Black", hex: "#0a0a0a" }],
+          sizes,
+          desc: desc || `${name} crafted from ${fabric}. Engineered with a commanding ${fit}.`,
+          specs: {
+            "Fabric Weight": fabric,
+            "Silhouette": fit,
+            "Collar": "Anti-Sag Ribbed Neckband",
+            "Shrinkage": "Pre-shrunk 0% Shrinkage"
+          }
+        };
+        prods.unshift(newProduct);
+        toast(`New silhouette published with ${gallery.length} photos: ${name}!`);
+      }
+
+      saveAdminProducts(prods);
+      closeProductModal();
+    }
+
+    function deleteProduct(id) {
+      if (!confirm("Are you sure you want to remove this product from the live storefront?")) return;
+      let prods = getAdminProducts();
+      prods = prods.filter(p => p.id !== id);
+      saveAdminProducts(prods);
+      toast("Product removed from storefront.");
+    }
+
+    /* ——— RENDER VIP MEMBERS ——— */
+    function renderVipView() {
+      const vips = getAdminVipUsers();
+      const tbody = document.getElementById("vipTableBody");
+      if (!tbody) return;
+
+      if (!vips.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:30px;">No registered VIP members yet. Register on the storefront to test live member sync.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = vips.map(u => `
+        <tr>
+          <td><strong>${u.name}</strong></td>
+          <td>${u.email}</td>
+          <td>${u.phone}</td>
+          <td style="font-family:var(--f-mono);font-size:11px;color:var(--gold);">${u.serial || 'SH-2026-VIP'}</td>
+          <td><span class="status-pill delivered">${u.tier || 'TIER 01'}</span></td>
+          <td>
+            <a href="https://wa.me/${u.phone}?text=Hello%20VIP%20Member%20${encodeURIComponent(u.name)}!" target="_blank" class="btn-action wa">
+              WhatsApp ↗
+            </a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    /* ——— SIMULATED REAL-TIME TRAFFIC PULSE ——— */
+    function startLiveVisitorPulse() {
+      setInterval(() => {
+        const el = document.getElementById("kpiVisitors");
+        if (el) {
+          const cur = parseInt(el.textContent) || 18;
+          const delta = (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 3);
+          const next = Math.max(12, Math.min(42, cur + delta));
+          el.textContent = next;
+        }
+      }, 4000);
+    }
+
+    /* ——— HELPERS ——— */
+    function formatDate(isoStr) {
+      if (!isoStr) return "Just now";
+      const d = new Date(isoStr);
+      return d.toLocaleDateString('en-IN', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    function toast(msg) {
+      const container = document.getElementById("adminToasts");
+      if (!container) return;
+      const t = document.createElement("div");
+      t.className = "admin-toast";
+      t.textContent = msg;
+      container.appendChild(t);
+      setTimeout(() => {
+        t.style.opacity = "0";
+        t.style.transition = "opacity .3s";
+        setTimeout(() => t.remove(), 350);
+      }, 2600);
+    }
+
+    // Auto-check authentication on page load
+    window.addEventListener("DOMContentLoaded", checkAdminAuth);
+  </script>
+</body>
+</html>
