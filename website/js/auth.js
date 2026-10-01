@@ -242,6 +242,11 @@ function updateNavbarAuth() {
         `;
       }
 
+      const mobBarProfile = document.getElementById("mobBarProfile");
+      const mobBarProfileLabel = document.getElementById("mobBarProfileLabel");
+      if (mobBarProfile) mobBarProfile.href = profileUrl;
+      if (mobBarProfileLabel) mobBarProfileLabel.textContent = firstName || "Profile";
+
     } else {
       document.body.classList.remove("authenticated");
       if (widget) {
@@ -282,6 +287,11 @@ function updateNavbarAuth() {
           </div>
         `;
       }
+
+      const mobBarProfile = document.getElementById("mobBarProfile");
+      const mobBarProfileLabel = document.getElementById("mobBarProfileLabel");
+      if (mobBarProfile) mobBarProfile.href = loginUrl;
+      if (mobBarProfileLabel) mobBarProfileLabel.textContent = "Profile";
     }
   } catch (err) {
     console.error("Error in updateNavbarAuth:", err);

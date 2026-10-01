@@ -505,13 +505,19 @@
 
     /* ——— SIZE CHART MODAL ——— */
     function openSizeChart() {
-      document.getElementById("sizeModalScrim").classList.add("on");
-      document.getElementById("sizeChartModal").classList.add("on");
+      const scrim = document.getElementById("sizeChartScrim") || document.getElementById("sizeModalScrim");
+      const modal = document.getElementById("sizeChartModal");
+      if (scrim) scrim.classList.add("on");
+      if (modal) modal.classList.add("on");
+      document.body.style.overflow = "hidden";
     }
 
     function closeSizeChart() {
-      document.getElementById("sizeModalScrim").classList.remove("on");
-      document.getElementById("sizeChartModal").classList.remove("on");
+      const scrim = document.getElementById("sizeChartScrim") || document.getElementById("sizeModalScrim");
+      const modal = document.getElementById("sizeChartModal");
+      if (scrim) scrim.classList.remove("on");
+      if (modal) modal.classList.remove("on");
+      document.body.style.overflow = "";
     }
 
     /* ——— HASH ROUTING (FOR DIRECT PRODUCT LINKS) ——— */
@@ -558,6 +564,10 @@
       if (b) {
         b.classList.add("bump"); setTimeout(() => b.classList.remove("bump"), 300);
       }
+      const mb = document.getElementById("mobBottomBagCount");
+      if (mb) {
+        mb.classList.add("bump"); setTimeout(() => mb.classList.remove("bump"), 300);
+      }
       const pb = document.getElementById("pdpBagBadge");
       if (pb) {
         pb.textContent = CART.reduce((s, i) => s + i.qty, 0);
@@ -576,6 +586,8 @@
       const count = CART.reduce((s, i) => s + (i.qty || 1), 0);
       const bagCountEl = document.getElementById("bagCount");
       if (bagCountEl) bagCountEl.textContent = count;
+      const mobBottomBagEl = document.getElementById("mobBottomBagCount");
+      if (mobBottomBagEl) mobBottomBagEl.textContent = count;
       const cartHeaderCountEl = document.getElementById("cartHeaderCount");
       if (cartHeaderCountEl) cartHeaderCountEl.textContent = count;
       const mobBagBadge = document.getElementById("mobBagBadge");
@@ -933,6 +945,31 @@
 
     const mobThemeToggle = document.getElementById('mobThemeToggle');
     if (mobThemeToggle) mobThemeToggle.addEventListener('click', toggleThemeHandler);
+
+    /* ——— MOBILE BOTTOM BAR SYNC ——— */
+    const mobBottomItems = document.querySelectorAll('.mob-bar-item');
+    mobBottomItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        if (this.id === 'mobBarCart') return; // cart modal toggle
+        mobBottomItems.forEach(el => el.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const storefrontEl = document.getElementById('storefront');
+      const homeBtn = document.getElementById('mobBarHome');
+      const catBtn = document.getElementById('mobBarCatalogue');
+      if (!storefrontEl || !homeBtn || !catBtn) return;
+      const rect = storefrontEl.getBoundingClientRect();
+      if (rect.top <= 200 && rect.bottom >= 150) {
+        catBtn.classList.add('active');
+        homeBtn.classList.remove('active');
+      } else if (window.scrollY < 200) {
+        homeBtn.classList.add('active');
+        catBtn.classList.remove('active');
+      }
+    }, { passive: true });
 
     /* ——— INIT ——— */
     renderProducts();
