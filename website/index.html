@@ -7,7 +7,7 @@
   <title>SHELBY HIVER | Premium 220 GSM Heavyweight Streetwear</title>
   <meta name="description"
     content="Shelby Hiver — High-luxury 220 GSM heavyweight streetwear. Shop the live oversized T-shirt collection ₹599–₹899. Fast delivery across India.">
-  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo-dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -20,7 +20,8 @@
 <body>
   <!-- Preloader -->
   <div id="preloader">
-    <img src="assets/logo.png" class="pl-logo" alt="SH">
+    <img src="assets/logo-dark.png" class="pl-logo logo-for-light" alt="SH">
+    <img src="assets/logo-light.png" class="pl-logo logo-for-dark" alt="SH">
     <div class="pl-name">Shelby Hiver</div>
     <div class="pl-bar"><div class="pl-fill"></div></div>
   </div>
@@ -30,7 +31,7 @@
 
   <!-- Top Announcement Promo Bar -->
   <div class="top-promo-bar">
-    ⚡ FLAT 50% OFF ON LAUNCH COLLECTION · 220 GSM HEAVYWEIGHT COMBED COTTON · <span class="accent">FREE SHIPPING ALL INDIA</span>
+    [ DROP 01 LIVE ] · 220 GSM HEAVYWEIGHT COMBED COTTON · STARTING ₹699 · <span class="accent">FREE SHIPPING ALL INDIA</span>
   </div>
 
   <!-- ============================================================
@@ -39,42 +40,63 @@
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
 
-      <!-- BRAND LOGO -->
-      <a href="index.html" class="brand-link">
-        <img src="assets/logo.png" alt="Shelby Hiver" class="brand-logo-img">
-        <div class="brand-text-wrap">
-          <span class="brand-title">Shelby Hiver</span>
-          <span class="brand-sub">Est. 2026</span>
-        </div>
-      </a>
+      <!-- LEFT: Mobile Hamburger + Brand Logo -->
+      <div class="header-left-cluster">
+        <!-- Mobile Menu Hamburger Button (Left-aligned on mobile) -->
+        <button type="button" class="mob-menu-btn" id="openMob" aria-label="Open Navigation Menu">
+          <span></span><span></span><span></span>
+        </button>
 
-      <!-- CENTER NAVIGATION (MYNTRA STYLE) -->
+        <!-- Brand Logo (Adaptive Transparent Monogram + Typography) -->
+        <a href="index.html" class="brand-link" aria-label="Shelby Hiver Home">
+          <img src="assets/logo-dark.png" alt="Shelby Hiver" class="brand-logo-img logo-for-light">
+          <img src="assets/logo-light.png" alt="Shelby Hiver" class="brand-logo-img logo-for-dark">
+        </a>
+      </div>
+
+      <!-- CENTER NAVIGATION (MYNTRA STYLE - DESKTOP) -->
       <nav class="header-nav-links" aria-label="Main Navigation">
         <a href="#storefront" onclick="filterCategory('all');" class="nav-item-link active">All <span class="nav-live-pill">LIVE</span></a>
-        <a href="#storefront" onclick="filterCategory('tees');" class="nav-item-link">T-Shirts</a>
-        <a href="#storefront" onclick="filterCategory('hoodies');" class="nav-item-link">Hoodies</a>
-        <a href="#storefront" onclick="filterCategory('bottoms');" class="nav-item-link">Bottoms</a>
+        <a href="#storefront" onclick="filterCategory('tees');" class="nav-item-link">T-Shirts (220 GSM)</a>
+        <a href="#storefront" onclick="filterCategory('hoodies');" class="nav-item-link">Hoodies <span class="nav-soon-pill">SOON</span></a>
+        <a href="#storefront" onclick="filterCategory('bottoms');" class="nav-item-link">Bottoms <span class="nav-soon-pill">SOON</span></a>
         <a href="#lookbook" class="nav-item-link">Lookbook</a>
       </nav>
 
-      <!-- SEARCH BAR (MYNTRA WIDE SEARCH) -->
+      <!-- SEARCH BAR (MYNTRA WIDE SEARCH - DESKTOP) -->
       <div class="header-search-wrap">
         <div class="header-search-box">
-          <span class="header-search-icon">🔍</span>
-          <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Search for t-shirts, oversized, hoodies, cargos..." autocomplete="off">
+          <svg class="header-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="headerSearchInput" class="header-search-input" placeholder="Search for oversized tees, 220 GSM, drop 01..." autocomplete="off">
         </div>
       </div>
 
-      <!-- RIGHT ACTIONS (PROFILE, WISHLIST, BAG) -->
+      <!-- RIGHT ACTIONS (THEME, WISHLIST, PROFILE, BAG) -->
       <div class="header-actions-group">
         
-        <!-- User Profile Widget (Populated by auth.js) -->
-        <div class="user-auth-widget" id="userAuthWidget">
-          <!-- Populated by JS -->
-        </div>
+        <!-- Professional Theme Switcher (SVG Sun / Moon) - Desktop -->
+        <button type="button" class="theme-switch-btn" id="themeToggle" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
 
         <!-- Wishlist Action -->
-        <a href="#storefront" onclick="filterCategory('all'); toast('Wishlist items highlighted ♥');" class="h-act-btn" aria-label="Wishlist">
+        <a href="#storefront" onclick="filterCategory('all'); toast('Wishlist items highlighted');" class="h-act-btn h-act-wishlist" aria-label="Wishlist">
           <div class="h-act-icon">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -82,6 +104,11 @@
           </div>
           <span class="h-act-label">Wishlist</span>
         </a>
+
+        <!-- User Profile Widget (Populated by auth.js) -->
+        <div class="user-auth-widget" id="userAuthWidget">
+          <!-- Populated by JS -->
+        </div>
 
         <!-- Shopping Bag Action -->
         <button type="button" class="h-act-btn" id="openCart" aria-label="Shopping Bag">
@@ -96,39 +123,147 @@
           <span class="h-act-label">Bag</span>
         </button>
 
-        <!-- Theme Switcher -->
-        <button type="button" class="theme-switch-btn" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
-          🌓
-        </button>
-
-        <!-- Mobile Menu Hamburger -->
-        <button type="button" class="mob-menu-btn" id="openMob" aria-label="Open Mobile Menu">
-          <span></span><span></span><span></span>
-        </button>
-
       </div>
 
     </div>
+
+    <!-- STICKY MOBILE SEARCH STRIP (Visible <= 768px) -->
+    <div class="mobile-search-strip">
+      <div class="container">
+        <div class="mobile-search-box">
+          <svg class="mobile-search-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="mobileSearchInput" class="mobile-search-input" placeholder="Search oversized tees, 220 GSM..." autocomplete="off">
+          <button type="button" id="clearMobileSearch" class="mobile-search-clear" style="display:none;" aria-label="Clear search">✕</button>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
+  <!-- ============================================================
+     STRUCTURED MOBILE DRAWER NAVIGATION (FORMAL LUXURY ATELIER)
+     ============================================================ -->
   <div class="mobile-drawer-scrim" id="mobileDrawerScrim">
     <div class="mobile-drawer-panel">
+      
+      <!-- Drawer Header -->
       <div class="mob-drawer-head">
-        <div style="font-family:var(--f-display);font-size:15px;font-weight:800;">SHELBY HIVER</div>
-        <button type="button" id="closeMob" style="font-size:18px;color:var(--text-primary);padding:4px;">✕</button>
+        <a href="index.html" class="mob-drawer-brand" aria-label="Shelby Hiver">
+          <img src="assets/logo-dark.png" alt="Shelby Hiver" class="brand-logo-img logo-for-light" style="height:30px;">
+          <img src="assets/logo-light.png" alt="Shelby Hiver" class="brand-logo-img logo-for-dark" style="height:30px;">
+        </a>
+        <button type="button" id="closeMob" class="mob-drawer-close" aria-label="Close Navigation Drawer">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
       </div>
-      <div id="mobUserProfileCard" style="margin-bottom:20px;">
+
+      <!-- User Account Card (Injected dynamically by auth.js) -->
+      <div id="mobUserProfileCard" class="mob-user-card-wrap">
         <!-- Populated by auth.js -->
       </div>
-      <nav class="mob-drawer-nav">
-        <a href="#storefront" onclick="filterCategory('all'); closeMobileNav();">All Collection</a>
-        <a href="#storefront" onclick="filterCategory('tees'); closeMobileNav();">T-Shirts (220 GSM)</a>
-        <a href="#storefront" onclick="filterCategory('hoodies'); closeMobileNav();">Hoodies (450 GSM)</a>
-        <a href="#storefront" onclick="filterCategory('bottoms'); closeMobileNav();">Tactical Cargos</a>
-        <a href="#lookbook" onclick="closeMobileNav();">Lookbook</a>
-        <a href="https://wa.me/919286511557" target="_blank" onclick="closeMobileNav();">WhatsApp Support ↗</a>
-      </nav>
+
+      <!-- Section 1: SHOP CATEGORIES -->
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title">COLLECTION DIRECTORY</div>
+        <nav class="mob-drawer-nav">
+          <a href="#storefront" onclick="filterCategory('all'); closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">All Collection</span>
+            <span class="mob-nav-tag">LIVE</span>
+          </a>
+          <a href="#storefront" onclick="filterCategory('tees'); closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">Oversized T-Shirts (220 GSM)</span>
+            <span class="mob-nav-tag">DROP 01</span>
+          </a>
+          <a href="#storefront" onclick="filterCategory('hoodies'); closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">Heavy French Terry Hoodies</span>
+            <span class="mob-nav-tag soon">SOON</span>
+          </a>
+          <a href="#storefront" onclick="filterCategory('bottoms'); closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">Tactical Cargo Pants</span>
+            <span class="mob-nav-tag soon">SOON</span>
+          </a>
+          <a href="#lookbook" onclick="closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">Editorial Lookbook 2026</span>
+            <span class="mob-nav-arrow">›</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Section 2: MY ORDERS & SHORTLIST -->
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title">ORDERS &amp; BAG</div>
+        <nav class="mob-drawer-nav">
+          <a href="javascript:void(0)" onclick="closeMobileNav(); showCart();" class="mob-nav-item">
+            <span class="mob-nav-text">Shopping Bag</span>
+            <span class="mob-nav-badge" id="mobBagBadge">0 items</span>
+          </a>
+          <a href="#storefront" onclick="closeMobileNav(); filterCategory('all'); toast('Wishlist items highlighted');" class="mob-nav-item">
+            <span class="mob-nav-text">Saved Wishlist</span>
+            <span class="mob-nav-arrow">›</span>
+          </a>
+          <a href="profile.html" onclick="closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">Track My Orders</span>
+            <span class="mob-nav-arrow">›</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Section 3: THEME TOGGLE (Dedicated Drawer Location on Mobile) -->
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title">APPEARANCE</div>
+        <div class="mob-theme-toggle-row">
+          <div class="mob-theme-label">
+            <span class="mob-theme-mode-text" id="mobThemeModeText">Light Mode</span>
+            <span class="mob-theme-subtext">Atelier interface theme</span>
+          </div>
+          <button type="button" class="theme-switch-btn" id="mobThemeToggle" title="Toggle Theme" aria-label="Toggle Theme">
+            <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="theme-icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Section 4: CUSTOMER CARE -->
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title">CLIENT SERVICES</div>
+        <nav class="mob-drawer-nav">
+          <a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver,%20I%20need%20assistance%20with%20my%20order." target="_blank" onclick="closeMobileNav();" class="mob-nav-item">
+            <span class="mob-nav-text">WhatsApp Atelier Concierge</span>
+            <span class="mob-nav-arrow">↗</span>
+          </a>
+          <a href="javascript:void(0)" onclick="closeMobileNav(); if(typeof openSizeChart==='function')openSizeChart();" class="mob-nav-item">
+            <span class="mob-nav-text">Size &amp; Fit Guide (Inches)</span>
+            <span class="mob-nav-arrow">›</span>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Drawer Footer with Trust Guarantees -->
+      <div class="mob-drawer-footer">
+        <div class="mob-drawer-features-grid">
+          <div class="mdf-item"><span class="mdf-bullet">/01</span> Free Express Pan-India Delivery</div>
+          <div class="mdf-item"><span class="mdf-bullet">/02</span> 7-Day Size Replacement Guarantee</div>
+          <div class="mdf-item"><span class="mdf-bullet">/03</span> 220 GSM 100% Combed Cotton</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -143,17 +278,17 @@
           
           <div class="hero-banner-content">
             <span class="hero-promo-badge">
-              <span>●</span> LAUNCH SPECIAL · 220 GSM LIVE
+              <span>●</span> DROP 01 LIVE · 220 GSM HEAVYWEIGHT ARCHIVE
             </span>
             <h1 class="hero-main-title">
               Where Luxury<br>Meets Attitude.
             </h1>
             <p class="hero-main-desc">
-              High-density 220 GSM combed cotton tailored into a relaxed boxy silhouette. Engineered to hold its drape, feel soft on your skin, and make an effortless statement.
+              High-density 220 GSM combed cotton tailored into a relaxed boxy silhouette. Engineered to hold its structural drape, feel soft on your skin, and make an effortless streetwear statement.
             </p>
             <div class="hero-price-callout">
-              <span class="hero-deal-price">Starting ₹599</span>
-              <span class="hero-deal-discount">FLAT 50% OFF</span>
+              <span class="hero-deal-price">Starting ₹699</span>
+              <span class="hero-deal-discount">ORIGINAL ₹1,199 · 42% OFF</span>
             </div>
             <div class="hero-cta-row">
               <a href="#storefront" class="btn-primary-action">
@@ -180,22 +315,22 @@
       <div class="container">
         <div class="cat-chips-scroll" id="catNav">
           <button type="button" class="cat-chip-btn active" onclick="filterCategory('all', this)">
-            All Products <span class="cat-chip-count">8</span>
+            All Collection <span class="cat-chip-count">8</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('tees', this)">
-            Oversized Tees (220 GSM) <span class="cat-chip-count">4</span>
+            Oversized Tees (220 GSM) <span class="cat-chip-count">4 LIVE</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('hoodies', this)">
-            French Terry Hoodies <span class="cat-chip-count">1</span>
+            French Terry Hoodies <span class="cat-chip-count soon">COMING SOON</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('acid', this)">
-            Acid Wash Archive <span class="cat-chip-count">1</span>
+            Acid Wash Archive <span class="cat-chip-count">LIVE</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('bottoms', this)">
-            Tactical Cargos <span class="cat-chip-count">1</span>
+            Tactical Cargos <span class="cat-chip-count soon">COMING SOON</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('accessories', this)">
-            Caps &amp; Accessories <span class="cat-chip-count">1</span>
+            Caps &amp; Accessories <span class="cat-chip-count soon">COMING SOON</span>
           </button>
         </div>
       </div>
@@ -233,37 +368,122 @@
     </section>
 
     <!-- ============================================================
-       04 TRUST BADGES STRIP (REPLACING CONGESTED JARGON)
+       04 ATELIER CRAFTSMANSHIP & MATERIAL DOSSIER (RICH FORMAL DETAILS)
        ============================================================ -->
-    <section class="trust-strip-sec">
+    <section class="craft-dossier-sec">
       <div class="container">
-        <div class="trust-strip-grid">
-          <div class="trust-item">
-            <div class="trust-icon">💎</div>
-            <div>
-              <h4>220 GSM Heavyweight</h4>
-              <p>Ultra-dense 100% combed cotton jersey that maintains structural drape wear after wear.</p>
+        <div class="sec-editorial-head">
+          <span class="sec-eyebrow">Atelier Standards · Fabric Engineering</span>
+          <h2 class="sec-title">Engineered to Hold Its Drape.</h2>
+          <p class="sec-subtitle">Most commercial streetwear dissolves after three washes. We built Shelby Hiver on architectural cotton integrity.</p>
+        </div>
+
+        <div class="craft-cards-grid">
+          <div class="craft-card">
+            <div class="craft-card-num">01 / DENSITY</div>
+            <h3 class="craft-card-title">220 GSM Interlock Weave</h3>
+            <p class="craft-card-desc">100% super-combed organic long-staple cotton fibers ring-spun under calibrated high-tension. Heavier than conventional 160–180 GSM tees, providing substantial drape without stiffness.</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-card-num">02 / COLLAR</div>
+            <h3 class="craft-card-title">1-Inch Anti-Sag Lycra Rib</h3>
+            <p class="craft-card-desc">Engineered with a dense 1-inch neckband reinforced with 5% elastane memory yarn. Sits flush against the collarbone and retains its crisp circular geometry wash after wash.</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-card-num">03 / FINISH</div>
+            <h3 class="craft-card-title">Bio-Washed &amp; Pre-Shrunk</h3>
+            <p class="craft-card-desc">Enzyme-treated and silicon-softened to remove loose surface fuzz and eliminate post-purchase shrinkage. Delivers a soft, broken-in luxury hand-feel from day one.</p>
+          </div>
+          <div class="craft-card">
+            <div class="craft-card-num">04 / SEAMING</div>
+            <h3 class="craft-card-title">Twin-Needle Blind Hem</h3>
+            <p class="craft-card-desc">Double-stitched lock-stitched seams across the drop-shoulder slope, cuffs, and bottom hem to absorb kinetic street movement and prevent seam twisting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       05 SILHOUETTE & FIT ARCHITECTURE (THE BOXY STREETWEAR CUT)
+       ============================================================ -->
+    <section class="silhouette-sec">
+      <div class="container">
+        <div class="silhouette-grid">
+          <div class="silhouette-content">
+            <span class="sec-eyebrow">Fit Architecture</span>
+            <h2 class="sec-title">The Boxy Drop-Shoulder Blueprint</h2>
+            <p class="sec-subtitle">Designed for an effortless drape that flatters all builds. Broad through the chest, extended across the shoulders, and cut to graze the hip cleanly.</p>
+            
+            <div class="silhouette-specs-list">
+              <div class="ssl-item">
+                <span class="ssl-badge">-12°</span>
+                <div>
+                  <strong>Drop-Shoulder Angle</strong>
+                  <p>Extended shoulder line drops naturally down the bicep without bulk.</p>
+                </div>
+              </div>
+              <div class="ssl-item">
+                <span class="ssl-badge">+4"</span>
+                <div>
+                  <strong>Chest Ease Allowance</strong>
+                  <p>Generous chest circumference allows the 220 GSM fabric to hang cleanly without clinging.</p>
+                </div>
+              </div>
+              <div class="ssl-item">
+                <span class="ssl-badge">1/2</span>
+                <div>
+                  <strong>Elbow Sleeve Proportions</strong>
+                  <p>Sleeves graze just above the elbow crease for a contemporary oversized look.</p>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn-primary-action" onclick="openSizeChart()">
+              View Size Guide &amp; Dimensions →
+            </button>
+          </div>
+
+          <div class="silhouette-visual">
+            <img src="assets/tee-black.jpg" alt="Shelby Hiver Boxy Fit Blueprint" class="silhouette-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       06 VERIFIED CLIENT REVIEWS & DRAPE FEEDBACK
+       ============================================================ -->
+    <section class="reviews-sec">
+      <div class="container">
+        <div class="sec-editorial-head">
+          <span class="sec-eyebrow">Client Feedback · Verified Buyers</span>
+          <h2 class="sec-title">4.9 / 5.0 Rating from Pan-India Patrons</h2>
+          <p class="sec-subtitle">Real feedback from streetwear enthusiasts wearing Drop 01 across Mumbai, Delhi, Bengaluru, and Pune.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-body">"The collar retention on the 220 GSM tee is genuinely unlike any other Indian streetwear brand. 8 washes in and zero bacon neck. Heavy, boxy, perfect."</p>
+            <div class="review-author">
+              <strong>Arjun S.</strong>
+              <span>Verified Patron · Bengaluru (Size L)</span>
             </div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">⚡</div>
-            <div>
-              <h4>24-Hour Dispatch</h4>
-              <p>Fast track dispatch with real-time tracking alerts directly sent to your mobile.</p>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-body">"Ordered the Vintage Bone White and Obsidian Black. Starting price at ₹699 for 220 GSM combed cotton is exceptional value. Drape looks like an imported atelier tee."</p>
+            <div class="review-author">
+              <strong>Rohan K.</strong>
+              <span>Verified Patron · Mumbai (Size XL)</span>
             </div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">🔄</div>
-            <div>
-              <h4>Easy Size Exchange</h4>
-              <p>Hassle-free 7-day size replacement guarantee for the perfect relaxed fit.</p>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon">🛡️</div>
-            <div>
-              <h4>100% Pre-Shrunk</h4>
-              <p>Bio-washed process ensures zero shrinkage and authentic color fastness.</p>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-body">"Shipping took only 2 days to Delhi. The box packaging and fabric thickness immediately set it apart. Waiting for the hoodies to drop!"</p>
+            <div class="review-author">
+              <strong>Karan M.</strong>
+              <span>Verified Patron · New Delhi (Size M)</span>
             </div>
           </div>
         </div>
@@ -271,11 +491,70 @@
     </section>
 
     <!-- ============================================================
-       05 EDITORIAL LOOKBOOK (CLEAN MASONRY PREVIEW)
+       07 TRUST BADGES STRIP (FORMAL MINIMAL LUXURY)
+       ============================================================ -->
+    <section class="trust-strip-sec">
+      <div class="container">
+        <div class="trust-strip-grid">
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>220 GSM Combed Cotton</h4>
+              <p>Dense 100% combed cotton jersey maintaining structural boxy drape.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </div>
+            <div>
+              <h4>24-Hour Dispatch</h4>
+              <p>Tracked express shipping with live updates sent directly to your phone.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+            </div>
+            <div>
+              <h4>7-Day Size Exchange</h4>
+              <p>Hassle-free size replacement guarantee for your perfect relaxed fit.</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon-box">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h4>100% Pre-Shrunk Bio-Wash</h4>
+              <p>Zero post-wash shrinkage and authentic colorfast dye fastness.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       05 EDITORIAL LOOKBOOK (CLEAN RESPONSIVE MASONRY PREVIEW)
        ============================================================ -->
     <section class="catalog-section" id="lookbook" style="background:var(--bg-secondary);padding:50px 0;">
       <div class="container">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;">
+        <div class="lookbook-head-row">
           <div>
             <span style="font-family:var(--f-display);font-size:11px;font-weight:700;color:var(--accent-coral);letter-spacing:0.1em;text-transform:uppercase;">Autumn Archive 2026</span>
             <h2 style="font-family:var(--f-display);font-size:26px;font-weight:800;color:var(--text-primary);margin-top:4px;">Editorial Lookbook</h2>
@@ -285,18 +564,18 @@
           </a>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:16px;">
-          <div style="border-radius:8px;overflow:hidden;cursor:pointer;" onclick="openProduct('SH-TEE-01')">
-            <img src="assets/model-tee.jpg" alt="Look 01" style="width:100%;height:320px;object-fit:cover;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+        <div class="lookbook-grid">
+          <div class="lookbook-card" onclick="openProduct('SH-TEE-01')">
+            <img src="assets/model-tee.jpg" alt="Look 01 - Heavyweight Graphic Tee" class="lookbook-img">
           </div>
-          <div style="border-radius:8px;overflow:hidden;cursor:pointer;" onclick="openProduct('SH-HOD-01')">
-            <img src="assets/model-hoodie.jpg" alt="Look 02" style="width:100%;height:320px;object-fit:cover;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="lookbook-card" onclick="openProduct('SH-HOD-01')">
+            <img src="assets/model-hoodie.jpg" alt="Look 02 - French Terry Hoodie" class="lookbook-img">
           </div>
-          <div style="border-radius:8px;overflow:hidden;cursor:pointer;" onclick="openProduct('SH-CRG-01')">
-            <img src="assets/model-pants.jpg" alt="Look 03" style="width:100%;height:320px;object-fit:cover;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="lookbook-card" onclick="openProduct('SH-CRG-01')">
+            <img src="assets/model-pants.jpg" alt="Look 03 - Tactical Cargo" class="lookbook-img">
           </div>
-          <div style="border-radius:8px;overflow:hidden;cursor:pointer;" onclick="openProduct('SH-ACC-01')">
-            <img src="assets/model-cap.jpg" alt="Look 04" style="width:100%;height:320px;object-fit:cover;transition:transform .3s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+          <div class="lookbook-card" onclick="openProduct('SH-ACC-01')">
+            <img src="assets/model-cap.jpg" alt="Look 04 - Embroidered Cap" class="lookbook-img">
           </div>
         </div>
       </div>
@@ -312,8 +591,10 @@
       <div class="footer-main-grid">
         
         <div class="foot-brand-col">
-          <img src="assets/logo.png" alt="Shelby Hiver">
-          <div class="foot-brand-title">Shelby Hiver</div>
+          <a href="index.html" class="foot-brand-link" aria-label="Shelby Hiver">
+            <img src="assets/logo-dark.png" alt="Shelby Hiver" class="foot-logo-img logo-for-light">
+            <img src="assets/logo-light.png" alt="Shelby Hiver" class="foot-logo-img logo-for-dark">
+          </a>
           <p class="foot-brand-desc">
             High-luxury 220 GSM heavyweight streetwear engineered for modern aesthetics. Direct to consumer with pan-India delivery.
           </p>

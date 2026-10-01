@@ -9,10 +9,10 @@
         category: "tees",
         name: "SH Essential Minimalist 220 GSM Tee",
         subtitle: "Luxury Heavyweight · Pure Combed Cotton",
-        price: 599,
+        price: 699,
         mrp: 1199,
-        discountText: "50% OFF",
-        badge: "LAUNCH SPECIAL",
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 4.9,
         reviewCount: 142,
@@ -42,10 +42,10 @@
         category: "tees",
         name: "SH Boxy Drop-Shoulder Heavy Tee",
         subtitle: "220 GSM Dense Knit · Streetwear Silhouette",
-        price: 749,
-        mrp: 1399,
-        discountText: "46% OFF",
-        badge: "BESTSELLER",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 4.9,
         reviewCount: 218,
@@ -74,10 +74,10 @@
         category: "tees",
         name: "SH Signature Monogram Archive Tee",
         subtitle: "240 GSM French Single Jersey Edition",
-        price: 899,
-        mrp: 1699,
-        discountText: "47% OFF",
-        badge: "PREMIUM ARCHIVE",
+        price: 799,
+        mrp: 1399,
+        discountText: "43% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 5.0,
         reviewCount: 96,
@@ -105,10 +105,10 @@
         category: "acid",
         name: "SH Monochrome Acid-Wash Archive Tee",
         subtitle: "Vintage Mineral Wash · 220 GSM Treated",
-        price: 799,
-        mrp: 1499,
-        discountText: "47% OFF",
-        badge: "LIMITED EDITION",
+        price: 749,
+        mrp: 1299,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 4.8,
         reviewCount: 110,
@@ -135,12 +135,12 @@
         sku: "SH / HOD-01",
         category: "hoodies",
         name: "SH Nocturnal French Terry Hoodie",
-        subtitle: "450 GSM Heavyweight Loopback · Drop 001",
+        subtitle: "450 GSM Heavyweight Loopback · Drop 02",
         price: 1899,
         mrp: 3499,
-        discountText: "46% OFF",
-        badge: "DROP 001 EXCLUSIVE",
-        isLive: true,
+        discountText: "COMING SOON",
+        badge: "COMING SOON",
+        isLive: false,
         rating: 5.0,
         reviewCount: 84,
         img: "assets/model-hoodie.jpg",
@@ -165,12 +165,12 @@
         sku: "SH / CRG-01",
         category: "bottoms",
         name: "SH Tactical Utility Cargo Pants",
-        subtitle: "320 GSM Cotton Twill · Modular Pockets",
+        subtitle: "320 GSM Cotton Twill · Modular Pockets · Drop 02",
         price: 1499,
         mrp: 2799,
-        discountText: "46% OFF",
-        badge: "STREETWEAR EDIT",
-        isLive: true,
+        discountText: "COMING SOON",
+        badge: "COMING SOON",
+        isLive: false,
         rating: 4.9,
         reviewCount: 67,
         img: "assets/model-pants.jpg",
@@ -196,12 +196,12 @@
         sku: "SH / ACC-01",
         category: "accessories",
         name: "SH Structured Nocturnal Cap",
-        subtitle: "Heavy Twill · 3D Monogram Embroidery",
+        subtitle: "Heavy Twill · 3D Monogram Embroidery · Drop 02",
         price: 499,
         mrp: 999,
-        discountText: "50% OFF",
-        badge: "ACCESSORY",
-        isLive: true,
+        discountText: "COMING SOON",
+        badge: "COMING SOON",
+        isLive: false,
         rating: 4.8,
         reviewCount: 92,
         img: "assets/model-cap.jpg",
@@ -226,12 +226,12 @@
         sku: "SH / SET-01",
         category: "capsule",
         name: "SH Drop 001 Atelier Capsule Set",
-        subtitle: "Complete 3-Piece Look (Tee + Cargo + Cap)",
+        subtitle: "Complete 3-Piece Look (Tee + Cargo + Cap) · Drop 02",
         price: 2699,
         mrp: 5499,
-        discountText: "51% OFF",
-        badge: "COMPLETE OUTFIT BUNDLE",
-        isLive: true,
+        discountText: "COMING SOON",
+        badge: "COMING SOON",
+        isLive: false,
         rating: 5.0,
         reviewCount: 48,
         img: "assets/hero-flatlay.png",
@@ -255,7 +255,7 @@
     /* Dynamic database initialization & real-time synchronization */
     function getStorefrontProducts() {
       try {
-        const stored = localStorage.getItem('sh_products_db');
+        const stored = localStorage.getItem('sh_products_db_v3');
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -264,7 +264,7 @@
         console.error("Error loading products:", e);
       }
       try {
-        localStorage.setItem('sh_products_db', JSON.stringify(SEED_PRODUCTS));
+        localStorage.setItem('sh_products_db_v3', JSON.stringify(SEED_PRODUCTS));
       } catch (e) {}
       return [...SEED_PRODUCTS];
     }
@@ -384,6 +384,10 @@
         const pImgs = (Array.isArray(tee.images) && tee.images.length > 0) ? tee.images : [tee.img || 'assets/model-tee.jpg'];
         const primaryImg = pImgs[0];
         const secondaryImg = pImgs[1] || tee.altImg || primaryImg;
+        const isLive = tee.isLive !== false;
+        const discountText = isLive 
+          ? (tee.discountText || `${Math.round(((tee.mrp - tee.price)/tee.mrp)*100)}% OFF`)
+          : "COMING SOON";
 
         card.innerHTML = `
           <div class="pc-media" onclick="openProduct('${tee.id}')">
@@ -393,31 +397,45 @@
               ${isWish ? '♥' : '♡'}
             </button>
             <span class="pc-rating-chip">★ ${tee.rating} | ${tee.reviewCount || 120}</span>
-            <span class="pc-disc-tag">${tee.discountText}</span>
+            <span class="pc-disc-tag ${!isLive ? 'coming-soon-tag' : ''}">${isLive ? discountText : 'COMING SOON'}</span>
           </div>
           <div class="pc-info">
             <div class="pc-brand-name">SHELBY HIVER</div>
             <h3 class="pc-name" onclick="openProduct('${tee.id}')" title="${tee.name}">${tee.name}</h3>
             <div class="pc-price-wrap">
-              <span class="pc-price">₹ ${(tee.price).toLocaleString()}</span>
-              <del class="pc-mrp">₹ ${tee.mrp.toLocaleString()}</del>
-              <span class="pc-discount">${tee.discountText}</span>
+              ${isLive ? `
+                <span class="pc-price">₹ ${(tee.price).toLocaleString()}</span>
+                <del class="pc-mrp">₹ ${tee.mrp.toLocaleString()}</del>
+                <span class="pc-discount">${discountText}</span>
+              ` : `
+                <span class="pc-price" style="color:var(--text-muted);font-size:12.5px;letter-spacing:0.04em;">PREVIEW ARCHIVE</span>
+                <span class="pc-discount" style="color:var(--text-muted);font-size:11px;font-weight:600;">(DROP 02)</span>
+              `}
             </div>
             <div class="pc-size-pills" onclick="event.stopPropagation()">
-              ${tee.sizes.map(s => `<button type="button" class="pc-size-pill ${currentSz === s ? 'active' : ''}" onclick="pickSz2('${tee.id}','${s}',this,event)">${s}</button>`).join('')}
+              ${tee.sizes.map(s => `<button type="button" class="pc-size-pill ${currentSz === s ? 'active' : ''} ${!isLive ? 'disabled' : ''}" ${!isLive ? 'disabled' : ''} onclick="pickSz2('${tee.id}','${s}',this,event)">${s}</button>`).join('')}
             </div>
             <div class="pc-action-row" onclick="event.stopPropagation()">
-              <button type="button" class="pc-btn-cart" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">
-                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <path d="M16 10a4 4 0 01-8 0" />
-                </svg>
-                <span>Add to Bag</span>
-              </button>
-              <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Quick View">
-                <span>View</span>
-              </button>
+              ${isLive ? `
+                <button type="button" class="pc-btn-cart" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                  </svg>
+                  <span>Add to Bag</span>
+                </button>
+                <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Quick View">
+                  <span>View</span>
+                </button>
+              ` : `
+                <button type="button" class="pc-btn-cart pc-btn-disabled" disabled title="Coming Soon in Drop 02">
+                  <span>Coming Soon</span>
+                </button>
+                <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Preview Details">
+                  <span>Preview</span>
+                </button>
+              `}
             </div>
           </div>`;
         grid.appendChild(card);
@@ -751,6 +769,10 @@
     /* ——— ADD TO CART ——— */
     function addToCart(id, sizeArg) {
       const p = PRODUCTS.find(t => t.id === id);
+      if (p && p.isLive === false) {
+        toast(`${p.name} is Coming Soon in Drop 02.`);
+        return;
+      }
       const sz = sizeArg || selectedSizes[id] || (p ? p.sizes[0] : "L");
       const existing = CART.find(i => i.id === id && i.size === sz);
       if (existing) { existing.qty++; }
@@ -782,6 +804,8 @@
       if (bagCountEl) bagCountEl.textContent = count;
       const cartHeaderCountEl = document.getElementById("cartHeaderCount");
       if (cartHeaderCountEl) cartHeaderCountEl.textContent = count;
+      const mobBagBadge = document.getElementById("mobBagBadge");
+      if (mobBagBadge) mobBagBadge.textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
 
       if (!container) return;
 
@@ -1083,28 +1107,58 @@
       }
     });
 
-    /* ——— LIVE HEADER SEARCH ——— */
+    /* ——— LIVE DESKTOP & MOBILE SEARCH ——— */
     const headerSearch = document.getElementById("headerSearchInput");
+    const mobileSearch = document.getElementById("mobileSearchInput");
+    const clearMobSearch = document.getElementById("clearMobileSearch");
+
+    function syncSearch(query) {
+      currentSearchQuery = (query || "").toLowerCase().trim();
+      if (headerSearch && headerSearch.value !== query) headerSearch.value = query;
+      if (mobileSearch && mobileSearch.value !== query) mobileSearch.value = query;
+      if (clearMobSearch) {
+        clearMobSearch.style.display = (query && query.length > 0) ? "block" : "none";
+      }
+      renderProducts();
+    }
+
     if (headerSearch) {
-      headerSearch.addEventListener("input", (e) => {
-        currentSearchQuery = e.target.value.toLowerCase().trim();
-        renderProducts();
+      headerSearch.addEventListener("input", (e) => syncSearch(e.target.value));
+    }
+    if (mobileSearch) {
+      mobileSearch.addEventListener("input", (e) => syncSearch(e.target.value));
+    }
+    if (clearMobSearch) {
+      clearMobSearch.addEventListener("click", () => {
+        syncSearch("");
+        if (mobileSearch) mobileSearch.focus();
       });
     }
 
-    /* ——— THEME TOGGLE ——— */
-    const themeToggle = document.getElementById('themeToggle');
+    /* ——— THEME TOGGLE (DESKTOP & MOBILE IN DRAWER) ——— */
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('sh-theme', theme);
+      const mobText = document.getElementById("mobThemeModeText");
+      if (mobText) {
+        mobText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+      }
+    }
+
     const savedTheme = localStorage.getItem('sh-theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+    applyTheme(savedTheme);
 
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme');
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('sh-theme', next);
-      });
+    function toggleThemeHandler() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
     }
+
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) themeToggle.addEventListener('click', toggleThemeHandler);
+
+    const mobThemeToggle = document.getElementById('mobThemeToggle');
+    if (mobThemeToggle) mobThemeToggle.addEventListener('click', toggleThemeHandler);
 
     /* ——— INIT ——— */
     renderProducts();
