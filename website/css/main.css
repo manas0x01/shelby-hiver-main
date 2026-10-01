@@ -1359,18 +1359,20 @@ html[data-theme="dark"] .theme-icon-moon {
     margin-top: 8px;
   }
   .pc-btn-cart {
-    font-size: 10px;
-    padding: 7px 8px;
-    height: 32px;
+    font-size: 10.5px;
+    padding: 8px 12px;
+    min-height: 35px;
+    height: auto;
     letter-spacing: 0.02em;
     white-space: nowrap;
     flex: 1;
     min-width: 0;
   }
   .pc-btn-view {
-    padding: 7px 10px;
-    font-size: 10px;
-    height: 32px;
+    padding: 8px 12px;
+    font-size: 10.5px;
+    min-height: 35px;
+    height: auto;
     white-space: nowrap;
   }
 }
@@ -1580,8 +1582,8 @@ html[data-theme="dark"] .theme-icon-moon {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 8px 12px;
-  height: 34px;
+  padding: 10px 16px;
+  min-height: 38px;
   box-sizing: border-box;
   border-radius: 6px;
   display: flex;
@@ -1607,8 +1609,13 @@ html[data-theme="dark"] .theme-icon-moon {
   font-family: var(--f-display);
   font-size: 11.5px;
   font-weight: 700;
-  padding: 9px 14px;
+  padding: 10px 16px;
+  min-height: 38px;
+  box-sizing: border-box;
   border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s var(--ease);
 }
 
