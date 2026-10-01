@@ -6502,7 +6502,7 @@
       text-overflow: ellipsis;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .user-auth-widget {
         display: flex !important;
         align-items: center !important;
@@ -7048,8 +7048,9 @@
      VIP AUTHENTICATION PORTAL (GATEWAY TO ATELIER)
      ============================================================ -->
   <div class="auth-gate" id="authGate">
-    <div class="auth-gate-backdrop"></div>
+    <div class="auth-gate-backdrop" onclick="continueAsGuest()"></div>
     <div class="auth-container">
+      <button type="button" class="auth-close-btn" onclick="continueAsGuest()" title="Explore Collection">✕</button>
       
       <!-- Left Editorial Panel -->
       <div class="auth-brand-side">
@@ -7134,8 +7135,12 @@
             ⚡ 1-Click Demo VIP Login
           </button>
 
-          <div style="margin-top:16px;text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--text-muted);">
+          <div style="margin-top:14px;text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--text-muted);">
             New to Shelby Hiver? <a href="javascript:void(0)" onclick="switchAuthTab('register')" style="color:var(--gold);font-weight:700;">Create VIP Membership ↗</a>
+          </div>
+
+          <div class="auth-guest-link" onclick="continueAsGuest()">
+            Skip for now · Explore Collection as Guest →
           </div>
         </form>
 
@@ -7203,8 +7208,12 @@
             <span>→</span>
           </button>
 
-          <div style="margin-top:16px;text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--text-muted);">
+          <div style="margin-top:14px;text-align:center;font-family:var(--f-mono);font-size:11px;color:var(--text-muted);">
             Already a member? <a href="javascript:void(0)" onclick="switchAuthTab('login')" style="color:var(--gold);font-weight:700;">Sign In To Account ↗</a>
+          </div>
+
+          <div class="auth-guest-link" onclick="continueAsGuest()">
+            Skip for now · Explore Collection as Guest →
           </div>
         </form>
 
@@ -9675,33 +9684,33 @@
       if (!widget) return;
 
       if (user) {
-        const initials = user.name ? user.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'VIP';
+        const initials = user.name ? user.name.split(' ').filter(Boolean).map(n => n[0]).join('').slice(0, 2).toUpperCase() : 'VIP';
         const firstName = user.name ? user.name.split(' ')[0] : 'Member';
 
         widget.innerHTML = `
-          <div class="user-profile-pill" onclick="openUserProfile()" title="View VIP Profile &amp; Pass">
+          <div class="user-profile-pill" onclick="toggleUserDropdown(event)" title="VIP Account Menu">
             <div class="user-avatar-circle">${initials}</div>
             <span class="user-pill-name">${firstName}</span>
             <span class="user-vip-badge">${user.tier || 'VIP'}</span>
           </div>
-          <div class="user-dropdown-menu" id="userDropdownMenu">
+          <div class="user-dropdown-menu" id="userDropdownMenu" onclick="event.stopPropagation()">
             <div class="udm-header">
               <div class="udm-name">${user.name}</div>
               <div class="udm-email">${user.email}</div>
             </div>
-            <button class="udm-item" onclick="openUserProfile()">
+            <button type="button" class="udm-item" onclick="openUserProfile(); toggleUserDropdown(event);">
               <span>👑</span> <span>My VIP Profile &amp; Pass</span>
             </button>
-            <button class="udm-item" onclick="scrollToVIPPass()">
+            <button type="button" class="udm-item" onclick="scrollToVIPPass(); toggleUserDropdown(event);">
               <span>💳</span> <span>Interactive 3D Pass</span>
             </button>
-            <button class="udm-item" onclick="showCart()">
+            <button type="button" class="udm-item" onclick="showCart(); toggleUserDropdown(event);">
               <span>🛍️</span> <span>My Shopping Bag</span>
             </button>
             <a href="https://wa.me/${WA}?text=Hello%20Atelier!%20I%20am%20logged%20in%20as%20VIP%20Member%20${encodeURIComponent(user.name)}." target="_blank" class="udm-item" style="text-decoration:none;">
               <span>💬</span> <span>WhatsApp Concierge</span>
             </a>
-            <button class="udm-item logout" onclick="handleLogout()">
+            <button type="button" class="udm-item logout" onclick="handleLogout()">
               <span>🚪</span> <span>Sign Out</span>
             </button>
           </div>
@@ -9731,7 +9740,7 @@
 
       } else {
         widget.innerHTML = `
-          <button class="user-signin-btn" onclick="openAuthGate('login')" title="VIP Member Access">
+          <button type="button" class="user-signin-btn" onclick="openAuthGate('login')" title="VIP Member Access">
             <span>👤</span>
             <span>VIP Sign In</span>
           </button>
@@ -9740,7 +9749,7 @@
         const mobProfileCard = document.getElementById("mobUserProfileCard");
         if (mobProfileCard) {
           mobProfileCard.innerHTML = `
-            <button onclick="closeMobileNav(); openAuthGate('login');" class="btn-gold" style="width:100%;padding:10px;font-size:11px;">
+            <button type="button" onclick="closeMobileNav(); openAuthGate('login');" class="btn-gold" style="width:100%;padding:10px;font-size:11px;">
               👤 VIP Sign In / Register
             </button>
           `;
@@ -9749,7 +9758,9 @@
     }
 
     function toggleUserDropdown(e) {
-      if (e) e.stopPropagation();
+      if (e) {
+        e.stopPropagation();
+      }
       const menu = document.getElementById("userDropdownMenu");
       if (menu) menu.classList.toggle("open");
     }
@@ -9784,6 +9795,13 @@
       }
     }
 
+    function continueAsGuest() {
+      localStorage.setItem(GUEST_KEY, 'true');
+      closeAuthGate();
+      updateAuthUI();
+      toast("Exploring Atelier as Guest. Sign in anytime from the top bar.");
+    }
+
     function switchAuthTab(tab) {
       const loginForm = document.getElementById("loginForm");
       const regForm = document.getElementById("registerForm");
@@ -9816,13 +9834,25 @@
     function handleLogin(e) {
       e.preventDefault();
       const idInput = document.getElementById("loginEmail").value.trim().toLowerCase();
+      const cleanPhoneInput = idInput.replace(/\D/g, '').slice(-10);
       const pwd = document.getElementById("loginPassword").value;
       const users = getStoredUsers();
 
-      const user = users.find(u => (u.email.toLowerCase() === idInput || u.phone === idInput) && u.password === pwd);
+      // Find user by email or matching 10-digit phone
+      const user = users.find(u => {
+        const matchEmail = u.email && u.email.toLowerCase() === idInput;
+        const userCleanPhone = (u.phone || '').replace(/\D/g, '').slice(-10);
+        const matchPhone = cleanPhoneInput.length >= 10 && userCleanPhone.length >= 10 && userCleanPhone === cleanPhoneInput;
+        return matchEmail || matchPhone;
+      });
 
       if (!user) {
-        showAuthError("Invalid credentials. Try vip@shelbyhiver.com / password123 or check your details.");
+        showAuthError(`No account found for "${idInput}". Click Register VIP above to claim your membership.`);
+        return;
+      }
+
+      if (user.password !== pwd) {
+        showAuthError(`Incorrect password for ${user.email}. Please try again or use 'Forgot password?'.`);
         return;
       }
 
@@ -9830,19 +9860,32 @@
       document.body.classList.add('authenticated');
       closeAuthGate();
       updateAuthUI();
-      toast(`Welcome back, ${user.name.split(' ')[0]}! VIP Atelier session active.`);
-      openUserProfile(true, false);
+
+      const firstName = user.name.split(' ')[0] || 'Member';
+      toast(`Welcome back, ${firstName}! VIP Atelier session active.`);
+      // Direct access to main page - no modal blocking!
     }
 
     function handleRegister(e) {
       e.preventDefault();
       const name = document.getElementById("regName").value.trim();
       const email = document.getElementById("regEmail").value.trim().toLowerCase();
-      const phone = document.getElementById("regPhone").value.trim();
+      const rawPhone = document.getElementById("regPhone").value.trim();
+      const phoneDigits = rawPhone.replace(/\D/g, '');
       const pwd = document.getElementById("regPassword").value;
       const cpwd = document.getElementById("regConfirmPassword").value;
 
-      if (phone.length < 10) {
+      if (!name) {
+        showAuthError("Please enter your full name.");
+        return;
+      }
+
+      if (!email || !email.includes('@')) {
+        showAuthError("Please enter a valid email address.");
+        return;
+      }
+
+      if (phoneDigits.length < 10) {
         showAuthError("Please enter a valid 10-digit WhatsApp phone number.");
         return;
       }
@@ -9853,81 +9896,60 @@
       }
 
       if (pwd !== cpwd) {
-        showAuthError("Passwords do not match.");
+        showAuthError("Passwords do not match. Please re-enter.");
         return;
       }
 
       const users = getStoredUsers();
-      const existingUserIdx = users.findIndex(u => u.email.toLowerCase() === email);
+      // Check if user already exists by email OR matching last 10 digits of phone
+      const existingUserIdx = users.findIndex(u => 
+        (u.email && u.email.toLowerCase() === email) || 
+        (u.phone && u.phone.replace(/\D/g, '').slice(-10) === phoneDigits.slice(-10))
+      );
+
+      let activeUser;
 
       if (existingUserIdx !== -1) {
+        // User already in database: seamlessly update details with new password & name so they are NEVER blocked!
         const existing = users[existingUserIdx];
-        // If it's a pre-seeded account (or first time user claiming it), allow instant registration!
-        if (existing.isSeed || existing.id === 'usr-manas-001' || existing.id === 'usr-vip-001') {
-          existing.name = name || existing.name;
-          existing.phone = phone || existing.phone;
-          existing.password = pwd; // Save user's newly chosen password!
-          existing.isSeed = false;
-          existing.joinedAt = new Date().toISOString();
-          localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users));
-
-          setCurrentUser(existing);
-          document.body.classList.add('authenticated');
-          closeAuthGate();
-          updateAuthUI();
-          toast(`Welcome to Shelby Hiver, ${name}! Your VIP Pass is now activated.`);
-          openUserProfile(true, true);
-          return;
-        }
-
-        // If it's an existing registered account, offer instant 1-click solutions:
-        const errBox = document.getElementById("authErrorMsg");
-        if (errBox) {
-          errBox.innerHTML = `
-            An account with <strong>${email}</strong> already exists.
-            <div style="display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap;">
-              <button type="button" class="btn-gold" style="padding:6px 14px;font-size:11px;border-radius:4px;cursor:pointer;" onclick="quickSwitchToLogin('${email}')">
-                Sign In With Password →
-              </button>
-              <button type="button" class="btn-outline" style="padding:6px 14px;font-size:11px;border-radius:4px;cursor:pointer;" onclick="claimExistingAccount('${email}')">
-                Set This New Password &amp; Login
-              </button>
-            </div>
-          `;
-          errBox.style.display = "block";
-        } else {
-          showAuthError("An account with this email already exists. Please Sign In.");
-        }
-        return;
+        existing.name = name || existing.name;
+        existing.email = email;
+        existing.phone = rawPhone || existing.phone;
+        existing.password = pwd; // Updated password so sign in with new password works instantly
+        existing.isSeed = false;
+        existing.updatedAt = new Date().toISOString();
+        activeUser = existing;
+      } else {
+        // Brand new VIP registration
+        activeUser = {
+          id: 'usr-' + Date.now(),
+          name: name,
+          email: email,
+          phone: rawPhone,
+          password: pwd,
+          tier: 'VIP MEMBER',
+          serial: "SH-2026 — " + Math.floor(1000 + Math.random() * 9000) + " — VIP",
+          joinedAt: new Date().toISOString(),
+          isSeed: false
+        };
+        users.unshift(activeUser);
       }
 
-      const newUser = {
-        id: 'usr-' + Date.now(),
-        name: name,
-        email: email,
-        phone: phone,
-        password: pwd,
-        tier: 'VIP MEMBER',
-        serial: "SH-2026 — " + Math.floor(1000 + Math.random() * 9000) + " — VIP",
-        joinedAt: new Date().toISOString(),
-        isSeed: false
-      };
-
-      users.push(newUser);
       localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users));
-
-      setCurrentUser(newUser);
+      setCurrentUser(activeUser);
       document.body.classList.add('authenticated');
       closeAuthGate();
       updateAuthUI();
-      toast(`VIP Membership Granted for ${name}! Welcome to the Atelier.`);
-      openUserProfile(true, true);
+
+      const firstName = activeUser.name.split(' ')[0] || 'VIP Member';
+      toast(`Welcome to Shelby Hiver, ${firstName}! VIP access granted.`);
+      // Direct access to main page - no modal blocking!
     }
 
     function quickSwitchToLogin(email) {
       switchAuthTab('login');
       const emailInput = document.getElementById("loginEmail");
-      if (emailInput) emailInput.value = email;
+      if (emailInput && email) emailInput.value = email;
       const pwdInput = document.getElementById("loginPassword");
       if (pwdInput) {
         pwdInput.value = "";
@@ -9935,28 +9957,16 @@
       }
     }
 
-    function claimExistingAccount(email) {
-      const pwd = document.getElementById("regPassword").value;
-      const name = document.getElementById("regName").value.trim();
-      const phone = document.getElementById("regPhone").value.trim();
-      if (!pwd || pwd.length < 6) {
-        showAuthError("Please enter a password with at least 6 characters in the password box.");
-        return;
-      }
-      const users = getStoredUsers();
-      const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
-      if (user) {
-        user.password = pwd;
-        if (name) user.name = name;
-        if (phone) user.phone = phone;
-        user.isSeed = false;
-        localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(users));
-        setCurrentUser(user);
-        document.body.classList.add('authenticated');
-        closeAuthGate();
-        updateAuthUI();
-        toast(`Password updated & signed in! Welcome, ${user.name}.`);
-        openUserProfile(true, true);
+    function quickSwitchToRegister(val) {
+      switchAuthTab('register');
+      const emailInput = document.getElementById("regEmail");
+      const phoneInput = document.getElementById("regPhone");
+      if (val) {
+        if (val.includes('@') && emailInput) {
+          emailInput.value = val;
+        } else if (phoneInput) {
+          phoneInput.value = val.replace(/\D/g, '').slice(-10);
+        }
       }
     }
 
@@ -10170,8 +10180,13 @@
     // Auto-initialize Auth on Page Load: 1st screen login/signup gate flow
     function initAuthSystem() {
       const user = getCurrentUser();
+      const isGuest = localStorage.getItem(GUEST_KEY);
       if (user) {
         document.body.classList.add('authenticated');
+        closeAuthGate();
+        updateAuthUI();
+      } else if (isGuest) {
+        document.body.classList.remove('authenticated');
         closeAuthGate();
         updateAuthUI();
       } else {
@@ -10182,6 +10197,7 @@
     }
 
     window.addEventListener("DOMContentLoaded", initAuthSystem);
+    initAuthSystem();
 
   </script>
 </body>
