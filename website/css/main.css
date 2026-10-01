@@ -2414,14 +2414,15 @@ html[data-theme="dark"] .theme-icon-moon {
   border-bottom: none;
 }
 .matrix-check {
-  color: #10b981;
+  color: var(--text-primary);
   font-weight: 800;
   margin-right: 6px;
 }
 .matrix-cross {
-  color: #ef4444;
-  font-weight: 800;
+  color: var(--text-muted);
+  font-weight: 600;
   margin-right: 6px;
+  opacity: 0.55;
 }
 
 /* ——— FAQ ACCORDION ——— */
@@ -2663,15 +2664,16 @@ html[data-theme="dark"] .theme-icon-moon {
   }
   /* Inject brand labels above each value */
   .matrix-table tbody td:nth-child(2)::before {
-    content: "Fast Fashion";
+    content: "Mass Market";
     display: block;
     font-family: var(--f-display);
     font-size: 9px;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #ef4444;
+    color: var(--text-muted);
     margin-bottom: 4px;
+    opacity: 0.7;
   }
   .matrix-table tbody td:nth-child(3)::before {
     content: "Shelby Hiver";
@@ -2681,17 +2683,17 @@ html[data-theme="dark"] .theme-icon-moon {
     font-weight: 800;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #10b981;
+    color: var(--text-primary);
     margin-bottom: 4px;
   }
   .matrix-table tbody td:nth-child(2) {
     border-bottom: 1px solid var(--border-color);
     background: var(--bg-secondary);
-    border-left: 3px solid #ef4444;
+    border-left: 2px solid var(--border-color);
   }
   .matrix-table tbody td.highlight {
     background: var(--bg-secondary);
-    border-left: 3px solid #10b981;
+    border-left: 2px solid var(--text-primary);
   }
   .matrix-table tr:last-child td {
     border-bottom: none;
