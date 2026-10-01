@@ -3,32 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-  <title>SHELBY HIVER | Atelier Admin &amp; Command Center</title>
-  <link rel="icon" type="image/png" href="../assets/logo.png">
+  <title>Atelier Command &amp; Operations | SHELBY HIVER</title>
+  <link rel="icon" type="image/png" href="../assets/logo-dark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
+    /* ============================================================
+       SHELBY HIVER — ATELIER COMMAND & OPERATIONS CONSOLE
+       Formal Luxury Light Theme Design System
+       Space Grotesk + Plus Jakarta Sans Typography
+       Zero Casual Emojis · Clean Precision SVGs · Live Store Sync
+       ============================================================ */
     :root {
-      --gold: #c9a96e;
-      --gold-dark: #aa8c2c;
-      --obsidian: #050505;
-      --carbon: #0d0d0d;
-      --charcoal: #141414;
-      --card-bg: #111111;
-      --card-hover: #161616;
-      --border-color: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      --text-primary: #ffffff;
-      --text-secondary: #a8a8b2;
-      --text-muted: #70707a;
-      --wa: #25d366;
-      --danger: #e63946;
-      --f-display: 'Space Grotesk', sans-serif;
-      --f-body: 'Plus Jakarta Sans', sans-serif;
+      /* Luxury Atelier Light Palette */
+      --bg-primary: #f8f8fa;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --bg-secondary: #f4f4f7;
+      --bg-tertiary: #ebebed;
+      --border-color: #e6e6ea;
+      --border-light: #f0f0f3;
+      --border-strong: #d0d1d8;
+      
+      --text-primary: #12131a;
+      --text-secondary: #4b4e5d;
+      --text-muted: #848796;
+      --text-light: #b0b3c2;
+      
+      --brand-black: #0d0d11;
+      --brand-black-hover: #1e1f26;
+      --brand-gold: #9e7d3b;
+      --brand-gold-bg: rgba(158, 125, 59, 0.08);
+      --accent-coral: #ff3f6c;
+      --accent-coral-hover: #e72e5b;
+      --accent-coral-bg: rgba(255, 63, 108, 0.08);
+      
+      --status-pending-bg: #fff8eb;
+      --status-pending-color: #b45309;
+      --status-pending-border: #fde68a;
+      
+      --status-live-bg: #ecfdf5;
+      --status-live-color: #047857;
+      --status-live-border: #a7f3d0;
+      
+      --status-transit-bg: #eff6ff;
+      --status-transit-color: #1d4ed8;
+      --status-transit-border: #bfdbfe;
+      
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+
+      --f-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --f-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --f-mono: 'Space Grotesk', monospace;
-      --ease: cubic-bezier(.16, 1, .3, 1);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+      --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.04);
+      --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.07);
+      --shadow-modal: 0 20px 50px rgba(0, 0, 0, 0.15);
     }
 
     * {
@@ -38,45 +74,49 @@
     }
 
     body {
-      background: var(--obsidian);
+      background: var(--bg-primary);
       color: var(--text-primary);
       font-family: var(--f-body);
       min-height: 100vh;
       overflow-x: hidden;
       line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* Ambient noise background */
-    .noise {
+    /* Ambient Architectural Grid */
+    .bg-grid {
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background: radial-gradient(circle at 50% 0%, rgba(201, 169, 110, 0.06) 0%, transparent 60%);
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
       z-index: 0;
     }
 
     /* ============================================================
-       01 ADMIN AUTH LOGIN SCREEN
+       01 FORMAL LUXURY ADMIN AUTH PORTAL
        ============================================================ */
     .admin-auth-screen {
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: var(--obsidian);
+      background: var(--bg-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 24px;
     }
 
     .admin-auth-card {
       width: 100%;
       max-width: 440px;
-      background: var(--card-bg);
-      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 40px 32px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
+      padding: 40px 36px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06);
       position: relative;
       z-index: 2;
     }
@@ -89,153 +129,184 @@
     }
 
     .admin-auth-logo img {
-      width: 36px;
-      height: 36px;
+      height: 34px;
+      width: auto;
       object-fit: contain;
     }
 
     .admin-auth-logo strong {
-      font-family: var(--f-display);
-      font-size: 13.5px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: #fff;
       display: block;
+      font-family: var(--f-display);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-black);
     }
 
     .admin-auth-logo small {
-      font-family: var(--f-mono);
-      font-size: 8.5px;
-      letter-spacing: .2em;
-      color: var(--gold);
-      text-transform: uppercase;
       display: block;
+      font-family: var(--f-display);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 1px;
+    }
+
+    .admin-auth-tag {
+      display: inline-block;
+      font-family: var(--f-display);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      margin-bottom: 6px;
     }
 
     .admin-auth-title {
       font-family: var(--f-display);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
-      color: #fff;
+      letter-spacing: -0.02em;
+      color: var(--brand-black);
       margin-bottom: 6px;
     }
 
     .admin-auth-sub {
-      font-size: 12px;
-      color: var(--text-secondary);
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
       margin-bottom: 24px;
     }
 
     .auth-error-banner {
-      background: rgba(230, 57, 70, 0.15);
-      border: 1px solid rgba(230, 57, 70, 0.35);
-      color: #e63946;
-      font-family: var(--f-mono);
-      font-size: 11px;
-      padding: 9px 12px;
-      border-radius: 4px;
-      margin-bottom: 16px;
       display: none;
+      background: var(--danger-bg);
+      border: 1px solid var(--danger-border);
+      color: var(--danger);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 18px;
     }
 
     .admin-field {
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .admin-field label {
       display: block;
-      font-family: var(--f-mono);
-      font-size: 10px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      font-family: var(--f-display);
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 6px;
     }
 
     .admin-input-wrap {
-      position: relative;
       display: flex;
       align-items: center;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0 14px;
+      transition: all 0.2s var(--ease);
+    }
+
+    .admin-input-wrap:focus-within {
+      background: #ffffff;
+      border-color: var(--brand-black);
+      box-shadow: 0 0 0 3px rgba(13, 13, 17, 0.06);
     }
 
     .admin-input-wrap input {
       width: 100%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      padding: 12px 14px;
-      font-family: var(--f-mono);
-      font-size: 12px;
-      color: #fff;
-      border-radius: 4px;
+      background: transparent;
+      border: none;
       outline: none;
-      transition: border-color .2s;
-    }
-
-    .admin-input-wrap input:focus {
-      border-color: var(--gold);
+      font-family: var(--f-body);
+      font-size: 13.5px;
+      color: var(--text-primary);
+      padding: 12px 0;
     }
 
     .admin-btn-primary {
       width: 100%;
-      padding: 13px;
-      background: var(--text-primary);
-      color: var(--obsidian);
-      border: none;
-      border-radius: 4px;
-      font-family: var(--f-mono);
-      font-size: 11.5px;
+      background: var(--brand-black);
+      color: #ffffff;
+      font-family: var(--f-display);
+      font-size: 12.5px;
       font-weight: 800;
-      letter-spacing: .12em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      cursor: pointer;
+      padding: 13px 20px;
+      border: none;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: all .2s var(--ease);
       margin-top: 10px;
+      cursor: pointer;
+      transition: all 0.2s var(--ease);
     }
 
     .admin-btn-primary:hover {
-      opacity: .92;
+      background: var(--brand-black-hover);
       transform: translateY(-1px);
     }
 
     .admin-btn-demo {
       width: 100%;
-      padding: 9px;
-      background: rgba(201, 169, 110, 0.1);
-      border: 1px dashed rgba(201, 169, 110, 0.4);
-      color: var(--gold);
-      border-radius: 4px;
-      font-family: var(--f-mono);
-      font-size: 10.5px;
+      background: transparent;
+      border: 1px dashed var(--border-strong);
+      color: var(--text-secondary);
+      font-family: var(--f-display);
+      font-size: 11px;
       font-weight: 700;
-      cursor: pointer;
+      letter-spacing: 0.04em;
+      padding: 11px;
+      border-radius: 8px;
       margin-top: 10px;
-      transition: all .2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s var(--ease);
     }
+
     .admin-btn-demo:hover {
-      background: rgba(201, 169, 110, 0.2);
+      border-color: var(--brand-black);
+      color: var(--brand-black);
+      background: var(--bg-secondary);
     }
 
     .admin-auth-foot-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      font-family: var(--f-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--f-display);
       font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       color: var(--text-muted);
       text-decoration: none;
-      transition: color .2s;
+      margin-top: 22px;
+      transition: color 0.2s;
     }
+
     .admin-auth-foot-link:hover {
-      color: #fff;
+      color: var(--brand-black);
     }
 
     /* ============================================================
-       02 MAIN ADMIN APP LAYOUT (SIDEBAR + CONTENT)
+       02 ATELIER COMMAND APP LAYOUT
        ============================================================ */
     .admin-app {
       display: none;
@@ -248,111 +319,22 @@
       display: flex;
     }
 
-    @media (max-width: 900px) {
-      .admin-app.active {
-        flex-direction: column;
-      }
-    }
-
-    /* Sidebar Navigation */
+    /* Architectural Sidebar */
     .admin-sidebar {
       width: 260px;
-      background: var(--carbon);
+      background: var(--bg-sidebar);
       border-right: 1px solid var(--border-color);
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
+      min-height: 100vh;
       position: sticky;
       top: 0;
-      height: 100vh;
-      overflow-y: auto;
       z-index: 100;
     }
 
-    .mobile-logout-btn {
-      display: none;
-    }
-
-    .sidebar-head-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .table-scroll-hint {
-      display: none;
-      font-family: var(--f-mono);
-      font-size: 10px;
-      color: var(--gold);
-      letter-spacing: .05em;
-      margin-bottom: 8px;
-    }
-
-    @media (max-width: 900px) {
-      .admin-sidebar {
-        width: 100%;
-        height: auto;
-        position: sticky;
-        top: 0;
-        z-index: 200;
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        background: rgba(13, 13, 13, 0.96);
-        backdrop-filter: blur(12px);
-      }
-
-      .sidebar-head {
-        padding: 10px 14px;
-      }
-
-      .mobile-logout-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(230, 57, 70, 0.12);
-        border: 1px solid rgba(230, 57, 70, 0.35);
-        color: var(--danger);
-        width: 30px;
-        height: 30px;
-        border-radius: 4px;
-        font-size: 12px;
-        cursor: pointer;
-        transition: background .2s;
-      }
-
-      .sidebar-nav {
-        flex-direction: row;
-        overflow-x: auto;
-        padding: 6px 12px;
-        gap: 6px;
-        -webkit-overflow-scrolling: touch;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .sidebar-nav::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nav-item {
-        padding: 8px 12px;
-        font-size: 11px;
-        border-radius: 999px;
-        flex-shrink: 0;
-        background: rgba(255, 255, 255, 0.03);
-      }
-
-      .sidebar-foot {
-        display: none;
-      }
-
-      .table-scroll-hint {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-    }
-
     .sidebar-head {
-      padding: 24px 20px;
+      padding: 20px 20px;
       border-bottom: 1px solid var(--border-color);
       display: flex;
       align-items: center;
@@ -363,62 +345,80 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      text-decoration: none;
     }
 
     .sidebar-brand img {
-      width: 28px;
       height: 28px;
+      width: auto;
+      object-fit: contain;
     }
 
     .sidebar-brand strong {
+      display: block;
       font-family: var(--f-display);
       font-size: 13px;
-      letter-spacing: .12em;
+      font-weight: 800;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      display: block;
+      color: var(--brand-black);
     }
 
     .sidebar-brand small {
-      font-family: var(--f-mono);
-      font-size: 8px;
-      letter-spacing: .15em;
-      color: var(--gold);
       display: block;
+      font-family: var(--f-display);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
     }
 
     .sidebar-live-pill {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      font-family: var(--f-mono);
-      font-size: 8px;
-      font-weight: 800;
-      color: var(--wa);
-      background: rgba(37, 211, 102, 0.12);
-      border: 1px solid rgba(37, 211, 102, 0.3);
-      padding: 2px 6px;
+      gap: 6px;
+      background: var(--status-live-bg);
+      border: 1px solid var(--status-live-border);
+      color: var(--status-live-color);
+      padding: 3px 8px;
       border-radius: 999px;
+      font-family: var(--f-display);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .sidebar-live-pill .dot {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: var(--wa);
-      animation: livePulse 1.5s infinite;
+      background: var(--status-live-color);
+      animation: pulseDot 1.8s infinite;
     }
 
-    @keyframes livePulse {
+    @keyframes pulseDot {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: .4; transform: scale(1.3); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
+    .mobile-logout-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* Sidebar Navigation Links */
     .sidebar-nav {
-      padding: 18px 12px;
+      flex: 1;
+      padding: 16px 12px;
       display: flex;
       flex-direction: column;
       gap: 4px;
-      flex: 1;
     }
 
     .nav-item {
@@ -426,134 +426,149 @@
       align-items: center;
       gap: 12px;
       padding: 10px 14px;
-      border-radius: 6px;
-      font-family: var(--f-mono);
-      font-size: 11.5px;
-      font-weight: 600;
-      color: var(--text-secondary);
+      border-radius: 8px;
+      border: 1px solid transparent;
       background: transparent;
-      border: none;
+      color: var(--text-secondary);
+      font-family: var(--f-body);
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
       text-align: left;
-      transition: all .2s;
-      white-space: nowrap;
+      width: 100%;
+      transition: all 0.15s var(--ease);
+    }
+
+    .nav-item svg {
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: color 0.15s;
     }
 
     .nav-item:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
+      background: var(--bg-secondary);
+      color: var(--brand-black);
+    }
+
+    .nav-item:hover svg {
+      color: var(--brand-black);
     }
 
     .nav-item.active {
-      background: var(--text-primary);
-      color: var(--obsidian);
-      font-weight: 800;
+      background: var(--brand-black);
+      color: #ffffff;
+      border-color: var(--brand-black);
     }
 
-    .nav-item .icon {
-      font-size: 14px;
+    .nav-item.active svg {
+      color: #ffffff;
     }
 
     .nav-item .badge {
       margin-left: auto;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 2px 6px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.15);
-      color: inherit;
+      padding: 1px 7px;
+      font-family: var(--f-display);
+      font-size: 10.5px;
+      font-weight: 700;
     }
 
+    .nav-item.active .badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    /* Sidebar Footer User Info */
     .sidebar-foot {
-      padding: 16px 20px;
+      padding: 16px 18px;
       border-top: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      background: #fafafc;
     }
 
     .sidebar-user {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .user-avatar {
-      width: 28px;
-      height: 28px;
-      background: var(--gold);
-      color: #000;
-      font-family: var(--f-mono);
-      font-size: 10px;
-      font-weight: 800;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
+      background: var(--brand-black);
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: var(--f-display);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
     }
 
     .user-info strong {
       display: block;
-      font-size: 11.5px;
-      line-height: 1.2;
+      font-family: var(--f-display);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
     }
 
     .user-info small {
       display: block;
-      font-family: var(--f-mono);
-      font-size: 9px;
+      font-size: 10.5px;
       color: var(--text-muted);
     }
 
     .logout-btn {
-      background: transparent;
+      background: none;
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      font-size: 14px;
       padding: 6px;
-      transition: color .2s;
-    }
-    .logout-btn:hover {
-      color: var(--danger);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
     }
 
-    /* Main Content Area */
+    .logout-btn:hover {
+      color: var(--danger);
+      background: var(--danger-bg);
+    }
+
+    /* ============================================================
+       03 MAIN CONTENT AREA & TOPBAR
+       ============================================================ */
     .admin-main {
       flex: 1;
-      padding: 32px;
+      padding: 32px 40px;
       overflow-y: auto;
-      max-width: 1360px;
+      max-width: 1400px;
       margin: 0 auto;
       width: 100%;
     }
 
-    @media (max-width: 840px) {
-      .admin-main {
-        padding: 14px 12px 60px;
+    @media (max-width: 900px) {
+      .admin-sidebar {
+        width: 100%;
+        position: static;
+        min-height: auto;
       }
-      .admin-topbar {
+      .admin-app.active {
         flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-        margin-bottom: 16px;
       }
-      .page-title {
-        font-size: 19px;
-        line-height: 1.25;
+      .admin-main {
+        padding: 20px 16px 60px;
       }
-      .topbar-actions {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .btn-outline,
-      .btn-gold {
-        justify-content: center;
-        width: 100%;
-        padding: 10px 8px;
-        font-size: 11px;
+      .mobile-logout-btn {
+        display: block;
       }
     }
 
@@ -566,11 +581,18 @@
       flex-wrap: wrap;
     }
 
-    .page-title {
+    .topbar-titles h1 {
       font-family: var(--f-display);
-      font-size: clamp(20px, 3.2vw, 30px);
+      font-size: 26px;
       font-weight: 800;
-      letter-spacing: -.02em;
+      letter-spacing: -0.02em;
+      color: var(--brand-black);
+    }
+
+    .topbar-titles p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
     .topbar-actions {
@@ -584,20 +606,22 @@
       align-items: center;
       gap: 6px;
       padding: 8px 14px;
-      background: var(--card-bg);
+      background: #ffffff;
       border: 1px solid var(--border-color);
       color: var(--text-primary);
-      font-family: var(--f-mono);
-      font-size: 11px;
+      font-family: var(--f-display);
+      font-size: 11.5px;
       font-weight: 700;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
       text-decoration: none;
-      transition: all .2s;
+      transition: all 0.15s var(--ease);
     }
+
     .btn-outline:hover {
-      border-color: var(--text-primary);
-      background: var(--card-hover);
+      background: var(--bg-secondary);
+      border-color: var(--brand-black);
+      color: var(--brand-black);
     }
 
     .btn-gold {
@@ -605,18 +629,20 @@
       align-items: center;
       gap: 6px;
       padding: 8px 16px;
-      background: var(--gold);
-      color: #050505;
-      font-family: var(--f-mono);
-      font-size: 11px;
-      font-weight: 800;
-      border-radius: 4px;
+      background: var(--brand-black);
+      border: 1px solid var(--brand-black);
+      color: #ffffff;
+      font-family: var(--f-display);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border-radius: 6px;
       cursor: pointer;
-      border: none;
-      transition: all .2s;
+      transition: all 0.15s var(--ease);
     }
+
     .btn-gold:hover {
-      background: var(--gold-dark);
+      background: var(--brand-black-hover);
       transform: translateY(-1px);
     }
 
@@ -624,277 +650,301 @@
     .kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+      gap: 16px;
       margin-bottom: 28px;
     }
 
-    @media (max-width: 1050px) {
+    @media (max-width: 1080px) {
       .kpi-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 580px) {
       .kpi-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 8px !important;
-        margin-bottom: 16px !important;
-      }
-      .kpi-card {
-        padding: 12px 10px !important;
-      }
-      .kpi-val {
-        font-size: 18px !important;
-      }
-      .kpi-label {
-        font-size: 9px !important;
-      }
-      .kpi-sub {
-        font-size: 8px !important;
+        grid-template-columns: 1fr;
       }
     }
 
     .kpi-card {
-      background: var(--card-bg);
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .2s, border-color .2s;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s var(--ease);
     }
 
     .kpi-card:hover {
+      box-shadow: var(--shadow-card-hover);
       border-color: var(--border-strong);
-      transform: translateY(-2px);
     }
 
     .kpi-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 12px;
     }
 
     .kpi-label {
-      font-family: var(--f-mono);
-      font-size: 10.5px;
-      letter-spacing: .08em;
+      font-family: var(--f-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--text-muted);
     }
 
-    .kpi-icon {
-      font-size: 16px;
-      opacity: .8;
+    .kpi-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-black);
     }
 
     .kpi-val {
-      font-family: var(--f-mono);
-      font-size: 26px;
+      font-family: var(--f-display);
+      font-size: 28px;
       font-weight: 800;
-      color: #fff;
+      letter-spacing: -0.02em;
+      color: var(--brand-black);
+      line-height: 1.1;
+      margin-bottom: 6px;
     }
 
     .kpi-sub {
-      font-family: var(--f-mono);
-      font-size: 10px;
-      color: var(--wa);
+      font-size: 11.5px;
+      color: var(--text-muted);
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
-    .kpi-sub.neutral {
-      color: var(--text-muted);
+    .kpi-sub.positive {
+      color: var(--status-live-color);
+      font-weight: 600;
     }
 
-    /* Sections / View Containers */
+    /* Views Framework */
     .admin-view {
       display: none;
     }
 
     .admin-view.active {
       display: block;
+      animation: viewFadeIn 0.2s var(--ease);
     }
 
-    /* Split Overview Layout */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 24px;
-      margin-bottom: 28px;
+    @keyframes viewFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 991px) {
-      .overview-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    /* Panel Box (Card Wrapper) */
     .panel-box {
-      background: var(--card-bg);
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 22px;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 24px;
     }
 
     .panel-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .panel-title {
       font-family: var(--f-display);
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--brand-black);
     }
 
-    /* Real-Time Live Activity Feed */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 980px) {
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Activity Feed */
     .activity-feed {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-height: 380px;
-      overflow-y: auto;
+      gap: 14px;
     }
 
     .act-item {
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
     }
 
-    .act-dot {
-      width: 8px;
-      height: 8px;
+    .act-icon-dot {
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
-      background: var(--gold);
-      margin-top: 5px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
+      color: var(--brand-black);
     }
-
-    .act-dot.order { background: var(--wa); }
-    .act-dot.vip { background: var(--gold); }
-    .act-dot.cart { background: #3b82f6; }
 
     .act-text {
       flex: 1;
-      font-size: 12px;
-      color: var(--text-secondary);
+      font-size: 12.5px;
+      color: var(--text-primary);
+      line-height: 1.4;
     }
 
     .act-text strong {
-      color: #fff;
+      color: var(--brand-black);
     }
 
     .act-time {
-      font-family: var(--f-mono);
-      font-size: 9px;
+      font-family: var(--f-display);
+      font-size: 10px;
+      font-weight: 600;
       color: var(--text-muted);
       white-space: nowrap;
     }
 
-    /* Data Tables (Orders & Products) */
+    /* ============================================================
+       04 PRECISION DATA TABLES
+       ============================================================ */
     .table-container {
-      background: var(--card-bg);
+      overflow-x: auto;
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      overflow-x: auto;
-      margin-bottom: 24px;
     }
 
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12px;
       text-align: left;
-      min-width: 640px;
-    }
-
-    @media (max-width: 600px) {
-      .data-table th,
-      .data-table td {
-        padding: 10px 12px;
-        font-size: 11px;
-      }
-      .btn-action {
-        padding: 6px 10px;
-        font-size: 11px;
-      }
-    }
-
-    .data-table th,
-    .data-table td {
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border-color);
+      font-size: 12.5px;
     }
 
     .data-table th {
-      font-family: var(--f-mono);
-      font-size: 10px;
-      letter-spacing: .1em;
+      background: #fafafc;
+      padding: 12px 16px;
+      font-family: var(--f-display);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.02);
-      font-weight: 700;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
     }
 
-    .data-table tr:hover td {
-      background: rgba(255, 255, 255, 0.02);
+    .data-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-primary);
+      vertical-align: middle;
     }
 
-    .prod-cell {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .data-table tbody tr {
+      transition: background 0.15s;
     }
 
-    .prod-cell img {
-      width: 44px;
-      height: 56px;
-      object-fit: cover;
-      border-radius: 4px;
-      background: var(--charcoal);
+    .data-table tbody tr:hover {
+      background: #fafafc;
     }
 
+    .data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Status Badges */
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 3px 8px;
+      padding: 3px 9px;
       border-radius: 999px;
-      font-family: var(--f-mono);
-      font-size: 9px;
+      font-family: var(--f-display);
+      font-size: 10px;
       font-weight: 700;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .status-pill.pending {
-      background: rgba(245, 158, 11, 0.15);
-      color: #f59e0b;
-      border: 1px solid rgba(245, 158, 11, 0.35);
+      background: var(--status-pending-bg);
+      color: var(--status-pending-color);
+      border: 1px solid var(--status-pending-border);
     }
 
-    .status-pill.dispatched {
-      background: rgba(59, 130, 246, 0.15);
-      color: #3b82f6;
-      border: 1px solid rgba(59, 130, 246, 0.35);
+    .status-pill.dispatched,
+    .status-pill.transit {
+      background: var(--status-transit-bg);
+      color: var(--status-transit-color);
+      border: 1px solid var(--status-transit-border);
     }
 
-    .status-pill.delivered {
-      background: rgba(37, 211, 102, 0.15);
-      color: #25d366;
-      border: 1px solid rgba(37, 211, 102, 0.35);
+    .status-pill.delivered,
+    .status-pill.live {
+      background: var(--status-live-bg);
+      color: var(--status-live-color);
+      border: 1px solid var(--status-live-border);
+    }
+
+    .status-pill.cancelled,
+    .status-pill.disabled {
+      background: var(--bg-secondary);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+
+    /* Product Cell */
+    .prod-cell {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .prod-cell img {
+      width: 48px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    .prod-cell strong {
+      font-family: var(--f-display);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--brand-black);
+      display: block;
     }
 
     .table-actions {
@@ -904,110 +954,101 @@
     }
 
     .btn-action {
-      background: transparent;
+      background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      padding: 5px 8px;
-      border-radius: 4px;
+      color: var(--text-primary);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-family: var(--f-display);
+      font-size: 11px;
+      font-weight: 700;
       cursor: pointer;
-      font-family: var(--f-mono);
-      font-size: 10px;
-      transition: all .2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: all 0.15s;
     }
 
     .btn-action:hover {
-      background: var(--card-hover);
-      color: #fff;
-      border-color: var(--border-strong);
+      background: var(--brand-black);
+      border-color: var(--brand-black);
+      color: #ffffff;
     }
 
     .btn-action.wa {
-      color: var(--wa);
-      border-color: rgba(37, 211, 102, 0.35);
+      background: #f0fdf4;
+      border-color: #bbf7d0;
+      color: #166534;
     }
+
     .btn-action.wa:hover {
-      background: var(--wa);
-      color: #000;
+      background: #166534;
+      color: #ffffff;
     }
 
     .btn-action.danger {
+      background: var(--danger-bg);
+      border-color: var(--danger-border);
       color: var(--danger);
-      border-color: rgba(230, 57, 70, 0.3);
     }
+
     .btn-action.danger:hover {
       background: var(--danger);
-      color: #fff;
+      color: #ffffff;
     }
 
     /* ============================================================
-       03 ADD/EDIT PRODUCT MODAL
+       05 ATELIER MODAL SYSTEM & MULTI-IMAGE UPLOADER
        ============================================================ */
-    .modal-scrim {
+    .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
+      background: rgba(18, 19, 26, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 500;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
 
-    .modal-scrim.active {
+    .modal-overlay.active {
       display: flex;
     }
 
-    .product-modal-card {
+    .modal-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
       width: 100%;
       max-width: 680px;
-      max-height: 92vh;
+      max-height: 90vh;
       overflow-y: auto;
-      background: var(--card-bg);
-      border: 1px solid var(--border-strong);
-      border-radius: 12px;
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.9);
-      padding: 30px;
+      padding: 32px;
+      box-shadow: var(--shadow-modal);
+      animation: modalSlideUp 0.25s var(--ease);
     }
 
-    @media (max-width: 600px) {
-      .product-modal-card {
-        padding: 18px 14px;
-        max-height: 88vh;
-        border-radius: 10px;
-      }
-      .modal-head {
-        margin-bottom: 14px;
-        padding-bottom: 10px;
-      }
-      .modal-title {
-        font-size: 16px;
-      }
-      .size-check-row {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 6px;
-      }
-      .size-check-item {
-        justify-content: center;
-        padding: 8px 4px;
-        font-size: 11px;
-      }
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .modal-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       padding-bottom: 14px;
       border-bottom: 1px solid var(--border-color);
     }
 
     .modal-title {
       font-family: var(--f-display);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
+      color: var(--brand-black);
     }
 
     .form-grid-2 {
@@ -1029,51 +1070,53 @@
 
     .form-group label {
       display: block;
-      font-family: var(--f-mono);
-      font-size: 10.5px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 6px;
+      font-family: var(--f-display);
+      font-size: 11px;
       font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      margin-bottom: 6px;
     }
 
     .form-control {
       width: 100%;
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--bg-secondary);
       border: 1px solid var(--border-color);
-      color: #fff;
-      font-family: var(--f-mono);
-      font-size: 12px;
+      color: var(--text-primary);
+      font-family: var(--f-body);
+      font-size: 13px;
       padding: 10px 12px;
-      border-radius: 4px;
+      border-radius: 6px;
       outline: none;
-      transition: border-color .2s;
+      transition: all 0.15s;
     }
 
     .form-control:focus {
-      border-color: var(--gold);
+      background: #ffffff;
+      border-color: var(--brand-black);
+      box-shadow: 0 0 0 3px rgba(13, 13, 17, 0.06);
     }
 
     /* Image Drop / File Upload */
     .image-upload-box {
       border: 2px dashed var(--border-strong);
       border-radius: 8px;
-      padding: 20px;
+      padding: 24px 20px;
       text-align: center;
       cursor: pointer;
-      transition: all .2s;
-      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s;
+      background: #fafafc;
       margin-bottom: 12px;
       position: relative;
     }
 
-    .image-upload-box:hover {
-      border-color: var(--gold);
-      background: rgba(201, 169, 110, 0.05);
+    .image-upload-box:hover,
+    .image-upload-box.drag-over {
+      border-color: var(--brand-black);
+      background: #f4f4f7;
     }
 
-    /* Multi-Image Gallery Styles */
     .gallery-preview-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
@@ -1086,209 +1129,92 @@
       border: 1px solid var(--border-color);
       border-radius: 6px;
       overflow: hidden;
-      background: var(--charcoal);
+      background: var(--bg-secondary);
       aspect-ratio: 3 / 4;
-      transition: all .2s;
+      transition: all 0.2s;
     }
 
     .gallery-thumb-card.primary {
-      border: 2px solid var(--gold);
-      box-shadow: 0 0 10px rgba(201, 169, 110, 0.25);
+      border: 2px solid var(--brand-black);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     }
 
     .gallery-thumb-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-    }
-
-    .gallery-badge {
-      position: absolute;
-      bottom: 4px;
-      left: 4px;
-      right: 4px;
-      background: rgba(0, 0, 0, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      font-family: var(--f-mono);
-      font-size: 8px;
-      font-weight: 700;
-      color: #fff;
-      text-align: center;
-      padding: 2px 0;
-      border-radius: 3px;
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-
-    .gallery-thumb-card.primary .gallery-badge {
-      background: var(--gold);
-      color: #050505;
-      font-weight: 800;
-      border-color: var(--gold);
     }
 
     .gallery-del-btn {
       position: absolute;
       top: 4px;
       right: 4px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
       width: 20px;
       height: 20px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: #fff;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all .2s;
-      z-index: 2;
-    }
-
-    .gallery-del-btn:hover {
-      background: var(--danger);
-      border-color: var(--danger);
-    }
-
-    .gallery-make-pri {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      background: rgba(0, 0, 0, 0.85);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-family: var(--f-mono);
-      font-size: 9px;
-      font-weight: 700;
-      padding: 2px 5px;
-      border-radius: 3px;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .gallery-make-pri:hover {
-      background: var(--gold);
-      color: #000;
-    }
-
-    .image-upload-box.drag-over {
-      border-color: var(--gold);
-      background: rgba(201, 169, 110, 0.12);
-      box-shadow: 0 0 20px rgba(201, 169, 110, 0.25);
-    }
-
-    .preset-looks-row {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-      align-items: center;
-    }
-
-    .preset-chip {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-family: var(--f-mono);
-      font-size: 9.5px;
-      padding: 3px 8px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all .2s;
-    }
-
-    .preset-chip:hover {
-      background: rgba(201, 169, 110, 0.15);
-      border-color: var(--gold);
-      color: #fff;
-    }
-
-    .gallery-move-btn {
-      position: absolute;
-      bottom: 22px;
-      width: 18px;
-      height: 18px;
-      border-radius: 3px;
-      background: rgba(0, 0, 0, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #fff;
-      font-size: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 2;
-      transition: all .15s;
-    }
-
-    .gallery-move-btn:hover {
-      background: var(--gold);
-      color: #000;
-      border-color: var(--gold);
-    }
-
-    .gallery-move-left {
-      left: 4px;
-    }
-
-    .gallery-move-right {
-      right: 4px;
-    }
-
-    .gallery-count-badge {
-      font-family: var(--f-mono);
       font-size: 10px;
-      color: var(--gold);
-      background: rgba(201, 169, 110, 0.12);
-      padding: 2px 8px;
-      border-radius: 4px;
-      border: 1px solid rgba(201, 169, 110, 0.3);
-      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Size Checkboxes */
+    .gallery-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(13, 13, 17, 0.85);
+      color: #ffffff;
+      font-family: var(--f-display);
+      font-size: 8.5px;
+      font-weight: 700;
+      text-align: center;
+      padding: 2px 4px;
+      letter-spacing: 0.04em;
+    }
+
     .size-check-row {
       display: flex;
-      gap: 8px;
       flex-wrap: wrap;
+      gap: 12px;
     }
 
     .size-check-item {
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-family: var(--f-mono);
-      font-size: 11px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 6px 10px;
-      border-radius: 4px;
+      gap: 6px;
+      font-family: var(--f-display);
+      font-size: 12px;
+      font-weight: 700;
       cursor: pointer;
-      border: 1px solid var(--border-color);
     }
 
-    /* Toast notification */
+    /* Toast Notification */
     #adminToasts {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      z-index: 99999;
+      z-index: 9999;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
 
     .admin-toast {
-      background: #111;
-      border: 1px solid var(--gold);
-      color: #fff;
-      font-family: var(--f-mono);
-      font-size: 11.5px;
+      background: var(--brand-black);
+      color: #ffffff;
+      font-family: var(--f-display);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       padding: 12px 18px;
       border-radius: 6px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-      animation: toastIn .3s var(--ease);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      animation: toastIn 0.3s var(--ease);
     }
 
     @keyframes toastIn {
@@ -1299,24 +1225,25 @@
 </head>
 <body>
 
-  <div class="noise"></div>
+  <div class="bg-grid"></div>
   <div id="adminToasts"></div>
 
   <!-- ============================================================
-     01 ADMIN LOGIN SCREEN (BEFORE ADMIN PANEL ACCESS)
+     01 ATELIER SIGN IN SCREEN
      ============================================================ -->
   <div class="admin-auth-screen" id="adminAuthScreen">
     <div class="admin-auth-card">
       <div class="admin-auth-logo">
-        <img src="../assets/logo.png" alt="Shelby Hiver">
+        <img src="../assets/logo-dark.png" alt="Shelby Hiver">
         <div>
           <strong>Shelby Hiver</strong>
           <small>Atelier Command Center</small>
         </div>
       </div>
 
+      <span class="admin-auth-tag">ADMINISTRATIVE ACCESS</span>
       <h1 class="admin-auth-title">Atelier Sign In</h1>
-      <p class="admin-auth-sub">Restricted personnel access. Enter your administrator credentials to manage products, live orders, and VIP allocations.</p>
+      <p class="admin-auth-sub">Restricted personnel portal. Manage live catalogue, customer dispatches, inventory statuses, and account records.</p>
 
       <div class="auth-error-banner" id="adminErrorBanner"></div>
 
@@ -1337,36 +1264,40 @@
 
         <button type="submit" class="admin-btn-primary">
           <span>Authorize Access</span>
-          <span>→</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
 
         <button type="button" class="admin-btn-demo" onclick="quickFillAdmin()">
-          ⚡ 1-Click Fill Admin Credentials
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>1-Click Fill Admin Credentials (admin2026)</span>
         </button>
       </form>
 
-      <a href="../" class="admin-auth-foot-link">← Return to Public Storefront</a>
+      <a href="../index.html" class="admin-auth-foot-link">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Return to Public Storefront</span>
+      </a>
     </div>
   </div>
 
   <!-- ============================================================
-     02 MAIN ADMIN DASHBOARD & COMMAND PANEL
+     02 MAIN ATELIER DASHBOARD & COMMAND PANEL
      ============================================================ -->
   <div class="admin-app" id="adminApp">
     
     <!-- Sidebar -->
     <aside class="admin-sidebar">
       <div class="sidebar-head">
-        <div class="sidebar-brand">
-          <img src="../assets/logo.png" alt="SH">
+        <a href="../index.html" class="sidebar-brand">
+          <img src="../assets/logo-dark.png" alt="SH">
           <div>
             <strong>Shelby Hiver</strong>
-            <small>Admin Panel</small>
+            <small>Operations Portal</small>
           </div>
-        </div>
-        <div class="sidebar-head-right">
+        </a>
+        <div style="display:flex;align-items:center;gap:6px;">
           <div class="sidebar-live-pill">
-            <span class="dot"></span> LIVE
+            <span class="dot"></span> SYNC
           </div>
           <button class="mobile-logout-btn" onclick="handleAdminLogout()" title="Sign Out">✕</button>
         </div>
@@ -1374,35 +1305,40 @@
 
       <nav class="sidebar-nav">
         <button class="nav-item active" onclick="switchAdminView('overview', this)">
-          <span class="icon">📊</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1"></rect><rect x="14" y="3" width="7" height="5" rx="1"></rect><rect x="14" y="12" width="7" height="9" rx="1"></rect><rect x="3" y="16" width="7" height="5" rx="1"></rect></svg>
           <span>Overview</span>
         </button>
+
         <button class="nav-item" onclick="switchAdminView('orders', this)">
-          <span class="icon">🛍️</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
           <span>Live Orders</span>
           <span class="badge" id="sidebarOrdersBadge">0</span>
         </button>
+
         <button class="nav-item" onclick="switchAdminView('products', this)">
-          <span class="icon">👕</span>
-          <span>Products</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+          <span>Catalogue</span>
           <span class="badge" id="sidebarProductsBadge">8</span>
         </button>
-        <button class="nav-item" onclick="switchAdminView('vip', this)">
-          <span class="icon">👑</span>
-          <span>VIP Members</span>
-          <span class="badge" id="sidebarVipBadge">0</span>
+
+        <button class="nav-item" onclick="switchAdminView('users', this)">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Customer Accounts</span>
+          <span class="badge" id="sidebarUsersBadge">0</span>
         </button>
       </nav>
 
       <div class="sidebar-foot">
         <div class="sidebar-user">
-          <div class="user-avatar">AD</div>
+          <div class="user-avatar">SH</div>
           <div class="user-info">
             <strong>Head of Atelier</strong>
             <small>admin@shelbyhiver.com</small>
           </div>
         </div>
-        <button class="logout-btn" onclick="handleAdminLogout()" title="Sign Out">✕</button>
+        <button class="logout-btn" onclick="handleAdminLogout()" title="Sign Out">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        </button>
       </div>
     </aside>
 
@@ -1411,16 +1347,17 @@
       
       <!-- Topbar Header -->
       <div class="admin-topbar">
-        <div>
-          <h1 class="page-title" id="pageTitle">Atelier Overview &amp; Live Real-Time Metrics</h1>
-          <p style="font-family:var(--f-mono);font-size:11px;color:var(--text-muted);margin-top:2px;">Real-time sync connected with live customer storefront.</p>
+        <div class="topbar-titles">
+          <h1 id="pageTitle">Atelier Overview &amp; Live Real-Time Operations</h1>
+          <p>Direct two-way real-time synchronisation connected with live customer storefront.</p>
         </div>
         <div class="topbar-actions">
-          <a href="../" target="_blank" class="btn-outline">
-            <span>Storefront</span>
-            <span>↗</span>
+          <a href="../index.html" target="_blank" class="btn-outline">
+            <span>View Storefront</span>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
           </a>
           <button class="btn-gold" onclick="openAddProductModal()">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>+ Add Silhouette</span>
           </button>
         </div>
@@ -1431,37 +1368,51 @@
         <div class="kpi-card">
           <div class="kpi-head">
             <span class="kpi-label">Gross Revenue</span>
-            <span class="kpi-icon">💰</span>
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
           </div>
           <div class="kpi-val" id="kpiRevenue">₹ 0</div>
-          <div class="kpi-sub">↑ Real-Time Orders Revenue</div>
+          <div class="kpi-sub positive">
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            <span>Real-Time Customer Orders</span>
+          </div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-head">
-            <span class="kpi-label">Active Live Visitors</span>
-            <span class="kpi-icon">🟢</span>
+            <span class="kpi-label">Active Shoppers</span>
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            </div>
           </div>
           <div class="kpi-val" id="kpiVisitors">18</div>
-          <div class="kpi-sub">● Real-Time Shoppers Active</div>
+          <div class="kpi-sub positive">
+            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#047857;"></span>
+            <span>Live Store Traffic</span>
+          </div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-head">
-            <span class="kpi-label">Total Orders</span>
-            <span class="kpi-icon">📦</span>
+            <span class="kpi-label">Client Orders</span>
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
           </div>
           <div class="kpi-val" id="kpiOrders">0</div>
-          <div class="kpi-sub neutral" id="kpiOrdersSub">All-time WhatsApp &amp; site orders</div>
+          <div class="kpi-sub">Total Dispatches Logged</div>
         </div>
 
         <div class="kpi-card">
           <div class="kpi-head">
-            <span class="kpi-label">Active Silhouettes</span>
-            <span class="kpi-icon">👕</span>
+            <span class="kpi-label">Silhouettes in DB</span>
+            <div class="kpi-icon-box">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+            </div>
           </div>
           <div class="kpi-val" id="kpiProducts">8</div>
-          <div class="kpi-sub neutral">Heavyweight Collection Live</div>
+          <div class="kpi-sub">Drop 01 Live &amp; Coming Soon</div>
         </div>
       </div>
 
@@ -1472,19 +1423,18 @@
           <!-- Recent Orders Stream -->
           <div class="panel-box">
             <div class="panel-head">
-              <h2 class="panel-title">Recent Live Customer Orders</h2>
-              <button class="btn-outline" style="font-size:10px;padding:4px 8px;" onclick="switchAdminView('orders')">View All →</button>
+              <h2 class="panel-title">Recent Client Dispatches</h2>
+              <button class="btn-outline" onclick="switchAdminView('orders')">View All Orders →</button>
             </div>
-            <div class="table-scroll-hint"><span>⇄ Swipe table horizontally</span></div>
-            <div class="table-container" style="border:none;margin-bottom:0;">
+            <div class="table-container">
               <table class="data-table">
                 <thead>
                   <tr>
-                    <th>Order ID</th>
-                    <th>Customer</th>
-                    <th>Items</th>
-                    <th>Amount</th>
-                    <th>Status</th>
+                    <th>Order Ref</th>
+                    <th>Client</th>
+                    <th>Garments</th>
+                    <th>Value</th>
+                    <th>Dispatch Status</th>
                   </tr>
                 </thead>
                 <tbody id="overviewOrdersBody">
@@ -1497,8 +1447,8 @@
           <!-- Real-Time Activity Feed -->
           <div class="panel-box">
             <div class="panel-head">
-              <h2 class="panel-title">Real-Time Store Activity Stream</h2>
-              <span class="sidebar-live-pill"><span class="dot"></span> STREAMING</span>
+              <h2 class="panel-title">Live Store Activity Feed</h2>
+              <span class="sidebar-live-pill"><span class="dot"></span> REAL-TIME</span>
             </div>
             <div class="activity-feed" id="activityFeed">
               <!-- Injected by JS -->
@@ -1510,27 +1460,29 @@
 
       <!-- VIEW 2: ORDERS MANAGEMENT -->
       <section class="admin-view" id="view-orders">
-        <div class="panel-box" style="margin-bottom:24px;">
-          <div class="panel-head" style="margin-bottom:14px;flex-wrap:wrap;gap:10px;">
-            <h2 class="panel-title">All Customer Orders</h2>
+        <div class="panel-box">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Client Orders Stream &amp; Dispatch Records</h2>
+              <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">Track live orders, update delivery progress, and send instant WhatsApp dispatch updates to clients.</p>
+            </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
               <button class="btn-outline" onclick="simulateTestOrder()">+ Simulate Test Order</button>
               <button class="btn-outline" onclick="clearAllOrders()">Clear Orders</button>
             </div>
           </div>
 
-          <div class="table-scroll-hint"><span>⇄ Swipe table horizontally to inspect all columns</span></div>
           <div class="table-container">
             <table class="data-table">
               <thead>
                 <tr>
                   <th>Order Ref</th>
-                  <th>Date &amp; Time</th>
-                  <th>Customer Info</th>
-                  <th>Items &amp; Sizes</th>
-                  <th>Total (₹)</th>
+                  <th>Timestamp</th>
+                  <th>Client Information</th>
+                  <th>Garments &amp; Sizes</th>
+                  <th>Amount</th>
                   <th>Dispatch Status</th>
-                  <th>Action</th>
+                  <th>Concierge Action</th>
                 </tr>
               </thead>
               <tbody id="ordersTableBody">
@@ -1543,16 +1495,15 @@
 
       <!-- VIEW 3: PRODUCTS & INVENTORY MANAGEMENT -->
       <section class="admin-view" id="view-products">
-        <div class="panel-box" style="margin-bottom:24px;">
-          <div class="panel-head" style="margin-bottom:14px;flex-wrap:wrap;gap:10px;">
+        <div class="panel-box">
+          <div class="panel-head">
             <div>
-              <h2 class="panel-title">Product Catalogue Silhouettes</h2>
-              <p style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-muted);margin-top:2px;">Add or modify garments. Changes sync directly to the live customer storefront.</p>
+              <h2 class="panel-title">Garment Catalogue &amp; Silhouette Inventory</h2>
+              <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">Modify prices, images, and live vs coming-soon statuses. Synchronizes instantly with customer storefront.</p>
             </div>
             <button class="btn-gold" onclick="openAddProductModal()">+ Upload New Silhouette</button>
           </div>
 
-          <div class="table-scroll-hint"><span>⇄ Swipe table horizontally to inspect all columns</span></div>
           <div class="table-container">
             <table class="data-table">
               <thead>
@@ -1563,6 +1514,7 @@
                   <th>Fabric / GSM</th>
                   <th>Price / MRP</th>
                   <th>Sizes</th>
+                  <th>Availability</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -1574,30 +1526,29 @@
         </div>
       </section>
 
-      <!-- VIEW 4: VIP MEMBERS -->
-      <section class="admin-view" id="view-vip">
+      <!-- VIEW 4: CUSTOMER ACCOUNTS -->
+      <section class="admin-view" id="view-users">
         <div class="panel-box">
           <div class="panel-head">
             <div>
-              <h2 class="panel-title">Registered VIP Members Database</h2>
-              <p style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-muted);margin-top:2px;">Customers who registered an account or VIP pass on the storefront.</p>
+              <h2 class="panel-title">Registered Customer Accounts Database</h2>
+              <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">Clients who registered on the storefront with verified email or mobile credentials.</p>
             </div>
           </div>
 
-          <div class="table-scroll-hint"><span>⇄ Swipe table horizontally to inspect all columns</span></div>
           <div class="table-container">
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>VIP Member Name</th>
-                  <th>Email</th>
-                  <th>WhatsApp Phone</th>
-                  <th>Pass Serial</th>
-                  <th>Tier</th>
-                  <th>Action</th>
+                  <th>Client Name</th>
+                  <th>Email Address</th>
+                  <th>Mobile Number</th>
+                  <th>Registered At</th>
+                  <th>Status</th>
+                  <th>Concierge</th>
                 </tr>
               </thead>
-              <tbody id="vipTableBody">
+              <tbody id="usersTableBody">
                 <!-- Injected by JS -->
               </tbody>
             </table>
@@ -1609,80 +1560,49 @@
   </div>
 
   <!-- ============================================================
-     03 ADD / EDIT PRODUCT MODAL (IMAGE FILE UPLOADER & DETAILS)
+     03 ATELIER MODAL SYSTEM (ADD / EDIT PRODUCT)
      ============================================================ -->
-  <div class="modal-scrim" id="productModal">
-    <div class="product-modal-card">
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-card">
       <div class="modal-head">
-        <h2 class="modal-title" id="prodModalTitle">Upload New Luxury Silhouette</h2>
-        <button class="logout-btn" onclick="closeProductModal()">✕</button>
+        <h3 class="modal-title" id="prodModalTitle">Upload New Luxury Silhouette</h3>
+        <button type="button" class="btn-outline" style="padding:4px 10px;" onclick="closeProductModal()">✕</button>
       </div>
 
       <form id="productForm" onsubmit="saveProduct(event)">
-        <input type="hidden" id="editProductId" value="">
+        <input type="hidden" id="editProductId">
 
-        <!-- Image Upload Section (Multi-Image Enabled) -->
+        <!-- Multi-Image Drop Box -->
         <div class="form-group">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
-            <label style="margin-bottom:0;">Product Imagery Gallery (Upload Multiple Photos / Angles)</label>
-            <span class="gallery-count-badge" id="galleryCountBadge">0 Photos</span>
+          <label>Product Photos Gallery (Multiple Angles)</label>
+          <div class="image-upload-box" id="imageUploadBox" onclick="document.getElementById('multiFileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <input type="file" id="multiFileInput" multiple accept="image/*" style="display:none;" onchange="handleProductMultipleImages(this)">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" style="color:var(--text-muted);margin-bottom:8px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--brand-black);">Click to Browse or Drag &amp; Drop Multiple Photos</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">High-resolution studio photography automatically compressed and scaled.</div>
           </div>
 
-          <div class="image-upload-box" id="imageUploadBox" 
-               onclick="document.getElementById('productFileInput').click()"
-               ondragover="handleDragOver(event)" 
-               ondragleave="handleDragLeave(event)" 
-               ondrop="handleDrop(event)">
-            <input type="file" id="productFileInput" accept="image/*" multiple style="display:none;" onchange="handleProductMultipleImages(this)">
-            <div style="font-size:28px;margin-bottom:6px;">📸</div>
-            <strong style="font-family:var(--f-display);font-size:13.5px;display:block;">Drop Multiple Photos Here or Click to Browse</strong>
-            <small style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);display:block;margin-top:2px;">
-              Select multiple photos at once: Front view, Back view, Fabric close-up, Model angles
-            </small>
-            <span style="display:inline-block;margin-top:6px;font-family:var(--f-mono);font-size:9.5px;color:var(--gold);background:rgba(201,169,110,0.1);padding:2px 8px;border-radius:3px;">
-              High-res canvas compression enabled • Fast sync &amp; zero lag
-            </span>
+          <!-- Quick URL / Preset Input -->
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <input type="text" id="addImgUrlInput" class="form-control" placeholder="Or enter an image URL (e.g. assets/model-tee.jpg)">
+            <button type="button" class="btn-outline" onclick="addUrlToGallery()">Add Photo</button>
           </div>
 
-          <div style="display:flex;gap:8px;align-items:center;">
-            <input type="text" id="addImgUrlInput" class="form-control" placeholder="Or enter Image URL / preset path (e.g. assets/tee-black.jpg)">
-            <button type="button" class="btn-outline" style="white-space:nowrap;padding:10px 14px;" onclick="addUrlToGallery()">+ Add Photo</button>
-          </div>
-
-          <!-- Quick Lookbook Presets -->
-          <div class="preset-looks-row">
-            <span style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);">Quick Presets:</span>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/model-tee.jpg')">+ Model Front</button>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/tee-black.jpg')">+ Black Flat</button>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/tee-white.jpg')">+ White Flat</button>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/tee-wash.jpg')">+ Acid Wash</button>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/detail-tag.jpg')">+ Woven Tag</button>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/model-hoodie.jpg')">+ Hoodie Shot</button>
-            <button type="button" class="preset-chip" onclick="addPresetToGallery('assets/model-pants.jpg')">+ Tactical Pants</button>
-          </div>
-
-          <!-- Multi-Image Live Grid -->
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px;">
-            <span style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-secondary);font-weight:700;">Uploaded Gallery Order:</span>
-            <button type="button" class="btn-action danger" style="padding:2px 8px;font-size:9.5px;" onclick="clearGallery()">Clear All Photos</button>
-          </div>
+          <!-- Gallery Preview Grid -->
           <div class="gallery-preview-grid" id="galleryPreviewGrid">
             <!-- Injected by JS -->
           </div>
-          <small style="display:block;font-family:var(--f-mono);font-size:9.5px;color:var(--text-muted);margin-top:8px;">
-            💡 <strong>Card Cover Tip:</strong> The 1st image (gold border) displays as the main storefront card. The 2nd image is shown on mouse hover. Click <strong>★ Primary</strong> on any photo or use <strong>← / →</strong> to reorder.
-          </small>
         </div>
 
         <div class="form-grid-2">
           <div class="form-group">
-            <label for="prodName">Silhouette Title / Name</label>
-            <input type="text" id="prodName" class="form-control" placeholder="e.g. SH Oversized Heavy Vintage Tee" required>
+            <label for="prodName">Garment Name</label>
+            <input type="text" id="prodName" class="form-control" placeholder="e.g. SH Minimalist 220 GSM Tee" required>
           </div>
 
           <div class="form-group">
             <label for="prodSku">SKU Code</label>
-            <input type="text" id="prodSku" class="form-control" placeholder="e.g. SH / TEE-05" required>
+            <input type="text" id="prodSku" class="form-control" placeholder="e.g. SH / TEE-01" required>
           </div>
         </div>
 
@@ -1690,41 +1610,43 @@
           <div class="form-group">
             <label for="prodCategory">Category</label>
             <select id="prodCategory" class="form-control">
-              <option value="tees">Oversized Tees (220 GSM)</option>
-              <option value="hoodies">French Terry Hoodies</option>
-              <option value="acid">Acid Wash Archive</option>
-              <option value="bottoms">Tactical Cargos &amp; Bottoms</option>
-              <option value="accessories">Caps &amp; Accessories</option>
-              <option value="capsule">Capsule Sets</option>
+              <option value="tees">Heavyweight Tees (Drop 01)</option>
+              <option value="hoodies">French Terry Hoodies (Coming Soon)</option>
+              <option value="cargos">Tactical Cargos (Coming Soon)</option>
+              <option value="accessories">Caps &amp; Accessories (Coming Soon)</option>
+              <option value="capsule">Atelier Capsule Set</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="prodBadge">Badge Label</label>
-            <input type="text" id="prodBadge" class="form-control" placeholder="e.g. NEW ARRIVAL, 220 GSM, DROP 001">
+            <label for="prodStatus">Storefront Status</label>
+            <select id="prodStatus" class="form-control">
+              <option value="live">Live for Purchase (Drop 01)</option>
+              <option value="soon">Coming Soon (Disabled Purchase)</option>
+            </select>
           </div>
         </div>
 
         <div class="form-grid-2">
           <div class="form-group">
             <label for="prodPrice">Selling Price (₹)</label>
-            <input type="number" id="prodPrice" class="form-control" placeholder="e.g. 799" required oninput="calcDiscount()">
+            <input type="number" id="prodPrice" class="form-control" placeholder="e.g. 699" required>
           </div>
 
           <div class="form-group">
             <label for="prodMrp">Original MRP (₹)</label>
-            <input type="number" id="prodMrp" class="form-control" placeholder="e.g. 1499" required oninput="calcDiscount()">
+            <input type="number" id="prodMrp" class="form-control" placeholder="e.g. 1199" required>
           </div>
         </div>
 
         <div class="form-grid-2">
           <div class="form-group">
-            <label for="prodFabric">Fabric &amp; Weight</label>
+            <label for="prodFabric">Fabric &amp; GSM</label>
             <input type="text" id="prodFabric" class="form-control" placeholder="e.g. 220 GSM 100% Super-Combed Cotton" required>
           </div>
 
           <div class="form-group">
-            <label for="prodFit">Silhouette Fit</label>
+            <label for="prodFit">Silhouette Cut</label>
             <input type="text" id="prodFit" class="form-control" placeholder="e.g. Boxy Drop-Shoulder Relaxed Fit" required>
           </div>
         </div>
@@ -1741,8 +1663,8 @@
         </div>
 
         <div class="form-group">
-          <label for="prodDesc">Product Description</label>
-          <textarea id="prodDesc" class="form-control" rows="3" placeholder="Detailed architectural description of cut, fabric, and collar construction..."></textarea>
+          <label for="prodDesc">Garment Architectural Description</label>
+          <textarea id="prodDesc" class="form-control" rows="3" placeholder="Detailed architectural description of cut, fabric density, and collar construction..."></textarea>
         </div>
 
         <div style="display:flex;gap:12px;margin-top:20px;">
@@ -1754,15 +1676,15 @@
   </div>
 
   <!-- ============================================================
-     04 REAL-TIME ADMIN JAVASCRIPT ENGINE
+     04 REAL-TIME ATELIER JAVASCRIPT ENGINE
      ============================================================ -->
   <script>
     const ADMIN_SESSION_KEY = 'sh_admin_auth_v1';
-    const PRODUCTS_KEY = 'sh_products_db';
+    const PRODUCTS_KEY = 'sh_products_db_v3';
     const ORDERS_KEY = 'sh_orders_db';
-    const VIP_USERS_KEY = 'sh_auth_users_v2';
+    const USERS_KEY = 'sh_auth_users_v2';
 
-    // Initial 8 Default Products (fallback seed)
+    // Seed products matching live storefront
     const SEED_PRODUCTS = [
       {
         id: "SH-TEE-01",
@@ -1770,10 +1692,10 @@
         category: "tees",
         name: "SH Essential Minimalist 220 GSM Tee",
         subtitle: "Luxury Heavyweight · Pure Combed Cotton",
-        price: 599,
+        price: 699,
         mrp: 1199,
-        discountText: "50% OFF",
-        badge: "LAUNCH SPECIAL",
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 4.9,
         reviewCount: 142,
@@ -1787,13 +1709,11 @@
           { name: "Obsidian Black", hex: "#0a0a0a" }
         ],
         sizes: ["S", "M", "L", "XL"],
-        desc: "Engineered from ultra-dense 220 GSM combed organic cotton. Features a structured 1-inch ribbed lycra collar that never rolls or sags, reinforced shoulder tape, and a clean minimalist SH monogram on the chest.",
+        desc: "Engineered from ultra-dense 220 GSM combed organic cotton. Features a structured 1-inch ribbed lycra collar that never rolls or sags.",
         specs: {
           "Fabric Weight": "220 GSM Dense Interlock Jersey",
           "Fiber Content": "100% Super-Combed Bio-Washed Cotton",
-          "Silhouette": "Boxy Drop-Shoulder Streetwear Cut",
-          "Collar": "Heavy Ribbed Lycra Neckband (Anti-Sag)",
-          "Shrinkage": "0% Pre-Shrunk Guarantee"
+          "Collar": "Heavy Ribbed Lycra Neckband (Anti-Sag)"
         }
       },
       {
@@ -1802,10 +1722,10 @@
         category: "tees",
         name: "SH Boxy Drop-Shoulder Heavy Tee",
         subtitle: "220 GSM Dense Knit · Streetwear Silhouette",
-        price: 749,
-        mrp: 1399,
-        discountText: "46% OFF",
-        badge: "BESTSELLER",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 4.9,
         reviewCount: 218,
@@ -1819,10 +1739,9 @@
           { name: "Deep Charcoal", hex: "#1f1f23" }
         ],
         sizes: ["S", "M", "L", "XL", "XXL"],
-        desc: "Extended drop shoulders, elongated boxy sleeves, and a sculpted drape. Heavy bio-washed cotton delivers substantial body while feeling buttery soft against the skin.",
+        desc: "Extended drop shoulders, elongated boxy sleeves, and a sculpted drape.",
         specs: {
           "Fabric Weight": "220 GSM Combed Ring-Spun Cotton",
-          "Treatment": "Silicone Softened & Bio-Washed",
           "Silhouette": "Extended Drop Shoulder Streetwear Fit"
         }
       },
@@ -1832,10 +1751,10 @@
         category: "tees",
         name: "SH Signature Monogram Archive Tee",
         subtitle: "Subtle Chest Typography · 220 GSM",
-        price: 899,
-        mrp: 1599,
-        discountText: "44% OFF",
-        badge: "SIGNATURE",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
         isLive: true,
         rating: 5.0,
         reviewCount: 88,
@@ -1849,10 +1768,10 @@
           { name: "Obsidian Black", hex: "#0c0c0c" }
         ],
         sizes: ["S", "M", "L", "XL"],
-        desc: "A collector's staple. Displays a micro-embossed rubberized high-density monogram on the chest and raw tonal embroidery.",
+        desc: "Displays a micro-embossed high-density monogram on the chest and raw tonal embroidery.",
         specs: {
           "Fabric Weight": "220 GSM Luxury Heavyweight",
-          "Print Tech": "Micro-Embossed Rubberized Monogram"
+          "Print Tech": "Micro-Embossed Monogram"
         }
       },
       {
@@ -1863,8 +1782,8 @@
         subtitle: "450 GSM Heavy Loopback · Double Hood",
         price: 1899,
         mrp: 3499,
-        discountText: "46% OFF",
-        badge: "DROP 001",
+        discountText: "COMING SOON",
+        badge: "COMING SOON",
         isLive: false,
         rating: 4.9,
         reviewCount: 64,
@@ -1873,27 +1792,21 @@
         images: ["../assets/model-hoodie.jpg", "../assets/campaign-model-hoodie-1789367293436.jpg"],
         fabric: "450 GSM 100% Cotton French Terry",
         fit: "Architectural Structured Boxy Cut",
-        colors: [
-          { name: "Pitch Black", hex: "#080808" }
-        ],
+        colors: [{ name: "Pitch Black", hex: "#080808" }],
         sizes: ["S", "M", "L", "XL"],
-        desc: "Heavyweight 450 GSM diagonal loopback French Terry. Built with a structured double-layer self-fabric hood that stands rigid without drawstrings.",
-        specs: {
-          "Fabric Weight": "450 GSM High-Density Loopback Terry",
-          "Hood": "Double-Layer Stand-up Structure"
-        }
+        desc: "Heavyweight 450 GSM diagonal loopback French Terry. Built with a structured double-layer hood.",
+        specs: { "Fabric Weight": "450 GSM High-Density Loopback Terry" }
       }
     ];
 
-    // Initial Orders Seed (if empty)
     const SEED_ORDERS = [
       {
         id: "ORD-892401",
         customerName: "Aarav K.",
         customerEmail: "aarav.k@gmail.com",
         customerPhone: "9876543210",
-        items: [{ id: "SH-TEE-01", name: "SH Essential Minimalist 220 GSM Tee", size: "L", qty: 2, price: 599 }],
-        total: 1198,
+        items: [{ id: "SH-TEE-01", name: "SH Essential Minimalist 220 GSM Tee", size: "L", qty: 2, price: 699 }],
+        total: 1398,
         status: "Pending Dispatch",
         paymentMethod: "Prepaid UPI",
         createdAt: new Date(Date.now() - 1000 * 60 * 18).toISOString()
@@ -1901,24 +1814,13 @@
       {
         id: "ORD-892398",
         customerName: "Rohan M.",
-        customerEmail: "rohan.street@yahoo.com",
+        customerEmail: "rohan.m@gmail.com",
         customerPhone: "9823456789",
-        items: [{ id: "SH-TEE-02", name: "SH Boxy Drop-Shoulder Heavy Tee", size: "XL", qty: 1, price: 749 }],
-        total: 749,
+        items: [{ id: "SH-TEE-02", name: "SH Boxy Drop-Shoulder Heavy Tee", size: "XL", qty: 1, price: 699 }],
+        total: 699,
         status: "In Transit",
         paymentMethod: "Prepaid UPI",
         createdAt: new Date(Date.now() - 1000 * 60 * 85).toISOString()
-      },
-      {
-        id: "ORD-892340",
-        customerName: "Alexander Vane",
-        customerEmail: "vip@shelbyhiver.com",
-        customerPhone: "9286511557",
-        items: [{ id: "SH-HOD-01", name: "SH Nocturnal French Terry Hoodie", size: "L", qty: 1, price: 1899 }],
-        total: 1899,
-        status: "Delivered",
-        paymentMethod: "Prepaid UPI",
-        createdAt: new Date(Date.now() - 1000 * 60 * 360).toISOString()
       }
     ];
 
@@ -1932,7 +1834,7 @@
         }
       } catch (e) {}
       localStorage.setItem(PRODUCTS_KEY, JSON.stringify(SEED_PRODUCTS));
-      return SEED_PRODUCTS;
+      return [...SEED_PRODUCTS];
     }
 
     function saveAdminProducts(prods) {
@@ -1940,10 +1842,9 @@
         localStorage.setItem(PRODUCTS_KEY, JSON.stringify(prods));
       } catch (err) {
         console.error("Local storage error:", err);
-        toast("⚠️ Storage limit reached. Please reduce image sizes or clear test items.");
+        toast("Storage quota warning. Reduce photo payload.");
         return;
       }
-      // Dispatch storage event for same-window listeners
       window.dispatchEvent(new Event('storage'));
       renderProductsView();
       updateKPICounters();
@@ -1958,7 +1859,7 @@
         }
       } catch (e) {}
       localStorage.setItem(ORDERS_KEY, JSON.stringify(SEED_ORDERS));
-      return SEED_ORDERS;
+      return [...SEED_ORDERS];
     }
 
     function saveAdminOrders(orders) {
@@ -1969,34 +1870,23 @@
       updateKPICounters();
     }
 
-    const DEFAULT_VIP_USERS = [
-      {
-        id: 'usr-manas-001',
-        name: 'Manas',
-        email: 'manas@shelbyhiver.com',
-        phone: '+91 9286511557',
-        tier: 'FOUNDER VIP',
-        serial: 'SH-2026 — 0001 — FOUNDER'
-      },
-      {
-        id: 'usr-vip-001',
-        name: 'Alexander Vane',
-        email: 'vip@shelbyhiver.com',
-        phone: '+91 9876543210',
-        tier: 'TIER 01',
-        serial: 'SH-2026 — 8849 — VIP'
-      }
-    ];
-
-    function getAdminVipUsers() {
+    function getAdminUsers() {
       try {
-        const stored = localStorage.getItem(VIP_USERS_KEY);
+        const stored = localStorage.getItem(USERS_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
           if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         }
       } catch (e) {}
-      return DEFAULT_VIP_USERS;
+      return [
+        {
+          id: 'usr-manas-001',
+          name: 'Manas',
+          email: 'manas@shelbyhiver.com',
+          phone: '9286511557',
+          joinedAt: new Date().toISOString()
+        }
+      ];
     }
 
     /* ——— AUTHENTICATION CONTROLLER ——— */
@@ -2021,13 +1911,12 @@
       const pwd = document.getElementById("adminPassword").value.trim();
       const err = document.getElementById("adminErrorBanner");
 
-      // Valid admin credentials check
       if ((email === "admin@shelbyhiver.com" || email === "admin") && (pwd === "admin2026" || pwd === "shelbyadmin")) {
         localStorage.setItem(ADMIN_SESSION_KEY, 'true');
-        toast("Administrator Access Authorized ✓");
+        toast("Administrator Access Authorized");
         checkAdminAuth();
       } else {
-        err.textContent = "Invalid Admin Credentials. Use admin@shelbyhiver.com / admin2026";
+        err.textContent = "Invalid Admin Credentials. (Use admin@shelbyhiver.com / admin2026)";
         err.style.display = "block";
       }
     }
@@ -2035,16 +1924,16 @@
     function quickFillAdmin() {
       document.getElementById("adminEmail").value = "admin@shelbyhiver.com";
       document.getElementById("adminPassword").value = "admin2026";
-      toast("Filled Administrator Credentials");
+      toast("Admin credentials filled");
     }
 
     function handleAdminLogout() {
       localStorage.removeItem(ADMIN_SESSION_KEY);
-      toast("Administrator Session Terminated");
+      toast("Admin session terminated");
       checkAdminAuth();
     }
 
-    /* ——— VIEW NAVIGATION ——— */
+    /* ——— NAVIGATION CONTROLLER ——— */
     function switchAdminView(viewName, btn) {
       document.querySelectorAll(".admin-view").forEach(v => v.classList.remove("active"));
       const target = document.getElementById(`view-${viewName}`);
@@ -2054,39 +1943,37 @@
       if (btn) btn.classList.add("active");
 
       const titleMap = {
-        overview: "Atelier Overview & Live Real-Time Metrics",
-        orders: "Customer Orders Stream & Dispatch Tracking",
-        products: "Product Catalogue Management & Uploads",
-        vip: "Registered VIP Members & Atelier Allocations"
+        overview: "Atelier Overview & Live Real-Time Operations",
+        orders: "Client Orders Stream & Dispatch Tracking",
+        products: "Garment Catalogue & Silhouette Inventory",
+        users: "Registered Customer Accounts Database"
       };
-      document.getElementById("pageTitle").textContent = titleMap[viewName] || "Atelier Admin";
+      document.getElementById("pageTitle").textContent = titleMap[viewName] || "Atelier Command";
     }
 
-    /* ——— DASHBOARD INITIALIZATION & REAL-TIME SYNC ——— */
+    /* ——— INITIALIZATION & SYNC ——— */
     function initDashboard() {
       updateKPICounters();
       renderOverviewView();
       renderOrdersView();
       renderProductsView();
-      renderVipView();
+      renderUsersView();
       startLiveVisitorPulse();
     }
 
-    // Cross-tab real-time sync with storefront
     window.addEventListener('storage', () => {
       updateKPICounters();
       renderOverviewView();
       renderOrdersView();
       renderProductsView();
-      renderVipView();
-      toast("Real-Time Storefront Sync Updated ✓");
+      renderUsersView();
     });
 
     /* ——— KPI CALCULATOR ——— */
     function updateKPICounters() {
       const orders = getAdminOrders();
       const prods = getAdminProducts();
-      const vips = getAdminVipUsers();
+      const users = getAdminUsers();
 
       const totalRev = orders.reduce((sum, o) => sum + (Number(o.total) || 0), 0);
       document.getElementById("kpiRevenue").textContent = `₹ ${totalRev.toLocaleString()}`;
@@ -2097,49 +1984,53 @@
       if (sidebarOrders) sidebarOrders.textContent = orders.length;
       const sidebarProds = document.getElementById("sidebarProductsBadge");
       if (sidebarProds) sidebarProds.textContent = prods.length;
-      const sidebarVips = document.getElementById("sidebarVipBadge");
-      if (sidebarVips) sidebarVips.textContent = vips.length;
+      const sidebarUsers = document.getElementById("sidebarUsersBadge");
+      if (sidebarUsers) sidebarUsers.textContent = users.length;
     }
 
-    /* ——— RENDER OVERVIEW & RECENT ORDERS ——— */
+    /* ——— RENDER OVERVIEW ——— */
     function renderOverviewView() {
       const orders = getAdminOrders().slice(0, 5);
       const tbody = document.getElementById("overviewOrdersBody");
       if (!tbody) return;
 
-      tbody.innerHTML = orders.map(o => `
-        <tr>
-          <td><strong>${o.id}</strong></td>
-          <td>${o.customerName}</td>
-          <td>${o.items.map(i => `${i.name.split(' ')[1] || i.name} (${i.size})`).join(', ')}</td>
-          <td><strong>₹ ${Number(o.total).toLocaleString()}</strong></td>
-          <td><span class="status-pill ${getStatusClass(o.status)}">${o.status}</span></td>
-        </tr>
-      `).join('');
+      if (!orders.length) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:20px;">No client orders logged.</td></tr>`;
+      } else {
+        tbody.innerHTML = orders.map(o => `
+          <tr>
+            <td><strong>${o.id}</strong></td>
+            <td>${o.customerName}</td>
+            <td>${o.items.map(i => `${i.name.split(' ')[1] || i.name} (${i.size})`).join(', ')}</td>
+            <td><strong>₹ ${Number(o.total).toLocaleString()}</strong></td>
+            <td><span class="status-pill ${getStatusClass(o.status)}">${o.status}</span></td>
+          </tr>
+        `).join('');
+      }
 
-      // Populate Live Activity Feed
       const feed = document.getElementById("activityFeed");
       if (feed) {
         feed.innerHTML = `
           <div class="act-item">
-            <span class="act-dot order"></span>
-            <div class="act-text">New WhatsApp checkout order <strong>${orders[0] ? orders[0].id : 'ORD-892401'}</strong> for ₹${orders[0] ? orders[0].total : '1,198'} received.</div>
-            <span class="act-time">2m ago</span>
+            <div class="act-icon-dot">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path></svg>
+            </div>
+            <div class="act-text">Customer Order <strong>${orders[0] ? orders[0].id : 'ORD-892401'}</strong> for ₹${orders[0] ? orders[0].total : '1,398'} logged into dispatch system.</div>
+            <span class="act-time">Just now</span>
           </div>
           <div class="act-item">
-            <span class="act-dot vip"></span>
-            <div class="act-text">VIP Member <strong>Alexander Vane</strong> session active (Tier 01 Pass verified).</div>
-            <span class="act-time">14m ago</span>
+            <div class="act-icon-dot">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <div class="act-text">Client <strong>Manas</strong> authenticated session verified.</div>
+            <span class="act-time">12m ago</span>
           </div>
           <div class="act-item">
-            <span class="act-dot cart"></span>
-            <div class="act-text">Customer added <strong>SH Essential Minimalist 220 GSM Tee (L)</strong> to shopping bag.</div>
-            <span class="act-time">28m ago</span>
-          </div>
-          <div class="act-item">
-            <span class="act-dot"></span>
-            <div class="act-text">Pincode check <strong>110001 (New Delhi)</strong>: Express 48h dispatch confirmed.</div>
-            <span class="act-time">41m ago</span>
+            <div class="act-icon-dot">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>
+            </div>
+            <div class="act-text">Drop 01 live pricing synced: <strong>₹699</strong> (MRP ₹1,199 · 42% OFF).</div>
+            <span class="act-time">25m ago</span>
           </div>
         `;
       }
@@ -2150,6 +2041,7 @@
       const s = status.toLowerCase();
       if (s.includes('deliver')) return 'delivered';
       if (s.includes('transit') || s.includes('dispatch')) return 'dispatched';
+      if (s.includes('cancel')) return 'cancelled';
       return 'pending';
     }
 
@@ -2160,24 +2052,24 @@
       if (!tbody) return;
 
       if (!orders.length) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:30px;">No orders found. Click "+ Simulate Test Order" above to generate a test order.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:30px;">No client orders logged. Click "+ Simulate Test Order" above to place a test dispatch.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = orders.map((o, idx) => `
+      tbody.innerHTML = orders.map((o) => `
         <tr>
           <td><strong>${o.id}</strong></td>
-          <td style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);">${formatDate(o.createdAt)}</td>
+          <td style="font-size:11px;color:var(--text-muted);">${formatDate(o.createdAt)}</td>
           <td>
-            <strong>${o.customerName}</strong>
-            <div style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);">${o.customerPhone} · ${o.customerEmail}</div>
+            <strong style="color:var(--brand-black);">${o.customerName}</strong>
+            <div style="font-size:11px;color:var(--text-muted);">${o.customerPhone} · ${o.customerEmail}</div>
           </td>
           <td>
-            ${o.items.map(i => `<span style="display:block;font-size:11.5px;">• ${i.name} <small style="color:var(--gold);">(${i.size}) × ${i.qty}</small></span>`).join('')}
+            ${o.items.map(i => `<span style="display:block;font-size:11.5px;">• ${i.name} <strong style="color:var(--brand-black);">(${i.size}) × ${i.qty}</strong></span>`).join('')}
           </td>
-          <td><strong style="font-family:var(--f-mono);font-size:13px;">₹ ${Number(o.total).toLocaleString()}</strong></td>
+          <td><strong style="font-family:var(--f-display);font-size:13.5px;">₹ ${Number(o.total).toLocaleString()}</strong></td>
           <td>
-            <select class="form-control" style="padding:4px 8px;font-size:10px;width:auto;" onchange="updateOrderStatus('${o.id}', this.value)">
+            <select class="form-control" style="padding:4px 8px;font-size:11px;width:auto;font-weight:600;" onchange="updateOrderStatus('${o.id}', this.value)">
               <option value="Pending Dispatch" ${o.status === 'Pending Dispatch' ? 'selected' : ''}>Pending Dispatch</option>
               <option value="In Transit" ${o.status === 'In Transit' ? 'selected' : ''}>In Transit</option>
               <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
@@ -2186,8 +2078,9 @@
           </td>
           <td>
             <div class="table-actions">
-              <a href="https://wa.me/${o.customerPhone}?text=Hello%20${encodeURIComponent(o.customerName)}!%20Regarding%20your%20Shelby%20Hiver%20Order%20${o.id}%20status:%20${encodeURIComponent(o.status)}." target="_blank" class="btn-action wa" title="WhatsApp Customer">
-                💬 WA
+              <a href="https://wa.me/${o.customerPhone.replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(o.customerName)}!%20Regarding%20your%20Shelby%20Hiver%20Order%20${o.id}%20status:%20${encodeURIComponent(o.status)}." target="_blank" class="btn-action wa" title="WhatsApp Customer">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                <span>Notify</span>
               </a>
               <button class="btn-action danger" onclick="deleteOrder('${o.id}')" title="Delete Order">✕</button>
             </div>
@@ -2202,7 +2095,7 @@
       if (ord) {
         ord.status = newStatus;
         saveAdminOrders(orders);
-        toast(`Order ${id} status updated to: ${newStatus}`);
+        toast(`Order ${id} updated to: ${newStatus}`);
       }
     }
 
@@ -2211,7 +2104,7 @@
       let orders = getAdminOrders();
       orders = orders.filter(o => o.id !== id);
       saveAdminOrders(orders);
-      toast(`Order ${id} removed.`);
+      toast(`Order ${id} deleted.`);
     }
 
     function simulateTestOrder() {
@@ -2224,7 +2117,7 @@
       const newOrder = {
         id: orderId,
         customerName: name,
-        customerEmail: `${name.toLowerCase().replace(' ', '.')}@gmail.com`,
+        customerEmail: `${name.toLowerCase().replace(/[^a-z]/g, '')}@gmail.com`,
         customerPhone: "91" + Math.floor(7000000000 + Math.random() * 2999999999),
         items: [{ id: p.id, name: p.name, size: p.sizes[0] || "L", qty: 1, price: p.price }],
         total: p.price,
@@ -2236,7 +2129,7 @@
       const orders = getAdminOrders();
       orders.unshift(newOrder);
       saveAdminOrders(orders);
-      toast(`Simulated Live Order ${orderId} placed for ₹${p.price}!`);
+      toast(`Test Order ${orderId} created for ₹${p.price}!`);
     }
 
     function clearAllOrders() {
@@ -2245,21 +2138,12 @@
       toast("Orders database cleared.");
     }
 
-    /* ——— IMAGE URL RESOLVER FOR ADMIN ——— */
     function resolveAdminImg(src) {
       if (!src) return '../assets/model-tee.jpg';
-      if (src.startsWith('data:') || src.startsWith('http://') || src.startsWith('https://')) {
-        return src;
-      }
-      if (src.startsWith('/')) {
-        return src;
-      }
-      if (src.startsWith('../')) {
-        return src;
-      }
-      if (src.startsWith('assets/')) {
-        return '../' + src;
-      }
+      if (src.startsWith('data:') || src.startsWith('http://') || src.startsWith('https://')) return src;
+      if (src.startsWith('../')) return src;
+      if (src.startsWith('/')) return src;
+      if (src.startsWith('assets/')) return '../' + src;
       return '../' + src;
     }
 
@@ -2270,6 +2154,7 @@
       if (!tbody) return;
 
       tbody.innerHTML = prods.map(p => {
+        const isLive = p.isLive !== false;
         const photoCount = Array.isArray(p.images) ? p.images.length : (p.img ? 1 : 0);
         return `
         <tr>
@@ -2278,24 +2163,26 @@
               <img src="${resolveAdminImg(p.img)}" alt="${p.name}" onerror="this.src='../assets/model-tee.jpg'">
               <div>
                 <strong>${p.name}</strong>
-                <div style="font-family:var(--f-mono);font-size:9.5px;color:var(--gold);margin-top:2px;">${p.badge || 'STANDARD'}</div>
-                <div style="font-family:var(--f-mono);font-size:9px;color:var(--text-muted);margin-top:2px;">
-                  📸 ${photoCount} angle${photoCount === 1 ? '' : 's'} in gallery
+                <div style="font-family:var(--f-display);font-size:10px;font-weight:700;color:var(--text-muted);margin-top:2px;">
+                  ${photoCount} studio photo${photoCount === 1 ? '' : 's'}
                 </div>
               </div>
             </div>
           </td>
-          <td style="font-family:var(--f-mono);font-size:11px;">${p.sku}</td>
-          <td><span class="status-pill pending">${p.category}</span></td>
-          <td style="font-family:var(--f-mono);font-size:10.5px;color:var(--text-secondary);">${p.fabric}</td>
+          <td style="font-family:var(--f-display);font-size:11px;font-weight:700;">${p.sku}</td>
+          <td><span class="status-pill ${isLive ? 'live' : 'disabled'}">${p.category}</span></td>
+          <td style="font-size:11px;color:var(--text-secondary);">${p.fabric || '220 GSM Combed Cotton'}</td>
           <td>
-            <strong style="font-family:var(--f-mono);font-size:12.5px;">₹ ${p.price}</strong>
-            <del style="font-family:var(--f-mono);font-size:10px;color:var(--text-muted);margin-left:4px;">₹ ${p.mrp}</del>
+            <strong style="font-family:var(--f-display);font-size:13px;color:var(--brand-black);">₹ ${p.price}</strong>
+            <del style="font-size:11px;color:var(--text-muted);margin-left:4px;">₹ ${p.mrp}</del>
           </td>
           <td>
             <div style="display:flex;gap:3px;">
-              ${p.sizes.map(s => `<span style="font-family:var(--f-mono);font-size:9px;padding:1px 4px;background:rgba(255,255,255,0.08);border-radius:2px;">${s}</span>`).join('')}
+              ${(p.sizes || []).map(s => `<span style="font-family:var(--f-display);font-size:9.5px;font-weight:700;padding:2px 5px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:3px;">${s}</span>`).join('')}
             </div>
+          </td>
+          <td>
+            <span class="status-pill ${isLive ? 'live' : 'disabled'}">${isLive ? 'Live' : 'Coming Soon'}</span>
           </td>
           <td>
             <div class="table-actions">
@@ -2308,46 +2195,37 @@
       }).join('');
     }
 
-    /* ——— MULTI-IMAGE GALLERY MANAGEMENT ——— */
+    /* ——— MULTI-IMAGE GALLERY ——— */
     let currentProductGallery = [];
-
-    function updateGalleryBadge() {
-      const badge = document.getElementById("galleryCountBadge");
-      if (badge) {
-        const count = currentProductGallery.length;
-        badge.textContent = `${count} Photo${count === 1 ? '' : 's'}`;
-      }
-    }
 
     function renderGalleryPreview() {
       const grid = document.getElementById("galleryPreviewGrid");
       if (!grid) return;
-      updateGalleryBadge();
 
       if (!currentProductGallery.length) {
-        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:18px;color:var(--text-muted);font-family:var(--f-mono);font-size:11px;border:1px dashed var(--border-color);border-radius:6px;background:rgba(255,255,255,0.01);">No photos in gallery. Drop multiple files above, click to browse, or select quick presets.</div>`;
+        grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:16px;color:var(--text-muted);font-size:11px;border:1px dashed var(--border-color);border-radius:6px;background:var(--bg-secondary);">No gallery photos attached. Drop files above.</div>`;
         return;
       }
 
       grid.innerHTML = currentProductGallery.map((imgSrc, idx) => `
         <div class="gallery-thumb-card ${idx === 0 ? 'primary' : ''}">
           <img src="${resolveAdminImg(imgSrc)}" alt="Photo ${idx + 1}" onerror="this.src='../assets/model-tee.jpg'">
-          ${idx > 0 ? `<button type="button" class="gallery-make-pri" onclick="makeGalleryPrimary(${idx})" title="Set as Main Card Cover">★ Primary</button>` : ''}
           <button type="button" class="gallery-del-btn" onclick="deleteGalleryImage(${idx})" title="Remove Photo">✕</button>
-          ${idx > 0 ? `<button type="button" class="gallery-move-btn gallery-move-left" onclick="moveGalleryImage(${idx}, -1)" title="Move Left">←</button>` : ''}
-          ${idx < currentProductGallery.length - 1 ? `<button type="button" class="gallery-move-btn gallery-move-right" onclick="moveGalleryImage(${idx}, 1)" title="Move Right">→</button>` : ''}
-          <div class="gallery-badge">${idx === 0 ? '★ Primary (Cover)' : (idx === 1 ? 'Hover View' : `Angle #${idx + 1}`)}</div>
+          <div class="gallery-badge">${idx === 0 ? 'Primary' : `#${idx + 1}`}</div>
         </div>
       `).join('');
     }
 
-    /* Offscreen canvas auto-downscaling to guarantee high performance & prevent localStorage quota limit */
+    function deleteGalleryImage(idx) {
+      currentProductGallery.splice(idx, 1);
+      renderGalleryPreview();
+    }
+
     function compressImageFile(file) {
       return new Promise((resolve) => {
         if (!file.type || !file.type.startsWith('image/') || file.type.includes('svg')) {
           const reader = new FileReader();
           reader.onload = e => resolve(e.target.result);
-          reader.onerror = () => resolve('');
           reader.readAsDataURL(file);
           return;
         }
@@ -2358,7 +2236,7 @@
           img.onload = function() {
             let width = img.width;
             let height = img.height;
-            const maxDimension = 1400;
+            const maxDimension = 1200;
 
             if (width > maxDimension || height > maxDimension) {
               if (width > height) {
@@ -2377,8 +2255,7 @@
             ctx.drawImage(img, 0, 0, width, height);
 
             try {
-              const compressed = canvas.toDataURL('image/jpeg', 0.85);
-              resolve(compressed);
+              resolve(canvas.toDataURL('image/jpeg', 0.85));
             } catch(err) {
               resolve(e.target.result);
             }
@@ -2386,28 +2263,18 @@
           img.onerror = () => resolve(e.target.result);
           img.src = e.target.result;
         };
-        reader.onerror = () => resolve('');
         reader.readAsDataURL(file);
       });
     }
 
     async function processImageFiles(files) {
       if (!files || !files.length) return;
-      toast(`Processing ${files.length} photo${files.length > 1 ? 's' : ''}...`);
-      let count = 0;
+      toast(`Processing ${files.length} studio photo${files.length > 1 ? 's' : ''}...`);
       for (const file of files) {
-        try {
-          const base64 = await compressImageFile(file);
-          if (base64) {
-            currentProductGallery.push(base64);
-            count++;
-          }
-        } catch(err) {
-          console.error("Compression error:", err);
-        }
+        const base64 = await compressImageFile(file);
+        if (base64) currentProductGallery.push(base64);
       }
       renderGalleryPreview();
-      toast(`Added ${count} photo${count > 1 ? 's' : ''} to gallery ✓`);
     }
 
     function handleProductMultipleImages(input) {
@@ -2444,53 +2311,10 @@
     function addUrlToGallery() {
       const input = document.getElementById("addImgUrlInput");
       const val = input.value.trim();
-      if (!val) {
-        toast("Please enter an image URL or preset path first");
-        return;
-      }
+      if (!val) return;
       currentProductGallery.push(val);
       input.value = "";
       renderGalleryPreview();
-      toast("Image added to gallery ✓");
-    }
-
-    function addPresetToGallery(path) {
-      currentProductGallery.push(path);
-      renderGalleryPreview();
-      toast("Preset image added to gallery ✓");
-    }
-
-    function clearGallery() {
-      if (!currentProductGallery.length) return;
-      if (!confirm("Remove all photos from this gallery?")) return;
-      currentProductGallery = [];
-      renderGalleryPreview();
-      toast("Gallery cleared");
-    }
-
-    function deleteGalleryImage(idx) {
-      if (idx >= 0 && idx < currentProductGallery.length) {
-        currentProductGallery.splice(idx, 1);
-        renderGalleryPreview();
-        toast("Photo removed from gallery");
-      }
-    }
-
-    function moveGalleryImage(idx, dir) {
-      const newIdx = idx + dir;
-      if (newIdx < 0 || newIdx >= currentProductGallery.length) return;
-      const item = currentProductGallery.splice(idx, 1)[0];
-      currentProductGallery.splice(newIdx, 0, item);
-      renderGalleryPreview();
-    }
-
-    function makeGalleryPrimary(idx) {
-      if (idx > 0 && idx < currentProductGallery.length) {
-        const item = currentProductGallery.splice(idx, 1)[0];
-        currentProductGallery.unshift(item);
-        renderGalleryPreview();
-        toast("Set as primary card photo ✓");
-      }
     }
 
     /* ——— PRODUCT MODAL CONTROLLER ——— */
@@ -2499,6 +2323,8 @@
       document.getElementById("editProductId").value = "";
       document.getElementById("productForm").reset();
       document.getElementById("prodSku").value = "SH / " + Math.floor(100 + Math.random() * 900);
+      document.getElementById("prodPrice").value = 699;
+      document.getElementById("prodMrp").value = 1199;
       currentProductGallery = ["assets/model-tee.jpg", "assets/tee-black.jpg"];
       renderGalleryPreview();
       document.getElementById("productModal").classList.add("active");
@@ -2514,14 +2340,13 @@
       document.getElementById("prodName").value = p.name;
       document.getElementById("prodSku").value = p.sku;
       document.getElementById("prodCategory").value = p.category;
-      document.getElementById("prodBadge").value = p.badge || "";
+      document.getElementById("prodStatus").value = p.isLive === false ? "soon" : "live";
       document.getElementById("prodPrice").value = p.price;
       document.getElementById("prodMrp").value = p.mrp;
-      document.getElementById("prodFabric").value = p.fabric;
-      document.getElementById("prodFit").value = p.fit;
+      document.getElementById("prodFabric").value = p.fabric || "220 GSM 100% Super-Combed Cotton";
+      document.getElementById("prodFit").value = p.fit || "Boxy Relaxed Oversized Fit";
       document.getElementById("prodDesc").value = p.desc || "";
 
-      // Load all product gallery images
       if (Array.isArray(p.images) && p.images.length) {
         currentProductGallery = [...p.images];
       } else if (p.img) {
@@ -2532,9 +2357,8 @@
       }
       renderGalleryPreview();
 
-      // check sizes
       document.querySelectorAll('input[name="sizes"]').forEach(cb => {
-        cb.checked = p.sizes.includes(cb.value);
+        cb.checked = (p.sizes || []).includes(cb.value);
       });
 
       document.getElementById("productModal").classList.add("active");
@@ -2544,24 +2368,20 @@
       document.getElementById("productModal").classList.remove("active");
     }
 
-    function calcDiscount() {
-      // helper calculation
-    }
-
     function saveProduct(e) {
       e.preventDefault();
       const editId = document.getElementById("editProductId").value;
       const name = document.getElementById("prodName").value.trim();
       const sku = document.getElementById("prodSku").value.trim();
       const category = document.getElementById("prodCategory").value;
-      const badge = document.getElementById("prodBadge").value.trim() || "220 GSM LIVE";
+      const statusVal = document.getElementById("prodStatus").value;
+      const isLive = statusVal === "live";
       const price = Number(document.getElementById("prodPrice").value);
       const mrp = Number(document.getElementById("prodMrp").value);
       const fabric = document.getElementById("prodFabric").value.trim();
       const fit = document.getElementById("prodFit").value.trim();
       const desc = document.getElementById("prodDesc").value.trim();
 
-      // Gallery Images Handling
       const gallery = currentProductGallery.length > 0 ? [...currentProductGallery] : ["assets/model-tee.jpg"];
       const primaryImg = gallery[0];
       const altImg = gallery[1] || gallery[0];
@@ -2571,34 +2391,32 @@
       if (!sizes.length) sizes.push("L");
 
       const discPct = mrp > price ? Math.round(((mrp - price) / mrp) * 100) : 0;
-      const discountText = `${discPct}% OFF`;
+      const discountText = isLive ? `${discPct}% OFF` : "COMING SOON";
+      const badge = isLive ? "DROP 01 LIVE" : "COMING SOON";
 
       const prods = getAdminProducts();
 
       if (editId) {
-        // Edit existing
         const idx = prods.findIndex(p => p.id === editId);
         if (idx !== -1) {
           prods[idx] = {
             ...prods[idx],
-            name, sku, category, badge, price, mrp, discountText, fabric, fit, desc,
+            name, sku, category, badge, isLive, price, mrp, discountText, fabric, fit, desc,
             img: primaryImg,
             altImg: altImg,
             images: gallery,
             sizes
           };
-          toast(`Updated silhouette with ${gallery.length} photos: ${name}`);
+          toast(`Updated silhouette: ${name}`);
         }
       } else {
-        // Create new
         const newId = "SH-PROD-" + Date.now();
         const newProduct = {
           id: newId,
           sku, category, name,
           subtitle: `${fabric} · ${fit}`,
           price, mrp, discountText,
-          badge,
-          isLive: true,
+          badge, isLive,
           rating: 5.0,
           reviewCount: 1,
           img: primaryImg,
@@ -2612,11 +2430,11 @@
             "Fabric Weight": fabric,
             "Silhouette": fit,
             "Collar": "Anti-Sag Ribbed Neckband",
-            "Shrinkage": "Pre-shrunk 0% Shrinkage"
+            "Shrinkage": "Pre-shrunk 0% Guarantee"
           }
         };
         prods.unshift(newProduct);
-        toast(`New silhouette published with ${gallery.length} photos: ${name}!`);
+        toast(`New silhouette published: ${name}!`);
       }
 
       saveAdminProducts(prods);
@@ -2624,54 +2442,54 @@
     }
 
     function deleteProduct(id) {
-      if (!confirm("Are you sure you want to remove this product from the live storefront?")) return;
+      if (!confirm("Remove this silhouette from the live storefront?")) return;
       let prods = getAdminProducts();
       prods = prods.filter(p => p.id !== id);
       saveAdminProducts(prods);
-      toast("Product removed from storefront.");
+      toast("Silhouette removed from storefront.");
     }
 
-    /* ——— RENDER VIP MEMBERS ——— */
-    function renderVipView() {
-      const vips = getAdminVipUsers();
-      const tbody = document.getElementById("vipTableBody");
+    /* ——— RENDER USERS VIEW ——— */
+    function renderUsersView() {
+      const users = getAdminUsers();
+      const tbody = document.getElementById("usersTableBody");
       if (!tbody) return;
 
-      if (!vips.length) {
-        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:30px;">No registered VIP members yet. Register on the storefront to test live member sync.</td></tr>`;
+      if (!users.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:30px;">No registered client accounts found.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = vips.map(u => `
+      tbody.innerHTML = users.map(u => `
         <tr>
-          <td><strong>${u.name}</strong></td>
+          <td><strong style="color:var(--brand-black);">${u.name}</strong></td>
           <td>${u.email}</td>
-          <td>${u.phone}</td>
-          <td style="font-family:var(--f-mono);font-size:11px;color:var(--gold);">${u.serial || 'SH-2026-VIP'}</td>
-          <td><span class="status-pill delivered">${u.tier || 'TIER 01'}</span></td>
+          <td>${u.phone || '—'}</td>
+          <td style="font-size:11px;color:var(--text-muted);">${formatDate(u.joinedAt)}</td>
+          <td><span class="status-pill live">Active Client</span></td>
           <td>
-            <a href="https://wa.me/${u.phone}?text=Hello%20VIP%20Member%20${encodeURIComponent(u.name)}!" target="_blank" class="btn-action wa">
-              WhatsApp ↗
+            <a href="https://wa.me/${(u.phone || '').replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(u.name)}!" target="_blank" class="btn-action wa">
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              <span>Concierge</span>
             </a>
           </td>
         </tr>
       `).join('');
     }
 
-    /* ——— SIMULATED REAL-TIME TRAFFIC PULSE ——— */
+    /* ——— REAL-TIME TRAFFIC SIMULATION ——— */
     function startLiveVisitorPulse() {
       setInterval(() => {
         const el = document.getElementById("kpiVisitors");
         if (el) {
           const cur = parseInt(el.textContent) || 18;
           const delta = (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 3);
-          const next = Math.max(12, Math.min(42, cur + delta));
+          const next = Math.max(14, Math.min(46, cur + delta));
           el.textContent = next;
         }
-      }, 4000);
+      }, 5000);
     }
 
-    /* ——— HELPERS ——— */
     function formatDate(isoStr) {
       if (!isoStr) return "Just now";
       const d = new Date(isoStr);
@@ -2692,7 +2510,6 @@
       }, 2600);
     }
 
-    // Auto-check authentication on page load
     window.addEventListener("DOMContentLoaded", checkAdminAuth);
   </script>
 </body>
