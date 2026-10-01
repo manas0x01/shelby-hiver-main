@@ -1310,7 +1310,7 @@
         </button>
 
         <button class="nav-item" onclick="switchAdminView('orders', this)">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
           <span>Live Orders</span>
           <span class="badge" id="sidebarOrdersBadge">0</span>
         </button>
@@ -1397,7 +1397,7 @@
           <div class="kpi-head">
             <span class="kpi-label">Client Orders</span>
             <div class="kpi-icon-box">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
             </div>
           </div>
           <div class="kpi-val" id="kpiOrders">0</div>
@@ -1680,124 +1680,12 @@
      ============================================================ -->
   <script>
     const ADMIN_SESSION_KEY = 'sh_admin_auth_v1';
-    const PRODUCTS_KEY = 'sh_products_db_v3';
+    const PRODUCTS_KEY = 'sh_products_db_v4';
     const ORDERS_KEY = 'sh_orders_db';
     const USERS_KEY = 'sh_auth_users_v2';
 
-    // Seed products matching live storefront
-    const SEED_PRODUCTS = [
-      {
-        id: "SH-TEE-01",
-        sku: "SH / TEE-01",
-        category: "tees",
-        name: "SH Essential Minimalist 220 GSM Tee",
-        subtitle: "Luxury Heavyweight · Pure Combed Cotton",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 142,
-        img: "../assets/model-tee.jpg",
-        altImg: "../assets/tee-white.jpg",
-        images: ["../assets/model-tee.jpg", "../assets/tee-white.jpg", "../assets/detail-tag.jpg"],
-        fabric: "220 GSM 100% Super-Combed Cotton",
-        fit: "Boxy Relaxed Oversized Fit",
-        colors: [
-          { name: "Vintage Bone White", hex: "#f4f4f6" },
-          { name: "Obsidian Black", hex: "#0a0a0a" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Engineered from ultra-dense 220 GSM combed organic cotton. Features a structured 1-inch ribbed lycra collar that never rolls or sags.",
-        specs: {
-          "Fabric Weight": "220 GSM Dense Interlock Jersey",
-          "Fiber Content": "100% Super-Combed Bio-Washed Cotton",
-          "Collar": "Heavy Ribbed Lycra Neckband (Anti-Sag)"
-        }
-      },
-      {
-        id: "SH-TEE-02",
-        sku: "SH / TEE-02",
-        category: "tees",
-        name: "SH Boxy Drop-Shoulder Heavy Tee",
-        subtitle: "220 GSM Dense Knit · Streetwear Silhouette",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 218,
-        img: "../assets/tee-black.jpg",
-        altImg: "../assets/model-tee.jpg",
-        images: ["../assets/tee-black.jpg", "../assets/model-tee.jpg", "../assets/detail-tag.jpg"],
-        fabric: "220 GSM Dense Knit Cotton · Bio-Washed",
-        fit: "Extended Drop Shoulders · Wide Sleeves",
-        colors: [
-          { name: "Jet Obsidian", hex: "#050505" },
-          { name: "Deep Charcoal", hex: "#1f1f23" }
-        ],
-        sizes: ["S", "M", "L", "XL", "XXL"],
-        desc: "Extended drop shoulders, elongated boxy sleeves, and a sculpted drape.",
-        specs: {
-          "Fabric Weight": "220 GSM Combed Ring-Spun Cotton",
-          "Silhouette": "Extended Drop Shoulder Streetwear Fit"
-        }
-      },
-      {
-        id: "SH-TEE-03",
-        sku: "SH / TEE-03",
-        category: "tees",
-        name: "SH Signature Monogram Archive Tee",
-        subtitle: "Subtle Chest Typography · 220 GSM",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 5.0,
-        reviewCount: 88,
-        img: "../assets/tee-grey.jpg",
-        altImg: "../assets/tee-black.jpg",
-        images: ["../assets/tee-grey.jpg", "../assets/tee-black.jpg", "../assets/detail-tag.jpg"],
-        fabric: "220 GSM Ultra-Soft Combed Cotton",
-        fit: "Commanding Architectural Cut",
-        colors: [
-          { name: "Ash Heather Grey", hex: "#4a4a52" },
-          { name: "Obsidian Black", hex: "#0c0c0c" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Displays a micro-embossed high-density monogram on the chest and raw tonal embroidery.",
-        specs: {
-          "Fabric Weight": "220 GSM Luxury Heavyweight",
-          "Print Tech": "Micro-Embossed Monogram"
-        }
-      },
-      {
-        id: "SH-HOD-01",
-        sku: "SH / HOD-01",
-        category: "hoodies",
-        name: "SH Nocturnal French Terry Hoodie",
-        subtitle: "450 GSM Heavy Loopback · Double Hood",
-        price: 1899,
-        mrp: 3499,
-        discountText: "COMING SOON",
-        badge: "COMING SOON",
-        isLive: false,
-        rating: 4.9,
-        reviewCount: 64,
-        img: "../assets/model-hoodie.jpg",
-        altImg: "../assets/campaign-model-hoodie-1789367293436.jpg",
-        images: ["../assets/model-hoodie.jpg", "../assets/campaign-model-hoodie-1789367293436.jpg"],
-        fabric: "450 GSM 100% Cotton French Terry",
-        fit: "Architectural Structured Boxy Cut",
-        colors: [{ name: "Pitch Black", hex: "#080808" }],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Heavyweight 450 GSM diagonal loopback French Terry. Built with a structured double-layer hood.",
-        specs: { "Fabric Weight": "450 GSM High-Density Loopback Terry" }
-      }
-    ];
+    // Storefront catalog initialized empty for live onboarding
+    const SEED_PRODUCTS = [];
 
     const SEED_ORDERS = [
       {
@@ -1828,9 +1716,9 @@
     function getAdminProducts() {
       try {
         const stored = localStorage.getItem(PRODUCTS_KEY);
-        if (stored) {
+        if (stored !== null) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed)) return parsed;
         }
       } catch (e) {}
       localStorage.setItem(PRODUCTS_KEY, JSON.stringify(SEED_PRODUCTS));
@@ -2013,7 +1901,7 @@
         feed.innerHTML = `
           <div class="act-item">
             <div class="act-icon-dot">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
             </div>
             <div class="act-text">Customer Order <strong>${orders[0] ? orders[0].id : 'ORD-892401'}</strong> for ₹${orders[0] ? orders[0].total : '1,398'} logged into dispatch system.</div>
             <span class="act-time">Just now</span>
@@ -2152,6 +2040,28 @@
       const prods = getAdminProducts();
       const tbody = document.getElementById("productsTableBody");
       if (!tbody) return;
+
+      if (!prods || prods.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8" style="text-align:center;padding:56px 20px;color:var(--text-muted);">
+              <div style="display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border-color);margin-bottom:14px;color:var(--brand-black);">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
+              </div>
+              <div style="font-family:var(--f-display);font-size:13px;font-weight:700;letter-spacing:0.06em;color:var(--brand-black);text-transform:uppercase;margin-bottom:6px;">
+                No Silhouettes in Catalogue
+              </div>
+              <div style="font-size:12px;color:var(--text-secondary);margin-bottom:18px;max-width:380px;margin-inline:auto;line-height:1.6;">
+                The storefront is awaiting drop additions. Add silhouettes here to display them live in Drop 01.
+              </div>
+              <button class="btn-primary" onclick="openNewProductModal()" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;font-size:11px;">
+                + Add Silhouette
+              </button>
+            </td>
+          </tr>
+        `;
+        return;
+      }
 
       tbody.innerHTML = prods.map(p => {
         const isLive = p.isLive !== false;

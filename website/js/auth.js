@@ -212,7 +212,7 @@ function updateNavbarAuth() {
               <span>My Account &amp; Orders</span>
             </a>
             <button type="button" class="udm-item" onclick="if(typeof showCart==='function')showCart(); else window.location.href='index.html#storefront';">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
               <span>Shopping Bag</span>
             </button>
             <a href="https://wa.me/${WA_NUMBER}?text=Hello!%20I%20am%20logged%20in%20as%20${encodeURIComponent(user.name)}." target="_blank" class="udm-item">

@@ -88,6 +88,8 @@ html {
   scroll-behavior: smooth;
   font-size: 15px;
   -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -96,6 +98,7 @@ body {
   color: var(--text-primary);
   line-height: 1.5;
   overflow-x: hidden;
+  max-width: 100%;
   transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
 }
 
@@ -798,7 +801,7 @@ html[data-theme="dark"] .theme-icon-moon {
   border-radius: 12px;
   border: 1px solid var(--border-color);
   padding: 44px;
-  box-shadow: var(--card-shadow);
+  box-shadow: none;
   overflow: hidden;
   position: relative;
 }
@@ -922,6 +925,9 @@ html[data-theme="dark"] .theme-icon-moon {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .hero-visual-img {
@@ -929,6 +935,7 @@ html[data-theme="dark"] .theme-icon-moon {
   max-height: 400px;
   object-fit: cover;
   border-radius: 8px;
+  display: block;
 }
 
 @media (max-width: 992px) {
@@ -967,6 +974,8 @@ html[data-theme="dark"] .theme-icon-moon {
     width: 100%;
     margin: 0;
     position: relative;
+    padding: 5px;
+    box-sizing: border-box;
   }
   .hero-visual-img {
     width: 100%;
@@ -974,7 +983,7 @@ html[data-theme="dark"] .theme-icon-moon {
     max-height: 70vh !important;
     object-fit: cover !important;
     object-position: center 15% !important;
-    border-radius: 0 !important;
+    border-radius: 6px !important;
     display: block;
   }
   .hero-banner-content {
@@ -1921,16 +1930,22 @@ html[data-theme="dark"] .theme-icon-moon {
   width: 100%;
   max-width: 420px;
   background: var(--bg-primary);
-  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.25);
+  box-shadow: none;
+  visibility: hidden;
+  pointer-events: none;
   z-index: 260;
   transform: translateX(100%);
-  transition: transform 0.25s var(--ease);
+  transition: transform 0.25s var(--ease), visibility 0.25s;
   display: flex;
   flex-direction: column;
 }
 
-.cart-drawer.open {
+.cart-drawer.open,
+.cart-drawer.on {
   transform: translateX(0);
+  box-shadow: -8px 0 30px rgba(0, 0, 0, 0.25);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .cart-head {

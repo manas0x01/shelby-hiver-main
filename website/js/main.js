@@ -1,272 +1,22 @@
     /* ——— GLOBAL CONFIGURATION ——— */
     const WA = "919286511557";
 
-    /* ——— SEED LUXURY STREETWEAR PRODUCTS CATALOG ——— */
-    const SEED_PRODUCTS = [
-      {
-        id: "SH-TEE-01",
-        sku: "SH / TEE-01",
-        category: "tees",
-        name: "SH Essential Minimalist 220 GSM Tee",
-        subtitle: "Luxury Heavyweight · Pure Combed Cotton",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 142,
-        img: "assets/model-tee.jpg",
-        altImg: "assets/tee-white.jpg",
-        images: ["assets/model-tee.jpg", "assets/tee-white.jpg", "assets/detail-tag.jpg"],
-        fabric: "220 GSM 100% Super-Combed Cotton",
-        fit: "Boxy Relaxed Oversized Fit",
-        colors: [
-          { name: "Vintage Bone White", hex: "#f4f4f6" },
-          { name: "Obsidian Black", hex: "#0a0a0a" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Engineered from ultra-dense 220 GSM combed organic cotton. Features a structured 1-inch ribbed lycra collar that never rolls or sags, reinforced shoulder tape, and a clean minimalist SH monogram on the chest. Designed for effortless streetwear drapes.",
-        specs: {
-          "Fabric Weight": "220 GSM Dense Interlock Jersey",
-          "Fiber Content": "100% Super-Combed Bio-Washed Cotton",
-          "Silhouette": "Boxy Drop-Shoulder Streetwear Cut",
-          "Collar": "Heavy Ribbed Lycra Neckband (Anti-Sag)",
-          "Shrinkage": "0% Pre-Shrunk Guarantee",
-          "Origin": "Crafted in India"
-        }
-      },
-      {
-        id: "SH-TEE-02",
-        sku: "SH / TEE-02",
-        category: "tees",
-        name: "SH Boxy Drop-Shoulder Heavy Tee",
-        subtitle: "220 GSM Dense Knit · Streetwear Silhouette",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 218,
-        img: "assets/tee-black.jpg",
-        altImg: "assets/model-tee.jpg",
-        images: ["assets/tee-black.jpg", "assets/model-tee.jpg", "assets/detail-tag.jpg"],
-        fabric: "220 GSM Dense Knit Cotton · Bio-Washed",
-        fit: "Extended Drop Shoulders · Wide Sleeves",
-        colors: [
-          { name: "Jet Obsidian", hex: "#050505" },
-          { name: "Deep Charcoal", hex: "#1f1f23" }
-        ],
-        sizes: ["S", "M", "L", "XL", "XXL"],
-        desc: "Extended drop shoulders, elongated boxy sleeves, and a sculpted drape. Heavy bio-washed cotton delivers substantial body while feeling buttery soft against the skin. Holds its sharp structure all day.",
-        specs: {
-          "Fabric Weight": "220 GSM Combed Ring-Spun Cotton",
-          "Treatment": "Silicone Softened & Bio-Washed",
-          "Silhouette": "Extended Drop Shoulder Streetwear Fit",
-          "Stitching": "Twin-needle Reinforced Hems",
-          "Collar": "1-inch Anti-Deform Ribbed Lycra"
-        }
-      },
-      {
-        id: "SH-TEE-03",
-        sku: "SH / TEE-03",
-        category: "tees",
-        name: "SH Signature Monogram Archive Tee",
-        subtitle: "240 GSM French Single Jersey Edition",
-        price: 799,
-        mrp: 1399,
-        discountText: "43% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 5.0,
-        reviewCount: 96,
-        img: "assets/detail-tag.jpg",
-        altImg: "assets/tee-wash.jpg",
-        images: ["assets/detail-tag.jpg", "assets/tee-wash.jpg", "assets/model-tee.jpg"],
-        fabric: "240 GSM French Single Jersey",
-        fit: "Tailored Streetwear Oversized",
-        colors: [
-          { name: "Nocturnal Black", hex: "#080808" },
-          { name: "Washed Slate", hex: "#2e2e36" }
-        ],
-        sizes: ["M", "L", "XL", "XXL"],
-        desc: "Our heaviest tee silhouette. Raised high-density tactile SH monogram on chest and nape, crafted from 240 GSM combed jersey with double-stitched reinforced seams and custom interior atelier taping.",
-        specs: {
-          "Fabric Weight": "240 GSM Heavy French Single Jersey",
-          "Monogram": "High-Density Tactile HD Monogram Screen Print",
-          "Collar": "1.2-inch Heavyweight Ribbed Neckline",
-          "Finish": "Enzyme Treated for Soft Hand-Feel"
-        }
-      },
-      {
-        id: "SH-TEE-04",
-        sku: "SH / TEE-04",
-        category: "acid",
-        name: "SH Monochrome Acid-Wash Archive Tee",
-        subtitle: "Vintage Mineral Wash · 220 GSM Treated",
-        price: 749,
-        mrp: 1299,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.8,
-        reviewCount: 110,
-        img: "assets/tee-wash.jpg",
-        altImg: "assets/tee-grey.jpg",
-        images: ["assets/tee-wash.jpg", "assets/tee-grey.jpg", "assets/detail-tag.jpg"],
-        fabric: "220 GSM Vintage Mineral-Washed Cotton",
-        fit: "Boxy Skate & Street Silhouette",
-        colors: [
-          { name: "Mineral Grey Wash", hex: "#4b4b52" },
-          { name: "Washed Carbon", hex: "#222226" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Individually hand-treated vintage acid wash. Every tee features a unique subtle marble tonal patina with anti-pilling compact combed yarns. Streetwear character baked directly into the weave.",
-        specs: {
-          "Fabric Weight": "220 GSM 100% Cotton with Mineral Wash",
-          "Wash Effect": "Artisanal Acid Wash Patina (Each Piece Unique)",
-          "Collar": "Distressed Reinforced Lycra Neckband",
-          "Feel": "Broken-in Vintage Handfeel"
-        }
-      },
-      {
-        id: "SH-HOD-01",
-        sku: "SH / HOD-01",
-        category: "hoodies",
-        name: "SH Nocturnal French Terry Hoodie",
-        subtitle: "450 GSM Heavyweight Loopback · Drop 02",
-        price: 1899,
-        mrp: 3499,
-        discountText: "COMING SOON",
-        badge: "COMING SOON",
-        isLive: false,
-        rating: 5.0,
-        reviewCount: 84,
-        img: "assets/model-hoodie.jpg",
-        altImg: "assets/campaign_model_hoodie_1789367293436.jpg",
-        images: ["assets/model-hoodie.jpg", "assets/campaign_model_hoodie_1789367293436.jpg", "assets/detail-tag.jpg"],
-        fabric: "450 GSM 100% Cotton French Terry",
-        fit: "Sculpted Oversized Cut · Double-Lined Hood",
-        colors: [
-          { name: "Obsidian Black", hex: "#070707" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Constructed with massive 450 GSM French Terry loopback cotton. Features a rigid double-layered hood with no drawstrings for a sleek minimalist profile, deep kangaroo pouch pocket, and tight ribbed cuffs.",
-        specs: {
-          "Fabric Weight": "450 GSM Heavyweight French Terry Loopback",
-          "Hood": "Double-Layered Self-Fabric (Stands Structured)",
-          "Cuffs": "Thick 450 GSM Ribbed Hem & Wrist Cuffs",
-          "Neckline": "Clean No-Drawstring Minimalist Collar"
-        }
-      },
-      {
-        id: "SH-CRG-01",
-        sku: "SH / CRG-01",
-        category: "bottoms",
-        name: "SH Tactical Utility Cargo Pants",
-        subtitle: "320 GSM Cotton Twill · Modular Pockets · Drop 02",
-        price: 1499,
-        mrp: 2799,
-        discountText: "COMING SOON",
-        badge: "COMING SOON",
-        isLive: false,
-        rating: 4.9,
-        reviewCount: 67,
-        img: "assets/model-pants.jpg",
-        altImg: "assets/campaign_model_pants_1789367381933.jpg",
-        images: ["assets/model-pants.jpg", "assets/campaign_model_pants_1789367381933.jpg", "assets/detail-tag.jpg"],
-        fabric: "320 GSM Heavy Cotton Twill",
-        fit: "Relaxed Wide-Leg with Ankle Cinchers",
-        colors: [
-          { name: "Matte Charcoal", hex: "#1c1c1f" },
-          { name: "Pitch Black", hex: "#0a0a0a" }
-        ],
-        sizes: ["30", "32", "34", "36"],
-        desc: "Heavyweight 320 GSM cotton twill with deep dual bellows cargo pockets, reinforced knees, elastic waistband with drawcord, and adjustable toggle ankle cinchers to customize your sneaker drape.",
-        specs: {
-          "Fabric": "320 GSM Dense Cotton Twill",
-          "Pockets": "6-Pocket Tactical Architecture",
-          "Waist": "Elastic Waistband + Heavy Drawcord",
-          "Hem": "Bungee Cord Toggle Ankle Cinch"
-        }
-      },
-      {
-        id: "SH-ACC-01",
-        sku: "SH / ACC-01",
-        category: "accessories",
-        name: "SH Structured Nocturnal Cap",
-        subtitle: "Heavy Twill · 3D Monogram Embroidery · Drop 02",
-        price: 499,
-        mrp: 999,
-        discountText: "COMING SOON",
-        badge: "COMING SOON",
-        isLive: false,
-        rating: 4.8,
-        reviewCount: 92,
-        img: "assets/model-cap.jpg",
-        altImg: "assets/campaign_model_cap_1789367336831.jpg",
-        images: ["assets/model-cap.jpg", "assets/campaign_model_cap_1789367336831.jpg", "assets/detail-tag.jpg"],
-        fabric: "100% Heavy Brushed Cotton Twill",
-        fit: "Classic 6-Panel Structured Silhouette",
-        colors: [
-          { name: "Midnight Black", hex: "#0c0c0e" }
-        ],
-        sizes: ["ONE SIZE"],
-        desc: "Deep-crown 6-panel silhouette made from heavyweight brushed cotton twill with high-relief 3D embroidered SH insignia and brass buckle back strap.",
-        specs: {
-          "Material": "Heavy Brushed Cotton Twill",
-          "Embroidery": "High-Density 3D Raised Stitching",
-          "Closure": "Custom Matte Brass Buckle Strap",
-          "Fit": "Adjustable (54cm - 62cm)"
-        }
-      },
-      {
-        id: "SH-SET-01",
-        sku: "SH / SET-01",
-        category: "capsule",
-        name: "SH Drop 001 Atelier Capsule Set",
-        subtitle: "Complete 3-Piece Look (Tee + Cargo + Cap) · Drop 02",
-        price: 2699,
-        mrp: 5499,
-        discountText: "COMING SOON",
-        badge: "COMING SOON",
-        isLive: false,
-        rating: 5.0,
-        reviewCount: 48,
-        img: "assets/hero-flatlay.png",
-        altImg: "assets/city-night.jpg",
-        images: ["assets/hero-flatlay.png", "assets/city-night.jpg", "assets/model-tee.jpg"],
-        fabric: "Curated 220 GSM Cotton + Heavy Cargo Set",
-        fit: "Full Coordinated Streetwear Fit",
-        colors: [
-          { name: "Nocturnal Monochrome", hex: "#0a0a0a" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "The complete Shelby Hiver streetwear aesthetic in one bundle. Includes 1x SH Boxy 220 GSM Tee, 1x Tactical Cargo Pants, and 1x Nocturnal Cap in collector packaging.",
-        specs: {
-          "Includes": "1x Heavy Tee, 1x Tactical Cargo, 1x Embroidered Cap",
-          "Packaging": "Atelier Matte Black Collector Box + Dustbag",
-          "Savings": "Save ₹1,000 compared to individual pieces"
-        }
-      }
-    ];
+    /* ——— PRODUCTS DATABASE & REAL-TIME SYNCHRONIZATION ——— */
+    // Mock products removed. Silhouettes are managed exclusively from the Atelier Admin Panel.
+    const SEED_PRODUCTS = [];
 
     /* Dynamic database initialization & real-time synchronization */
     function getStorefrontProducts() {
       try {
-        const stored = localStorage.getItem('sh_products_db_v3');
-        if (stored) {
+        const stored = localStorage.getItem('sh_products_db_v4');
+        if (stored !== null) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed)) return parsed;
         }
       } catch (e) {
         console.error("Error loading products:", e);
       }
-      try {
-        localStorage.setItem('sh_products_db_v3', JSON.stringify(SEED_PRODUCTS));
-      } catch (e) {}
-      return [...SEED_PRODUCTS];
+      return [];
     }
 
     let PRODUCTS = getStorefrontProducts();
@@ -297,7 +47,7 @@
 
     /* Real-time sync listener with Admin panel */
     window.addEventListener('storage', (e) => {
-      if (!e.key || e.key === 'sh_products_db') {
+      if (!e.key || e.key === 'sh_products_db_v4') {
         PRODUCTS = getStorefrontProducts();
         TEES = PRODUCTS;
         PRODUCTS.forEach(p => {
@@ -355,15 +105,17 @@
         countLabel.textContent = `Showing ${items.length} Product${items.length === 1 ? '' : 's'}`;
       }
 
+      if (typeof updateChipCounts === 'function') updateChipCounts();
+
       if (items.length === 0) {
         grid.innerHTML = `
-          <div style="grid-column:1/-1;text-align:center;padding:60px 20px;background:var(--bg-secondary);border-radius:8px;">
-            <div style="font-size:32px;margin-bottom:12px;">🔍</div>
-            <h3 style="font-family:var(--f-display);font-size:18px;font-weight:700;margin-bottom:6px;">No products found</h3>
-            <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;">Try adjusting your search terms or filters.</p>
-            <button type="button" class="btn-primary-action" onclick="filterCategory('all'); if(document.getElementById('headerSearchInput')) { document.getElementById('headerSearchInput').value=''; currentSearchQuery=''; } renderProducts();">
-              Clear All Filters
-            </button>
+          <div style="grid-column:1/-1;text-align:center;padding:70px 20px;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:12px;">
+            <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted);margin-bottom:14px;"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
+            <h3 style="font-family:var(--f-display);font-size:18px;font-weight:800;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text-primary);">Catalogue Awaiting Drop</h3>
+            <p style="color:var(--text-muted);font-size:13px;max-width:440px;margin:0 auto 20px;">Silhouettes are currently being curated and published directly from the atelier console.</p>
+            <a href="admin/" class="btn-primary-action" style="display:inline-flex;padding:12px 24px;font-size:12px;">
+              Add Products in Admin Panel →
+            </a>
           </div>
         `;
         return;
@@ -418,10 +170,8 @@
             <div class="pc-action-row" onclick="event.stopPropagation()">
               ${isLive ? `
                 <button type="button" class="pc-btn-cart" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <path d="M16 10a4 4 0 01-8 0" />
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path>
                   </svg>
                   <span>Add to Bag</span>
                 </button>
@@ -446,10 +196,32 @@
       renderProducts();
     }
 
+    function updateChipCounts() {
+      const allCount = PRODUCTS.length;
+      const teesCount = PRODUCTS.filter(p => p.category === 'tees').length;
+      const acidCount = PRODUCTS.filter(p => p.category === 'acid').length;
+      const hoodiesCount = PRODUCTS.filter(p => p.category === 'hoodies').length;
+      const bottomsCount = PRODUCTS.filter(p => p.category === 'bottoms').length;
+      const accCount = PRODUCTS.filter(p => p.category === 'accessories').length;
+
+      const elAll = document.getElementById("chipCountAll");
+      if (elAll) elAll.textContent = allCount;
+      const elTees = document.getElementById("chipCountTees");
+      if (elTees) elTees.textContent = teesCount > 0 ? `${teesCount} LIVE` : '0';
+      const elAcid = document.getElementById("chipCountAcid");
+      if (elAcid) elAcid.textContent = acidCount > 0 ? `${acidCount} LIVE` : '0';
+      const elHoodies = document.getElementById("chipCountHoodies");
+      if (elHoodies) elHoodies.textContent = hoodiesCount > 0 ? `${hoodiesCount} LIVE` : 'COMING SOON';
+      const elBottoms = document.getElementById("chipCountBottoms");
+      if (elBottoms) elBottoms.textContent = bottomsCount > 0 ? `${bottomsCount} LIVE` : 'COMING SOON';
+      const elAcc = document.getElementById("chipCountAccessories");
+      if (elAcc) elAcc.textContent = accCount > 0 ? `${accCount} LIVE` : 'COMING SOON';
+    }
+
     /* ——— CATEGORY & SORT HANDLERS ——— */
     function filterCategory(cat, btn) {
       currentCat = cat;
-      document.querySelectorAll('#catNav .cat-pill').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('#catNav .cat-chip-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
       renderProducts();
     }
@@ -1163,4 +935,4 @@
     /* ——— INIT ——— */
     renderProducts();
     renderCart();
-    checkHashRoute();
+    checkHashRoute();
