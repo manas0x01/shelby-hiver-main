@@ -1647,6 +1647,7 @@ html[data-theme="dark"] .theme-icon-moon {
   width: 100%;
   height: 320px;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.35s var(--ease);
 }
 
@@ -1812,10 +1813,14 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .silhouette-visual {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .silhouette-img {
@@ -1824,6 +1829,8 @@ html[data-theme="dark"] .theme-icon-moon {
   max-height: 520px;
   object-fit: contain;
   display: block;
+  border: none;
+  margin: 0;
 }
 
 /* ——— CLIENT REVIEWS SECTION ——— */
