@@ -569,8 +569,9 @@ html[data-theme="dark"] .theme-icon-moon {
     padding: 6px 0;
   }
   .brand-logo-img {
-    height: 50px;
-    max-width: 200px;
+    height: 32px;
+    max-width: 110px;
+    object-fit: contain;
   }
   .header-actions-group {
     display: flex;
@@ -579,6 +580,9 @@ html[data-theme="dark"] .theme-icon-moon {
   }
   .header-actions-group .theme-switch-btn {
     display: none; /* Appears inside drawer on mobile per user specification */
+  }
+  .desktop-auth-widget {
+    display: none; /* Profile is shown inside mobile drawer instead */
   }
   .mob-menu-btn {
     display: flex;
