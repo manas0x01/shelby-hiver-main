@@ -1356,27 +1356,30 @@ html[data-theme="dark"] .theme-icon-moon {
   }
   .pc-price-wrap {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
-    gap: 4px;
-    margin-bottom: 8px;
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    overflow: hidden;
+    column-gap: 5px;
+    row-gap: 2px;
+    margin-bottom: 7px;
+    white-space: normal;
   }
   .pc-price {
-    font-size: 12.5px;
+    font-size: 11.5px;
     white-space: nowrap;
     flex-shrink: 0;
   }
   .pc-mrp {
-    font-size: 10.5px;
+    font-size: 10px;
     white-space: nowrap;
     flex-shrink: 0;
   }
   .pc-discount {
-    font-size: 10px;
+    flex-basis: 100%;
+    width: 100%;
+    font-size: 9.5px;
     white-space: nowrap;
-    flex-shrink: 0;
+    line-height: 1.2;
+    margin-top: 1px;
   }
   .pc-size-pills {
     gap: 4px;
@@ -1424,16 +1427,19 @@ html[data-theme="dark"] .theme-icon-moon {
 
 @media (max-width: 360px) {
   .pc-price-wrap {
-    gap: 3px;
+    column-gap: 4px;
+    row-gap: 1px;
   }
   .pc-price {
-    font-size: 11.5px;
+    font-size: 11px;
   }
   .pc-mrp {
     font-size: 9.5px;
   }
   .pc-discount {
     font-size: 9px;
+    flex-basis: 100%;
+    width: 100%;
   }
   .pc-btn-cart {
     font-size: 8.5px;
@@ -1581,16 +1587,16 @@ html[data-theme="dark"] .theme-icon-moon {
 /* Pricing Row */
 .pc-price-wrap {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 6px;
-  margin-bottom: 12px;
-  flex-wrap: nowrap;
-  white-space: nowrap;
+  column-gap: 6px;
+  row-gap: 3px;
+  margin-bottom: 10px;
 }
 
 .pc-price {
   font-family: var(--f-display);
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: 800;
   color: var(--text-primary);
   white-space: nowrap;
@@ -1598,7 +1604,7 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .pc-mrp {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
   text-decoration: line-through;
   white-space: nowrap;
@@ -1606,12 +1612,14 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .pc-discount {
+  flex-basis: 100%;
+  width: 100%;
   font-family: var(--f-display);
-  font-size: 11.5px;
+  font-size: 10px;
   font-weight: 800;
   color: var(--accent-coral);
   white-space: nowrap;
-  flex-shrink: 0;
+  line-height: 1.2;
 }
 
 /* Size Chips */
