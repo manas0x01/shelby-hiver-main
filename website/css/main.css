@@ -179,7 +179,7 @@ a {
 .header-left-cluster {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
@@ -191,9 +191,9 @@ a {
 }
 
 .brand-logo-img {
-  height: 36px;
+  height: 42px;
   width: auto;
-  max-width: 130px;
+  max-width: 170px;
   object-fit: contain;
   transition: opacity 0.25s var(--ease);
 }
@@ -546,20 +546,26 @@ html[data-theme="dark"] .theme-icon-moon {
 
 @media (max-width: 768px) {
   .header-inner {
-    height: 58px;
-    gap: 12px;
+    height: 62px;
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .header-left-cluster {
+    gap: 8px;
   }
   .header-search-wrap {
     display: none;
   }
   .mobile-search-strip {
     display: block;
+    padding: 6px 0;
   }
   .brand-logo-img {
-    height: 30px;
+    height: 42px;
+    max-width: 160px;
   }
   .header-actions-group {
-    gap: 10px;
+    gap: 4px;
   }
   .header-actions-group .theme-switch-btn {
     display: none; /* Appears inside drawer on mobile per user specification */
@@ -568,7 +574,30 @@ html[data-theme="dark"] .theme-icon-moon {
     display: none;
   }
   .h-act-btn {
-    padding: 6px;
+    padding: 6px 4px;
+    min-width: auto;
+  }
+  .h-act-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .h-act-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.9;
+  }
+  .user-avatar-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+  .h-act-badge {
+    top: -2px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    font-size: 9px;
   }
   .h-act-wishlist {
     display: none; /* Accessible in mobile drawer */
@@ -933,7 +962,7 @@ html[data-theme="dark"] .theme-icon-moon {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 24px;
   box-sizing: border-box;
   border-radius: 0 !important;
 }
@@ -982,7 +1011,7 @@ html[data-theme="dark"] .theme-icon-moon {
     width: 100%;
     margin: 0;
     position: relative;
-    padding: 5px;
+    padding: 22px 18px 10px 18px;
     box-sizing: border-box;
     border-radius: 0 !important;
   }

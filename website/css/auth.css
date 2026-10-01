@@ -526,3 +526,17 @@ html[data-theme="dark"] .user-dropdown-menu {
 .auth-switch-footer a:hover {
   color: var(--auth-coral);
 }
+
+@media (max-width: 768px) {
+  .user-profile-pill,
+  .user-signin-btn {
+    padding: 6px 4px;
+    min-width: auto;
+  }
+  .user-avatar-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+    font-weight: 800;
+  }
+}
