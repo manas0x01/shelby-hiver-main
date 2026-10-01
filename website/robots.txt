@@ -1,0 +1,15 @@
+# robots.txt for shelbyhiver.in
+# Last updated: 2026-10-01
+
+User-agent: *
+Allow: /
+
+# Disallow admin panel from being indexed
+Disallow: /admin/
+
+# Disallow private/auth pages from being indexed (optional - they still work, just not in search results)
+Disallow: /login.html
+Disallow: /register.html
+
+# Sitemap location
+Sitemap: https://shelbyhiver.in/sitemap.xml

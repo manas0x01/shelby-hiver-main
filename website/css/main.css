@@ -1025,6 +1025,17 @@ html[data-theme="dark"] .theme-icon-moon {
   margin-bottom: 14px;
 }
 
+.hero-brand-eyebrow {
+  display: block;
+  font-family: var(--f-display);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-coral);
+  margin-bottom: 6px;
+}
+
 .hero-main-desc {
   font-size: 15px;
   color: var(--text-secondary);
