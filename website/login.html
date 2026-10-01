@@ -88,14 +88,6 @@
             </svg>
           </button>
 
-          <button type="button" class="auth-demo-btn" onclick="quickFillDemoLogin()">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            <span>Instant Demo Sign In (manas@shelbyhiver.com)</span>
-          </button>
-
           <div class="auth-switch-footer">
             New to Shelby Hiver? <a href="register.html">Create an Account</a>
           </div>
@@ -136,12 +128,6 @@
         errorBox.textContent = res.error;
         errorBox.style.display = "block";
       }
-    }
-
-    function quickFillDemoLogin() {
-      document.getElementById("loginIdentifier").value = "manas@shelbyhiver.com";
-      document.getElementById("loginPassword").value = "password123";
-      document.getElementById("loginForm").requestSubmit();
     }
 
     function togglePasswordVisibility(fieldId) {

@@ -1266,11 +1266,6 @@
           <span>Authorize Access</span>
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
-
-        <button type="button" class="admin-btn-demo" onclick="quickFillAdmin()">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-          <span>1-Click Fill Admin Credentials (admin2026)</span>
-        </button>
       </form>
 
       <a href="../index.html" class="admin-auth-foot-link">
@@ -1381,16 +1376,13 @@
 
         <div class="kpi-card">
           <div class="kpi-head">
-            <span class="kpi-label">Active Shoppers</span>
+            <span class="kpi-label">Registered Clients</span>
             <div class="kpi-icon-box">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             </div>
           </div>
-          <div class="kpi-val" id="kpiVisitors">18</div>
-          <div class="kpi-sub positive">
-            <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#047857;"></span>
-            <span>Live Store Traffic</span>
-          </div>
+          <div class="kpi-val" id="kpiClients">0</div>
+          <div class="kpi-sub">Verified Customer Accounts</div>
         </div>
 
         <div class="kpi-card">
@@ -1467,7 +1459,6 @@
               <p style="font-size:12px;color:var(--text-muted);margin-top:2px;">Track live orders, update delivery progress, and send instant WhatsApp dispatch updates to clients.</p>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <button class="btn-outline" onclick="simulateTestOrder()">+ Simulate Test Order</button>
               <button class="btn-outline" onclick="clearAllOrders()">Clear Orders</button>
             </div>
           </div>
@@ -1684,33 +1675,84 @@
     const ORDERS_KEY = 'sh_orders_db';
     const USERS_KEY = 'sh_auth_users_v2';
 
-    // Storefront catalog initialized empty for live onboarding
-    const SEED_PRODUCTS = [];
-
-    const SEED_ORDERS = [
+    const SEED_PRODUCTS = [
       {
-        id: "ORD-892401",
-        customerName: "Aarav K.",
-        customerEmail: "aarav.k@gmail.com",
-        customerPhone: "9876543210",
-        items: [{ id: "SH-TEE-01", name: "SH Essential Minimalist 220 GSM Tee", size: "L", qty: 2, price: 699 }],
-        total: 1398,
-        status: "Pending Dispatch",
-        paymentMethod: "Prepaid UPI",
-        createdAt: new Date(Date.now() - 1000 * 60 * 18).toISOString()
+        id: "SH-DROP01-DRAGON",
+        sku: "SH-D01-DRG-01",
+        category: "tees",
+        name: "Dragon Archive Boxy Tee",
+        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 164,
+        img: "drops/01.png",
+        altImg: "drops/04.png",
+        images: [
+          "drops/01.png",
+          "drops/04.png",
+          "drops/05.png",
+          "drops/02.png",
+          "drops/03.png"
+        ],
+        fabric: "220 GSM 100% Super-Combed Cotton",
+        fit: "Boxy Drop-Shoulder Oversized",
+        colors: [
+          { name: "Sand Beige", hex: "#d8c7b5" }
+        ],
+        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
+        specs: {
+          "Fabric Weight": "220 GSM Pure Combed Cotton",
+          "Silhouette": "Boxy Drop-Shoulder Oversized",
+          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+          "Back Artwork": "Archival Ryu Dragon High-Density Print",
+          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+          "Dispatch": "Dispatched within 24 hours"
+        }
       },
       {
-        id: "ORD-892398",
-        customerName: "Rohan M.",
-        customerEmail: "rohan.m@gmail.com",
-        customerPhone: "9823456789",
-        items: [{ id: "SH-TEE-02", name: "SH Boxy Drop-Shoulder Heavy Tee", size: "XL", qty: 1, price: 699 }],
-        total: 699,
-        status: "In Transit",
-        paymentMethod: "Prepaid UPI",
-        createdAt: new Date(Date.now() - 1000 * 60 * 85).toISOString()
+        id: "SH-DROP01-ENDURE",
+        sku: "SH-D01-GYM-02",
+        category: "tees",
+        name: "Winter Arc 'ENDURE' Heavy Gym Tee",
+        subtitle: "220 GSM Combed Cotton · Athletic Boxy Cut",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 182,
+        img: "drops/winter-arc-01.png",
+        altImg: "drops/winter-arc-02.png",
+        images: [
+          "drops/winter-arc-01.png",
+          "drops/winter-arc-02.png",
+          "drops/winter-arc-03.png"
+        ],
+        fabric: "220 GSM 100% Super-Combed Cotton",
+        fit: "Athletic Boxy Drop-Shoulder",
+        colors: [
+          { name: "Obsidian Black", hex: "#0a0a0a" }
+        ],
+        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        desc: "The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
+        specs: {
+          "Fabric Weight": "220 GSM Pure Combed Cotton",
+          "Silhouette": "Athletic Boxy Drop-Shoulder",
+          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+          "Back Artwork": "Cracked Marble 'ENDURE' Screen Print",
+          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+          "Dispatch": "Dispatched within 24 hours"
+        }
       }
     ];
+
+    const SEED_ORDERS = [];
 
     /* ——— DATA ACCESSORS ——— */
     function getAdminProducts() {
@@ -1718,7 +1760,23 @@
         const stored = localStorage.getItem(PRODUCTS_KEY);
         if (stored !== null) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            let updated = false;
+            SEED_PRODUCTS.forEach(seed => {
+              const existingIdx = parsed.findIndex(p => p.id === seed.id);
+              if (existingIdx === -1) {
+                parsed.push(seed);
+                updated = true;
+              } else if (parsed[existingIdx].img !== seed.img) {
+                parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
+                updated = true;
+              }
+            });
+            if (updated) {
+              localStorage.setItem(PRODUCTS_KEY, JSON.stringify(parsed));
+            }
+            return parsed;
+          }
         }
       } catch (e) {}
       localStorage.setItem(PRODUCTS_KEY, JSON.stringify(SEED_PRODUCTS));
@@ -1743,11 +1801,28 @@
         const stored = localStorage.getItem(ORDERS_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) return parsed;
+          if (Array.isArray(parsed)) {
+            // Strip out any previous mock seed orders
+            const realOrders = parsed.filter(o => 
+              o.id !== 'ORD-892401' && 
+              o.id !== 'ORD-892398' && 
+              o.customerName !== 'Aarav K.' && 
+              o.customerName !== 'Rohan M.' &&
+              o.customerName !== 'Kabir V.' &&
+              o.customerName !== 'Ishaan S.' &&
+              o.customerName !== 'Devansh P.' &&
+              o.customerName !== 'Zaid M.' &&
+              o.customerName !== 'Tara B.'
+            );
+            if (realOrders.length !== parsed.length) {
+              localStorage.setItem(ORDERS_KEY, JSON.stringify(realOrders));
+            }
+            return realOrders;
+          }
         }
       } catch (e) {}
-      localStorage.setItem(ORDERS_KEY, JSON.stringify(SEED_ORDERS));
-      return [...SEED_ORDERS];
+      localStorage.setItem(ORDERS_KEY, JSON.stringify([]));
+      return [];
     }
 
     function saveAdminOrders(orders) {
@@ -1763,18 +1838,16 @@
         const stored = localStorage.getItem(USERS_KEY);
         if (stored) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed)) {
+            const realUsers = parsed.filter(u => u && u.id !== 'usr-manas-001' && u.email !== 'manas@shelbyhiver.com');
+            if (realUsers.length !== parsed.length) {
+              localStorage.setItem(USERS_KEY, JSON.stringify(realUsers));
+            }
+            return realUsers;
+          }
         }
       } catch (e) {}
-      return [
-        {
-          id: 'usr-manas-001',
-          name: 'Manas',
-          email: 'manas@shelbyhiver.com',
-          phone: '9286511557',
-          joinedAt: new Date().toISOString()
-        }
-      ];
+      return [];
     }
 
     /* ——— AUTHENTICATION CONTROLLER ——— */
@@ -1804,15 +1877,9 @@
         toast("Administrator Access Authorized");
         checkAdminAuth();
       } else {
-        err.textContent = "Invalid Admin Credentials. (Use admin@shelbyhiver.com / admin2026)";
+        err.textContent = "Invalid Admin Credentials.";
         err.style.display = "block";
       }
-    }
-
-    function quickFillAdmin() {
-      document.getElementById("adminEmail").value = "admin@shelbyhiver.com";
-      document.getElementById("adminPassword").value = "admin2026";
-      toast("Admin credentials filled");
     }
 
     function handleAdminLogout() {
@@ -1846,7 +1913,6 @@
       renderOrdersView();
       renderProductsView();
       renderUsersView();
-      startLiveVisitorPulse();
     }
 
     window.addEventListener('storage', () => {
@@ -1867,6 +1933,8 @@
       document.getElementById("kpiRevenue").textContent = `₹ ${totalRev.toLocaleString()}`;
       document.getElementById("kpiOrders").textContent = orders.length;
       document.getElementById("kpiProducts").textContent = prods.length;
+      const kpiClients = document.getElementById("kpiClients");
+      if (kpiClients) kpiClients.textContent = users.length;
 
       const sidebarOrders = document.getElementById("sidebarOrdersBadge");
       if (sidebarOrders) sidebarOrders.textContent = orders.length;
@@ -1898,29 +1966,43 @@
 
       const feed = document.getElementById("activityFeed");
       if (feed) {
-        feed.innerHTML = `
-          <div class="act-item">
-            <div class="act-icon-dot">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
+        let feedItems = [];
+        if (orders.length > 0) {
+          orders.slice(0, 3).forEach(o => {
+            feedItems.push(`
+              <div class="act-item">
+                <div class="act-icon-dot">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
+                </div>
+                <div class="act-text">Customer Order <strong>${o.id}</strong> (${o.customerName || 'Client'}) for ₹${Number(o.total || 0).toLocaleString()} logged into dispatch system.</div>
+                <span class="act-time">${formatDate(o.createdAt)}</span>
+              </div>
+            `);
+          });
+        }
+        const users = getAdminUsers();
+        if (users.length > 0) {
+          users.slice(0, 2).forEach(u => {
+            feedItems.push(`
+              <div class="act-item">
+                <div class="act-icon-dot">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <div class="act-text">Client <strong>${u.name}</strong> registered account.</div>
+                <span class="act-time">${formatDate(u.joinedAt)}</span>
+              </div>
+            `);
+          });
+        }
+        if (feedItems.length === 0) {
+          feed.innerHTML = `
+            <div style="color:var(--text-muted);font-size:12px;padding:12px 0;">
+              No recent customer activity. Incoming orders and registrations will stream here in real-time.
             </div>
-            <div class="act-text">Customer Order <strong>${orders[0] ? orders[0].id : 'ORD-892401'}</strong> for ₹${orders[0] ? orders[0].total : '1,398'} logged into dispatch system.</div>
-            <span class="act-time">Just now</span>
-          </div>
-          <div class="act-item">
-            <div class="act-icon-dot">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            </div>
-            <div class="act-text">Client <strong>Manas</strong> authenticated session verified.</div>
-            <span class="act-time">12m ago</span>
-          </div>
-          <div class="act-item">
-            <div class="act-icon-dot">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path></svg>
-            </div>
-            <div class="act-text">Drop 01 live pricing synced: <strong>₹699</strong> (MRP ₹1,199 · 42% OFF).</div>
-            <span class="act-time">25m ago</span>
-          </div>
-        `;
+          `;
+        } else {
+          feed.innerHTML = feedItems.join('');
+        }
       }
     }
 
@@ -1940,7 +2022,10 @@
       if (!tbody) return;
 
       if (!orders.length) {
-        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:30px;">No client orders logged. Click "+ Simulate Test Order" above to place a test dispatch.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--text-muted);padding:48px 20px;">
+          <div style="font-family:var(--f-display);font-size:14px;font-weight:700;color:var(--brand-black);margin-bottom:6px;">No Client Orders Yet</div>
+          <div style="font-size:12px;color:var(--text-secondary);max-width:380px;margin:0 auto;line-height:1.5;">When patrons place orders through the live storefront or WhatsApp concierge, their real orders will stream here in real-time.</div>
+        </td></tr>`;
         return;
       }
 
@@ -1950,12 +2035,12 @@
           <td style="font-size:11px;color:var(--text-muted);">${formatDate(o.createdAt)}</td>
           <td>
             <strong style="color:var(--brand-black);">${o.customerName}</strong>
-            <div style="font-size:11px;color:var(--text-muted);">${o.customerPhone} · ${o.customerEmail}</div>
+            <div style="font-size:11px;color:var(--text-muted);">${o.customerPhone || ''} ${o.customerEmail ? '· ' + o.customerEmail : ''}</div>
           </td>
           <td>
-            ${o.items.map(i => `<span style="display:block;font-size:11.5px;">• ${i.name} <strong style="color:var(--brand-black);">(${i.size}) × ${i.qty}</strong></span>`).join('')}
+            ${(o.items || []).map(i => `<span style="display:block;font-size:11.5px;">• ${i.name} <strong style="color:var(--brand-black);">(${i.size || 'L'}) × ${i.qty || 1}</strong></span>`).join('')}
           </td>
-          <td><strong style="font-family:var(--f-display);font-size:13.5px;">₹ ${Number(o.total).toLocaleString()}</strong></td>
+          <td><strong style="font-family:var(--f-display);font-size:13.5px;">₹ ${Number(o.total || 0).toLocaleString()}</strong></td>
           <td>
             <select class="form-control" style="padding:4px 8px;font-size:11px;width:auto;font-weight:600;" onchange="updateOrderStatus('${o.id}', this.value)">
               <option value="Pending Dispatch" ${o.status === 'Pending Dispatch' ? 'selected' : ''}>Pending Dispatch</option>
@@ -1966,7 +2051,7 @@
           </td>
           <td>
             <div class="table-actions">
-              <a href="https://wa.me/${o.customerPhone.replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(o.customerName)}!%20Regarding%20your%20Shelby%20Hiver%20Order%20${o.id}%20status:%20${encodeURIComponent(o.status)}." target="_blank" class="btn-action wa" title="WhatsApp Customer">
+              <a href="https://wa.me/${(o.customerPhone || '').replace(/\D/g, '')}?text=Hello%20${encodeURIComponent(o.customerName || 'Client')}!%20Regarding%20your%20Shelby%20Hiver%20Order%20${o.id}%20status:%20${encodeURIComponent(o.status || 'Pending Dispatch')}." target="_blank" class="btn-action wa" title="WhatsApp Customer">
                 <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                 <span>Notify</span>
               </a>
@@ -1993,31 +2078,6 @@
       orders = orders.filter(o => o.id !== id);
       saveAdminOrders(orders);
       toast(`Order ${id} deleted.`);
-    }
-
-    function simulateTestOrder() {
-      const prods = getAdminProducts();
-      const p = prods[Math.floor(Math.random() * prods.length)];
-      const names = ["Kabir V.", "Ishaan S.", "Devansh P.", "Zaid M.", "Tara B."];
-      const name = names[Math.floor(Math.random() * names.length)];
-      const orderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
-
-      const newOrder = {
-        id: orderId,
-        customerName: name,
-        customerEmail: `${name.toLowerCase().replace(/[^a-z]/g, '')}@gmail.com`,
-        customerPhone: "91" + Math.floor(7000000000 + Math.random() * 2999999999),
-        items: [{ id: p.id, name: p.name, size: p.sizes[0] || "L", qty: 1, price: p.price }],
-        total: p.price,
-        status: "Pending Dispatch",
-        paymentMethod: "Prepaid UPI",
-        createdAt: new Date().toISOString()
-      };
-
-      const orders = getAdminOrders();
-      orders.unshift(newOrder);
-      saveAdminOrders(orders);
-      toast(`Test Order ${orderId} created for ₹${p.price}!`);
     }
 
     function clearAllOrders() {
@@ -2387,18 +2447,7 @@
       `).join('');
     }
 
-    /* ——— REAL-TIME TRAFFIC SIMULATION ——— */
-    function startLiveVisitorPulse() {
-      setInterval(() => {
-        const el = document.getElementById("kpiVisitors");
-        if (el) {
-          const cur = parseInt(el.textContent) || 18;
-          const delta = (Math.random() > 0.5 ? 1 : -1) * Math.floor(Math.random() * 3);
-          const next = Math.max(14, Math.min(46, cur + delta));
-          el.textContent = next;
-        }
-      }, 5000);
-    }
+    /* ——— DATE FORMATTER ——— */
 
     function formatDate(isoStr) {
       if (!isoStr) return "Just now";

@@ -8,33 +8,21 @@ const WA_NUMBER = "919286511557";
 const AUTH_USERS_KEY = "sh_auth_users_v2";
 const CURRENT_USER_KEY = "sh_current_user_v2";
 
-// Default Customer Account for 1-Click Demo
-const DEFAULT_SEED_USERS = [
-  {
-    id: "usr-manas-001",
-    name: "Manas",
-    email: "manas@shelbyhiver.com",
-    phone: "9286511557",
-    password: "password123",
-    joinedAt: "2026-09-01T00:00:00.000Z"
-  }
-];
+// Real customer accounts store
+const DEFAULT_SEED_USERS = [];
 
 function getStoredUsers() {
   try {
     const raw = localStorage.getItem(AUTH_USERS_KEY);
     let list = raw ? JSON.parse(raw) : [];
     if (!Array.isArray(list)) list = [];
-    DEFAULT_SEED_USERS.forEach(seed => {
-      const idx = list.findIndex(u => u && u.email && u.email.toLowerCase() === seed.email.toLowerCase());
-      if (idx === -1) {
-        list.unshift({ ...seed });
-      }
-    });
-    localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(list));
-    return list;
+    const realUsers = list.filter(u => u && u.id !== 'usr-manas-001' && u.email !== 'manas@shelbyhiver.com');
+    if (realUsers.length !== list.length) {
+      localStorage.setItem(AUTH_USERS_KEY, JSON.stringify(realUsers));
+    }
+    return realUsers;
   } catch (e) {
-    return [...DEFAULT_SEED_USERS];
+    return [];
   }
 }
 

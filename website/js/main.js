@@ -2,8 +2,82 @@
     const WA = "919286511557";
 
     /* ——— PRODUCTS DATABASE & REAL-TIME SYNCHRONIZATION ——— */
-    // Mock products removed. Silhouettes are managed exclusively from the Atelier Admin Panel.
-    const SEED_PRODUCTS = [];
+    const SEED_PRODUCTS = [
+      {
+        id: "SH-DROP01-DRAGON",
+        sku: "SH-D01-DRG-01",
+        category: "tees",
+        name: "Dragon Archive Boxy Tee",
+        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 164,
+        img: "drops/01.png",
+        altImg: "drops/04.png",
+        images: [
+          "drops/01.png",
+          "drops/04.png",
+          "drops/05.png",
+          "drops/02.png",
+          "drops/03.png"
+        ],
+        fabric: "220 GSM 100% Super-Combed Cotton",
+        fit: "Boxy Drop-Shoulder Oversized",
+        colors: [
+          { name: "Sand Beige", hex: "#d8c7b5" }
+        ],
+        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
+        specs: {
+          "Fabric Weight": "220 GSM Pure Combed Cotton",
+          "Silhouette": "Boxy Drop-Shoulder Oversized",
+          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+          "Back Artwork": "Archival Ryu Dragon High-Density Print",
+          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+          "Dispatch": "Dispatched within 24 hours"
+        }
+      },
+      {
+        id: "SH-DROP01-ENDURE",
+        sku: "SH-D01-GYM-02",
+        category: "tees",
+        name: "Winter Arc 'ENDURE' Heavy Gym Tee",
+        subtitle: "220 GSM Combed Cotton · Athletic Boxy Cut",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 182,
+        img: "drops/winter-arc-01.png",
+        altImg: "drops/winter-arc-02.png",
+        images: [
+          "drops/winter-arc-01.png",
+          "drops/winter-arc-02.png",
+          "drops/winter-arc-03.png"
+        ],
+        fabric: "220 GSM 100% Super-Combed Cotton",
+        fit: "Athletic Boxy Drop-Shoulder",
+        colors: [
+          { name: "Obsidian Black", hex: "#0a0a0a" }
+        ],
+        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        desc: "The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
+        specs: {
+          "Fabric Weight": "220 GSM Pure Combed Cotton",
+          "Silhouette": "Athletic Boxy Drop-Shoulder",
+          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+          "Back Artwork": "Cracked Marble 'ENDURE' Screen Print",
+          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+          "Dispatch": "Dispatched within 24 hours"
+        }
+      }
+    ];
 
     /* Dynamic database initialization & real-time synchronization */
     function getStorefrontProducts() {
@@ -11,12 +85,29 @@
         const stored = localStorage.getItem('sh_products_db_v4');
         if (stored !== null) {
           const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            let updated = false;
+            SEED_PRODUCTS.forEach(seed => {
+              const existingIdx = parsed.findIndex(p => p.id === seed.id);
+              if (existingIdx === -1) {
+                parsed.push(seed);
+                updated = true;
+              } else if (parsed[existingIdx].img !== seed.img) {
+                parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
+                updated = true;
+              }
+            });
+            if (updated) {
+              localStorage.setItem('sh_products_db_v4', JSON.stringify(parsed));
+            }
+            return parsed;
+          }
         }
       } catch (e) {
         console.error("Error loading products:", e);
       }
-      return [];
+      localStorage.setItem('sh_products_db_v4', JSON.stringify(SEED_PRODUCTS));
+      return [...SEED_PRODUCTS];
     }
 
     let PRODUCTS = getStorefrontProducts();
@@ -150,7 +241,6 @@
             <button class="wish-btn ${isWish ? 'wishlisted' : ''}" onclick="toggleWishlist(event, '${tee.id}')" aria-label="Wishlist">
               ${isWish ? '♥' : '♡'}
             </button>
-            <span class="pc-rating-chip">★ ${tee.rating} | ${tee.reviewCount || 120}</span>
             <span class="pc-disc-tag ${!isLive ? 'coming-soon-tag' : ''}">${isLive ? discountText : 'COMING SOON'}</span>
           </div>
           <div class="pc-info">
@@ -172,20 +262,17 @@
             <div class="pc-action-row" onclick="event.stopPropagation()">
               ${isLive ? `
                 <button type="button" class="pc-btn-cart" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path>
-                  </svg>
-                  <span>Add to Bag</span>
+                  Add to Bag
                 </button>
                 <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Quick View">
-                  <span>View</span>
+                  View
                 </button>
               ` : `
                 <button type="button" class="pc-btn-cart pc-btn-disabled" disabled title="Coming Soon in Drop 02">
-                  <span>Coming Soon</span>
+                  Coming Soon
                 </button>
                 <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Preview Details">
-                  <span>Preview</span>
+                  Preview
                 </button>
               `}
             </div>
@@ -272,173 +359,175 @@
       if (text) text.textContent = isWish ? 'Wishlisted' : 'Wishlist';
     }
 
-    /* ——— PRODUCT DETAIL PAGE (PDP) OPEN / CLOSE ——— */
+    /* ——— PRODUCT DETAIL QUICK VIEW (PDP) ——— */
+    let modalActiveSize = 'L';
+
     function openProduct(id) {
       const p = PRODUCTS.find(item => item.id === id) || PRODUCTS[0];
       activePDPProduct = p;
-      activePDPSize = selectedSizes[p.id] || p.sizes[0];
-      activePDPColorIdx = 0;
+      activePDPSize = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || 'L';
+      modalActiveSize = activePDPSize;
 
-      // Update URL hash for sharing / browser navigation
+      const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
+      const scrim = document.getElementById("pdpScrim");
+
+      if (!modal) {
+        window.location.href = `catalogue.html#product-${p.id}`;
+        return;
+      }
+
+      // Update URL hash
       if (window.location.hash !== `#product-${p.id}`) {
         window.history.pushState(null, '', `#product-${p.id}`);
       }
 
-      // Breadcrumbs
-      const catMap = {
-        tees: 'Oversized Tees',
-        hoodies: 'French Terry Hoodies',
-        acid: 'Acid Wash Archive',
-        bottoms: 'Tactical Bottoms',
-        accessories: 'Caps & Accessories',
-        capsule: 'Capsule Sets'
-      };
-      document.getElementById("pdpCrumbCategory").textContent = catMap[p.category] || 'Collection';
-      document.getElementById("pdpCrumbTitle").textContent = p.name;
-
-      // Title, SKU, Rating
-      document.getElementById("pdpTitle").textContent = p.name;
-      document.getElementById("pdpSku").textContent = p.sku;
-      document.getElementById("pdpFabricQuick").textContent = p.fabric;
-      document.getElementById("pdpRatingNum").textContent = p.rating;
-      document.getElementById("pdpReviewCount").textContent = `${p.reviewCount} Verified Buyer Reviews`;
-      document.getElementById("pdpBadge").textContent = p.badge;
-
-      // Price
+      const pImgs = (Array.isArray(p.images) && p.images.length > 0) ? p.images : [p.img || 'assets/model-tee.jpg'];
+      const isLive = p.isLive !== false;
       const finalPrice = Math.round(p.price * discount);
-      document.getElementById("pdpPrice").textContent = `₹ ${finalPrice.toLocaleString()}`;
-      document.getElementById("pdpMrp").textContent = `₹ ${p.mrp.toLocaleString()}`;
-      document.getElementById("pdpDiscount").textContent = p.discountText;
 
-      // Mobile sticky bar price & size
-      const stickPrice = document.getElementById("pdpStickyPrice");
-      if (stickPrice) stickPrice.textContent = `₹ ${finalPrice.toLocaleString()}`;
-      const stickSize = document.getElementById("pdpStickySize");
-      if (stickSize) stickSize.textContent = `Size: ${activePDPSize}`;
-
-      // Gallery Thumbnails
-      const thumbsContainer = document.getElementById("pdpThumbs");
-      const pImages = (Array.isArray(p.images) && p.images.length > 0)
-        ? p.images
-        : [p.img || 'assets/model-tee.jpg'];
-
-      thumbsContainer.innerHTML = pImages.map((img, idx) => `
-        <div class="pdp-thumb-item ${idx === 0 ? 'active' : ''}" onclick="selectPDPThumb(${idx})">
-          <img src="${img}" alt="${p.name} detail view ${idx + 1}" loading="lazy">
-        </div>
-      `).join('');
-
-      // Main image
-      document.getElementById("pdpMainImg").src = pImages[0];
-
-      // Swatches
-      const swatchesContainer = document.getElementById("pdpSwatches");
-      document.getElementById("pdpColorLabel").textContent = p.colors[0].name;
-      swatchesContainer.innerHTML = p.colors.map((c, idx) => `
-        <div class="pdp-swatch ${idx === 0 ? 'active' : ''}" onclick="selectPDPColor(${idx}, '${c.name}', this)">
-          <span class="pdp-swatch-dot" style="background:${c.hex}"></span>
-          <span>${c.name}</span>
-        </div>
-      `).join('');
-
-      // Sizes
-      const sizesContainer = document.getElementById("pdpSizesRow");
-      sizesContainer.innerHTML = p.sizes.map(s => `
-        <button type="button" class="pdp-size-chip ${s === activePDPSize ? 'active' : ''}" onclick="selectPDPSize('${s}', this)">
-          ${s}
-        </button>
-      `).join('');
-      document.getElementById("pdpStockUrgency").textContent = `⚡ Only ${Math.floor(2 + (p.name.length % 5))} left in size ${activePDPSize}`;
-
-      // Description
-      document.getElementById("pdpDesc").innerHTML = `
-        <p>${p.desc}</p>
-        <p style="margin-top:10px;"><strong>Silhouette:</strong> ${p.fit}. Cut with generous chest volume, structured drop shoulders, and clean elbow-length sleeve drape for a commanding streetwear profile.</p>
-      `;
-
-      // Specifications Grid
-      const specsContainer = document.getElementById("pdpSpecs");
-      specsContainer.innerHTML = `
-        <div class="pdp-specs-grid">
-          ${Object.entries(p.specs).map(([k, v]) => `
-            <div class="pdp-spec-cell">
-              <strong>${k}</strong>
-              <span>${v}</span>
+      modal.innerHTML = `
+        <div style="position:relative;">
+          <button type="button" onclick="closeProduct()" aria-label="Close" style="position:absolute;top:-10px;right:-10px;width:34px;height:34px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border-color);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-primary);z-index:10;transition:transform 0.15s ease;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+          
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;align-items:start;">
+            <!-- Media Column -->
+            <div>
+              <div style="width:100%;aspect-ratio:3/4;background:var(--bg-secondary);border-radius:8px;overflow:hidden;margin-bottom:10px;border:1px solid var(--border-color);">
+                <img id="pdpModalMainImg" src="${pImgs[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;transition:opacity 0.15s;">
+              </div>
+              ${pImgs.length > 1 ? `
+                <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;" id="modalThumbsList">
+                  ${pImgs.map((img, idx) => `
+                    <img src="${img}" alt="${p.name}" style="width:52px;height:65px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid ${idx===0?'var(--brand-black)':'transparent'};flex-shrink:0;" onclick="selectModalThumb('${img}', this)">
+                  `).join('')}
+                </div>
+              ` : ''}
             </div>
-          `).join('')}
-        </div>
-      `;
 
-      // Cross-sell recommendations
-      const crossGrid = document.getElementById("pdpCrossGrid");
-      const crossItems = PRODUCTS.filter(item => item.id !== p.id).slice(0, 2);
-      crossGrid.innerHTML = crossItems.map(item => `
-        <div class="pdp-cross-card" onclick="openProduct('${item.id}')">
-          <img src="${item.img}" alt="${item.name}">
-          <div class="pcc-det">
-            <strong>${item.name}</strong>
-            <span>₹ ${item.price} · ${item.discountText}</span>
+            <!-- Details Column -->
+            <div>
+              <div style="font-family:var(--f-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;">SHELBY HIVER / ${(p.category || 'tees').toUpperCase()}</div>
+              <h2 style="font-family:var(--f-display);font-size:21px;font-weight:700;color:var(--text-primary);line-height:1.25;margin-bottom:10px;">${p.name}</h2>
+              
+              <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
+                ${isLive ? `
+                  <span style="font-family:var(--f-display);font-size:20px;font-weight:700;color:var(--text-primary);">₹ ${finalPrice.toLocaleString()}</span>
+                  <del style="font-size:13.5px;color:var(--text-muted);">₹ ${(p.mrp || p.price).toLocaleString()}</del>
+                  <span style="font-size:11.5px;font-weight:700;color:#047857;background:rgba(4,120,87,0.08);padding:2px 8px;border-radius:4px;">${p.discountText || 'OFFER'}</span>
+                ` : `
+                  <span style="font-family:var(--f-display);font-size:14px;color:var(--text-muted);">PREVIEW ARCHIVE · COMING SOON</span>
+                `}
+              </div>
+
+              <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px;">Inclusive of all taxes · Free express delivery</div>
+              <div style="height:1px;background:var(--border-color);margin:12px 0;"></div>
+
+              <!-- Sizes -->
+              <div style="margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <span style="font-size:11.5px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-primary);">SELECT SIZE</span>
+                  <button type="button" onclick="openSizeChart()" style="background:none;border:none;font-size:11.5px;color:var(--text-muted);text-decoration:underline;cursor:pointer;">Size Guide →</button>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  ${p.sizes.map(s => `
+                    <button type="button" class="pc-size-pill ${s === modalActiveSize ? 'active' : ''} ${!isLive ? 'disabled' : ''}" ${!isLive ? 'disabled' : ''} onclick="selectModalSize('${p.id}', '${s}', this)" style="min-width:44px;padding:8px 12px;font-weight:600;cursor:pointer;">${s}</button>
+                  `).join('')}
+                </div>
+              </div>
+
+              <!-- CTAs -->
+              ${isLive ? `
+                <div style="display:flex;gap:10px;margin-bottom:16px;">
+                  <button type="button" class="cart-checkout-btn" style="flex:1;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;" onclick="addToCart('${p.id}', modalActiveSize); toast('Added to Bag'); closeProduct();">
+                    Add to Bag
+                  </button>
+                  <a href="https://wa.me/919286511557?text=${encodeURIComponent(`Hello Shelby Hiver! 👋\n\nI want to BUY:\n• ${p.name}\n• Size: ${modalActiveSize}\n• Price: ₹${finalPrice.toLocaleString()} (${p.discountText || ''})\n\nPlease share payment details.`)}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;border-radius:6px;padding:12px 16px;font-family:var(--f-display);font-size:13px;font-weight:700;text-decoration:none;">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Buy Now
+                  </a>
+                </div>
+              ` : ''}
+
+              <!-- Specs -->
+              <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px;">
+                ${p.desc}
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;background:var(--bg-secondary);padding:8px 10px;border-radius:6px;border:1px solid var(--border-color);">
+                <div><strong style="color:var(--text-primary);">Fabric:</strong> ${p.fabric}</div>
+                <div><strong style="color:var(--text-primary);">Fit:</strong> ${p.fit}</div>
+              </div>
+              
+              <div style="margin-top:14px;text-align:right;">
+                <a href="catalogue.html#product-${p.id}" style="font-size:12px;color:var(--brand-black);font-weight:600;text-decoration:none;">View in Full Catalogue →</a>
+              </div>
+            </div>
           </div>
         </div>
-      `).join('');
+      `;
 
-      // Update wishlist button state
-      updatePDPWishlistUI();
-
-      // Show PDP
-      const modal = document.getElementById("productDetailPage");
+      modal.style.display = "block";
       modal.classList.add("active");
+      if (scrim) {
+        scrim.style.display = "block";
+        scrim.classList.add("open");
+      }
       document.body.style.overflow = "hidden";
       modal.scrollTop = 0;
     }
 
     function closeProduct() {
-      const modal = document.getElementById("productDetailPage");
-      modal.classList.remove("active");
+      const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
+      const scrim = document.getElementById("pdpScrim");
+      if (modal) {
+        modal.style.display = "none";
+        modal.classList.remove("active");
+      }
+      if (scrim) {
+        scrim.style.display = "none";
+        scrim.classList.remove("open");
+      }
       document.body.style.overflow = "";
       if (window.location.hash.startsWith('#product-')) {
-        window.history.pushState(null, '', window.location.pathname);
+        window.history.pushState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+
+    function selectModalThumb(src, el) {
+      const main = document.getElementById("pdpModalMainImg");
+      if (main) {
+        main.style.opacity = '0.3';
+        setTimeout(() => {
+          main.src = src;
+          main.style.opacity = '1';
+        }, 100);
+      }
+      if (el && el.parentElement) {
+        el.parentElement.querySelectorAll('img').forEach(img => img.style.borderColor = 'transparent');
+        el.style.borderColor = 'var(--brand-black)';
+      }
+    }
+
+    function selectModalSize(prodId, sz, btn) {
+      modalActiveSize = sz;
+      selectedSizes[prodId] = sz;
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
       }
     }
 
     function selectPDPThumb(idx, imgSrc) {
-      if (!activePDPProduct) return;
-      const imgs = (Array.isArray(activePDPProduct.images) && activePDPProduct.images.length)
-        ? activePDPProduct.images
-        : [activePDPProduct.img || 'assets/model-tee.jpg'];
-      const targetSrc = imgSrc || imgs[idx] || imgs[0];
-
-      document.querySelectorAll('#pdpThumbs .pdp-thumb-item').forEach((t, i) => {
-        t.classList.toggle('active', i === idx);
-      });
-      const mainImg = document.getElementById("pdpMainImg");
-      if (mainImg) {
-        mainImg.style.opacity = '0.3';
-        setTimeout(() => {
-          mainImg.src = targetSrc;
-          mainImg.style.opacity = '1';
-        }, 120);
-      }
+      selectModalThumb(imgSrc, null);
     }
 
     function selectPDPSize(sz, btn) {
-      activePDPSize = sz;
-      selectedSizes[activePDPProduct.id] = sz;
-      document.querySelectorAll('#pdpSizesRow .pdp-size-chip').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      document.getElementById("pdpStockUrgency").textContent = `⚡ Only ${Math.floor(2 + (sz.charCodeAt(0) % 5))} units left in size ${sz}!`;
-      const stickSize = document.getElementById("pdpStickySize");
-      if (stickSize) stickSize.textContent = `Size: ${sz}`;
+      if (activePDPProduct) selectModalSize(activePDPProduct.id, sz, btn);
     }
 
     function selectPDPColor(idx, name, btn) {
-      activePDPColorIdx = idx;
-      document.querySelectorAll('#pdpSwatches .pdp-swatch').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      document.getElementById("pdpColorLabel").textContent = name;
-      if (activePDPProduct.images[idx]) {
-        selectPDPThumb(idx, activePDPProduct.images[idx]);
-      }
+      // Compatibility helper
     }
 
     function pdpAddToCart() {
@@ -456,7 +545,7 @@
       try {
         let user = null;
         try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
-        const orderId = 'SH-' + Math.floor(1000 + Math.random() * 9000);
+        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
         recordStorefrontOrder({
           id: orderId,
           customerName: user ? user.name : "VIP Customer",
@@ -469,8 +558,8 @@
             price: finalPrice
           }],
           total: finalPrice,
-          status: 'pending',
-          channel: 'Instant PDP Buy',
+          status: 'Pending Dispatch',
+          channel: 'Storefront PDP Buy Now',
           createdAt: new Date().toISOString()
         });
       } catch (err) {
@@ -664,7 +753,7 @@
       try {
         let user = null;
         try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
-        const orderId = 'SH-' + Math.floor(1000 + Math.random() * 9000);
+        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
         recordStorefrontOrder({
           id: orderId,
           customerName: user ? user.name : "Customer",
@@ -672,8 +761,8 @@
           customerEmail: user ? user.email : "customer@shelbyhiver.com",
           items: orderItems,
           total: grand,
-          status: 'pending',
-          channel: 'WhatsApp Bag Checkout',
+          status: 'Pending Dispatch',
+          channel: 'Storefront WhatsApp Bag',
           createdAt: new Date().toISOString()
         });
       } catch (err) {
@@ -690,6 +779,33 @@
     function directWA(id) {
       const tee = TEES.find(t => t.id === id);
       const sz = selectedSizes[id] || tee.sizes[0];
+      const finalPrice = Math.round((tee ? tee.price : 699) * discount);
+
+      // Record to Admin real-time orders stream
+      try {
+        let user = null;
+        try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
+        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+        recordStorefrontOrder({
+          id: orderId,
+          customerName: user ? user.name : "Direct Patron",
+          customerPhone: user ? user.phone : "+91 9286511557",
+          customerEmail: user ? user.email : "patron@shelbyhiver.com",
+          items: [{
+            name: tee ? tee.name : 'Shelby Item',
+            size: sz,
+            qty: 1,
+            price: finalPrice
+          }],
+          total: finalPrice,
+          status: 'Pending Dispatch',
+          channel: 'Storefront Direct Buy',
+          createdAt: new Date().toISOString()
+        });
+      } catch (err) {
+        console.error("Order dispatch error:", err);
+      }
+
       const msg = `Hello Shelby Hiver! 👋\n\nI'd like to order:\n• ${tee.name}\n• Size: ${sz}\n• Fabric: ${tee.fabric}\n• Price: ₹${tee.price}\n\nPlease confirm availability and share payment details. Thank you!`;
       toast(`Opening WhatsApp for ${tee.name}...`);
       setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 300);

@@ -647,7 +647,110 @@ var discount=1.0,selectedSizes={};
 var catCurrentCat='all',catCurrentSort='featured',catSearchQuery='',catPriceMin=null,catPriceMax=null;
 var catActivePDP=null,catActivePDPSize=null,catActiveSizes=new Set();
 
-function loadProducts(){try{var r=localStorage.getItem(PRODUCTS_KEY);if(r){var p=JSON.parse(r);if(Array.isArray(p))return p;}}catch(e){}return[];}
+var SEED_PRODUCTS=[
+  {
+    id:"SH-DROP01-DRAGON",
+    sku:"SH-D01-DRG-01",
+    category:"tees",
+    name:"Dragon Archive Boxy Tee",
+    subtitle:"220 GSM Combed Cotton · Boxy Oversized",
+    price:699,
+    mrp:1199,
+    discountText:"42% OFF",
+    badge:"DROP 01 LIVE",
+    isLive:true,
+    rating:4.9,
+    reviewCount:164,
+    img:"drops/01.png",
+    altImg:"drops/04.png",
+    images:[
+      "drops/01.png",
+      "drops/04.png",
+      "drops/05.png",
+      "drops/02.png",
+      "drops/03.png"
+    ],
+    fabric:"220 GSM 100% Super-Combed Cotton",
+    fit:"Boxy Drop-Shoulder Oversized",
+    colors:[
+      {name:"Sand Beige",hex:"#d8c7b5"}
+    ],
+    sizes:["XS","S","M","L","XL","XXL"],
+    desc:"Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
+    specs:{
+      "Fabric Weight":"220 GSM Pure Combed Cotton",
+      "Silhouette":"Boxy Drop-Shoulder Oversized",
+      "Collar":"24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork":"Archival Ryu Dragon High-Density Print",
+      "Shrinkage":"Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch":"Dispatched within 24 hours"
+    }
+  },
+  {
+    id:"SH-DROP01-ENDURE",
+    sku:"SH-D01-GYM-02",
+    category:"tees",
+    name:"Winter Arc 'ENDURE' Heavy Gym Tee",
+    subtitle:"220 GSM Combed Cotton · Athletic Boxy Cut",
+    price:699,
+    mrp:1199,
+    discountText:"42% OFF",
+    badge:"DROP 01 LIVE",
+    isLive:true,
+    rating:4.9,
+    reviewCount:182,
+    img:"drops/winter-arc-01.png",
+    altImg:"drops/winter-arc-02.png",
+    images:[
+      "drops/winter-arc-01.png",
+      "drops/winter-arc-02.png",
+      "drops/winter-arc-03.png"
+    ],
+    fabric:"220 GSM 100% Super-Combed Cotton",
+    fit:"Athletic Boxy Drop-Shoulder",
+    colors:[
+      {name:"Obsidian Black",hex:"#0a0a0a"}
+    ],
+    sizes:["XS","S","M","L","XL","XXL"],
+    desc:"The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
+    specs:{
+      "Fabric Weight":"220 GSM Pure Combed Cotton",
+      "Silhouette":"Athletic Boxy Drop-Shoulder",
+      "Collar":"24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork":"Cracked Marble 'ENDURE' Screen Print",
+      "Shrinkage":"Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch":"Dispatched within 24 hours"
+    }
+  }
+];
+
+function loadProducts(){
+  try{
+    var r=localStorage.getItem(PRODUCTS_KEY);
+    if(r){
+      var p=JSON.parse(r);
+      if(Array.isArray(p)&&p.length>0){
+        var updated=false;
+        SEED_PRODUCTS.forEach(function(seed){
+          var existingIdx=p.findIndex(function(item){return item.id===seed.id;});
+          if(existingIdx===-1){
+            p.push(seed);
+            updated=true;
+          }else if(p[existingIdx].img!==seed.img){
+            p[existingIdx]=Object.assign({},p[existingIdx],seed);
+            updated=true;
+          }
+        });
+        if(updated){
+          localStorage.setItem(PRODUCTS_KEY,JSON.stringify(p));
+        }
+        return p;
+      }
+    }
+  }catch(e){}
+  try{localStorage.setItem(PRODUCTS_KEY,JSON.stringify(SEED_PRODUCTS));}catch(e){}
+  return [...SEED_PRODUCTS];
+}
 
 function initProducts(){
   PRODUCTS=loadProducts();
@@ -733,19 +836,18 @@ window.catRender=function(){
     var sz=selectedSizes[p.id]||(p.sizes&&p.sizes[0])||'M';
     var card=document.createElement('div');card.className='pc';card.setAttribute('data-product-id',p.id);
     card.onclick=function(e){if(!e.target.closest('button'))catOpenPdp(p.id);};
-    card.innerHTML='<div class="pc-media" onclick="catOpenPdp(\''+p.id+'\')">'
-      +'<img class="pri" src="'+primary+'" alt="'+p.name+'" loading="lazy">'
-      +'<img class="sec" src="'+secondary+'" alt="'+p.name+'" loading="lazy">'
-      +'<button class="wish-btn'+(isWish?' wishlisted':'')+'" onclick="catToggleWish(event,\''+p.id+'\')" aria-label="Wishlist">'+(isWish?'&#x2665;':'&#x2661;')+'</button>'
-      +'<span class="pc-rating-chip">&#x2605; '+(p.rating||'4.8')+' | '+(p.reviewCount||120)+'</span>'
-      +'<span class="pc-disc-tag'+(isLive?'':' coming-soon-tag')+'">'+discText+'</span>'
-      +'</div>'
-      +'<div class="pc-info"><div class="pc-brand-name">SHELBY HIVER</div>'
-      +'<h3 class="pc-name" onclick="catOpenPdp(\''+p.id+'\')" title="'+p.name+'">'+p.name+'</h3>'
-      +'<div class="pc-price-wrap">'+(isLive?'<span class="pc-price">&#x20B9; '+p.price.toLocaleString()+'</span><del class="pc-mrp">&#x20B9; '+(p.mrp||p.price).toLocaleString()+'</del><span class="pc-discount">'+discText+'</span>':'<span class="pc-price" style="color:var(--text-muted);font-size:12.5px;">PREVIEW</span>')+'</div>'
-      +'<div class="pc-size-pills" onclick="event.stopPropagation()">'+(p.sizes||['S','M','L','XL']).map(function(s){return'<button type="button" class="pc-size-pill'+(sz===s?' active':'')+(!isLive?' disabled':'')+'"'+(isLive?'':' disabled')+' onclick="catPickSz(\''+p.id+'\',\''+s+'\',this,event)">'+s+'</button>';}).join('')+'</div>'
-      +'<div class="pc-action-row" onclick="event.stopPropagation()">'+(isLive?'<button type="button" class="pc-btn-cart" onclick="catAddToCart(\''+p.id+'\',selectedSizes[\''+p.id+'\'])"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg><span>Add to Bag</span></button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')"><span>View</span></button>':'<button type="button" class="pc-btn-cart pc-btn-disabled" disabled><span>Coming Soon</span></button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')"><span>Preview</span></button>')+'</div>'
-      +'</div>';
+      card.innerHTML='<div class="pc-media" onclick="catOpenPdp(\''+p.id+'\')">'
+        +'<img class="pri" src="'+primary+'" alt="'+p.name+'" loading="lazy">'
+        +'<img class="sec" src="'+secondary+'" alt="'+p.name+'" loading="lazy">'
+        +'<button class="wish-btn'+(isWish?' wishlisted':'')+'" onclick="catToggleWish(event,\''+p.id+'\')" aria-label="Wishlist">'+(isWish?'&#x2665;':'&#x2661;')+'</button>'
+        +'<span class="pc-disc-tag'+(isLive?'':' coming-soon-tag')+'">'+discText+'</span>'
+        +'</div>'
+        +'<div class="pc-info"><div class="pc-brand-name">SHELBY HIVER</div>'
+        +'<h3 class="pc-name" onclick="catOpenPdp(\''+p.id+'\')" title="'+p.name+'">'+p.name+'</h3>'
+        +'<div class="pc-price-wrap">'+(isLive?'<span class="pc-price">&#x20B9; '+p.price.toLocaleString()+'</span><del class="pc-mrp">&#x20B9; '+(p.mrp||p.price).toLocaleString()+'</del><span class="pc-discount">'+discText+'</span>':'<span class="pc-price" style="color:var(--text-muted);font-size:12.5px;">PREVIEW</span>')+'</div>'
+        +'<div class="pc-size-pills" onclick="event.stopPropagation()">'+(p.sizes||['S','M','L','XL']).map(function(s){return'<button type="button" class="pc-size-pill'+(sz===s?' active':'')+(!isLive?' disabled':'')+'"'+(isLive?'':' disabled')+' onclick="catPickSz(\''+p.id+'\',\''+s+'\',this,event)">'+s+'</button>';}).join('')+'</div>'
+        +'<div class="pc-action-row" onclick="event.stopPropagation()">'+(isLive?'<button type="button" class="pc-btn-cart" onclick="catAddToCart(\''+p.id+'\',selectedSizes[\''+p.id+'\'])">Add to Bag</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">View</button>':'<button type="button" class="pc-btn-cart pc-btn-disabled" disabled>Coming Soon</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">Preview</button>')+'</div>'
+        +'</div>';
     grid.appendChild(card);
   });
 };
@@ -820,12 +922,87 @@ window.catUpdateQty=function(idx,d){CART[idx].qty+=d;if(CART[idx].qty<=0)CART.sp
 window.showCart=function(){var dr=document.getElementById('cartDrawer'),sc=document.getElementById('cartScrim');if(dr)dr.classList.add('open','on');if(sc)sc.classList.add('open','on');renderCartUI();};
 window.hideCart=function(){var dr=document.getElementById('cartDrawer'),sc=document.getElementById('cartScrim');if(dr)dr.classList.remove('open','on');if(sc)sc.classList.remove('open','on');};
 
+window.recordCatalogueOrder = function(order) {
+  try {
+    var orders = JSON.parse(localStorage.getItem('sh_orders_db') || '[]');
+    orders.unshift(order);
+    localStorage.setItem('sh_orders_db', JSON.stringify(orders));
+    window.dispatchEvent(new Event('storage'));
+  } catch(e) {
+    console.error("Order recording error:", e);
+  }
+};
+
 window.checkoutViaWhatsApp=function(){
   if(!CART.length){toast('Bag is empty!');return;}
   var lines='',grand=0;
-  CART.forEach(function(item){var tee=PRODUCTS.find(function(t){return t.id===item.id;});var lt=Math.round((tee?tee.price:699)*item.qty*discount);grand+=lt;lines+='\u2022 '+(tee?tee.name:item.id)+' | Size: '+item.size+' | Qty: '+item.qty+' | \u20B9'+lt+'\n';});
+  var orderItems = [];
+  CART.forEach(function(item){
+    var tee=PRODUCTS.find(function(t){return t.id===item.id;});
+    var lt=Math.round((tee?tee.price:699)*item.qty*discount);
+    grand+=lt;
+    var name = tee ? tee.name : item.id;
+    orderItems.push({
+      name: name,
+      size: item.size,
+      qty: item.qty,
+      price: lt
+    });
+    lines+='\u2022 '+name+' | Size: '+item.size+' | Qty: '+item.qty+' | \u20B9'+lt+'\n';
+  });
+
+  // Record to Admin live orders stream
+  try {
+    var user = null;
+    try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
+    var orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    recordCatalogueOrder({
+      id: orderId,
+      customerName: user ? user.name : "Customer",
+      customerPhone: user ? user.phone : "+91 9286511557",
+      customerEmail: user ? user.email : "customer@shelbyhiver.com",
+      items: orderItems,
+      total: grand,
+      status: 'Pending Dispatch',
+      channel: 'Catalogue WhatsApp Bag',
+      createdAt: new Date().toISOString()
+    });
+  } catch(err) {
+    console.error("Order dispatch error:", err);
+  }
+
   var msg='Hello Shelby Hiver! \uD83D\uDC4B\n\nI\'d like to place an order:\n\n'+lines+'\n\uD83D\uDCB0 TOTAL: \u20B9'+grand.toLocaleString()+'\n\nPlease share payment details and confirm delivery.\n\nName: \nAddress: \nPin Code: \nPhone: ';
   toast('Opening WhatsApp checkout...');setTimeout(function(){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');},400);
+};
+
+window.catRecordPdpOrder=function(id){
+  var p=PRODUCTS.find(function(item){return item.id===id;})||catActivePDP;
+  if(!p) return;
+  var sz=catActivePDPSize||(p.sizes&&p.sizes[0])||'M';
+  var finalPrice=Math.round(p.price*discount);
+  try {
+    var user = null;
+    try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
+    var orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    recordCatalogueOrder({
+      id: orderId,
+      customerName: user ? user.name : "VIP Customer",
+      customerPhone: user ? user.phone : "+91 9286511557",
+      customerEmail: user ? user.email : "patron@shelbyhiver.com",
+      items: [{
+        name: p.name,
+        size: sz,
+        qty: 1,
+        price: finalPrice
+      }],
+      total: finalPrice,
+      status: 'Pending Dispatch',
+      channel: 'Catalogue PDP Buy Now',
+      createdAt: new Date().toISOString()
+    });
+  } catch(err) {
+    console.error("Order dispatch error:", err);
+  }
 };
 
 window.catOpenPdp=function(id){
@@ -843,7 +1020,6 @@ window.catOpenPdp=function(id){
     +'</div>'
     +'<div class="cat-pdp-brand-label">SHELBY HIVER / '+(p.category||'tees').toUpperCase()+'</div>'
     +'<div class="cat-pdp-product-name">'+p.name+'</div>'
-    +'<div class="cat-pdp-rating-row"><span class="cat-pdp-rating-stars">\u2605\u2605\u2605\u2605\u2605</span><span>'+(p.rating||'4.8')+'</span><span>\u2022</span><span>'+(p.reviewCount||120)+' Reviews</span></div>'
     +(isLive?'<div class="cat-pdp-price-row"><span class="cat-pdp-price">\u20B9 '+finalPrice.toLocaleString()+'</span><span class="cat-pdp-mrp">\u20B9 '+(p.mrp||p.price).toLocaleString()+'</span><span class="cat-pdp-discount-tag">'+discText+'</span></div><div style="font-size:11.5px;color:var(--text-muted);margin-bottom:12px;">Inclusive of all taxes \u00B7 Free express delivery</div>'
     :'<div class="cat-pdp-price-row"><span class="cat-pdp-price" style="font-size:16px;color:var(--text-muted);">PREVIEW ARCHIVE \u2014 Coming Soon</span></div>')
     +'<div class="cat-pdp-divider"></div>'
@@ -855,7 +1031,7 @@ window.catOpenPdp=function(id){
     +(isLive?'<div class="cat-pdp-urgency">\u26A1 Only '+Math.floor(2+(p.name.length%5))+' left in Size '+catActivePDPSize+' \u2014 Order now!</div>':'')
     +(isLive?'<div class="cat-pdp-cta-row">'
       +'<button type="button" class="cat-pdp-btn-cart" onclick="catAddToCart(\''+p.id+'\',catActivePDPSize)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>Add to Bag</button>'
-      +'<a class="cat-pdp-btn-wa" href="https://wa.me/'+WA+'?text='+encodeURIComponent(waMsg)+'" target="_blank"><svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Buy Now</a>'
+      +'<a class="cat-pdp-btn-wa" href="https://wa.me/'+WA+'?text='+encodeURIComponent(waMsg)+'" target="_blank" onclick="catRecordPdpOrder(\''+p.id+'\')"><svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Buy Now</a>'
       +'</div>'
     :'<div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:6px;padding:14px;text-align:center;margin-bottom:16px;"><div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Coming Soon</div><div style="font-size:12px;color:var(--text-muted);">Get notified when this drops via WhatsApp.</div></div>')
     +'<div class="cat-pdp-divider"></div>'

@@ -1354,14 +1354,24 @@ html[data-theme="dark"] .theme-icon-moon {
     height: 24px;
     font-size: 9.5px;
   }
+  .pc-action-row {
+    gap: 6px;
+    margin-top: 8px;
+  }
   .pc-btn-cart {
     font-size: 10px;
-    padding: 8px 6px;
-    letter-spacing: 0.03em;
+    padding: 7px 8px;
+    height: 32px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
   }
   .pc-btn-view {
-    padding: 8px 10px;
+    padding: 7px 10px;
     font-size: 10px;
+    height: 32px;
+    white-space: nowrap;
   }
 }
 
@@ -1397,6 +1407,7 @@ html[data-theme="dark"] .theme-icon-moon {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
 }
 
@@ -1444,22 +1455,9 @@ html[data-theme="dark"] .theme-icon-moon {
   color: var(--accent-coral);
 }
 
-/* Rating Chip (Bottom Left of Image) */
+/* Rating Chip (Hidden per design) */
 .pc-rating-chip {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  background: rgba(255, 255, 255, 0.92);
-  color: #282c3f;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 7px;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  display: none !important;
 }
 
 /* Discount Badge */
@@ -1580,15 +1578,21 @@ html[data-theme="dark"] .theme-icon-moon {
   font-family: var(--f-display);
   font-size: 11.5px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 9px 12px;
+  padding: 8px 12px;
+  height: 34px;
+  box-sizing: border-box;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  white-space: nowrap;
   transition: all 0.2s var(--ease);
+}
+
+.pc-btn-cart span {
+  white-space: nowrap;
 }
 
 .pc-btn-cart:hover {
