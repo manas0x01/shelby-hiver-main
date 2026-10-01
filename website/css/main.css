@@ -2603,3 +2603,98 @@ html[data-theme="dark"] .theme-icon-moon {
   .sz-measure-grid{grid-template-columns:1fr;}
   .sz-modal-title{font-size:18px;}
 }
+
+/* ——— COMPARISON TABLE: MOBILE RESPONSIVE ——— */
+@media (max-width: 680px) {
+  .matrix-table-card {
+    overflow-x: visible;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+  }
+  .matrix-table,
+  .matrix-table thead,
+  .matrix-table tbody,
+  .matrix-table th,
+  .matrix-table td,
+  .matrix-table tr {
+    display: block;
+  }
+  .matrix-table {
+    min-width: 0;
+    width: 100%;
+  }
+  /* Hide desktop column headers */
+  .matrix-table thead tr {
+    display: none;
+  }
+  /* Each row becomes a card */
+  .matrix-table tbody tr {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 14px;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /* Attribute label — first td is the card header */
+  .matrix-table tbody td:first-child {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 16px;
+    font-family: var(--f-display);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .matrix-table tbody td:nth-child(2),
+  .matrix-table tbody td:nth-child(3) {
+    padding: 10px 16px;
+    font-size: 12.5px;
+    border-bottom: none;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /* Inject brand labels above each value */
+  .matrix-table tbody td:nth-child(2)::before {
+    content: "Fast Fashion";
+    display: block;
+    font-family: var(--f-display);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #ef4444;
+    margin-bottom: 4px;
+  }
+  .matrix-table tbody td:nth-child(3)::before {
+    content: "Shelby Hiver";
+    display: block;
+    font-family: var(--f-display);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #10b981;
+    margin-bottom: 4px;
+  }
+  .matrix-table tbody td:nth-child(2) {
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    border-left: 3px solid #ef4444;
+  }
+  .matrix-table tbody td.highlight {
+    background: var(--bg-secondary);
+    border-left: 3px solid #10b981;
+  }
+  .matrix-table tr:last-child td {
+    border-bottom: none;
+  }
+}
+
