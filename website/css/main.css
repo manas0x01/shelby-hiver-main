@@ -798,7 +798,7 @@ html[data-theme="dark"] .theme-icon-moon {
   align-items: center;
   gap: 36px;
   background: var(--bg-primary);
-  border-radius: 12px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   padding: 44px;
   box-shadow: none;
@@ -928,13 +928,14 @@ html[data-theme="dark"] .theme-icon-moon {
   align-items: center;
   padding: 5px;
   box-sizing: border-box;
+  border-radius: 0 !important;
 }
 
 .hero-visual-img {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 0 !important;
   display: block;
 }
 
@@ -976,6 +977,7 @@ html[data-theme="dark"] .theme-icon-moon {
     position: relative;
     padding: 5px;
     box-sizing: border-box;
+    border-radius: 0 !important;
   }
   .hero-visual-img {
     width: 100%;
@@ -983,7 +985,7 @@ html[data-theme="dark"] .theme-icon-moon {
     max-height: 70vh !important;
     object-fit: cover !important;
     object-position: center 15% !important;
-    border-radius: 6px !important;
+    border-radius: 0 !important;
     display: block;
   }
   .hero-banner-content {
@@ -2126,4 +2128,240 @@ html[data-theme="dark"] .theme-icon-moon {
 @keyframes plAnim {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
+}
+
+/* ——— ATELIER METRICS STRIP ——— */
+.atelier-metrics-strip {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 18px 0;
+}
+.atelier-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.am-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+}
+.am-num {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.am-text strong {
+  display: block;
+  font-family: var(--f-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+}
+.am-text span {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+@media (max-width: 992px) {
+  .atelier-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+@media (max-width: 560px) {
+  .atelier-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* ——— FABRIC COMPARISON MATRIX ——— */
+.fabric-matrix-sec {
+  padding: 70px 0;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+.matrix-table-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 580px;
+}
+.matrix-table th, .matrix-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+.matrix-table th {
+  font-family: var(--f-display);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+.matrix-table th.highlight, .matrix-table td.highlight {
+  background: rgba(255, 63, 108, 0.04);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.matrix-table td {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.matrix-table tr:last-child td {
+  border-bottom: none;
+}
+.matrix-check {
+  color: #10b981;
+  font-weight: 800;
+  margin-right: 6px;
+}
+.matrix-cross {
+  color: #ef4444;
+  font-weight: 800;
+  margin-right: 6px;
+}
+
+/* ——— FAQ ACCORDION ——— */
+.faq-sec {
+  padding: 70px 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+.faq-accordion-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item[open] {
+  border-color: var(--border-strong);
+}
+.faq-summary {
+  padding: 18px 22px;
+  font-family: var(--f-display);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  user-select: none;
+}
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+.faq-icon {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-muted);
+  transition: transform 0.25s var(--ease);
+}
+.faq-item[open] .faq-icon {
+  transform: rotate(45deg);
+}
+.faq-answer {
+  padding: 0 22px 20px;
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ——— ATELIER CONCIERGE CALLOUT ——— */
+.concierge-banner-sec {
+  padding: 56px 0;
+  background: var(--brand);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.concierge-banner-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.concierge-banner-info h3 {
+  font-family: var(--f-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+.concierge-banner-info p {
+  font-size: 14px;
+  color: #c2c2ca;
+  max-width: 580px;
+  line-height: 1.5;
+}
+.concierge-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn-concierge-white {
+  background: #ffffff;
+  color: #111111;
+  font-family: var(--f-display);
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-concierge-white:hover {
+  background: #f0f0f4;
+  transform: translateY(-1px);
+}
+.btn-concierge-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-family: var(--f-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.btn-concierge-outline:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
