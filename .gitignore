@@ -3,5 +3,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
-shelbyhiver/
 *.bak
+react-app/node_modules/
+react-app/.expo/
+react-app/dist/
+react-app/web-build/
