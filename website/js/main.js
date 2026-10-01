@@ -776,58 +776,63 @@
 
     /* ——— RENDER CART ——— */
     function renderCart() {
-      const container = document.getElementById("cartItems");
-      const count = CART.reduce((s, i) => s + i.qty, 0);
-      document.getElementById("bagCount").textContent = count;
-      document.getElementById("cartHeaderCount").textContent = count;
+      const container = document.getElementById("cartItemsList") || document.getElementById("cartItems");
+      const count = CART.reduce((s, i) => s + (i.qty || 1), 0);
+      const bagCountEl = document.getElementById("bagCount");
+      if (bagCountEl) bagCountEl.textContent = count;
+      const cartHeaderCountEl = document.getElementById("cartHeaderCount");
+      if (cartHeaderCountEl) cartHeaderCountEl.textContent = count;
+
+      if (!container) return;
 
       if (!CART.length) {
-        container.innerHTML = `<div style="text-align:center;padding:50px 0;color:var(--muted);font-family:var(--f-mono);"><p style="margin-bottom:14px;">YOUR BAG IS EMPTY</p><button class="btn" style="font-size:9.5px;padding:9px 18px;" onclick="hideCart()">Browse T-Shirts →</button></div>`;
-        document.getElementById("cartSubtotal").textContent = "₹ 0";
-        document.getElementById("meterFill").style.width = "0%";
-        document.getElementById("shipTxt").textContent = "Add items to unlock WhatsApp dispatch.";
+        container.innerHTML = `
+          <div style="text-align:center;padding:50px 20px;color:var(--text-muted);">
+            <div style="font-size:36px;margin-bottom:12px;">🛍️</div>
+            <p style="font-family:var(--f-display);font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Your Bag is Empty</p>
+            <p style="font-size:12px;margin-bottom:18px;">Add items to start shopping</p>
+            <button type="button" class="btn-primary-action" style="font-size:11.5px;padding:10px 20px;" onclick="hideCart()">Browse Collection →</button>
+          </div>
+        `;
+        const subtotalEl = document.getElementById("cartTotalVal") || document.getElementById("cartSubtotal");
+        if (subtotalEl) subtotalEl.textContent = "₹ 0";
         return;
       }
 
       let total = 0;
       container.innerHTML = "";
       CART.forEach((item, idx) => {
-        const tee = TEES.find(t => t.id === item.id);
+        const tee = TEES.find(t => t.id === item.id) || { name: item.id, price: 599, img: 'assets/model-tee.jpg' };
         const lineTotal = Math.round(tee.price * item.qty * discount);
         total += lineTotal;
         const row = document.createElement("div");
-        row.className = "ci";
+        row.className = "cart-item";
         row.innerHTML = `
-      <div class="ci-thumb"><img src="${tee.img}" alt="${tee.name}"></div>
-      <div class="ci-det">
-        <div class="ci-name">${tee.name}</div>
-        <div class="ci-var">Size: ${item.size} · 220 GSM Cotton</div>
-        <div class="ci-row">
-          <div class="qty-ctrl">
-            <button class="q-btn" onclick="updateQty(${idx},-1)">−</button>
-            <span class="q-val">${item.qty}</span>
-            <button class="q-btn" onclick="updateQty(${idx},1)">+</button>
+          <img class="cart-item-img" src="${tee.img}" alt="${tee.name}">
+          <div class="cart-item-details">
+            <div class="cart-item-title">${tee.name}</div>
+            <div class="cart-item-size">Size: ${item.size}</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px;">
+              <div style="display:flex;align-items:center;gap:6px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:4px;padding:2px 8px;">
+                <button type="button" style="font-size:13px;font-weight:700;padding:2px 4px;color:var(--text-primary);" onclick="updateQty(${idx},-1)">−</button>
+                <span style="font-size:12px;font-weight:700;min-width:14px;text-align:center;color:var(--text-primary);">${item.qty}</span>
+                <button type="button" style="font-size:13px;font-weight:700;padding:2px 4px;color:var(--text-primary);" onclick="updateQty(${idx},1)">+</button>
+              </div>
+              <span class="cart-item-price">₹ ${lineTotal.toLocaleString()}</span>
+            </div>
           </div>
-          <span class="ci-price">₹ ${lineTotal.toLocaleString()}</span>
-        </div>
-      </div>`;
+          <button type="button" style="color:var(--text-muted);font-size:16px;padding:4px;align-self:flex-start;cursor:pointer;" onclick="updateQty(${idx}, -${item.qty})" title="Remove item">✕</button>
+        `;
         container.appendChild(row);
       });
 
-      document.getElementById("cartSubtotal").textContent = `₹ ${total.toLocaleString()}`;
-
-      // Shipping meter — threshold ₹1,999
-      const pct = Math.min(100, Math.round((total / 1999) * 100));
-      document.getElementById("meterFill").style.width = pct + "%";
-      const shipTxt = document.getElementById("shipTxt");
-      shipTxt.innerHTML = total >= 1999
-        ? `✓ <b>Priority WhatsApp dispatch unlocked!</b>`
-        : `Add <b>₹${(1999 - total).toLocaleString()}</b> more for priority dispatch!`;
+      const subtotalEl = document.getElementById("cartTotalVal") || document.getElementById("cartSubtotal");
+      if (subtotalEl) subtotalEl.textContent = `₹ ${total.toLocaleString()}`;
     }
 
     /* ——— WHATSAPP CHECKOUT ——— */
     function checkoutWA() {
-      if (!CART.length) { toast("Bag is empty — add a T-shirt first!"); return; }
+      if (!CART.length) { toast("Bag is empty — add an item first!"); return; }
       let lines = "", grand = 0;
       const orderItems = [];
       CART.forEach(item => {
@@ -852,9 +857,9 @@
         const orderId = 'SH-' + Math.floor(1000 + Math.random() * 9000);
         recordStorefrontOrder({
           id: orderId,
-          customerName: user ? user.name : "VIP Customer",
+          customerName: user ? user.name : "Customer",
           customerPhone: user ? user.phone : "+91 9286511557",
-          customerEmail: user ? user.email : "patron@shelbyhiver.com",
+          customerEmail: user ? user.email : "customer@shelbyhiver.com",
           items: orderItems,
           total: grand,
           status: 'pending',
@@ -865,10 +870,11 @@
         console.error("Order dispatch error:", err);
       }
 
-      const msg = `Hello Shelby Hiver Atelier! 👋\n\nI'd like to place an order:\n\n${lines}\n💰 TOTAL: ₹${grand.toLocaleString()}\n\nPlease share payment details (UPI/QR/Bank) and confirm dispatch timeline.\n\nMy delivery details:\nName: \nAddress: \nPin Code: \nPhone: `;
+      const msg = `Hello Shelby Hiver! 👋\n\nI'd like to place an order:\n\n${lines}\n💰 TOTAL: ₹${grand.toLocaleString()}\n\nPlease share payment details (UPI/QR/Bank) and confirm delivery.\n\nMy delivery address:\nName: \nAddress: \nPin Code: \nPhone: `;
       toast("Opening WhatsApp checkout...");
       setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 400);
     }
+    window.checkoutViaWhatsApp = checkoutWA;
 
     /* ——— DIRECT BUY ——— */
     function directWA(id) {
