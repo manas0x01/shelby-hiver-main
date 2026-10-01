@@ -415,28 +415,6 @@
   <!-- Modular Scripts -->
   <script src="js/main.js"></script>
   <script src="js/auth.js"></script>
-
-  <script>
-    // Mobile navigation drawer toggle helper
-    const openMobBtn = document.getElementById("openMob");
-    const closeMobBtn = document.getElementById("closeMob");
-    const mobScrim = document.getElementById("mobileDrawerScrim");
-
-    function openMobileNav() {
-      if (mobScrim) mobScrim.classList.add("open");
-    }
-    function closeMobileNav() {
-      if (mobScrim) mobScrim.classList.remove("open");
-    }
-
-    if (openMobBtn) openMobBtn.addEventListener("click", openMobileNav);
-    if (closeMobBtn) closeMobBtn.addEventListener("click", closeMobileNav);
-    if (mobScrim) {
-      mobScrim.addEventListener("click", (e) => {
-        if (e.target === mobScrim) closeMobileNav();
-      });
-    }
-  </script>
 </body>
 
 </html>

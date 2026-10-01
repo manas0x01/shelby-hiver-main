@@ -889,42 +889,62 @@
 
     /* ——— CART UI ——— */
     function showCart() {
-      document.getElementById("cartDrawer").classList.add("on");
-      document.getElementById("cartScrim").classList.add("on");
+      const drawer = document.getElementById("cartDrawer");
+      const scrim = document.getElementById("cartScrim");
+      if (drawer) drawer.classList.add("open", "on");
+      if (scrim) scrim.classList.add("open", "on");
+      renderCart();
     }
     function hideCart() {
-      document.getElementById("cartDrawer").classList.remove("on");
-      document.getElementById("cartScrim").classList.remove("on");
+      const drawer = document.getElementById("cartDrawer");
+      const scrim = document.getElementById("cartScrim");
+      if (drawer) drawer.classList.remove("open", "on");
+      if (scrim) scrim.classList.remove("open", "on");
     }
-    document.getElementById("openCart").addEventListener("click", showCart);
-    document.getElementById("closeCart").addEventListener("click", hideCart);
-    document.getElementById("cartScrim").addEventListener("click", hideCart);
+    const openCartEl = document.getElementById("openCart");
+    if (openCartEl) openCartEl.addEventListener("click", showCart);
+    const closeCartEl = document.getElementById("closeCart");
+    if (closeCartEl) closeCartEl.addEventListener("click", hideCart);
+    const cartScrimEl = document.getElementById("cartScrim");
+    if (cartScrimEl) cartScrimEl.addEventListener("click", hideCart);
 
     /* ——— SEARCH ——— */
     const searchModal = document.getElementById("searchModal");
-    document.getElementById("openSearch").addEventListener("click", () => {
-      searchModal.classList.add("on");
-      setTimeout(() => document.getElementById("searchField").focus(), 200);
-    });
-    document.getElementById("closeSearch").addEventListener("click", () => searchModal.classList.remove("on"));
-    function doSearch(q) { document.getElementById("searchField").value = q; liveSearch(q); }
+    const openSearchEl = document.getElementById("openSearch");
+    if (openSearchEl && searchModal) {
+      openSearchEl.addEventListener("click", () => {
+        searchModal.classList.add("on");
+        const sf = document.getElementById("searchField");
+        if (sf) setTimeout(() => sf.focus(), 200);
+      });
+    }
+    const closeSearchEl = document.getElementById("closeSearch");
+    if (closeSearchEl && searchModal) {
+      closeSearchEl.addEventListener("click", () => searchModal.classList.remove("on"));
+    }
+    function doSearch(q) {
+      const sf = document.getElementById("searchField");
+      if (sf) sf.value = q;
+      liveSearch(q);
+    }
     function liveSearch(q) {
       const area = document.getElementById("searchResults");
+      if (!area) return;
       q = q.toLowerCase().trim();
       if (!q) { area.innerHTML = ""; return; }
       const hits = TEES.filter(t => t.name.toLowerCase().includes(q) || t.fabric.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
-      if (!hits.length) { area.innerHTML = `<p style="color:var(--muted);font-family:var(--f-mono);">No results for "${q}".</p>`; return; }
-      area.innerHTML = `<h6 style="font-family:var(--f-mono);font-size:9.5px;color:var(--muted);margin-bottom:14px;">RESULTS (${hits.length})</h6>
+      if (!hits.length) { area.innerHTML = `<p style="color:var(--text-muted);font-family:var(--f-mono);">No results for "${q}".</p>`; return; }
+      area.innerHTML = `<h6 style="font-family:var(--f-mono);font-size:9.5px;color:var(--text-muted);margin-bottom:14px;">RESULTS (${hits.length})</h6>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
-      ${hits.map(t => `<div style="background:#141414;padding:12px;border:1px solid #222;cursor:pointer;" onclick="searchModal.classList.remove('on');addToCart('${t.id}','${t.sizes[0]}')">
+      ${hits.map(t => `<div style="background:var(--bg-secondary);padding:12px;border:1px solid var(--border-color);cursor:pointer;" onclick="if(searchModal)searchModal.classList.remove('on');addToCart('${t.id}','${t.sizes[0]}')">
         <img src="${t.img}" style="aspect-ratio:3/4;object-fit:cover;margin-bottom:8px;">
         <div style="font-family:var(--f-display);font-size:12px;font-weight:700;">${t.name}</div>
-        <div style="font-family:var(--f-mono);font-size:11px;color:#aaa;margin-top:3px;">₹ ${t.price}</div>
+        <div style="font-family:var(--f-mono);font-size:11px;color:var(--text-muted);margin-top:3px;">₹ ${t.price}</div>
       </div>`).join('')}
     </div>`;
     }
 
-    /* ——— VIP PASS GENERATOR ——— */
+    /* ——— VIP PASS GENERATOR (SAFE NO-OP IF ABSENT) ——— */
     function updateVIPCardLive(val) {
       const holder = document.getElementById("vipHolder");
       if (holder) {
@@ -940,19 +960,18 @@
       setTimeout(() => {
         card.style.transform = "";
       }, 650);
-      toast("VIP Cryptographic Allocation: Verified ✓");
     }
 
     function generatePass(e) {
-      e.preventDefault();
-      const name = document.getElementById("vipName").value.trim().toUpperCase();
-      document.getElementById("vipHolder").textContent = name;
-      document.getElementById("vipSerial").textContent = "SH-2026 — " + Math.floor(1000 + Math.random() * 9000) + " — VIP";
+      if (e) e.preventDefault();
+      const input = document.getElementById("vipName");
+      const name = input ? input.value.trim().toUpperCase() : "MEMBER";
+      const holder = document.getElementById("vipHolder");
+      if (holder) holder.textContent = name;
       flipVIPCard();
-      toast(`VIP Pass generated for ${name}! Allocation reserved.`);
     }
 
-    /* ——— COUNTDOWN (Drop 001 in 10 days) ——— */
+    /* ——— COUNTDOWN (IF PRESENT) ——— */
     const dropDate = new Date();
     dropDate.setDate(dropDate.getDate() + 10);
     dropDate.setHours(dropDate.getHours() + 12, 0, 0, 0);
@@ -967,7 +986,11 @@
       if (elM) elM.textContent = String(Math.floor(d % 3600000 / 60000)).padStart(2, "0");
       if (elS) elS.textContent = String(Math.floor(d % 60000 / 1000)).padStart(2, "0");
     }
-    tick(); setInterval(tick, 1000);
+    if (document.getElementById("countdown") || document.getElementById("cdD")) {
+      tick();
+      setInterval(tick, 1000);
+    }
+
     /* ——— SCROLL REVEAL ——— */
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
@@ -976,49 +999,61 @@
 
     /* ——— HEADER SCROLL ——— */
     const hdr = document.getElementById("siteHeader");
-    window.addEventListener("scroll", () => hdr.classList.toggle("scrolled", scrollY > 28), { passive: true });
+    if (hdr) {
+      window.addEventListener("scroll", () => hdr.classList.toggle("scrolled", window.scrollY > 28), { passive: true });
+    }
 
     /* ——— MOBILE NAV ——— */
-    const mob = document.getElementById("mobile-nav");
+    const mob = document.getElementById("mobile-nav") || document.getElementById("mobileDrawerScrim");
     const openMobBtn = document.getElementById("openMob");
     const closeMobBtn = document.getElementById("closeMob");
 
-    function openMobileNav() { mob.classList.add("open"); document.body.style.overflow = "hidden"; }
-    function closeMobileNav() { mob.classList.remove("open"); document.body.style.overflow = ""; }
+    function openMobileNav() {
+      if (mob) { mob.classList.add("open"); document.body.style.overflow = "hidden"; }
+    }
+    function closeMobileNav() {
+      if (mob) { mob.classList.remove("open"); document.body.style.overflow = ""; }
+    }
 
-    openMobBtn.addEventListener("click", openMobileNav);
-    closeMobBtn.addEventListener("click", closeMobileNav);
+    if (openMobBtn) openMobBtn.addEventListener("click", openMobileNav);
+    if (closeMobBtn) closeMobBtn.addEventListener("click", closeMobileNav);
 
-    // tap outside nav content to close
-    mob.addEventListener("click", function (e) {
-      if (e.target === mob) closeMobileNav();
-    });
+    if (mob) {
+      mob.addEventListener("click", function (e) {
+        if (e.target === mob) closeMobileNav();
+      });
+    }
 
     /* ——— CUSTOM CURSOR ——— */
     if (matchMedia("(min-width:1025px)").matches) {
       const cr = document.getElementById("cr"), crd = document.getElementById("crd");
-      window.addEventListener("mousemove", e => {
-        cr.style.left = e.clientX + "px"; cr.style.top = e.clientY + "px";
-        crd.style.left = e.clientX + "px"; crd.style.top = e.clientY + "px";
-        cr.classList.add("vis");
-      });
-      document.querySelectorAll("a,button,.pc,.lk,.cs-card,.ed-card,.hero-visual").forEach(el => {
-        el.addEventListener("mouseenter", () => cr.classList.add("big"));
-        el.addEventListener("mouseleave", () => cr.classList.remove("big"));
-      });
+      if (cr && crd) {
+        window.addEventListener("mousemove", e => {
+          cr.style.left = e.clientX + "px"; cr.style.top = e.clientY + "px";
+          crd.style.left = e.clientX + "px"; crd.style.top = e.clientY + "px";
+          cr.classList.add("vis");
+        });
+        document.querySelectorAll("a,button,.pc,.lk,.cs-card,.ed-card,.hero-visual").forEach(el => {
+          el.addEventListener("mouseenter", () => cr.classList.add("big"));
+          el.addEventListener("mouseleave", () => cr.classList.remove("big"));
+        });
+      }
     }
 
     /* ——— NEWSLETTER ——— */
     function handleNewsletter(e) {
       e.preventDefault();
       const el = e.target.querySelector("input[type=email]");
-      toast(`Drop alerts activated for ${el.value}`);
-      el.value = "";
+      if (el) {
+        toast(`Updates activated for ${el.value}`);
+        el.value = "";
+      }
     }
 
     /* ——— TOAST ——— */
     function toast(msg) {
       const tc = document.getElementById("toasts");
+      if (!tc) return;
       const t = document.createElement("div");
       t.className = "toast"; t.textContent = msg;
       tc.appendChild(t);
@@ -1026,16 +1061,19 @@
     }
 
     /* ——— PRELOADER ——— */
-    window.addEventListener("load", () => setTimeout(() => document.getElementById("preloader").classList.add("done"), 800));
+    window.addEventListener("load", () => {
+      const pl = document.getElementById("preloader");
+      if (pl) setTimeout(() => pl.classList.add("done"), 600);
+    });
 
     /* ——— ESC ——— */
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") {
-        closeProduct();
-        closeSizeChart();
+        if (typeof closeProduct === 'function') closeProduct();
+        if (typeof closeSizeChart === 'function') closeSizeChart();
         hideCart();
-        searchModal.classList.remove("on");
-        mob.classList.remove("open");
+        if (searchModal) searchModal.classList.remove("on");
+        closeMobileNav();
       }
     });
 
