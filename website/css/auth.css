@@ -1,0 +1,432 @@
+/* ============================================================
+   SHELBY HIVER — CUSTOMER AUTHENTICATION & PROFILE CSS
+   Clean, modern, Myntra-inspired customer auth styling
+   No green color · Normal customer accounts
+   ============================================================ */
+
+:root {
+  --auth-coral: #ff3f6c;
+  --auth-coral-hover: #e72e5b;
+  --auth-black: #111111;
+  --auth-black-hover: #222222;
+  --auth-bg: #ffffff;
+  --auth-card: #ffffff;
+  --auth-input-bg: #f5f5f6;
+  --auth-border: #eaeaec;
+  --auth-text: #282c3f;
+  --auth-muted: #94969f;
+  --auth-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ——— NAVBAR USER AUTH WIDGET ——— */
+.user-auth-widget {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Logged In Pill / Profile Action */
+.user-profile-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.user-profile-pill:hover {
+  color: var(--auth-coral);
+}
+
+.user-avatar-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--auth-black);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--f-display);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.user-pill-name {
+  font-size: 10.5px;
+  font-weight: 700;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* Logged Out "Profile" Button */
+.user-signin-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 4px 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+
+.user-signin-btn:hover {
+  color: var(--auth-coral);
+}
+
+.user-signin-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.user-signin-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* Dropdown Menu (Myntra-style hover/click profile menu) */
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 260px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  padding: 16px;
+  display: none;
+  flex-direction: column;
+  z-index: 200;
+  animation: dropMenuIn 0.2s var(--ease);
+}
+
+.user-dropdown-menu.open {
+  display: flex;
+}
+
+@keyframes dropMenuIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.udm-header {
+  padding-bottom: 12px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.udm-welcome {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.udm-name {
+  font-family: var(--f-display);
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.udm-email {
+  font-size: 12px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.udm-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: all 0.15s var(--ease);
+}
+
+.udm-item:hover {
+  background: var(--bg-secondary);
+  color: var(--auth-coral);
+}
+
+.udm-item.logout {
+  color: #e63946;
+  border-top: 1px solid var(--border-light);
+  margin-top: 6px;
+  padding-top: 12px;
+}
+
+.udm-item.logout:hover {
+  background: rgba(230, 57, 70, 0.08);
+}
+
+/* ——— STANDALONE LOGIN / REGISTER PAGES ——— */
+.auth-page-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8fa;
+  color: #282c3f;
+  font-family: var(--f-body);
+}
+
+.auth-page-nav {
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #eaeaec;
+}
+
+.auth-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #282c3f;
+}
+
+.auth-nav-brand img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.auth-nav-brand strong {
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.auth-nav-back {
+  font-family: var(--f-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #282c3f;
+  text-decoration: none;
+  padding: 7px 16px;
+  border: 1px solid #d4d5d9;
+  border-radius: 999px;
+  transition: all 0.2s var(--ease);
+}
+
+.auth-nav-back:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* Auth Center Container */
+.auth-main-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.auth-card-shell {
+  width: 100%;
+  max-width: 460px;
+  background: #ffffff;
+  border: 1px solid #eaeaec;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  padding: 36px 32px;
+}
+
+.auth-tabs-toggle {
+  display: flex;
+  border-bottom: 2px solid #f0f0f2;
+  margin-bottom: 24px;
+}
+
+.auth-tab-link {
+  flex: 1;
+  text-align: center;
+  font-family: var(--f-display);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px 0;
+  color: #94969f;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s var(--ease);
+}
+
+.auth-tab-link.active {
+  color: #282c3f;
+}
+
+.auth-tab-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--auth-coral);
+}
+
+.auth-heading-row {
+  margin-bottom: 20px;
+}
+
+.auth-form-heading {
+  font-family: var(--f-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: #282c3f;
+  margin-bottom: 4px;
+}
+
+.auth-form-sub {
+  font-size: 13px;
+  color: #686b78;
+}
+
+/* Error Banner */
+.auth-error-banner {
+  display: none;
+  background: #fff0f2;
+  border: 1px solid #ffccd4;
+  color: #e63946;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Form Fields */
+.auth-field-block {
+  margin-bottom: 18px;
+}
+
+.auth-field-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #282c3f;
+  margin-bottom: 6px;
+}
+
+.auth-input-wrap {
+  display: flex;
+  align-items: center;
+  background: #f5f5f6;
+  border: 1px solid #eaeaec;
+  border-radius: 6px;
+  padding: 0 14px;
+  transition: border-color 0.2s var(--ease), background 0.2s;
+}
+
+.auth-input-wrap:focus-within {
+  background: #ffffff;
+  border-color: #282c3f;
+}
+
+.auth-input-icon {
+  font-size: 14px;
+  color: #94969f;
+  margin-right: 10px;
+}
+
+.auth-input-wrap input {
+  width: 100%;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--f-body);
+  font-size: 13.5px;
+  color: #282c3f;
+}
+
+.auth-toggle-pwd {
+  font-size: 14px;
+  color: #94969f;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* Action Button */
+.auth-action-btn {
+  width: 100%;
+  background: var(--auth-coral);
+  color: #ffffff;
+  font-family: var(--f-display);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.auth-action-btn:hover {
+  background: var(--auth-coral-hover);
+  transform: translateY(-1px);
+}
+
+/* Demo Button */
+.auth-demo-btn {
+  width: 100%;
+  background: #111111;
+  color: #ffffff;
+  font-family: var(--f-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+
+.auth-demo-btn:hover {
+  background: #2a2a2a;
+}
+
+.auth-switch-footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12.5px;
+  color: #686b78;
+}
+
+.auth-switch-footer a {
+  color: var(--auth-coral);
+  font-weight: 700;
+}

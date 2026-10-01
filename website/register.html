@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <title>Sign Up | SHELBY HIVER</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page-wrap">
+    <!-- Top Navigation -->
+    <header class="auth-page-nav">
+      <a href="index.html" class="auth-nav-brand">
+        <img src="assets/logo.png" alt="Shelby Hiver">
+        <div>
+          <strong>Shelby Hiver</strong>
+        </div>
+      </a>
+      <a href="index.html" class="auth-nav-back">← Back to Store</a>
+    </header>
+
+    <!-- Main Container -->
+    <main class="auth-main-container">
+      <div class="auth-card-shell">
+        
+        <div class="auth-tabs-toggle">
+          <a href="login.html" class="auth-tab-link">Login</a>
+          <a href="register.html" class="auth-tab-link active">Sign Up</a>
+        </div>
+
+        <div class="auth-heading-row">
+          <h2 class="auth-form-heading">Create Account</h2>
+          <p class="auth-form-sub">Sign up to track orders, save wishlist items, and get drop alerts.</p>
+        </div>
+
+        <div class="auth-error-banner" id="authErrorBanner"></div>
+
+        <form id="registerForm" onsubmit="handleRegisterPageSubmit(event)">
+          <div class="auth-field-block">
+            <label class="auth-field-label" for="regName">Full Name</label>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">👤</span>
+              <input type="text" id="regName" placeholder="e.g. Manas Verma" required autocomplete="name" autofocus>
+            </div>
+          </div>
+
+          <div class="auth-field-block">
+            <label class="auth-field-label" for="regEmail">Email Address</label>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">✉</span>
+              <input type="email" id="regEmail" placeholder="name@domain.com" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="auth-field-block">
+            <label class="auth-field-label" for="regPhone">Mobile Number (10 digits)</label>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">📱</span>
+              <input type="tel" id="regPhone" placeholder="e.g. 9286511557" maxlength="10" required autocomplete="tel">
+            </div>
+          </div>
+
+          <div class="auth-field-block">
+            <label class="auth-field-label" for="regPassword">Password (min 6 chars)</label>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">🔒</span>
+              <input type="password" id="regPassword" placeholder="Create a password" required autocomplete="new-password">
+              <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('regPassword', this)">👁</button>
+            </div>
+          </div>
+
+          <div class="auth-field-block">
+            <label class="auth-field-label" for="regConfirmPassword">Confirm Password</label>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">🔒</span>
+              <input type="password" id="regConfirmPassword" placeholder="Re-enter password" required autocomplete="new-password">
+            </div>
+          </div>
+
+          <button type="submit" class="auth-action-btn" id="regSubmitBtn">
+            <span>Create Account</span>
+            <span>→</span>
+          </button>
+
+          <div class="auth-switch-footer">
+            Already have an account? <a href="login.html">Login ↗</a>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Redirect if already authenticated
+    (function checkAlreadyLoggedIn() {
+      const u = getCurrentUser();
+      if (u) {
+        window.location.replace("index.html");
+      }
+    })();
+
+    function handleRegisterPageSubmit(e) {
+      e.preventDefault();
+      const errorBox = document.getElementById("authErrorBanner");
+      errorBox.style.display = "none";
+
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const phone = document.getElementById("regPhone").value;
+      const password = document.getElementById("regPassword").value;
+      const confirmPassword = document.getElementById("regConfirmPassword").value;
+
+      if (password !== confirmPassword) {
+        errorBox.textContent = "Passwords do not match. Please re-enter.";
+        errorBox.style.display = "block";
+        return;
+      }
+
+      const res = registerUser({ name, email, phone, password });
+      if (res.success) {
+        const btn = document.getElementById("regSubmitBtn");
+        btn.innerHTML = `<span>✓ Account Created! Entering...</span>`;
+        btn.style.background = "#111111";
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 400);
+      } else {
+        errorBox.textContent = res.error;
+        errorBox.style.display = "block";
+      }
+    }
+
+    function togglePasswordVisibility(fieldId, btn) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      if (field.type === "password") {
+        field.type = "text";
+        btn.textContent = "🔒";
+      } else {
+        field.type = "password";
+        btn.textContent = "👁";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <title>My Account | SHELBY HIVER</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <style>
+    .account-layout {
+      width: 100%;
+      max-width: 980px;
+      margin: 40px auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      padding: 0 20px;
+    }
+
+    @media (max-width: 768px) {
+      .account-layout {
+        grid-template-columns: 1fr;
+        margin: 20px auto;
+      }
+    }
+
+    .account-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      height: fit-content;
+    }
+
+    .account-avatar-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 18px;
+    }
+
+    .aac-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-display);
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .aac-name {
+      font-family: var(--f-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .aac-email {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .sidebar-menu-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+
+    .sidebar-menu-btn:hover,
+    .sidebar-menu-btn.active {
+      background: var(--bg-secondary);
+      color: var(--auth-coral);
+    }
+
+    .account-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 32px;
+    }
+
+    .panel-h2 {
+      font-family: var(--f-display);
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .profile-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 500px) {
+      .profile-info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-cell {
+      background: var(--bg-secondary);
+      padding: 14px 18px;
+      border-radius: 6px;
+      border: 1px solid var(--border-light);
+    }
+
+    .info-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .info-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .order-card-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .btn-coral-sm {
+      background: var(--auth-coral);
+      color: #fff;
+      font-family: var(--f-display);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-coral-sm:hover {
+      background: var(--auth-coral-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-link">
+        <img src="assets/logo.png" alt="Shelby Hiver" class="brand-logo-img">
+        <div class="brand-text-wrap">
+          <span class="brand-title">Shelby Hiver</span>
+        </div>
+      </a>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <a href="index.html" class="auth-nav-back">← Back to Storefront</a>
+        <button type="button" class="btn-primary-action" style="padding:8px 16px;font-size:12px;" onclick="logoutUser(true)">
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Account Layout -->
+  <main class="account-layout">
+    
+    <!-- Sidebar -->
+    <aside class="account-sidebar">
+      <div class="account-avatar-card">
+        <div class="aac-avatar" id="avatarCircle">U</div>
+        <div>
+          <div class="aac-name" id="sidebarName">Customer</div>
+          <div class="aac-email" id="sidebarEmail">customer@shelbyhiver.com</div>
+        </div>
+      </div>
+
+      <nav style="display:flex;flex-direction:column;gap:4px;">
+        <a href="#profile" class="sidebar-menu-btn active">👤 My Profile</a>
+        <a href="#orders" class="sidebar-menu-btn">📦 My Orders</a>
+        <a id="supportLink" href="https://wa.me/919286511557" target="_blank" class="sidebar-menu-btn">💬 Customer Support</a>
+        <button type="button" class="sidebar-menu-btn" style="color:#e63946;" onclick="logoutUser(true)">🚪 Sign Out</button>
+      </nav>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <section class="account-panel">
+      <h2 class="panel-h2">My Profile</h2>
+      
+      <div class="profile-info-grid">
+        <div class="info-cell">
+          <div class="info-lbl">Full Name</div>
+          <div class="info-val" id="profName">Manas</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-lbl">Email Address</div>
+          <div class="info-val" id="profEmail">manas@shelbyhiver.com</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-lbl">Mobile Number</div>
+          <div class="info-val" id="profPhone">+91 9286511557</div>
+        </div>
+        <div class="info-cell">
+          <div class="info-lbl">Account Status</div>
+          <div class="info-val" style="color:var(--auth-coral);">Active Customer ✓</div>
+        </div>
+      </div>
+
+      <!-- Orders Section -->
+      <h2 class="panel-h2" id="orders">My Orders</h2>
+      <div id="ordersListContainer">
+        <div style="padding:24px;text-align:center;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:6px;color:var(--text-muted);font-size:13px;">
+          No orders placed yet. Explore the collection to place your first order.
+        </div>
+      </div>
+
+      <div style="margin-top:24px;display:flex;gap:12px;">
+        <a href="index.html#storefront" class="btn-coral-sm">
+          🛍️ Browse Collection
+        </a>
+        <a id="supportBtn" href="https://wa.me/919286511557" target="_blank" class="btn-secondary-action">
+          💬 WhatsApp Support
+        </a>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Guard page
+    const user = getCurrentUser();
+    if (!user) {
+      window.location.replace("login.html");
+    } else {
+      const firstName = (user.name || "Customer").split(" ")[0];
+      const initials = (user.name || "U").split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase();
+
+      document.getElementById("avatarCircle").textContent = initials;
+      document.getElementById("sidebarName").textContent = user.name || "Customer";
+      document.getElementById("sidebarEmail").textContent = user.email || "";
+
+      document.getElementById("profName").textContent = user.name || "Customer";
+      document.getElementById("profEmail").textContent = user.email || "";
+      document.getElementById("profPhone").textContent = user.phone ? `+91 ${user.phone.replace(/\D/g, '').slice(-10)}` : "Not provided";
+
+      // Render orders if any
+      try {
+        const stored = localStorage.getItem("sh_orders_db");
+        if (stored) {
+          const allOrders = JSON.parse(stored);
+          const userOrders = allOrders.filter(o => 
+            (o.customerEmail && o.customerEmail.toLowerCase() === user.email.toLowerCase()) ||
+            (o.customerPhone && user.phone && o.customerPhone.includes(user.phone.slice(-10)))
+          );
+          const container = document.getElementById("ordersListContainer");
+          if (container && userOrders.length > 0) {
+            container.innerHTML = userOrders.map(o => `
+              <div class="order-card-row">
+                <div>
+                  <strong style="color:var(--text-primary);font-size:14px;">${o.id}</strong>
+                  <div style="font-size:12px;color:var(--text-muted);">${Array.isArray(o.items) ? o.items.length : 1} item(s)</div>
+                </div>
+                <div style="text-align:right;">
+                  <strong style="font-family:var(--f-display);font-size:15px;color:var(--text-primary);">₹ ${Number(o.total || 0).toLocaleString()}</strong>
+                  <div style="font-size:11px;font-weight:700;color:var(--auth-coral);">${o.status || 'Confirmed'}</div>
+                </div>
+              </div>
+            `).join("");
+          }
+        }
+      } catch (e) {}
+    }
+  </script>
+</body>
+</html>

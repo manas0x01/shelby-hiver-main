@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <title>Login | SHELBY HIVER</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page-wrap">
+    <!-- Top Navigation -->
+    <header class="auth-page-nav">
+      <a href="index.html" class="auth-nav-brand">
+        <img src="assets/logo.png" alt="Shelby Hiver">
+        <div>
+          <strong>Shelby Hiver</strong>
+        </div>
+      </a>
+      <a href="index.html" class="auth-nav-back">← Back to Store</a>
+    </header>
+
+    <!-- Main Container -->
+    <main class="auth-main-container">
+      <div class="auth-card-shell">
+        
+        <div class="auth-tabs-toggle">
+          <a href="login.html" class="auth-tab-link active">Login</a>
+          <a href="register.html" class="auth-tab-link">Sign Up</a>
+        </div>
+
+        <div class="auth-heading-row">
+          <h2 class="auth-form-heading">Welcome Back</h2>
+          <p class="auth-form-sub">Enter your email or phone number to sign in.</p>
+        </div>
+
+        <div class="auth-error-banner" id="authErrorBanner"></div>
+
+        <form id="loginForm" onsubmit="handleLoginPageSubmit(event)">
+          <div class="auth-field-block">
+            <label class="auth-field-label" for="loginIdentifier">Email or Mobile Number</label>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">✉</span>
+              <input type="text" id="loginIdentifier" placeholder="e.g. manas@shelbyhiver.com or 9286511557" required autocomplete="username" autofocus>
+            </div>
+          </div>
+
+          <div class="auth-field-block">
+            <div class="auth-field-label">
+              <span>Password</span>
+              <a href="javascript:void(0)" onclick="handleForgotPassword()" style="color:var(--auth-coral);text-decoration:none;">Forgot?</a>
+            </div>
+            <div class="auth-input-wrap">
+              <span class="auth-input-icon">🔒</span>
+              <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('loginPassword', this)">👁</button>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-action-btn" id="loginSubmitBtn">
+            <span>Login</span>
+            <span>→</span>
+          </button>
+
+          <button type="button" class="auth-demo-btn" onclick="quickFillDemoLogin()">
+            ⚡ 1-Click Demo Login (manas@shelbyhiver.com)
+          </button>
+
+          <div class="auth-switch-footer">
+            Don't have an account? <a href="register.html">Sign Up ↗</a>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Redirect if already authenticated
+    (function checkAlreadyLoggedIn() {
+      const u = getCurrentUser();
+      if (u) {
+        window.location.replace("index.html");
+      }
+    })();
+
+    function handleLoginPageSubmit(e) {
+      e.preventDefault();
+      const errorBox = document.getElementById("authErrorBanner");
+      errorBox.style.display = "none";
+
+      const id = document.getElementById("loginIdentifier").value;
+      const pwd = document.getElementById("loginPassword").value;
+
+      const res = loginUser(id, pwd);
+      if (res.success) {
+        const btn = document.getElementById("loginSubmitBtn");
+        btn.innerHTML = `<span>✓ Logged In! Redirecting...</span>`;
+        btn.style.background = "#111111";
+
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 400);
+      } else {
+        errorBox.textContent = res.error;
+        errorBox.style.display = "block";
+      }
+    }
+
+    function quickFillDemoLogin() {
+      document.getElementById("loginIdentifier").value = "manas@shelbyhiver.com";
+      document.getElementById("loginPassword").value = "password123";
+      document.getElementById("loginForm").requestSubmit();
+    }
+
+    function togglePasswordVisibility(fieldId, btn) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      if (field.type === "password") {
+        field.type = "text";
+        btn.textContent = "🔒";
+      } else {
+        field.type = "password";
+        btn.textContent = "👁";
+      }
+    }
+
+    function handleForgotPassword() {
+      const email = prompt("Enter your registered email address:");
+      if (!email) return;
+      const users = getStoredUsers();
+      const found = users.find(u => u.email.toLowerCase() === email.trim().toLowerCase());
+      if (found) {
+        alert(`Account found! Password: ${found.password}\nYou can now login with this password.`);
+      } else {
+        alert("No account found with that email. Please sign up.");
+      }
+    }
+  </script>
+</body>
+</html>
