@@ -1337,43 +1337,104 @@ html[data-theme="dark"] .theme-icon-moon {
     gap: 10px;
   }
   .pc-info {
-    padding: 10px 10px 12px;
+    padding: 10px 8px 12px;
   }
   .pc-name {
     font-size: 12px;
     margin-bottom: 6px;
   }
+  .pc-price-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   .pc-price {
-    font-size: 13.5px;
+    font-size: 12.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   .pc-mrp {
-    font-size: 11px;
+    font-size: 10.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .pc-discount {
+    font-size: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .pc-size-pills {
+    gap: 4px;
+    margin-bottom: 10px;
   }
   .pc-size-pill {
     width: 24px;
     height: 24px;
-    font-size: 9.5px;
+    font-size: 9px;
+    border-radius: 0;
   }
   .pc-action-row {
-    gap: 6px;
+    gap: 5px;
     margin-top: 8px;
   }
   .pc-btn-cart {
-    font-size: 10.5px;
-    padding: 8px 12px;
-    min-height: 35px;
-    height: auto;
+    font-size: 9px;
+    font-weight: 700;
     letter-spacing: 0.02em;
+    text-transform: uppercase;
+    padding: 8px 8px;
+    min-height: 34px;
+    height: auto;
+    border-radius: 0;
     white-space: nowrap;
     flex: 1;
     min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .pc-btn-view {
-    padding: 8px 12px;
-    font-size: 10.5px;
-    min-height: 35px;
+    padding: 8px 8px;
+    font-size: 9.5px;
+    min-height: 34px;
     height: auto;
+    border-radius: 0;
     white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .pc-price-wrap {
+    gap: 3px;
+  }
+  .pc-price {
+    font-size: 11.5px;
+  }
+  .pc-mrp {
+    font-size: 9.5px;
+  }
+  .pc-discount {
+    font-size: 9px;
+  }
+  .pc-btn-cart {
+    font-size: 8.5px;
+    padding: 7px 6px;
+    min-height: 32px;
+    border-radius: 0;
+  }
+  .pc-btn-view {
+    font-size: 9px;
+    padding: 7px 6px;
+    min-height: 32px;
+    border-radius: 0;
   }
 }
 
@@ -1510,8 +1571,10 @@ html[data-theme="dark"] .theme-icon-moon {
 .pc-price-wrap {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 12px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .pc-price {
@@ -1519,12 +1582,16 @@ html[data-theme="dark"] .theme-icon-moon {
   font-size: 15px;
   font-weight: 800;
   color: var(--text-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .pc-mrp {
   font-size: 12px;
   color: var(--text-muted);
   text-decoration: line-through;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .pc-discount {
@@ -1532,6 +1599,8 @@ html[data-theme="dark"] .theme-icon-moon {
   font-size: 11.5px;
   font-weight: 800;
   color: var(--accent-coral);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Size Chips */
@@ -1546,7 +1615,7 @@ html[data-theme="dark"] .theme-icon-moon {
 .pc-size-pill {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   background: var(--bg-primary);
   color: var(--text-secondary);
@@ -1578,14 +1647,14 @@ html[data-theme="dark"] .theme-icon-moon {
   background: var(--btn-primary-bg);
   color: var(--btn-primary-color);
   font-family: var(--f-display);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
-  padding: 10px 16px;
+  padding: 9px 12px;
   min-height: 38px;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1607,15 +1676,16 @@ html[data-theme="dark"] .theme-icon-moon {
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   font-family: var(--f-display);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
-  padding: 10px 16px;
+  padding: 9px 14px;
   min-height: 38px;
   box-sizing: border-box;
-  border-radius: 6px;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   transition: all 0.2s var(--ease);
 }
 

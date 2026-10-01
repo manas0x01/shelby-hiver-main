@@ -248,9 +248,9 @@
             <h3 class="pc-name" onclick="openProduct('${tee.id}')" title="${tee.name}">${tee.name}</h3>
             <div class="pc-price-wrap">
               ${isLive ? `
-                <span class="pc-price">₹ ${(tee.price).toLocaleString()}</span>
-                <del class="pc-mrp">₹ ${tee.mrp.toLocaleString()}</del>
-                <span class="pc-discount">${discountText}</span>
+                <span class="pc-price">₹&nbsp;${(tee.price).toLocaleString()}</span>
+                <del class="pc-mrp">₹&nbsp;${tee.mrp.toLocaleString()}</del>
+                <span class="pc-discount">${(discountText || '').replace(/\s+/g, '&nbsp;')}</span>
               ` : `
                 <span class="pc-price" style="color:var(--text-muted);font-size:12.5px;letter-spacing:0.04em;">PREVIEW ARCHIVE</span>
                 <span class="pc-discount" style="color:var(--text-muted);font-size:11px;font-weight:600;">(DROP 02)</span>
