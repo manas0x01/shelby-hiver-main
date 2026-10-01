@@ -191,9 +191,9 @@ a {
 }
 
 .brand-logo-img {
-  height: 42px;
+  height: 56px;
   width: auto;
-  max-width: 170px;
+  max-width: 220px;
   object-fit: contain;
   transition: opacity 0.25s var(--ease);
 }
@@ -569,8 +569,8 @@ html[data-theme="dark"] .theme-icon-moon {
     padding: 6px 0;
   }
   .brand-logo-img {
-    height: 40px;
-    max-width: 165px;
+    height: 50px;
+    max-width: 200px;
   }
   .header-actions-group {
     display: flex;
@@ -2285,19 +2285,14 @@ html[data-theme="dark"] .theme-icon-moon {
 }
 
 .pl-logo {
-  width: 48px;
-  height: 48px;
-  margin-bottom: 12px;
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+  object-fit: contain;
 }
 
 .pl-name {
-  font-family: var(--f-display);
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-primary);
-  margin-bottom: 16px;
+  display: none;
 }
 
 .pl-bar {
