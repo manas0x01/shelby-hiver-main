@@ -197,9 +197,11 @@ function updateNavbarAuth() {
 
       if (widget) {
         widget.innerHTML = `
-          <div class="user-profile-pill" onclick="toggleUserDropdown(event)" title="Account (${user.email})">
-            <div class="user-avatar-circle">${initials}</div>
-            <span class="user-pill-name">${firstName}</span>
+          <div class="h-act-btn user-profile-pill" onclick="toggleUserDropdown(event)" title="Account (${user.email})">
+            <div class="h-act-icon">
+              <div class="user-avatar-circle">${initials}</div>
+            </div>
+            <span class="h-act-label user-pill-name">${firstName}</span>
           </div>
           <div class="user-dropdown-menu" id="userDropdownMenu" onclick="event.stopPropagation()">
             <div class="udm-header">
@@ -212,7 +214,7 @@ function updateNavbarAuth() {
               <span>My Account &amp; Orders</span>
             </a>
             <button type="button" class="udm-item" onclick="if(typeof showCart==='function')showCart(); else window.location.href='index.html#storefront';">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M4 7h16l1.2 13.2a2 2 0 0 1-2 1.8H4.8a2 2 0 0 1-2-1.8L4 7z"></path></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
               <span>Shopping Bag</span>
             </button>
             <a href="https://wa.me/${WA_NUMBER}?text=Hello!%20I%20am%20logged%20in%20as%20${encodeURIComponent(user.name)}." target="_blank" class="udm-item">
@@ -244,9 +246,9 @@ function updateNavbarAuth() {
       document.body.classList.remove("authenticated");
       if (widget) {
         widget.innerHTML = `
-          <div class="user-signin-btn" onclick="toggleUserDropdown(event)" title="Account">
+          <div class="h-act-btn user-signin-btn" onclick="toggleUserDropdown(event)" title="Account">
             <div class="h-act-icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
