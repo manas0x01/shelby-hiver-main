@@ -108,14 +108,16 @@
       if (typeof updateChipCounts === 'function') updateChipCounts();
 
       if (items.length === 0) {
+        const isFiltered = currentSearchQuery || currentCat !== 'all';
         grid.innerHTML = `
-          <div style="grid-column:1/-1;text-align:center;padding:70px 20px;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:12px;">
+          <div style="grid-column:1/-1;text-align:center;padding:70px 20px;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:0;">
             <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted);margin-bottom:14px;"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
-            <h3 style="font-family:var(--f-display);font-size:18px;font-weight:800;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text-primary);">Catalogue Awaiting Drop</h3>
-            <p style="color:var(--text-muted);font-size:13px;max-width:440px;margin:0 auto 20px;">Silhouettes are currently being curated and published directly from the atelier console.</p>
-            <a href="admin/" class="btn-primary-action" style="display:inline-flex;padding:12px 24px;font-size:12px;">
-              Add Products in Admin Panel →
-            </a>
+            <h3 style="font-family:var(--f-display);font-size:17px;font-weight:800;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text-primary);">
+              ${isFiltered ? 'No Matching Silhouettes Found' : 'Drop 01 Collection'}
+            </h3>
+            <p style="color:var(--text-muted);font-size:13px;max-width:420px;margin:0 auto;">
+              ${isFiltered ? 'Try clearing your search or selecting another category filter.' : 'Products will appear here once published.'}
+            </p>
           </div>
         `;
         return;
