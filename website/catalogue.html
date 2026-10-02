@@ -776,7 +776,7 @@ var SEED_PRODUCTS=[
     colors:[
       {name:"Sand Beige",hex:"#d8c7b5"}
     ],
-    sizes:["XS","S","M","L","XL","XXL"],
+    sizes:["S","M","L","XL"],
     desc:"Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
     specs:{
       "Fabric Weight":"220 GSM Pure Combed Cotton",
@@ -812,7 +812,7 @@ var SEED_PRODUCTS=[
     colors:[
       {name:"Obsidian Black",hex:"#0a0a0a"}
     ],
-    sizes:["XS","S","M","L","XL","XXL"],
+    sizes:["S","M","L","XL"],
     desc:"The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
     specs:{
       "Fabric Weight":"220 GSM Pure Combed Cotton",
@@ -842,6 +842,15 @@ function loadProducts(){
             updated=true;
           }
         });
+        p.forEach(function(item){
+          if(Array.isArray(item.sizes)){
+            var filtered=item.sizes.filter(function(s){return !['XS','XXL','XXXL','2XL','3XL'].includes(String(s).toUpperCase());});
+            if(filtered.length!==item.sizes.length){
+              item.sizes=filtered;
+              updated=true;
+            }
+          }
+        });
         if(updated){
           localStorage.setItem(PRODUCTS_KEY,JSON.stringify(p));
         }
@@ -864,7 +873,7 @@ window.addEventListener('storage',function(e){if(!e.key||e.key===PRODUCTS_KEY){P
 function buildSizeFilters(){
   var seen=new Set();PRODUCTS.forEach(function(p){(p.sizes||[]).forEach(function(s){seen.add(s);});});
   var c=document.getElementById('catSizeFilters');if(!c)return;
-  var order=['XS','S','M','L','XL','XXL','2XL','3XL'];
+  var order=['S','M','L','XL'];
   var sizes=[...seen].sort(function(a,b){var ia=order.indexOf(a),ib=order.indexOf(b);if(ia!==-1&&ib!==-1)return ia-ib;if(ia!==-1)return-1;if(ib!==-1)return 1;return a.localeCompare(b);});
   c.innerHTML=sizes.map(function(s){return'<button type="button" class="cat-pdp-size-chip'+(catActiveSizes.has(s)?' active':'')+'" style="width:40px;height:40px;font-size:11px;" onclick="catToggleSizeFilter(\''+s+'\',this)">'+s+'</button>';}).join('');
 }

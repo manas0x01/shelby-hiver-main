@@ -30,7 +30,7 @@
         colors: [
           { name: "Sand Beige", hex: "#d8c7b5" }
         ],
-        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        sizes: ["S", "M", "L", "XL"],
         desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
         specs: {
           "Fabric Weight": "220 GSM Pure Combed Cotton",
@@ -66,7 +66,7 @@
         colors: [
           { name: "Obsidian Black", hex: "#0a0a0a" }
         ],
-        sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+        sizes: ["S", "M", "L", "XL"],
         desc: "The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
         specs: {
           "Fabric Weight": "220 GSM Pure Combed Cotton",
@@ -95,6 +95,15 @@
               } else if (parsed[existingIdx].img !== seed.img) {
                 parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
                 updated = true;
+              }
+            });
+            parsed.forEach(p => {
+              if (Array.isArray(p.sizes)) {
+                const filtered = p.sizes.filter(s => !['XS', 'XXL', 'XXXL', '2XL', '3XL'].includes(String(s).toUpperCase()));
+                if (filtered.length !== p.sizes.length) {
+                  p.sizes = filtered;
+                  updated = true;
+                }
               }
             });
             if (updated) {

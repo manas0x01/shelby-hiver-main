@@ -10,10 +10,10 @@ import {
   Share,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  ArrowLeft, 
-  Heart, 
-  Share2, 
+import {
+  ArrowLeft,
+  Heart,
+  Share2,
   ShoppingBag,
   Star,
   Minus,
@@ -69,7 +69,7 @@ export default function ProductDetailScreen() {
       <SafeAreaView style={styles.container}>
         <View style={styles.errorContainer}>
           <Text style={styles.errorText}>Product not found</Text>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.backButton}
             onPress={() => router.back()}
           >
@@ -112,7 +112,7 @@ export default function ProductDetailScreen() {
     // Navigate to checkout or open WhatsApp
     const message = `Hi! I'd like to order the ${product.title} in ${selectedColor}, size ${selectedSize}. Quantity: ${quantity}`;
     const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
-    
+
     import('expo-web-browser').then(WebBrowser => {
       WebBrowser.openBrowserAsync(whatsappUrl);
     });
@@ -122,26 +122,26 @@ export default function ProductDetailScreen() {
     <SafeAreaView style={styles.container}>
       {/* Header */}
       <Animated.View entering={FadeInUp.delay(100)} style={styles.header}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.headerButton}
           onPress={() => router.back()}
         >
           <ArrowLeft size={24} color="#8B4513" />
         </TouchableOpacity>
         <View style={styles.headerActions}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.headerButton}
             onPress={handleShare}
           >
             <Share2 size={24} color="#8B4513" />
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.headerButton}
             onPress={() => setIsFavorite(!isFavorite)}
           >
-            <Heart 
-              size={24} 
-              color={isFavorite ? "#ff4757" : "#8B4513"} 
+            <Heart
+              size={24}
+              color={isFavorite ? "#ff4757" : "#8B4513"}
               fill={isFavorite ? "#ff4757" : "none"}
             />
           </TouchableOpacity>
@@ -151,8 +151,8 @@ export default function ProductDetailScreen() {
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Product Images */}
         <Animated.View entering={FadeInDown.delay(200)}>
-          <ScrollView 
-            horizontal 
+          <ScrollView
+            horizontal
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             onMomentumScrollEnd={(event) => {
@@ -169,7 +169,7 @@ export default function ProductDetailScreen() {
               />
             ))}
           </ScrollView>
-          
+
           {/* Image Indicators */}
           <View style={styles.imageIndicators}>
             {product.images.map((_, index) => (
@@ -189,7 +189,7 @@ export default function ProductDetailScreen() {
           <Animated.View entering={FadeInDown.delay(300)}>
             <Text style={styles.category}>{product.category}</Text>
             <Text style={styles.title}>{product.title}</Text>
-            
+
             {/* Rating */}
             <View style={styles.ratingContainer}>
               <View style={styles.rating}>
@@ -302,14 +302,14 @@ export default function ProductDetailScreen() {
 
       {/* Bottom Actions */}
       <Animated.View entering={FadeInUp.delay(900)} style={styles.bottomActions}>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.addToCartButton}
           onPress={handleAddToCart}
         >
           <ShoppingBag size={20} color="#8B4513" />
           <Text style={styles.addToCartText}>Add to Cart</Text>
         </TouchableOpacity>
-        <TouchableOpacity 
+        <TouchableOpacity
           style={styles.buyNowButton}
           onPress={handleBuyNow}
         >
