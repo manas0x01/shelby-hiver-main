@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
+
+@font-face {
+  font-family: 'Figtree-Regular';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('Figtree-Regular'), local('Figtree Regular'), local('Figtree'),
+       url('https://fonts.gstatic.com/s/figtree/v9/_Xmz-HUzqDCFdgfMsYiV_F7wfS-Bs_d_QF5e.ttf') format('truetype');
+}
+
 /* ============================================================
    SHELBY HIVER — MODERN E-COMMERCE DESIGN SYSTEM (MYNTRA-INSPIRED)
    Clean, Spacious, Premium Streetwear Experience
@@ -15,9 +26,9 @@
   --danger: #e63946;
 
   /* Typography */
-  --f-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-  --f-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --f-mono: 'Space Grotesk', monospace;
+  --f-display: Figtree-Regular, Figtree, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --f-body: Figtree-Regular, Figtree, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  --f-mono: Figtree-Regular, Figtree, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, monospace, sans-serif;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Light Theme (Clean Myntra-Style Default) */
@@ -108,8 +119,11 @@ img {
   display: block;
 }
 
-button {
+button, input, textarea, select {
   font-family: inherit;
+}
+
+button {
   cursor: pointer;
   border: none;
   background: none;
