@@ -113,6 +113,44 @@
           "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
           "Dispatch": "Dispatched within 24 hours"
         }
+      },
+      {
+        id: "SH-DROP01-BETTERDAYS",
+        sku: "SH-D01-BTR-04",
+        category: "tees",
+        name: "Good People Better Days Boxy Tee",
+        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "DROP 01 LIVE",
+        isLive: true,
+        rating: 4.9,
+        reviewCount: 148,
+        img: "drops/nb1.png",
+        altImg: "drops/nb5.png",
+        images: [
+          "drops/nb1.png",
+          "drops/nb2.png",
+          "drops/nb3.png",
+          "drops/nb4.png",
+          "drops/nb5.png"
+        ],
+        fabric: "220 GSM 100% Super-Combed Cotton",
+        fit: "Boxy Drop-Shoulder Oversized",
+        colors: [
+          { name: "Midnight Navy", hex: "#161e2e" }
+        ],
+        sizes: ["S", "M", "L", "XL"],
+        desc: "Drop 01 architectural silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, structural boxy fit with clean drop shoulders. Features minimal SH chest typography and an evocative retro-editorial archival resort photographic artwork across the back with 'GOOD PEOPLE · BETTER DAYS · MILANO / ITALIA'.",
+        specs: {
+          "Fabric Weight": "220 GSM Pure Combed Cotton",
+          "Silhouette": "Boxy Drop-Shoulder Oversized",
+          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+          "Back Artwork": "Good People · Better Days Milano High-Density Print",
+          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+          "Dispatch": "Dispatched within 24 hours"
+        }
       }
     ];
 
