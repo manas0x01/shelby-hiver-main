@@ -466,6 +466,8 @@
       }
 
       const pImgs = (Array.isArray(p.images) && p.images.length > 0) ? p.images : [p.img || 'assets/model-tee.jpg'];
+      modalActiveImgIdx = 0;
+      modalActiveImgs = pImgs;
       const isLive = p.isLive !== false;
       const finalPrice = Math.round(p.price * discount);
 
@@ -478,13 +480,22 @@
           <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px;align-items:start;">
             <!-- Media Column -->
             <div>
-              <div style="width:100%;aspect-ratio:3/4;background:var(--bg-secondary);border-radius:8px;overflow:hidden;margin-bottom:10px;border:1px solid var(--border-color);">
-                <img id="pdpModalMainImg" src="${pImgs[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;transition:opacity 0.15s;">
+              <div id="pdpModalImgBox" style="position:relative;width:100%;background:var(--bg-secondary);border-radius:0;overflow:hidden;margin-bottom:12px;border:none;display:flex;align-items:center;justify-content:center;padding:12px;box-sizing:border-box;touch-action:pan-y;-webkit-user-select:none;user-select:none;">
+                <img id="pdpModalMainImg" src="${pImgs[0]}" alt="${p.name}" style="width:100%;height:auto;max-height:480px;object-fit:contain;display:block;transition:opacity 0.15s;border-radius:0;border:none;pointer-events:none;">
+                ${pImgs.length > 1 ? `
+                  <button type="button" onclick="prevModalImg()" aria-label="Previous image" style="position:absolute;top:50%;left:10px;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:0;transition:transform 0.15s,background 0.2s;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <button type="button" onclick="nextModalImg()" aria-label="Next image" style="position:absolute;top:50%;right:10px;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);color:#fff;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);padding:0;transition:transform 0.15s,background 0.2s;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </button>
+                  <span id="pdpModalCounter" style="position:absolute;bottom:10px;right:12px;background:rgba(0,0,0,0.65);color:#fff;font-family:var(--f-display);font-size:11px;font-weight:700;padding:3px 9px;border-radius:2px;letter-spacing:0.05em;z-index:9;pointer-events:none;">1 / ${pImgs.length}</span>
+                ` : ''}
               </div>
               ${pImgs.length > 1 ? `
                 <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;" id="modalThumbsList">
                   ${pImgs.map((img, idx) => `
-                    <img src="${img}" alt="${p.name}" style="width:52px;height:65px;object-fit:cover;border-radius:4px;cursor:pointer;border:2px solid ${idx===0?'var(--brand-black)':'transparent'};flex-shrink:0;" onclick="selectModalThumb('${img}', this)">
+                    <img src="${img}" alt="${p.name}" style="width:56px;height:56px;object-fit:contain;background:var(--bg-secondary);border-radius:0;cursor:pointer;border:1.5px solid ${idx===0?'var(--brand-black)':'transparent'};flex-shrink:0;padding:2px;box-sizing:border-box;transition:border-color 0.15s;" onclick="selectModalThumb('${img}', this, ${idx})">
                   `).join('')}
                 </div>
               ` : ''}
@@ -559,6 +570,11 @@
       }
       document.body.style.overflow = "hidden";
       modal.scrollTop = 0;
+
+      const imgBox = document.getElementById("pdpModalImgBox");
+      if (imgBox && pImgs.length > 1) {
+        attachSwipeGesture(imgBox, () => nextModalImg(), () => prevModalImg());
+      }
     }
 
     function closeProduct() {
@@ -578,7 +594,11 @@
       }
     }
 
-    function selectModalThumb(src, el) {
+    let modalActiveImgIdx = 0;
+    let modalActiveImgs = [];
+
+    function selectModalThumb(src, el, idx) {
+      if (typeof idx === 'number') modalActiveImgIdx = idx;
       const main = document.getElementById("pdpModalMainImg");
       if (main) {
         main.style.opacity = '0.3';
@@ -587,10 +607,55 @@
           main.style.opacity = '1';
         }, 100);
       }
-      if (el && el.parentElement) {
-        el.parentElement.querySelectorAll('img').forEach(img => img.style.borderColor = 'transparent');
-        el.style.borderColor = 'var(--brand-black)';
+      const thumbs = document.querySelectorAll('#modalThumbsList img');
+      thumbs.forEach((img, i) => {
+        img.style.borderColor = (i === modalActiveImgIdx) ? 'var(--brand-black)' : 'transparent';
+      });
+      const counter = document.getElementById('pdpModalCounter');
+      if (counter && modalActiveImgs && modalActiveImgs.length > 1) {
+        counter.textContent = `${modalActiveImgIdx + 1} / ${modalActiveImgs.length}`;
       }
+    }
+
+    function nextModalImg() {
+      if (!modalActiveImgs || modalActiveImgs.length <= 1) return;
+      modalActiveImgIdx = (modalActiveImgIdx + 1) % modalActiveImgs.length;
+      selectModalThumb(modalActiveImgs[modalActiveImgIdx], null, modalActiveImgIdx);
+    }
+
+    function prevModalImg() {
+      if (!modalActiveImgs || modalActiveImgs.length <= 1) return;
+      modalActiveImgIdx = (modalActiveImgIdx - 1 + modalActiveImgs.length) % modalActiveImgs.length;
+      selectModalThumb(modalActiveImgs[modalActiveImgIdx], null, modalActiveImgIdx);
+    }
+
+    function attachSwipeGesture(el, onLeft, onRight) {
+      if (!el) return;
+      let startX = 0, startY = 0, endX = 0, endY = 0, swiping = false;
+      el.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 1) {
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          endX = startX;
+          endY = startY;
+          swiping = true;
+        }
+      }, { passive: true });
+      el.addEventListener('touchmove', function(e) {
+        if (!swiping || e.touches.length !== 1) return;
+        endX = e.touches[0].clientX;
+        endY = e.touches[0].clientY;
+      }, { passive: true });
+      el.addEventListener('touchend', function(e) {
+        if (!swiping) return;
+        swiping = false;
+        const dx = endX - startX;
+        const dy = endY - startY;
+        if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) onLeft();
+          else onRight();
+        }
+      }, { passive: true });
     }
 
     function selectModalSize(prodId, sz, btn) {
