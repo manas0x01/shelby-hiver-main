@@ -256,9 +256,7 @@
   </style>
 </head>
 <body>
-  <div class="top-promo-bar">
-    [ DROP 01 LIVE ] &middot; 220 GSM BESPOKE COMBED COTTON &middot; STARTING &#x20B9;699 &middot; <span class="accent">PRE-SHRUNK &middot; LIMITED BATCH RUN</span>
-  </div>
+
 
   <!-- HEADER -->
   <header class="site-header" id="siteHeader">
@@ -829,6 +827,11 @@
 (function(){
 'use strict';
 var WA='919286511557',PRODUCTS_KEY='sh_products_db_v4';
+if(!localStorage.getItem('sh_wishlist_clean_reset')){
+  localStorage.setItem('sh-wishlist',JSON.stringify([]));
+  localStorage.removeItem('sh_wishlist_seeded');
+  localStorage.setItem('sh_wishlist_clean_reset','1');
+}
 var PRODUCTS=[],CART=JSON.parse(localStorage.getItem('sh_cart')||'[]'),WISHLIST=new Set(JSON.parse(localStorage.getItem('sh-wishlist')||'[]'));
 var discount=1.0,selectedSizes={};
 var catCurrentCat='all',catCurrentSort='featured',catSearchQuery='',catPriceMin=null,catPriceMax=null;

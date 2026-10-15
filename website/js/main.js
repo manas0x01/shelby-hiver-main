@@ -212,6 +212,32 @@ function recordStorefrontOrder(order) {
 /* ——— STATE ——— */
 let currentCat = 'all';
 let currentSort = 'featured';
+
+/* One-time reset of old/seeded wishlist across all accounts */
+if (!localStorage.getItem('sh_wishlist_clean_reset')) {
+  localStorage.setItem('sh-wishlist', JSON.stringify([]));
+  localStorage.removeItem('sh_wishlist_seeded');
+  localStorage.setItem('sh_wishlist_clean_reset', '1');
+  try {
+    const rawUsers = localStorage.getItem('sh_auth_users_v2');
+    if (rawUsers) {
+      let users = JSON.parse(rawUsers);
+      if (Array.isArray(users)) {
+        users.forEach(u => { if (u) u.wishlist = []; });
+        localStorage.setItem('sh_auth_users_v2', JSON.stringify(users));
+      }
+    }
+    const currUser = localStorage.getItem('sh_current_user_v2');
+    if (currUser) {
+      let u = JSON.parse(currUser);
+      if (u && u.wishlist) {
+        u.wishlist = [];
+        localStorage.setItem('sh_current_user_v2', JSON.stringify(u));
+      }
+    }
+  } catch (e) {}
+}
+
 let WISHLIST = new Set(JSON.parse(localStorage.getItem('sh-wishlist') || '[]'));
 let CART = JSON.parse(localStorage.getItem('sh_cart') || '[]');
 let discount = 1.0;

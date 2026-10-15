@@ -150,22 +150,7 @@ a {
 
 /* ——— TOP ANNOUNCEMENT STRIP ——— */
 .top-promo-bar {
-  background: var(--brand);
-  color: #ffffff;
-  font-family: var(--f-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px 16px;
-  text-align: center;
-  position: relative;
-  z-index: 101;
-}
-
-.top-promo-bar span.accent {
-  color: #ffd166;
-  margin-left: 4px;
+  display: none !important;
 }
 
 /* ——— HEADER / NAVBAR (MYNTRA STYLE) ——— */
