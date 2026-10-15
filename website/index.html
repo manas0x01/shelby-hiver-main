@@ -130,6 +130,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/checkout.css">
 </head>
 
 <body>
@@ -168,13 +169,12 @@
 
       <!-- CENTER NAVIGATION (MYNTRA STYLE - DESKTOP) -->
       <nav class="header-nav-links" aria-label="Main Navigation">
-        <a href="#storefront" onclick="filterCategory('all');" class="nav-item-link active">All <span
-            class="nav-live-pill">LIVE</span></a>
-        <a href="#storefront" onclick="filterCategory('tees');" class="nav-item-link">T-Shirts</a>
+        <a href="index.html" class="nav-item-link active">Home</a>
+        <a href="catalogue.html" class="nav-item-link">Catalogue <span class="nav-live-pill">LIVE</span></a>
+        <a href="wishlist.html" class="nav-item-link">Wishlist</a>
         <a href="#craftsmanship" class="nav-item-link">Fabric Dossier</a>
         <a href="#lookbook" class="nav-item-link">Lookbook</a>
-        <a href="#fit-architecture" class="nav-item-link">Fit Guide</a>
-        <a href="#faq" class="nav-item-link">FAQ</a>
+        <a href="javascript:void(0)" onclick="openSizeChart()" class="nav-item-link">Fit Guide</a>
       </nav>
 
       <!-- SEARCH BAR (MYNTRA WIDE SEARCH - DESKTOP) -->
@@ -215,8 +215,7 @@
         </button>
 
         <!-- Wishlist Action -->
-        <a href="#storefront" onclick="filterCategory('all'); toast('Wishlist items highlighted');"
-          class="h-act-btn h-act-wishlist" aria-label="Wishlist">
+        <a href="wishlist.html" class="h-act-btn h-act-wishlist" aria-label="Wishlist">
           <div class="h-act-icon">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
               stroke-linecap="round" stroke-linejoin="round">
@@ -224,6 +223,7 @@
                 d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
               </path>
             </svg>
+            <span class="h-act-badge" id="wishlistCount" style="display:none;">0</span>
           </div>
           <span class="h-act-label">Wishlist</span>
         </a>
@@ -337,10 +337,9 @@
             <span class="mob-nav-text">Shopping Bag</span>
             <span class="mob-nav-badge" id="mobBagBadge">0 items</span>
           </a>
-          <a href="#storefront" onclick="closeMobileNav(); filterCategory('all'); toast('Wishlist items highlighted');"
-            class="mob-nav-item">
+          <a href="wishlist.html" class="mob-nav-item">
             <span class="mob-nav-text">Saved Wishlist</span>
-            <span class="mob-nav-arrow">›</span>
+            <span class="mob-nav-badge" id="mobWishBadge">0 items</span>
           </a>
           <a href="profile.html" onclick="closeMobileNav();" class="mob-nav-item">
             <span class="mob-nav-text">Track My Orders</span>
@@ -667,39 +666,33 @@
             <tbody>
               <tr>
                 <td><strong>Fabric Weight &amp; Density</strong></td>
-                <td><span class="matrix-cross">✕</span> 140–160 GSM lightweight (semi-sheer)</td>
-                <td class="highlight"><span class="matrix-check">✓</span> <strong>Dense Interlock Knit (100%
-                    Opaque)</strong></td>
+                <td><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;opacity:0.5;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>140–160 GSM lightweight (semi-sheer)</td>
+                <td class="highlight"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>Dense Interlock Knit (100% Opaque)</strong></td>
               </tr>
               <tr>
                 <td><strong>Collar Construction</strong></td>
-                <td><span class="matrix-cross">✕</span> Thin single-rib (rolls &amp; sags after 2 washes)</td>
-                <td class="highlight"><span class="matrix-check">✓</span> <strong>1.1″ Heavy Ribbed Lycra Collar
-                    (Anti-Sag)</strong></td>
+                <td><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;opacity:0.5;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Thin single-rib (rolls &amp; sags after 2 washes)</td>
+                <td class="highlight"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>1.1″ Heavy Ribbed Lycra Collar (Anti-Sag)</strong></td>
               </tr>
               <tr>
                 <td><strong>Fiber Quality</strong></td>
-                <td><span class="matrix-cross">✕</span> Short-staple cotton / poly-blend prone to pilling</td>
-                <td class="highlight"><span class="matrix-check">✓</span> <strong>100% Super-Combed Long-Staple Pure
-                    Cotton</strong></td>
+                <td><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;opacity:0.5;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Short-staple cotton / poly-blend prone to pilling</td>
+                <td class="highlight"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>100% Super-Combed Long-Staple Pure Cotton</strong></td>
               </tr>
               <tr>
                 <td><strong>Fit Architecture</strong></td>
-                <td><span class="matrix-cross">✕</span> Generic narrow cut that clings to chest</td>
-                <td class="highlight"><span class="matrix-check">✓</span> <strong>Relaxed Drop-Shoulder Architectural
-                    Boxy Cut</strong></td>
+                <td><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;opacity:0.5;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Generic narrow cut that clings to chest</td>
+                <td class="highlight"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>Relaxed Drop-Shoulder Architectural Boxy Cut</strong></td>
               </tr>
               <tr>
                 <td><strong>Post-Wash Performance</strong></td>
-                <td><span class="matrix-cross">✕</span> 4–7% shrinkage, side seams twisting</td>
-                <td class="highlight"><span class="matrix-check">✓</span> <strong>Pre-Shrunk Bio-Washed (0% Shrinkage
-                    Guaranteed)</strong></td>
+                <td><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;opacity:0.5;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>4–7% shrinkage, side seams twisting</td>
+                <td class="highlight"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>Pre-Shrunk Bio-Washed (0% Shrinkage Guaranteed)</strong></td>
               </tr>
               <tr>
                 <td><strong>Direct Atelier Value</strong></td>
-                <td><span class="matrix-cross">✕</span> ₹1,299+ retail with distributor markup</td>
-                <td class="highlight"><span class="matrix-check">✓</span> <strong>₹699 Direct Drop 01 Honest Atelier
-                    Pricing</strong></td>
+                <td><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;opacity:0.5;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>₹1,299+ retail with distributor markup</td>
+                <td class="highlight"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-right:6px;"><polyline points="20 6 9 17 4 12"></polyline></svg><strong>₹699 Direct Drop 01 Honest Atelier Pricing</strong></td>
               </tr>
             </tbody>
           </table>
@@ -1005,39 +998,50 @@
             <img src="assets/logo-light.png" alt="Shelby Hiver" class="foot-logo-img logo-for-dark">
           </a>
           <p class="foot-brand-desc">
-            High-luxury heavyweight streetwear engineered for modern aesthetics. Direct to consumer with
-            pan-India delivery.
+            Architectural heavyweight streetwear cut from bespoke 220 GSM combed cotton. Engineered for structure, permanence, and zero shrinkage.
           </p>
         </div>
 
         <div class="footer-nav-col">
-          <h5>Shop Categories</h5>
-          <a href="#storefront" onclick="filterCategory('tees')">Oversized T-Shirts</a>
-          <a href="#storefront" onclick="filterCategory('hoodies')">Heavyweight Hoodies (Soon)</a>
-          <a href="#storefront" onclick="filterCategory('bottoms')">Tactical Cargos (Soon)</a>
-          <a href="#lookbook">Drop 01 Editorial Lookbook</a>
+          <h5>COLLECTION</h5>
+          <a href="catalogue.html">Shop All Drop 01</a>
+          <a href="catalogue.html?cat=tees">Oversized Heavy Tees</a>
+          <a href="wishlist.html">Client Wishlist</a>
+          <a href="#lookbook">Editorial Lookbook</a>
         </div>
 
         <div class="footer-nav-col">
-          <h5>Atelier Dossier</h5>
-          <a href="#craftsmanship">Fabric Architecture</a>
-          <a href="#comparison">Fast Fashion vs Shelby</a>
-          <a href="#fit-architecture">Silhouette Fit Guide</a>
-          <a href="#faq">Client Inquiries (FAQ)</a>
-
+          <h5>ATELIER ARCHITECTURE</h5>
+          <a href="#craftsmanship">220 GSM Fabric Dossier</a>
+          <a href="javascript:void(0)" onclick="openSizeChart()">Size Guide (Inches)</a>
+          <a href="#fit-architecture">Drop-Shoulder Silhouette</a>
+          <a href="#faq">Care &amp; Washing Instructions</a>
         </div>
 
         <div class="footer-nav-col">
-          <h5>WhatsApp Atelier</h5>
-          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">Order directly or inquire with our
-            concierge team 24/7:</p>
-          <a href="https://wa.me/919286511557" target="_blank" class="footer-sub-btn">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <path
-                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
-              </path>
+          <h5>CLIENT SERVICES</h5>
+          <a href="profile.html">Track Orders &amp; Profile</a>
+          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer">WhatsApp Concierge</a>
+          <a href="login.html">Sign In / Register</a>
+        </div>
+
+        <div class="footer-nav-col foot-dispatch-col">
+          <h5>ATELIER DISPATCH</h5>
+          <p class="foot-dispatch-sub">
+            Subscribe for private Drop 02 invitations, confidential restock notices, and express dispatch tracking:
+          </p>
+          <form class="foot-dispatch-form" onsubmit="event.preventDefault();if(window.toast){toast('Subscribed to Atelier Dispatch');this.reset();}else{alert('Subscribed to Atelier Dispatch');}">
+            <div class="foot-dispatch-input-row">
+              <input type="email" class="foot-dispatch-input" placeholder="client@shelbyhiver.com" required aria-label="Email for Atelier Dispatch">
+              <button type="submit" class="foot-dispatch-submit" aria-label="Join Atelier Dispatch">Join</button>
+            </div>
+            <span class="foot-dispatch-badge">24H EXPRESS DISPATCH &middot; Pan-India</span>
+          </form>
+          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer" class="footer-sub-btn" style="margin-top:6px;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
             </svg>
-            <span>Chat on WhatsApp (+91 9286511557)</span>
+            <span>WhatsApp Concierge (+91 9286511557)</span>
           </a>
         </div>
 
@@ -1271,6 +1275,19 @@
       <span class="mob-bar-label">Catalogue</span>
     </a>
 
+    <a href="wishlist.html" class="mob-bar-item" id="mobBarWishlist" aria-label="Wishlist">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        <span class="mob-bar-badge" id="mobBottomWishCount" style="display:none;">0</span>
+      </div>
+      <span class="mob-bar-label">Wishlist</span>
+    </a>
+
     <button type="button" class="mob-bar-item" id="mobBarCart" onclick="if(typeof showCart==='function')showCart();"
       aria-label="Cart">
       <div class="mob-bar-icon">
@@ -1299,6 +1316,7 @@
   <!-- Modular Scripts -->
   <script src="js/main.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
 </body>
 
 </html>

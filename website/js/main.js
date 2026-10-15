@@ -1,290 +1,299 @@
-    /* ——— GLOBAL CONFIGURATION ——— */
-    const WA = "919286511557";
+/* ——— GLOBAL CONFIGURATION ——— */
+const WA = "919286511557";
 
-    /* ——— PRODUCTS DATABASE & REAL-TIME SYNCHRONIZATION ——— */
-    const SEED_PRODUCTS = [
-      {
-        id: "SH-DROP01-DRAGON",
-        sku: "SH-D01-DRG-01",
-        category: "tees",
-        name: "Dragon Archive Boxy Tee",
-        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 164,
-        img: "drops/01.png",
-        altImg: "drops/04.png",
-        images: [
-          "drops/01.png",
-          "drops/04.png",
-          "drops/05.png",
-          "drops/02.png",
-          "drops/03.png"
-        ],
-        fabric: "220 GSM 100% Super-Combed Cotton",
-        fit: "Boxy Drop-Shoulder Oversized",
-        colors: [
-          { name: "Sand Beige", hex: "#d8c7b5" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
-        specs: {
-          "Fabric Weight": "220 GSM Pure Combed Cotton",
-          "Silhouette": "Boxy Drop-Shoulder Oversized",
-          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
-          "Back Artwork": "Archival Ryu Dragon High-Density Print",
-          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
-          "Dispatch": "Dispatched within 24 hours"
-        }
-      },
-      {
-        id: "SH-DROP01-ENDURE",
-        sku: "SH-D01-GYM-02",
-        category: "tees",
-        name: "Winter Arc 'ENDURE' Heavy Gym Tee",
-        subtitle: "220 GSM Combed Cotton · Athletic Boxy Cut",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 182,
-        img: "drops/winter-arc-01.png",
-        altImg: "drops/winter-arc-02.png",
-        images: [
-          "drops/winter-arc-01.png",
-          "drops/winter-arc-02.png",
-          "drops/winter-arc-03.png"
-        ],
-        fabric: "220 GSM 100% Super-Combed Cotton",
-        fit: "Athletic Boxy Drop-Shoulder",
-        colors: [
-          { name: "Obsidian Black", hex: "#0a0a0a" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
-        specs: {
-          "Fabric Weight": "220 GSM Pure Combed Cotton",
-          "Silhouette": "Athletic Boxy Drop-Shoulder",
-          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
-          "Back Artwork": "Cracked Marble 'ENDURE' Screen Print",
-          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
-          "Dispatch": "Dispatched within 24 hours"
-        }
-      },
-      {
-        id: "SH-DROP01-FRAGMENTS",
-        sku: "SH-D01-FRG-03",
-        category: "tees",
-        name: "Fragments Still Speak Boxy Tee",
-        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 156,
-        img: "drops/c1.png",
-        altImg: "drops/c2.png",
-        images: [
-          "drops/c1.png",
-          "drops/c2.png",
-          "drops/c3.png",
-          "drops/c4.png"
-        ],
-        fabric: "220 GSM Pure Combed Cotton",
-        fit: "Boxy Drop-Shoulder Oversized",
-        colors: [
-          { name: "Espresso Brown", hex: "#432818" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and a statement archival artwork across the back, depicting a fragmented classical sculpture surrounded by celestial geometry and the words “FRAGMENTS STILL SPEAK.”",
-        specs: {
-          "Fabric Weight": "220 GSM Pure Combed Cotton",
-          "Silhouette": "Boxy Drop-Shoulder Oversized",
-          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
-          "Back Artwork": "Fragments Still Speak · High-Density Print",
-          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
-          "Dispatch": "Dispatched within 24 hours"
-        }
-      },
-      {
-        id: "SH-DROP01-BETTERDAYS",
-        sku: "SH-D01-BTR-04",
-        category: "tees",
-        name: "Good People Better Days Boxy Tee",
-        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
-        price: 699,
-        mrp: 1199,
-        discountText: "42% OFF",
-        badge: "DROP 01 LIVE",
-        isLive: true,
-        rating: 4.9,
-        reviewCount: 148,
-        img: "drops/nb1.png",
-        altImg: "drops/nb5.png",
-        images: [
-          "drops/nb1.png",
-          "drops/nb2.png",
-          "drops/nb3.png",
-          "drops/nb4.png",
-          "drops/nb5.png"
-        ],
-        fabric: "220 GSM 100% Super-Combed Cotton",
-        fit: "Boxy Drop-Shoulder Oversized",
-        colors: [
-          { name: "Midnight Navy", hex: "#161e2e" }
-        ],
-        sizes: ["S", "M", "L", "XL"],
-        desc: "Drop 01 architectural silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, structural boxy fit with clean drop shoulders. Features minimal SH chest typography and an evocative retro-editorial archival resort photographic artwork across the back with 'GOOD PEOPLE · BETTER DAYS · MILANO / ITALIA'.",
-        specs: {
-          "Fabric Weight": "220 GSM Pure Combed Cotton",
-          "Silhouette": "Boxy Drop-Shoulder Oversized",
-          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
-          "Back Artwork": "Good People · Better Days Milano High-Density Print",
-          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
-          "Dispatch": "Dispatched within 24 hours"
-        }
-      }
-    ];
-
-    /* Dynamic database initialization & real-time synchronization */
-    function getStorefrontProducts() {
-      try {
-        const stored = localStorage.getItem('sh_products_db_v4');
-        if (stored !== null) {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            let updated = false;
-            SEED_PRODUCTS.forEach(seed => {
-              const existingIdx = parsed.findIndex(p => p.id === seed.id);
-              if (existingIdx === -1) {
-                parsed.push(seed);
-                updated = true;
-              } else if (parsed[existingIdx].img !== seed.img) {
-                parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
-                updated = true;
-              }
-            });
-            parsed.forEach(p => {
-              if (Array.isArray(p.sizes)) {
-                const filtered = p.sizes.filter(s => !['XS', 'XXL', 'XXXL', '2XL', '3XL'].includes(String(s).toUpperCase()));
-                if (filtered.length !== p.sizes.length) {
-                  p.sizes = filtered;
-                  updated = true;
-                }
-              }
-            });
-            if (updated) {
-              localStorage.setItem('sh_products_db_v4', JSON.stringify(parsed));
-            }
-            return parsed;
-          }
-        }
-      } catch (e) {
-        console.error("Error loading products:", e);
-      }
-      localStorage.setItem('sh_products_db_v4', JSON.stringify(SEED_PRODUCTS));
-      return [...SEED_PRODUCTS];
+/* ——— PRODUCTS DATABASE & REAL-TIME SYNCHRONIZATION ——— */
+const SEED_PRODUCTS = [
+  {
+    id: "SH-DROP01-DRAGON",
+    sku: "SH-D01-DRG-01",
+    category: "tees",
+    name: "Dragon Archive Boxy Tee",
+    subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+    price: 699,
+    mrp: 1199,
+    discountText: "42% OFF",
+    badge: "DROP 01 LIVE",
+    isLive: true,
+    rating: 4.9,
+    reviewCount: 164,
+    img: "drops/01.png",
+    altImg: "drops/04.png",
+    images: [
+      "drops/01.png",
+      "drops/04.png",
+      "drops/05.png",
+      "drops/02.png",
+      "drops/03.png"
+    ],
+    fabric: "220 GSM 100% Super-Combed Cotton",
+    fit: "Boxy Drop-Shoulder Oversized",
+    colors: [
+      { name: "Sand Beige", hex: "#d8c7b5" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and high-definition Ryu Dragon & Sakura blossom archival artwork screen-printed across the back.",
+    specs: {
+      "Fabric Weight": "220 GSM Pure Combed Cotton",
+      "Silhouette": "Boxy Drop-Shoulder Oversized",
+      "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork": "Archival Ryu Dragon High-Density Print",
+      "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch": "Dispatched within 24 hours"
     }
-
-    let PRODUCTS = getStorefrontProducts();
-    let TEES = PRODUCTS; // backwards compatibility
-
-    /* Live order dispatcher to Admin panel */
-    function recordStorefrontOrder(order) {
-      try {
-        const orders = JSON.parse(localStorage.getItem('sh_orders_db') || '[]');
-        orders.unshift(order);
-        localStorage.setItem('sh_orders_db', JSON.stringify(orders));
-        window.dispatchEvent(new Event('storage'));
-      } catch (e) {
-        console.error("Order sync error", e);
-      }
+  },
+  {
+    id: "SH-DROP01-ENDURE",
+    sku: "SH-D01-GYM-02",
+    category: "tees",
+    name: "Winter Arc 'ENDURE' Heavy Gym Tee",
+    subtitle: "220 GSM Combed Cotton · Athletic Boxy Cut",
+    price: 699,
+    mrp: 1199,
+    discountText: "42% OFF",
+    badge: "DROP 01 LIVE",
+    isLive: true,
+    rating: 4.9,
+    reviewCount: 182,
+    img: "drops/winter-arc-01.png",
+    altImg: "drops/winter-arc-02.png",
+    images: [
+      "drops/winter-arc-01.png",
+      "drops/winter-arc-02.png",
+      "drops/winter-arc-03.png"
+    ],
+    fabric: "220 GSM 100% Super-Combed Cotton",
+    fit: "Athletic Boxy Drop-Shoulder",
+    colors: [
+      { name: "Obsidian Black", hex: "#0a0a0a" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    desc: "The definitive Winter Arc heavyweight gym tee. Crafted from 220 GSM dense combed cotton, engineered with an athletic boxy drape that holds its shape through intense lifts and streetwear styling. Features minimal SH chest branding and high-density cracked marble 'SHELBY HIVER ENDURE' Greek sculpture artwork across the back.",
+    specs: {
+      "Fabric Weight": "220 GSM Pure Combed Cotton",
+      "Silhouette": "Athletic Boxy Drop-Shoulder",
+      "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork": "Cracked Marble 'ENDURE' Screen Print",
+      "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch": "Dispatched within 24 hours"
     }
+  },
+  {
+    id: "SH-DROP01-FRAGMENTS",
+    sku: "SH-D01-FRG-03",
+    category: "tees",
+    name: "Fragments Still Speak Boxy Tee",
+    subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+    price: 699,
+    mrp: 1199,
+    discountText: "42% OFF",
+    badge: "DROP 01 LIVE",
+    isLive: true,
+    rating: 4.9,
+    reviewCount: 156,
+    img: "drops/c1.png",
+    altImg: "drops/c2.png",
+    images: [
+      "drops/c1.png",
+      "drops/c2.png",
+      "drops/c3.png",
+      "drops/c4.png"
+    ],
+    fabric: "220 GSM Pure Combed Cotton",
+    fit: "Boxy Drop-Shoulder Oversized",
+    colors: [
+      { name: "Espresso Brown", hex: "#432818" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    desc: "Drop 01 flagship silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and a statement archival artwork across the back, depicting a fragmented classical sculpture surrounded by celestial geometry and the words “FRAGMENTS STILL SPEAK.”",
+    specs: {
+      "Fabric Weight": "220 GSM Pure Combed Cotton",
+      "Silhouette": "Boxy Drop-Shoulder Oversized",
+      "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork": "Fragments Still Speak · High-Density Print",
+      "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch": "Dispatched within 24 hours"
+    }
+  },
+  {
+    id: "SH-DROP01-BETTERDAYS",
+    sku: "SH-D01-BTR-04",
+    category: "tees",
+    name: "Good People Better Days Boxy Tee",
+    subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+    price: 699,
+    mrp: 1199,
+    discountText: "42% OFF",
+    badge: "DROP 01 LIVE",
+    isLive: true,
+    rating: 4.9,
+    reviewCount: 148,
+    img: "drops/nb1.png",
+    altImg: "drops/nb5.png",
+    images: [
+      "drops/nb1.png",
+      "drops/nb2.png",
+      "drops/nb3.png",
+      "drops/nb4.png",
+      "drops/nb5.png"
+    ],
+    fabric: "220 GSM 100% Super-Combed Cotton",
+    fit: "Boxy Drop-Shoulder Oversized",
+    colors: [
+      { name: "Midnight Navy", hex: "#161e2e" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    desc: "Drop 01 architectural silhouette. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, structural boxy fit with clean drop shoulders. Features minimal SH chest typography and an evocative retro-editorial archival resort photographic artwork across the back with 'GOOD PEOPLE · BETTER DAYS · MILANO / ITALIA'.",
+    specs: {
+      "Fabric Weight": "220 GSM Pure Combed Cotton",
+      "Silhouette": "Boxy Drop-Shoulder Oversized",
+      "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork": "Good People · Better Days Milano High-Density Print",
+      "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch": "Dispatched within 24 hours"
+    }
+  }
+];
 
-    /* ——— STATE ——— */
-    let currentCat = 'all';
-    let currentSort = 'featured';
-    let WISHLIST = new Set(JSON.parse(localStorage.getItem('sh-wishlist') || '[]'));
-    let CART = [];
-    let discount = 1.0;
-    const selectedSizes = {};
-    PRODUCTS.forEach(p => {
-      if (p.sizes && p.sizes.length) selectedSizes[p.id] = p.sizes[0];
-    });
-
-    /* Real-time sync listener with Admin panel */
-    window.addEventListener('storage', (e) => {
-      if (!e.key || e.key === 'sh_products_db_v4') {
-        PRODUCTS = getStorefrontProducts();
-        TEES = PRODUCTS;
-        PRODUCTS.forEach(p => {
-          if (!selectedSizes[p.id] && p.sizes && p.sizes.length) {
-            selectedSizes[p.id] = p.sizes[0];
+/* Dynamic database initialization & real-time synchronization */
+function getStorefrontProducts() {
+  try {
+    const stored = localStorage.getItem('sh_products_db_v4');
+    if (stored !== null) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        let updated = false;
+        SEED_PRODUCTS.forEach(seed => {
+          const existingIdx = parsed.findIndex(p => p.id === seed.id);
+          if (existingIdx === -1) {
+            parsed.push(seed);
+            updated = true;
+          } else if (parsed[existingIdx].img !== seed.img) {
+            parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
+            updated = true;
           }
         });
-        if (typeof renderProducts === 'function') renderProducts();
+        parsed.forEach(p => {
+          if (Array.isArray(p.sizes)) {
+            const filtered = p.sizes.filter(s => !['XS', 'XXL', 'XXXL', '2XL', '3XL'].includes(String(s).toUpperCase()));
+            if (filtered.length !== p.sizes.length) {
+              p.sizes = filtered;
+              updated = true;
+            }
+          }
+        });
+        if (updated) {
+          localStorage.setItem('sh_products_db_v4', JSON.stringify(parsed));
+        }
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.error("Error loading products:", e);
+  }
+  localStorage.setItem('sh_products_db_v4', JSON.stringify(SEED_PRODUCTS));
+  return [...SEED_PRODUCTS];
+}
+
+let PRODUCTS = getStorefrontProducts();
+let TEES = PRODUCTS; // backwards compatibility
+
+/* Live order dispatcher to Admin panel */
+function recordStorefrontOrder(order) {
+  try {
+    const orders = JSON.parse(localStorage.getItem('sh_orders_db') || '[]');
+    orders.unshift(order);
+    localStorage.setItem('sh_orders_db', JSON.stringify(orders));
+    window.dispatchEvent(new Event('storage'));
+  } catch (e) {
+    console.error("Order sync error", e);
+  }
+}
+
+/* ——— STATE ——— */
+let currentCat = 'all';
+let currentSort = 'featured';
+let WISHLIST = new Set(JSON.parse(localStorage.getItem('sh-wishlist') || '[]'));
+let CART = JSON.parse(localStorage.getItem('sh_cart') || '[]');
+let discount = 1.0;
+const selectedSizes = {};
+PRODUCTS.forEach(p => {
+  if (p.sizes && p.sizes.length) selectedSizes[p.id] = p.sizes[0];
+});
+
+/* Real-time sync listener with Admin panel & other tabs */
+window.addEventListener('storage', (e) => {
+  if (!e.key || e.key === 'sh_products_db_v4') {
+    PRODUCTS = getStorefrontProducts();
+    TEES = PRODUCTS;
+    PRODUCTS.forEach(p => {
+      if (!selectedSizes[p.id] && p.sizes && p.sizes.length) {
+        selectedSizes[p.id] = p.sizes[0];
       }
     });
+    if (typeof renderProducts === 'function') renderProducts();
+  }
+  if (!e.key || e.key === 'sh-wishlist') {
+    WISHLIST = new Set(JSON.parse(localStorage.getItem('sh-wishlist') || '[]'));
+    if (typeof renderProducts === 'function') renderProducts();
+    if (typeof updateWishlistBadges === 'function') updateWishlistBadges();
+  }
+  if (!e.key || e.key === 'sh_cart') {
+    CART = JSON.parse(localStorage.getItem('sh_cart') || '[]');
+    if (typeof renderCart === 'function') renderCart();
+  }
+});
 
-    // Active PDP state
-    let activePDPProduct = null;
-    let activePDPSize = null;
-    let activePDPColorIdx = 0;
-    let currentSearchQuery = "";
+// Active PDP state
+let activePDPProduct = null;
+let activePDPSize = null;
+let activePDPColorIdx = 0;
+let currentSearchQuery = "";
 
-    /* ——— RENDER PRODUCTS LISTING ——— */
-    function renderProducts() {
-      const grid = document.getElementById("tshirtGrid");
-      if (!grid) return;
-      grid.innerHTML = "";
+/* ——— RENDER PRODUCTS LISTING ——— */
+function renderProducts() {
+  const grid = document.getElementById("tshirtGrid");
+  if (!grid) return;
+  grid.innerHTML = "";
 
-      let items = [...PRODUCTS];
+  let items = [...PRODUCTS];
 
-      // Live search filter
-      if (currentSearchQuery) {
-        items = items.filter(p => 
-          (p.name && p.name.toLowerCase().includes(currentSearchQuery)) ||
-          (p.subtitle && p.subtitle.toLowerCase().includes(currentSearchQuery)) ||
-          (p.desc && p.desc.toLowerCase().includes(currentSearchQuery)) ||
-          (p.category && p.category.toLowerCase().includes(currentSearchQuery))
-        );
-      }
+  // Live search filter
+  if (currentSearchQuery) {
+    items = items.filter(p =>
+      (p.name && p.name.toLowerCase().includes(currentSearchQuery)) ||
+      (p.subtitle && p.subtitle.toLowerCase().includes(currentSearchQuery)) ||
+      (p.desc && p.desc.toLowerCase().includes(currentSearchQuery)) ||
+      (p.category && p.category.toLowerCase().includes(currentSearchQuery))
+    );
+  }
 
-      // Category filter
-      if (currentCat !== 'all') {
-        items = items.filter(p => p.category === currentCat);
-      }
+  // Category filter
+  if (currentCat !== 'all') {
+    items = items.filter(p => p.category === currentCat);
+  }
 
-      // Sort
-      if (currentSort === 'price-low') {
-        items.sort((a, b) => a.price - b.price);
-      } else if (currentSort === 'price-high') {
-        items.sort((a, b) => b.price - a.price);
-      } else if (currentSort === 'rating') {
-        items.sort((a, b) => b.rating - a.rating);
-      } else if (currentSort === 'discount') {
-        items.sort((a, b) => (b.mrp - b.price) - (a.mrp - a.price));
-      }
+  // Sort
+  if (currentSort === 'price-low') {
+    items.sort((a, b) => a.price - b.price);
+  } else if (currentSort === 'price-high') {
+    items.sort((a, b) => b.price - a.price);
+  } else if (currentSort === 'rating') {
+    items.sort((a, b) => b.rating - a.rating);
+  } else if (currentSort === 'discount') {
+    items.sort((a, b) => (b.mrp - b.price) - (a.mrp - a.price));
+  }
 
-      // Update count label
-      const countLabel = document.getElementById("productCountLabel");
-      if (countLabel) {
-        countLabel.textContent = `Showing ${items.length} Product${items.length === 1 ? '' : 's'}`;
-      }
+  // Update count label
+  const countLabel = document.getElementById("productCountLabel");
+  if (countLabel) {
+    countLabel.textContent = `Showing ${items.length} Product${items.length === 1 ? '' : 's'}`;
+  }
 
-      if (typeof updateChipCounts === 'function') updateChipCounts();
+  if (typeof updateChipCounts === 'function') updateChipCounts();
 
-      if (items.length === 0) {
-        const isFiltered = currentSearchQuery || currentCat !== 'all';
-        grid.innerHTML = `
+  if (items.length === 0) {
+    const isFiltered = currentSearchQuery || currentCat !== 'all';
+    grid.innerHTML = `
           <div style="grid-column:1/-1;text-align:center;padding:70px 20px;background:var(--bg-secondary);border:1px dashed var(--border-color);border-radius:0;">
             <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--text-muted);margin-bottom:14px;"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
             <h3 style="font-family:var(--f-display);font-size:17px;font-weight:800;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text-primary);">
@@ -295,35 +304,37 @@
             </p>
           </div>
         `;
-        return;
+    return;
+  }
+
+  items.forEach(tee => {
+    const isWish = WISHLIST.has(tee.id);
+    const card = document.createElement("div");
+    card.className = "pc";
+    card.setAttribute("data-product-id", tee.id);
+    card.onclick = (e) => {
+      if (!e.target.closest('button')) {
+        openProduct(tee.id);
       }
+    };
 
-      items.forEach(tee => {
-        const isWish = WISHLIST.has(tee.id);
-        const card = document.createElement("div");
-        card.className = "pc";
-        card.setAttribute("data-product-id", tee.id);
-        card.onclick = (e) => {
-          if (!e.target.closest('button')) {
-            openProduct(tee.id);
-          }
-        };
+    const currentSz = selectedSizes[tee.id] || tee.sizes[0];
+    const pImgs = (Array.isArray(tee.images) && tee.images.length > 0) ? tee.images : [tee.img || 'assets/model-tee.jpg'];
+    const primaryImg = pImgs[0];
+    const secondaryImg = pImgs[1] || tee.altImg || primaryImg;
+    const isLive = tee.isLive !== false;
+    const discountText = isLive
+      ? (tee.discountText || `${Math.round(((tee.mrp - tee.price) / tee.mrp) * 100)}% OFF`)
+      : "COMING SOON";
 
-        const currentSz = selectedSizes[tee.id] || tee.sizes[0];
-        const pImgs = (Array.isArray(tee.images) && tee.images.length > 0) ? tee.images : [tee.img || 'assets/model-tee.jpg'];
-        const primaryImg = pImgs[0];
-        const secondaryImg = pImgs[1] || tee.altImg || primaryImg;
-        const isLive = tee.isLive !== false;
-        const discountText = isLive 
-          ? (tee.discountText || `${Math.round(((tee.mrp - tee.price)/tee.mrp)*100)}% OFF`)
-          : "COMING SOON";
-
-        card.innerHTML = `
+    card.innerHTML = `
           <div class="pc-media" onclick="openProduct('${tee.id}')">
             <img class="pri" src="${primaryImg}" alt="${tee.name}" loading="lazy">
             <img class="sec" src="${secondaryImg}" alt="${tee.name}" loading="lazy">
             <button class="wish-btn ${isWish ? 'wishlisted' : ''}" onclick="toggleWishlist(event, '${tee.id}')" aria-label="Wishlist">
-              ${isWish ? '♥' : '♡'}
+              ${isWish
+                ? `<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
+                : `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`}
             </button>
             <span class="pc-disc-tag ${!isLive ? 'coming-soon-tag' : ''}">${isLive ? discountText : 'COMING SOON'}</span>
           </div>
@@ -361,117 +372,140 @@
               `}
             </div>
           </div>`;
-        grid.appendChild(card);
-      });
-    }
+    grid.appendChild(card);
+  });
+}
 
-    function renderTees() {
-      renderProducts();
-    }
+function renderTees() {
+  renderProducts();
+}
 
-    function updateChipCounts() {
-      const allCount = PRODUCTS.length;
-      const teesCount = PRODUCTS.filter(p => p.category === 'tees').length;
-      const acidCount = PRODUCTS.filter(p => p.category === 'acid').length;
-      const hoodiesCount = PRODUCTS.filter(p => p.category === 'hoodies').length;
-      const bottomsCount = PRODUCTS.filter(p => p.category === 'bottoms').length;
-      const accCount = PRODUCTS.filter(p => p.category === 'accessories').length;
+function updateChipCounts() {
+  const allCount = PRODUCTS.length;
+  const teesCount = PRODUCTS.filter(p => p.category === 'tees').length;
+  const acidCount = PRODUCTS.filter(p => p.category === 'acid').length;
+  const hoodiesCount = PRODUCTS.filter(p => p.category === 'hoodies').length;
+  const bottomsCount = PRODUCTS.filter(p => p.category === 'bottoms').length;
+  const accCount = PRODUCTS.filter(p => p.category === 'accessories').length;
 
-      const elAll = document.getElementById("chipCountAll");
-      if (elAll) elAll.textContent = allCount;
-      const elTees = document.getElementById("chipCountTees");
-      if (elTees) elTees.textContent = teesCount > 0 ? `${teesCount} LIVE` : '0';
-      const elAcid = document.getElementById("chipCountAcid");
-      if (elAcid) elAcid.textContent = acidCount > 0 ? `${acidCount} LIVE` : '0';
-      const elHoodies = document.getElementById("chipCountHoodies");
-      if (elHoodies) elHoodies.textContent = hoodiesCount > 0 ? `${hoodiesCount} LIVE` : 'COMING SOON';
-      const elBottoms = document.getElementById("chipCountBottoms");
-      if (elBottoms) elBottoms.textContent = bottomsCount > 0 ? `${bottomsCount} LIVE` : 'COMING SOON';
-      const elAcc = document.getElementById("chipCountAccessories");
-      if (elAcc) elAcc.textContent = accCount > 0 ? `${accCount} LIVE` : 'COMING SOON';
-    }
+  const elAll = document.getElementById("chipCountAll");
+  if (elAll) elAll.textContent = allCount;
+  const elTees = document.getElementById("chipCountTees");
+  if (elTees) elTees.textContent = teesCount > 0 ? `${teesCount} LIVE` : '0';
+  const elAcid = document.getElementById("chipCountAcid");
+  if (elAcid) elAcid.textContent = acidCount > 0 ? `${acidCount} LIVE` : '0';
+  const elHoodies = document.getElementById("chipCountHoodies");
+  if (elHoodies) elHoodies.textContent = hoodiesCount > 0 ? `${hoodiesCount} LIVE` : 'COMING SOON';
+  const elBottoms = document.getElementById("chipCountBottoms");
+  if (elBottoms) elBottoms.textContent = bottomsCount > 0 ? `${bottomsCount} LIVE` : 'COMING SOON';
+  const elAcc = document.getElementById("chipCountAccessories");
+  if (elAcc) elAcc.textContent = accCount > 0 ? `${accCount} LIVE` : 'COMING SOON';
+}
 
-    /* ——— CATEGORY & SORT HANDLERS ——— */
-    function filterCategory(cat, btn) {
-      currentCat = cat;
-      document.querySelectorAll('#catNav .cat-chip-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderProducts();
-    }
+/* ——— CATEGORY & SORT HANDLERS ——— */
+function filterCategory(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('#catNav .cat-chip-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderProducts();
+}
 
-    function handleSortChange(sortVal) {
-      currentSort = sortVal;
-      renderProducts();
-    }
+function handleSortChange(sortVal) {
+  currentSort = sortVal;
+  renderProducts();
+}
 
-    /* ——— WISHLIST ——— */
-    function toggleWishlist(e, id) {
-      if (e) e.stopPropagation();
-      const tee = PRODUCTS.find(p => p.id === id);
-      if (WISHLIST.has(id)) {
-        WISHLIST.delete(id);
-        toast(`Removed ${tee ? tee.name : 'item'} from Wishlist`);
-      } else {
-        WISHLIST.add(id);
-        toast(`Added ${tee ? tee.name : 'item'} to Wishlist ♥`);
-      }
-      localStorage.setItem('sh-wishlist', JSON.stringify([...WISHLIST]));
-      renderProducts();
-      if (activePDPProduct && activePDPProduct.id === id) {
-        updatePDPWishlistUI();
-      }
-    }
+/* ——— WISHLIST ——— */
+function updateWishlistBadges() {
+  const count = WISHLIST.size;
+  const b = document.getElementById("wishlistCount");
+  if (b) {
+    b.textContent = count;
+    b.style.display = count > 0 ? "flex" : "none";
+  }
+  const mb = document.getElementById("mobWishBadge");
+  if (mb) {
+    mb.textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
+  }
+  const mobBottomWish = document.getElementById("mobBottomWishCount");
+  if (mobBottomWish) {
+    mobBottomWish.textContent = count;
+    mobBottomWish.style.display = count > 0 ? "flex" : "none";
+  }
+}
 
-    function togglePDPWishlist() {
-      if (!activePDPProduct) return;
-      toggleWishlist(null, activePDPProduct.id);
-    }
+function toggleWishlist(e, id) {
+  if (e) e.stopPropagation();
+  const tee = PRODUCTS.find(p => p.id === id);
+  if (WISHLIST.has(id)) {
+    WISHLIST.delete(id);
+    toast(`Removed ${tee ? tee.name : 'item'} from Wishlist`);
+  } else {
+    WISHLIST.add(id);
+    toast(`Added ${tee ? tee.name : 'item'} to Wishlist`);
+  }
+  localStorage.setItem('sh-wishlist', JSON.stringify([...WISHLIST]));
+  window.dispatchEvent(new Event('storage'));
+  renderProducts();
+  updateWishlistBadges();
+  if (activePDPProduct && activePDPProduct.id === id) {
+    updatePDPWishlistUI();
+  }
+}
 
-    function updatePDPWishlistUI() {
-      if (!activePDPProduct) return;
-      const isWish = WISHLIST.has(activePDPProduct.id);
-      const btn = document.getElementById("pdpWishBtn");
-      const overlay = document.getElementById("pdpHeartOverlay");
-      const heart = document.getElementById("pdpWishHeart");
-      const text = document.getElementById("pdpWishText");
-      if (btn) btn.classList.toggle("active", isWish);
-      if (overlay) {
-        overlay.classList.toggle("active", isWish);
-        overlay.textContent = isWish ? '♥' : '♡';
-      }
-      if (heart) heart.textContent = isWish ? '♥' : '♡';
-      if (text) text.textContent = isWish ? 'Wishlisted' : 'Wishlist';
-    }
+function togglePDPWishlist() {
+  if (!activePDPProduct) return;
+  toggleWishlist(null, activePDPProduct.id);
+}
 
-    /* ——— PRODUCT DETAIL QUICK VIEW (PDP) ——— */
-    let modalActiveSize = 'L';
+function updatePDPWishlistUI() {
+  if (!activePDPProduct) return;
+  const isWish = WISHLIST.has(activePDPProduct.id);
+  const btn = document.getElementById("pdpWishBtn");
+  const overlay = document.getElementById("pdpHeartOverlay");
+  const heart = document.getElementById("pdpWishHeart");
+  const text = document.getElementById("pdpWishText");
+  const heartSvg = isWish
+    ? `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
+    : `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+  if (btn) btn.classList.toggle("active", isWish);
+  if (overlay) {
+    overlay.classList.toggle("active", isWish);
+    overlay.innerHTML = heartSvg;
+  }
+  if (heart) heart.innerHTML = heartSvg;
+  if (text) text.textContent = isWish ? 'In Wishlist' : 'Wishlist';
+}
 
-    function openProduct(id) {
-      const p = PRODUCTS.find(item => item.id === id) || PRODUCTS[0];
-      activePDPProduct = p;
-      activePDPSize = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || 'L';
-      modalActiveSize = activePDPSize;
+/* ——— PRODUCT DETAIL QUICK VIEW (PDP) ——— */
+let modalActiveSize = 'L';
 
-      const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
-      const scrim = document.getElementById("pdpScrim");
+function openProduct(id) {
+  const p = PRODUCTS.find(item => item.id === id) || PRODUCTS[0];
+  activePDPProduct = p;
+  activePDPSize = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || 'L';
+  modalActiveSize = activePDPSize;
 
-      if (!modal) {
-        window.location.href = `catalogue.html#product-${p.id}`;
-        return;
-      }
+  const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
+  const scrim = document.getElementById("pdpScrim");
 
-      // Update URL hash
-      if (window.location.hash !== `#product-${p.id}`) {
-        window.history.pushState(null, '', `#product-${p.id}`);
-      }
+  if (!modal) {
+    window.location.href = `catalogue.html#product-${p.id}`;
+    return;
+  }
 
-      const pImgs = (Array.isArray(p.images) && p.images.length > 0) ? p.images : [p.img || 'assets/model-tee.jpg'];
-      modalActiveImgIdx = 0;
-      modalActiveImgs = pImgs;
-      const isLive = p.isLive !== false;
-      const finalPrice = Math.round(p.price * discount);
+  // Update URL hash
+  if (window.location.hash !== `#product-${p.id}`) {
+    window.history.pushState(null, '', `#product-${p.id}`);
+  }
 
-      modal.innerHTML = `
+  const pImgs = (Array.isArray(p.images) && p.images.length > 0) ? p.images : [p.img || 'assets/model-tee.jpg'];
+  modalActiveImgIdx = 0;
+  modalActiveImgs = pImgs;
+  const isLive = p.isLive !== false;
+  const finalPrice = Math.round(p.price * discount);
+
+  modal.innerHTML = `
         <div style="position:relative;">
           <button type="button" onclick="closeProduct()" aria-label="Close" style="position:absolute;top:-10px;right:-10px;width:34px;height:34px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border-color);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-primary);z-index:10;transition:transform 0.15s ease;">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -495,7 +529,7 @@
               ${pImgs.length > 1 ? `
                 <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;" id="modalThumbsList">
                   ${pImgs.map((img, idx) => `
-                    <img src="${img}" alt="${p.name}" style="width:56px;height:56px;object-fit:contain;background:var(--bg-secondary);border-radius:0;cursor:pointer;border:1.5px solid ${idx===0?'var(--brand-black)':'transparent'};flex-shrink:0;padding:2px;box-sizing:border-box;transition:border-color 0.15s;" onclick="selectModalThumb('${img}', this, ${idx})">
+                    <img src="${img}" alt="${p.name}" style="width:56px;height:56px;object-fit:contain;background:var(--bg-secondary);border-radius:0;cursor:pointer;border:1.5px solid ${idx === 0 ? 'var(--brand-black)' : 'transparent'};flex-shrink:0;padding:2px;box-sizing:border-box;transition:border-color 0.15s;" onclick="selectModalThumb('${img}', this, ${idx})">
                   `).join('')}
                 </div>
               ` : ''}
@@ -538,10 +572,9 @@
                   <button type="button" class="cart-checkout-btn" style="flex:1;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;" onclick="addToCart('${p.id}', modalActiveSize); toast('Added to Bag'); closeProduct();">
                     Add to Bag
                   </button>
-                  <a href="https://wa.me/919286511557?text=${encodeURIComponent(`Hello Shelby Hiver! 👋\n\nI want to BUY:\n• ${p.name}\n• Size: ${modalActiveSize}\n• Price: ₹${finalPrice.toLocaleString()} (${p.discountText || ''})\n\nPlease share payment details.`)}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff;border-radius:6px;padding:12px 16px;font-family:var(--f-display);font-size:13px;font-weight:700;text-decoration:none;">
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  <button type="button" class="cart-checkout-btn" style="flex:1;background:var(--text-primary,#111);color:var(--bg-primary,#fff);padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;border:none;border-radius:6px;" onclick="closeProduct();if(window.openShelbyCheckout){window.openShelbyCheckout({items:[{id:'${p.id}',name:'${p.name.replace(/'/g, "\\'")}',size:modalActiveSize,qty:1,price:${finalPrice},img:'${p.img}'}],source:'buynow'});}else{directWA('${p.id}');}">
                     Buy Now
-                  </a>
+                  </button>
                 </div>
               ` : ''}
 
@@ -562,279 +595,298 @@
         </div>
       `;
 
-      modal.style.display = "block";
-      modal.classList.add("active");
-      if (scrim) {
-        scrim.style.display = "block";
-        scrim.classList.add("open");
-      }
-      document.body.style.overflow = "hidden";
-      modal.scrollTop = 0;
+  modal.style.display = "block";
+  modal.classList.add("active");
+  if (scrim) {
+    scrim.style.display = "block";
+    scrim.classList.add("open");
+  }
+  document.body.style.overflow = "hidden";
+  modal.scrollTop = 0;
 
-      const imgBox = document.getElementById("pdpModalImgBox");
-      if (imgBox && pImgs.length > 1) {
-        attachSwipeGesture(imgBox, () => nextModalImg(), () => prevModalImg());
-      }
+  const imgBox = document.getElementById("pdpModalImgBox");
+  if (imgBox && pImgs.length > 1) {
+    attachSwipeGesture(imgBox, () => nextModalImg(), () => prevModalImg());
+  }
+}
+
+function closeProduct() {
+  const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
+  const scrim = document.getElementById("pdpScrim");
+  if (modal) {
+    modal.style.display = "none";
+    modal.classList.remove("active");
+  }
+  if (scrim) {
+    scrim.style.display = "none";
+    scrim.classList.remove("open");
+  }
+  document.body.style.overflow = "";
+  if (window.location.hash.startsWith('#product-')) {
+    window.history.pushState(null, '', window.location.pathname + window.location.search);
+  }
+}
+
+let modalActiveImgIdx = 0;
+let modalActiveImgs = [];
+
+function selectModalThumb(src, el, idx) {
+  if (typeof idx === 'number') modalActiveImgIdx = idx;
+  const main = document.getElementById("pdpModalMainImg");
+  if (main) {
+    main.style.opacity = '0.3';
+    setTimeout(() => {
+      main.src = src;
+      main.style.opacity = '1';
+    }, 100);
+  }
+  const thumbs = document.querySelectorAll('#modalThumbsList img');
+  thumbs.forEach((img, i) => {
+    img.style.borderColor = (i === modalActiveImgIdx) ? 'var(--brand-black)' : 'transparent';
+  });
+  const counter = document.getElementById('pdpModalCounter');
+  if (counter && modalActiveImgs && modalActiveImgs.length > 1) {
+    counter.textContent = `${modalActiveImgIdx + 1} / ${modalActiveImgs.length}`;
+  }
+}
+
+function nextModalImg() {
+  if (!modalActiveImgs || modalActiveImgs.length <= 1) return;
+  modalActiveImgIdx = (modalActiveImgIdx + 1) % modalActiveImgs.length;
+  selectModalThumb(modalActiveImgs[modalActiveImgIdx], null, modalActiveImgIdx);
+}
+
+function prevModalImg() {
+  if (!modalActiveImgs || modalActiveImgs.length <= 1) return;
+  modalActiveImgIdx = (modalActiveImgIdx - 1 + modalActiveImgs.length) % modalActiveImgs.length;
+  selectModalThumb(modalActiveImgs[modalActiveImgIdx], null, modalActiveImgIdx);
+}
+
+function attachSwipeGesture(el, onLeft, onRight) {
+  if (!el) return;
+  let startX = 0, startY = 0, endX = 0, endY = 0, swiping = false;
+  el.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      endX = startX;
+      endY = startY;
+      swiping = true;
     }
-
-    function closeProduct() {
-      const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
-      const scrim = document.getElementById("pdpScrim");
-      if (modal) {
-        modal.style.display = "none";
-        modal.classList.remove("active");
-      }
-      if (scrim) {
-        scrim.style.display = "none";
-        scrim.classList.remove("open");
-      }
-      document.body.style.overflow = "";
-      if (window.location.hash.startsWith('#product-')) {
-        window.history.pushState(null, '', window.location.pathname + window.location.search);
-      }
+  }, { passive: true });
+  el.addEventListener('touchmove', function (e) {
+    if (!swiping || e.touches.length !== 1) return;
+    endX = e.touches[0].clientX;
+    endY = e.touches[0].clientY;
+  }, { passive: true });
+  el.addEventListener('touchend', function (e) {
+    if (!swiping) return;
+    swiping = false;
+    const dx = endX - startX;
+    const dy = endY - startY;
+    if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) onLeft();
+      else onRight();
     }
+  }, { passive: true });
+}
 
-    let modalActiveImgIdx = 0;
-    let modalActiveImgs = [];
+function selectModalSize(prodId, sz, btn) {
+  modalActiveSize = sz;
+  selectedSizes[prodId] = sz;
+  if (btn && btn.parentElement) {
+    btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+}
 
-    function selectModalThumb(src, el, idx) {
-      if (typeof idx === 'number') modalActiveImgIdx = idx;
-      const main = document.getElementById("pdpModalMainImg");
-      if (main) {
-        main.style.opacity = '0.3';
-        setTimeout(() => {
-          main.src = src;
-          main.style.opacity = '1';
-        }, 100);
-      }
-      const thumbs = document.querySelectorAll('#modalThumbsList img');
-      thumbs.forEach((img, i) => {
-        img.style.borderColor = (i === modalActiveImgIdx) ? 'var(--brand-black)' : 'transparent';
-      });
-      const counter = document.getElementById('pdpModalCounter');
-      if (counter && modalActiveImgs && modalActiveImgs.length > 1) {
-        counter.textContent = `${modalActiveImgIdx + 1} / ${modalActiveImgs.length}`;
-      }
-    }
+function selectPDPThumb(idx, imgSrc) {
+  selectModalThumb(imgSrc, null);
+}
 
-    function nextModalImg() {
-      if (!modalActiveImgs || modalActiveImgs.length <= 1) return;
-      modalActiveImgIdx = (modalActiveImgIdx + 1) % modalActiveImgs.length;
-      selectModalThumb(modalActiveImgs[modalActiveImgIdx], null, modalActiveImgIdx);
-    }
+function selectPDPSize(sz, btn) {
+  if (activePDPProduct) selectModalSize(activePDPProduct.id, sz, btn);
+}
 
-    function prevModalImg() {
-      if (!modalActiveImgs || modalActiveImgs.length <= 1) return;
-      modalActiveImgIdx = (modalActiveImgIdx - 1 + modalActiveImgs.length) % modalActiveImgs.length;
-      selectModalThumb(modalActiveImgs[modalActiveImgIdx], null, modalActiveImgIdx);
-    }
+function selectPDPColor(idx, name, btn) {
+  // Compatibility helper
+}
 
-    function attachSwipeGesture(el, onLeft, onRight) {
-      if (!el) return;
-      let startX = 0, startY = 0, endX = 0, endY = 0, swiping = false;
-      el.addEventListener('touchstart', function(e) {
-        if (e.touches.length === 1) {
-          startX = e.touches[0].clientX;
-          startY = e.touches[0].clientY;
-          endX = startX;
-          endY = startY;
-          swiping = true;
-        }
-      }, { passive: true });
-      el.addEventListener('touchmove', function(e) {
-        if (!swiping || e.touches.length !== 1) return;
-        endX = e.touches[0].clientX;
-        endY = e.touches[0].clientY;
-      }, { passive: true });
-      el.addEventListener('touchend', function(e) {
-        if (!swiping) return;
-        swiping = false;
-        const dx = endX - startX;
-        const dy = endY - startY;
-        if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy)) {
-          if (dx < 0) onLeft();
-          else onRight();
-        }
-      }, { passive: true });
-    }
+function pdpAddToCart() {
+  if (!activePDPProduct) return;
+  addToCart(activePDPProduct.id, activePDPSize);
+}
 
-    function selectModalSize(prodId, sz, btn) {
-      modalActiveSize = sz;
-      selectedSizes[prodId] = sz;
-      if (btn && btn.parentElement) {
-        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      }
-    }
+function pdpBuyNow() {
+  if (!activePDPProduct) return;
+  const sz = activePDPSize || activePDPProduct.sizes[0];
+  const p = activePDPProduct;
+  const finalPrice = Math.round(p.price * discount);
 
-    function selectPDPThumb(idx, imgSrc) {
-      selectModalThumb(imgSrc, null);
-    }
+  if (window.openShelbyCheckout) {
+    window.openShelbyCheckout({
+      items: [{
+        id: p.id,
+        name: p.name,
+        size: sz,
+        qty: 1,
+        price: finalPrice,
+        img: p.img || (Array.isArray(p.images) ? p.images[0] : 'assets/model-tee.jpg')
+      }],
+      source: 'buynow'
+    });
+    return;
+  }
 
-    function selectPDPSize(sz, btn) {
-      if (activePDPProduct) selectModalSize(activePDPProduct.id, sz, btn);
-    }
+  // Record to Admin real-time orders stream
+  try {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch (e) { }
+    const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    recordStorefrontOrder({
+      id: orderId,
+      customerName: user ? user.name : "VIP Customer",
+      customerPhone: user ? user.phone : "+91 9286511557",
+      customerEmail: user ? user.email : "patron@shelbyhiver.com",
+      items: [{
+        name: p.name,
+        size: sz,
+        qty: 1,
+        price: finalPrice
+      }],
+      total: finalPrice,
+      status: 'Pending Dispatch',
+      channel: 'Storefront PDP Buy Now',
+      createdAt: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error("Order dispatch error:", err);
+  }
 
-    function selectPDPColor(idx, name, btn) {
-      // Compatibility helper
-    }
+  const colorName = (p.colors && p.colors[activePDPColorIdx]) ? p.colors[activePDPColorIdx].name : 'Standard';
+  const msg = `SHELBY HIVER ATELIER — DIRECT ACQUISITION\n\nOrder Request:\n• ${p.name}\n• Size: ${sz}\n• Color: ${colorName}\n• Price: ₹${finalPrice.toLocaleString()} (${p.discountText})\n\nPlease confirm availability and share payment verification details.\n\nClient Name: \nDelivery Address (House No, Landmark, Area, City, Pin): \nContact Phone: `;
+  toast(`Opening WhatsApp Concierge for ${p.name}...`);
+  setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 300);
+}
 
-    function pdpAddToCart() {
-      if (!activePDPProduct) return;
-      addToCart(activePDPProduct.id, activePDPSize);
-    }
+function pdpDirectWA() {
+  pdpBuyNow();
+}
 
-    function pdpBuyNow() {
-      if (!activePDPProduct) return;
-      const sz = activePDPSize || activePDPProduct.sizes[0];
-      const p = activePDPProduct;
-      const finalPrice = Math.round(p.price * discount);
-
-      // Record to Admin real-time orders stream
-      try {
-        let user = null;
-        try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
-        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
-        recordStorefrontOrder({
-          id: orderId,
-          customerName: user ? user.name : "VIP Customer",
-          customerPhone: user ? user.phone : "+91 9286511557",
-          customerEmail: user ? user.email : "patron@shelbyhiver.com",
-          items: [{
-            name: p.name,
-            size: sz,
-            qty: 1,
-            price: finalPrice
-          }],
-          total: finalPrice,
-          status: 'Pending Dispatch',
-          channel: 'Storefront PDP Buy Now',
-          createdAt: new Date().toISOString()
-        });
-      } catch (err) {
-        console.error("Order dispatch error:", err);
-      }
-
-      const colorName = (p.colors && p.colors[activePDPColorIdx]) ? p.colors[activePDPColorIdx].name : 'Standard';
-      const msg = `Hello Shelby Hiver Atelier! 👋\n\nI want to BUY NOW:\n• ${p.name}\n• Size: ${sz}\n• Color: ${colorName}\n• Price: ₹${finalPrice.toLocaleString()} (${p.discountText})\n\nPlease share payment QR/UPI and confirm express 24h dispatch.\n\nMy delivery details:\nName: \nAddress: \nPin Code: \nPhone: `;
-      toast(`Opening WhatsApp Instant Buy for ${p.name}...`);
-      setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 300);
-    }
-
-    function pdpDirectWA() {
-      pdpBuyNow();
-    }
-
-    /* ——— PINCODE CHECKER ——— */
-    function checkPincode() {
-      const input = document.getElementById("pdpPincodeInput");
-      const result = document.getElementById("pdpPinResult");
-      const pin = input.value.trim();
-      if (!pin || pin.length < 6 || !/^\d{6}$/.test(pin)) {
-        result.innerHTML = `<span style="color:#e63946;">⚠️ Please enter a valid 6-digit Indian delivery pincode.</span>`;
-        return;
-      }
-      const deliveryDays = (parseInt(pin[0]) % 2 === 0) ? '2-3' : '3-4';
-      result.innerHTML = `
-        <span style="color:#25d366;font-weight:700;">✓ Express Delivery available to ${pin} in ${deliveryDays} business days!</span>
-        <div style="color:var(--text-secondary);margin-top:4px;font-size:10px;">• Express Tracked Shipping · Cash on Delivery & UPI Accepted</div>
+/* ——— PINCODE CHECKER ——— */
+function checkPincode() {
+  const input = document.getElementById("pdpPincodeInput");
+  const result = document.getElementById("pdpPinResult");
+  const pin = input.value.trim();
+  if (!pin || pin.length < 6 || !/^\d{6}$/.test(pin)) {
+    result.innerHTML = `<span style="color:#e63946;">Please enter a valid 6-digit postal code.</span>`;
+    return;
+  }
+  const deliveryDays = (parseInt(pin[0]) % 2 === 0) ? '2-3' : '3-4';
+  result.innerHTML = `
+        <span style="color:var(--text-primary);font-weight:700;">Express Delivery available to ${pin} in ${deliveryDays} business days</span>
+        <div style="color:var(--text-secondary);margin-top:4px;font-size:11px;">Tracked Dispatch · COD &amp; Direct UPI Settlement</div>
       `;
-    }
+}
 
-    /* ——— SIZE CHART MODAL ——— */
-    function openSizeChart() {
-      const scrim = document.getElementById("sizeChartScrim") || document.getElementById("sizeModalScrim");
-      const modal = document.getElementById("sizeChartModal");
-      if (scrim) scrim.classList.add("on");
-      if (modal) modal.classList.add("on");
-      document.body.style.overflow = "hidden";
-    }
+/* ——— SIZE CHART MODAL ——— */
+function openSizeChart() {
+  const scrim = document.getElementById("sizeChartScrim") || document.getElementById("sizeModalScrim");
+  const modal = document.getElementById("sizeChartModal");
+  if (scrim) scrim.classList.add("on");
+  if (modal) modal.classList.add("on");
+  document.body.style.overflow = "hidden";
+}
 
-    function closeSizeChart() {
-      const scrim = document.getElementById("sizeChartScrim") || document.getElementById("sizeModalScrim");
-      const modal = document.getElementById("sizeChartModal");
-      if (scrim) scrim.classList.remove("on");
-      if (modal) modal.classList.remove("on");
-      document.body.style.overflow = "";
-    }
+function closeSizeChart() {
+  const scrim = document.getElementById("sizeChartScrim") || document.getElementById("sizeModalScrim");
+  const modal = document.getElementById("sizeChartModal");
+  if (scrim) scrim.classList.remove("on");
+  if (modal) modal.classList.remove("on");
+  document.body.style.overflow = "";
+}
 
-    /* ——— HASH ROUTING (FOR DIRECT PRODUCT LINKS) ——— */
-    function checkHashRoute() {
-      const hash = window.location.hash;
-      if (hash.startsWith('#product-')) {
-        const id = hash.replace('#product-', '');
-        openProduct(id);
-      }
-    }
-    window.addEventListener('hashchange', checkHashRoute);
+/* ——— HASH ROUTING (FOR DIRECT PRODUCT LINKS) ——— */
+function checkHashRoute() {
+  const hash = window.location.hash;
+  if (hash.startsWith('#product-')) {
+    const id = hash.replace('#product-', '');
+    openProduct(id);
+  }
+}
+window.addEventListener('hashchange', checkHashRoute);
 
-    function pickSz(e, id, sz) {
-      if (e) e.stopPropagation();
-      selectedSizes[id] = sz;
-    }
+function pickSz(e, id, sz) {
+  if (e) e.stopPropagation();
+  selectedSizes[id] = sz;
+}
 
-    function pickSz2(id, sz, btn, e) {
-      if (e) e.stopPropagation();
-      selectedSizes[id] = sz;
-      const card = btn.closest('.pc');
-      if (card) {
-        card.querySelectorAll('.pc-size-pill').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      }
-      toast(`Selected Size ${sz}`);
-    }
+function pickSz2(id, sz, btn, e) {
+  if (e) e.stopPropagation();
+  selectedSizes[id] = sz;
+  const card = btn.closest('.pc');
+  if (card) {
+    card.querySelectorAll('.pc-size-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  toast(`Selected Size ${sz}`);
+}
 
-    /* ——— ADD TO CART ——— */
-    function addToCart(id, sizeArg) {
-      const p = PRODUCTS.find(t => t.id === id);
-      if (p && p.isLive === false) {
-        toast(`${p.name} is Coming Soon in Drop 02.`);
-        return;
-      }
-      const sz = sizeArg || selectedSizes[id] || (p ? p.sizes[0] : "L");
-      const existing = CART.find(i => i.id === id && i.size === sz);
-      if (existing) { existing.qty++; }
-      else { CART.push({ id, size: sz, qty: 1 }); }
-      toast(`Added ${p.name} (${sz}) to Bag`);
-      renderCart();
-      showCart();
-      const b = document.getElementById("bagCount");
-      if (b) {
-        b.classList.add("bump"); setTimeout(() => b.classList.remove("bump"), 300);
-      }
-      const mb = document.getElementById("mobBottomBagCount");
-      if (mb) {
-        mb.classList.add("bump"); setTimeout(() => mb.classList.remove("bump"), 300);
-      }
-      const pb = document.getElementById("pdpBagBadge");
-      if (pb) {
-        pb.textContent = CART.reduce((s, i) => s + i.qty, 0);
-      }
-    }
+/* ——— ADD TO CART ——— */
+function addToCart(id, sizeArg) {
+  const p = PRODUCTS.find(t => t.id === id);
+  if (p && p.isLive === false) {
+    toast(`${p.name} is Coming Soon in Drop 02.`);
+    return;
+  }
+  const sz = sizeArg || selectedSizes[id] || (p ? p.sizes[0] : "L");
+  const existing = CART.find(i => i.id === id && i.size === sz);
+  if (existing) { existing.qty++; }
+  else { CART.push({ id, size: sz, qty: 1 }); }
+  localStorage.setItem('sh_cart', JSON.stringify(CART));
+  window.dispatchEvent(new Event('storage'));
+  toast(`Added ${p.name} (${sz}) to Bag`);
+  renderCart();
+  showCart();
+  const b = document.getElementById("bagCount");
+  if (b) {
+    b.classList.add("bump"); setTimeout(() => b.classList.remove("bump"), 300);
+  }
+  const mb = document.getElementById("mobBottomBagCount");
+  if (mb) {
+    mb.classList.add("bump"); setTimeout(() => mb.classList.remove("bump"), 300);
+  }
+  const pb = document.getElementById("pdpBagBadge");
+  if (pb) {
+    pb.textContent = CART.reduce((s, i) => s + i.qty, 0);
+  }
+}
 
-    function updateQty(idx, d) {
-      CART[idx].qty += d;
-      if (CART[idx].qty <= 0) CART.splice(idx, 1);
-      renderCart();
-    }
+function updateQty(idx, d) {
+  CART[idx].qty += d;
+  if (CART[idx].qty <= 0) CART.splice(idx, 1);
+  localStorage.setItem('sh_cart', JSON.stringify(CART));
+  window.dispatchEvent(new Event('storage'));
+  renderCart();
+}
 
-    /* ——— RENDER CART ——— */
-    function renderCart() {
-      const container = document.getElementById("cartItemsList") || document.getElementById("cartItems");
-      const count = CART.reduce((s, i) => s + (i.qty || 1), 0);
-      const bagCountEl = document.getElementById("bagCount");
-      if (bagCountEl) bagCountEl.textContent = count;
-      const mobBottomBagEl = document.getElementById("mobBottomBagCount");
-      if (mobBottomBagEl) mobBottomBagEl.textContent = count;
-      const cartHeaderCountEl = document.getElementById("cartHeaderCount");
-      if (cartHeaderCountEl) cartHeaderCountEl.textContent = count;
-      const mobBagBadge = document.getElementById("mobBagBadge");
-      if (mobBagBadge) mobBagBadge.textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
+/* ——— RENDER CART ——— */
+function renderCart() {
+  const container = document.getElementById("cartItemsList") || document.getElementById("cartItems");
+  const count = CART.reduce((s, i) => s + (i.qty || 1), 0);
+  const bagCountEl = document.getElementById("bagCount");
+  if (bagCountEl) bagCountEl.textContent = count;
+  const mobBottomBagEl = document.getElementById("mobBottomBagCount");
+  if (mobBottomBagEl) mobBottomBagEl.textContent = count;
+  const cartHeaderCountEl = document.getElementById("cartHeaderCount");
+  if (cartHeaderCountEl) cartHeaderCountEl.textContent = count;
+  const mobBagBadge = document.getElementById("mobBagBadge");
+  if (mobBagBadge) mobBagBadge.textContent = `${count} ${count === 1 ? 'item' : 'items'}`;
 
-      if (!container) return;
+  if (!container) return;
 
-      if (!CART.length) {
-        container.innerHTML = `
+  if (!CART.length) {
+    container.innerHTML = `
           <div style="text-align:center;padding:50px 20px;color:var(--text-muted);">
             <div style="font-size:36px;margin-bottom:12px;">🛍️</div>
             <p style="font-family:var(--f-display);font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Your Bag is Empty</p>
@@ -842,20 +894,20 @@
             <button type="button" class="btn-primary-action" style="font-size:11.5px;padding:10px 20px;" onclick="hideCart()">Browse Collection →</button>
           </div>
         `;
-        const subtotalEl = document.getElementById("cartTotalVal") || document.getElementById("cartSubtotal");
-        if (subtotalEl) subtotalEl.textContent = "₹ 0";
-        return;
-      }
+    const subtotalEl = document.getElementById("cartTotalVal") || document.getElementById("cartSubtotal");
+    if (subtotalEl) subtotalEl.textContent = "₹ 0";
+    return;
+  }
 
-      let total = 0;
-      container.innerHTML = "";
-      CART.forEach((item, idx) => {
-        const tee = TEES.find(t => t.id === item.id) || { name: item.id, price: 599, img: 'assets/model-tee.jpg' };
-        const lineTotal = Math.round(tee.price * item.qty * discount);
-        total += lineTotal;
-        const row = document.createElement("div");
-        row.className = "cart-item";
-        row.innerHTML = `
+  let total = 0;
+  container.innerHTML = "";
+  CART.forEach((item, idx) => {
+    const tee = TEES.find(t => t.id === item.id) || { name: item.id, price: 599, img: 'assets/model-tee.jpg' };
+    const lineTotal = Math.round(tee.price * item.qty * discount);
+    total += lineTotal;
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    row.innerHTML = `
           <img class="cart-item-img" src="${tee.img}" alt="${tee.name}">
           <div class="cart-item-details">
             <div class="cart-item-title">${tee.name}</div>
@@ -871,151 +923,171 @@
           </div>
           <button type="button" style="color:var(--text-muted);font-size:16px;padding:4px;align-self:flex-start;cursor:pointer;" onclick="updateQty(${idx}, -${item.qty})" title="Remove item">✕</button>
         `;
-        container.appendChild(row);
-      });
+    container.appendChild(row);
+  });
 
-      const subtotalEl = document.getElementById("cartTotalVal") || document.getElementById("cartSubtotal");
-      if (subtotalEl) subtotalEl.textContent = `₹ ${total.toLocaleString()}`;
-    }
+  const subtotalEl = document.getElementById("cartTotalVal") || document.getElementById("cartSubtotal");
+  if (subtotalEl) subtotalEl.textContent = `₹ ${total.toLocaleString()}`;
+}
 
-    /* ——— WHATSAPP CHECKOUT ——— */
-    function checkoutWA() {
-      if (!CART.length) { toast("Bag is empty — add an item first!"); return; }
-      let lines = "", grand = 0;
-      const orderItems = [];
-      CART.forEach(item => {
-        const tee = TEES.find(t => t.id === item.id);
-        const lt = Math.round((tee ? tee.price : 599) * item.qty * discount);
-        grand += lt;
-        const name = tee ? tee.name : item.id;
-        orderItems.push({
-          name: name,
-          size: item.size,
-          qty: item.qty,
-          price: lt
-        });
-        lines += `• ${name} | Size: ${item.size} | Qty: ${item.qty} | ₹${lt}\n`;
-      });
-      if (discount < 1) lines += `• Promo Discount Applied (${Math.round((1 - discount) * 100)}% OFF)\n`;
+/* ——— WHATSAPP CHECKOUT ——— */
+function checkoutWA() {
+  if (window.openShelbyCheckout) {
+    window.openShelbyCheckout({ source: 'cart' });
+    return;
+  }
+  if (!CART.length) { toast("Bag is empty — select a piece to continue."); return; }
+  let lines = "", grand = 0;
+  const orderItems = [];
+  CART.forEach(item => {
+    const tee = TEES.find(t => t.id === item.id);
+    const lt = Math.round((tee ? tee.price : 699) * item.qty * discount);
+    grand += lt;
+    const name = tee ? tee.name : item.id;
+    orderItems.push({
+      name: name,
+      size: item.size,
+      qty: item.qty,
+      price: lt
+    });
+    lines += `• ${name} | Size: ${item.size} | Qty: ${item.qty} | ₹${lt}\n`;
+  });
+  if (discount < 1) lines += `• Promotional Privilege Applied (${Math.round((1 - discount) * 100)}% Benefit)\n`;
 
-      // Record to Admin real-time orders stream
-      try {
-        let user = null;
-        try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
-        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
-        recordStorefrontOrder({
-          id: orderId,
-          customerName: user ? user.name : "Customer",
-          customerPhone: user ? user.phone : "+91 9286511557",
-          customerEmail: user ? user.email : "customer@shelbyhiver.com",
-          items: orderItems,
-          total: grand,
-          status: 'Pending Dispatch',
-          channel: 'Storefront WhatsApp Bag',
-          createdAt: new Date().toISOString()
-        });
-      } catch (err) {
-        console.error("Order dispatch error:", err);
-      }
+  // Record to Admin real-time orders stream
+  try {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch (e) { }
+    const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    recordStorefrontOrder({
+      id: orderId,
+      customerName: user ? user.name : "Customer",
+      customerPhone: user ? user.phone : "+91 9286511557",
+      customerEmail: user ? user.email : "customer@shelbyhiver.com",
+      items: orderItems,
+      total: grand,
+      status: 'Pending Dispatch',
+      channel: 'Storefront WhatsApp Bag',
+      createdAt: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error("Order dispatch error:", err);
+  }
 
-      const msg = `Hello Shelby Hiver! 👋\n\nI'd like to place an order:\n\n${lines}\n💰 TOTAL: ₹${grand.toLocaleString()}\n\nPlease share payment details (UPI/QR/Bank) and confirm delivery.\n\nMy delivery address:\nName: \nAddress: \nPin Code: \nPhone: `;
-      toast("Opening WhatsApp checkout...");
-      setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 400);
-    }
-    window.checkoutViaWhatsApp = checkoutWA;
+  const msg = `SHELBY HIVER ATELIER — ORDER MANIFEST\n\nOrder Request:\n\n${lines}\nTotal Payable: ₹${grand.toLocaleString()}\n\nPlease confirm delivery address and payment verification.\n\nClient Name: \nDelivery Address (House No, Landmark, Area, City, Pin): \nContact Phone: `;
+  toast("Opening WhatsApp Concierge...");
+  setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 400);
+}
+window.checkoutViaWhatsApp = checkoutWA;
 
-    /* ——— DIRECT BUY ——— */
-    function directWA(id) {
-      const tee = TEES.find(t => t.id === id);
-      const sz = selectedSizes[id] || tee.sizes[0];
-      const finalPrice = Math.round((tee ? tee.price : 699) * discount);
+/* ——— DIRECT BUY ——— */
+function directWA(id) {
+  const tee = TEES.find(t => t.id === id);
+  if (!tee) return;
+  const sz = selectedSizes[id] || (tee.sizes && tee.sizes[0]) || 'M';
+  const finalPrice = Math.round(tee.price * discount);
 
-      // Record to Admin real-time orders stream
-      try {
-        let user = null;
-        try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch(e){}
-        const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
-        recordStorefrontOrder({
-          id: orderId,
-          customerName: user ? user.name : "Direct Patron",
-          customerPhone: user ? user.phone : "+91 9286511557",
-          customerEmail: user ? user.email : "patron@shelbyhiver.com",
-          items: [{
-            name: tee ? tee.name : 'Shelby Item',
-            size: sz,
-            qty: 1,
-            price: finalPrice
-          }],
-          total: finalPrice,
-          status: 'Pending Dispatch',
-          channel: 'Storefront Direct Buy',
-          createdAt: new Date().toISOString()
-        });
-      } catch (err) {
-        console.error("Order dispatch error:", err);
-      }
+  if (window.openShelbyCheckout) {
+    window.openShelbyCheckout({
+      items: [{
+        id: tee.id,
+        name: tee.name,
+        size: sz,
+        qty: 1,
+        price: finalPrice,
+        img: tee.img || (Array.isArray(tee.images) ? tee.images[0] : 'assets/model-tee.jpg')
+      }],
+      source: 'buynow'
+    });
+    return;
+  }
 
-      const msg = `Hello Shelby Hiver! 👋\n\nI'd like to order:\n• ${tee.name}\n• Size: ${sz}\n• Fabric: ${tee.fabric}\n• Price: ₹${tee.price}\n\nPlease confirm availability and share payment details. Thank you!`;
-      toast(`Opening WhatsApp for ${tee.name}...`);
-      setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 300);
-    }
+  // Record to Admin real-time orders stream
+  try {
+    let user = null;
+    try { user = JSON.parse(localStorage.getItem('sh_current_user_v2') || 'null'); } catch (e) { }
+    const orderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+    recordStorefrontOrder({
+      id: orderId,
+      customerName: user ? user.name : "Direct Patron",
+      customerPhone: user ? user.phone : "+91 9286511557",
+      customerEmail: user ? user.email : "patron@shelbyhiver.com",
+      items: [{
+        name: tee ? tee.name : 'Shelby Item',
+        size: sz,
+        qty: 1,
+        price: finalPrice
+      }],
+      total: finalPrice,
+      status: 'Pending Dispatch',
+      channel: 'Storefront Direct Buy',
+      createdAt: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error("Order dispatch error:", err);
+  }
 
-    /* ——— PROMO CODE ——— */
-    function applyPromo() {
-      const v = document.getElementById("promoInput").value.trim().toUpperCase();
-      if (v === "HIVER10") { discount = 0.9; toast("PROMO APPLIED: 10% OFF"); renderTees(); renderCart(); }
-      else if (v === "LAUNCH15") { discount = 0.85; toast("PROMO APPLIED: 15% OFF LAUNCH"); renderTees(); renderCart(); }
-      else { toast("Invalid promo code — try HIVER10"); }
-    }
+  const msg = `SHELBY HIVER ATELIER — DIRECT ACQUISITION\n\nOrder Request:\n• ${tee.name}\n• Size: ${sz}\n• Fabric: ${tee.fabric}\n• Price: ₹${tee.price}\n\nPlease confirm availability and share payment verification details.\n\nClient Name: \nDelivery Address (House No, Landmark, Area, City, Pin): \nContact Phone: `;
+  toast(`Opening WhatsApp Concierge for ${tee.name}...`);
+  setTimeout(() => window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank"), 300);
+}
 
-    /* ——— CART UI ——— */
-    function showCart() {
-      const drawer = document.getElementById("cartDrawer");
-      const scrim = document.getElementById("cartScrim");
-      if (drawer) drawer.classList.add("open", "on");
-      if (scrim) scrim.classList.add("open", "on");
-      renderCart();
-    }
-    function hideCart() {
-      const drawer = document.getElementById("cartDrawer");
-      const scrim = document.getElementById("cartScrim");
-      if (drawer) drawer.classList.remove("open", "on");
-      if (scrim) scrim.classList.remove("open", "on");
-    }
-    const openCartEl = document.getElementById("openCart");
-    if (openCartEl) openCartEl.addEventListener("click", showCart);
-    const closeCartEl = document.getElementById("closeCart");
-    if (closeCartEl) closeCartEl.addEventListener("click", hideCart);
-    const cartScrimEl = document.getElementById("cartScrim");
-    if (cartScrimEl) cartScrimEl.addEventListener("click", hideCart);
+/* ——— PROMO CODE ——— */
+function applyPromo() {
+  const v = document.getElementById("promoInput").value.trim().toUpperCase();
+  if (v === "HIVER10") { discount = 0.9; toast("PROMO APPLIED: 10% OFF"); renderTees(); renderCart(); }
+  else if (v === "LAUNCH15") { discount = 0.85; toast("PROMO APPLIED: 15% OFF LAUNCH"); renderTees(); renderCart(); }
+  else { toast("Invalid promo code — try HIVER10"); }
+}
 
-    /* ——— SEARCH ——— */
-    const searchModal = document.getElementById("searchModal");
-    const openSearchEl = document.getElementById("openSearch");
-    if (openSearchEl && searchModal) {
-      openSearchEl.addEventListener("click", () => {
-        searchModal.classList.add("on");
-        const sf = document.getElementById("searchField");
-        if (sf) setTimeout(() => sf.focus(), 200);
-      });
-    }
-    const closeSearchEl = document.getElementById("closeSearch");
-    if (closeSearchEl && searchModal) {
-      closeSearchEl.addEventListener("click", () => searchModal.classList.remove("on"));
-    }
-    function doSearch(q) {
-      const sf = document.getElementById("searchField");
-      if (sf) sf.value = q;
-      liveSearch(q);
-    }
-    function liveSearch(q) {
-      const area = document.getElementById("searchResults");
-      if (!area) return;
-      q = q.toLowerCase().trim();
-      if (!q) { area.innerHTML = ""; return; }
-      const hits = TEES.filter(t => t.name.toLowerCase().includes(q) || t.fabric.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
-      if (!hits.length) { area.innerHTML = `<p style="color:var(--text-muted);font-family:var(--f-mono);">No results for "${q}".</p>`; return; }
-      area.innerHTML = `<h6 style="font-family:var(--f-mono);font-size:9.5px;color:var(--text-muted);margin-bottom:14px;">RESULTS (${hits.length})</h6>
+/* ——— CART UI ——— */
+function showCart() {
+  const drawer = document.getElementById("cartDrawer");
+  const scrim = document.getElementById("cartScrim");
+  if (drawer) drawer.classList.add("open", "on");
+  if (scrim) scrim.classList.add("open", "on");
+  renderCart();
+}
+function hideCart() {
+  const drawer = document.getElementById("cartDrawer");
+  const scrim = document.getElementById("cartScrim");
+  if (drawer) drawer.classList.remove("open", "on");
+  if (scrim) scrim.classList.remove("open", "on");
+}
+const openCartEl = document.getElementById("openCart");
+if (openCartEl) openCartEl.addEventListener("click", showCart);
+const closeCartEl = document.getElementById("closeCart");
+if (closeCartEl) closeCartEl.addEventListener("click", hideCart);
+const cartScrimEl = document.getElementById("cartScrim");
+if (cartScrimEl) cartScrimEl.addEventListener("click", hideCart);
+
+/* ——— SEARCH ——— */
+const searchModal = document.getElementById("searchModal");
+const openSearchEl = document.getElementById("openSearch");
+if (openSearchEl && searchModal) {
+  openSearchEl.addEventListener("click", () => {
+    searchModal.classList.add("on");
+    const sf = document.getElementById("searchField");
+    if (sf) setTimeout(() => sf.focus(), 200);
+  });
+}
+const closeSearchEl = document.getElementById("closeSearch");
+if (closeSearchEl && searchModal) {
+  closeSearchEl.addEventListener("click", () => searchModal.classList.remove("on"));
+}
+function doSearch(q) {
+  const sf = document.getElementById("searchField");
+  if (sf) sf.value = q;
+  liveSearch(q);
+}
+function liveSearch(q) {
+  const area = document.getElementById("searchResults");
+  if (!area) return;
+  q = q.toLowerCase().trim();
+  if (!q) { area.innerHTML = ""; return; }
+  const hits = TEES.filter(t => t.name.toLowerCase().includes(q) || t.fabric.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q));
+  if (!hits.length) { area.innerHTML = `<p style="color:var(--text-muted);font-family:var(--f-mono);">No results for "${q}".</p>`; return; }
+  area.innerHTML = `<h6 style="font-family:var(--f-mono);font-size:9.5px;color:var(--text-muted);margin-bottom:14px;">RESULTS (${hits.length})</h6>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;">
       ${hits.map(t => `<div style="background:var(--bg-secondary);padding:12px;border:1px solid var(--border-color);cursor:pointer;" onclick="if(searchModal)searchModal.classList.remove('on');addToCart('${t.id}','${t.sizes[0]}')">
         <img src="${t.img}" style="aspect-ratio:3/4;object-fit:cover;margin-bottom:8px;">
@@ -1023,220 +1095,221 @@
         <div style="font-family:var(--f-mono);font-size:11px;color:var(--text-muted);margin-top:3px;">₹ ${t.price}</div>
       </div>`).join('')}
     </div>`;
-    }
+}
 
-    /* ——— VIP PASS GENERATOR (SAFE NO-OP IF ABSENT) ——— */
-    function updateVIPCardLive(val) {
-      const holder = document.getElementById("vipHolder");
-      if (holder) {
-        holder.textContent = val.trim() ? val.trim().toUpperCase() : "ALEXANDER VANE";
-      }
-    }
+/* ——— VIP PASS GENERATOR (SAFE NO-OP IF ABSENT) ——— */
+function updateVIPCardLive(val) {
+  const holder = document.getElementById("vipHolder");
+  if (holder) {
+    holder.textContent = val.trim() ? val.trim().toUpperCase() : "ALEXANDER VANE";
+  }
+}
 
-    function flipVIPCard() {
-      const card = document.getElementById("vipCard");
-      if (!card) return;
-      card.style.transition = "transform .6s cubic-bezier(.16, 1, .3, 1)";
-      card.style.transform = "rotateY(360deg)";
-      setTimeout(() => {
-        card.style.transform = "";
-      }, 650);
-    }
+function flipVIPCard() {
+  const card = document.getElementById("vipCard");
+  if (!card) return;
+  card.style.transition = "transform .6s cubic-bezier(.16, 1, .3, 1)";
+  card.style.transform = "rotateY(360deg)";
+  setTimeout(() => {
+    card.style.transform = "";
+  }, 650);
+}
 
-    function generatePass(e) {
-      if (e) e.preventDefault();
-      const input = document.getElementById("vipName");
-      const name = input ? input.value.trim().toUpperCase() : "MEMBER";
-      const holder = document.getElementById("vipHolder");
-      if (holder) holder.textContent = name;
-      flipVIPCard();
-    }
+function generatePass(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById("vipName");
+  const name = input ? input.value.trim().toUpperCase() : "MEMBER";
+  const holder = document.getElementById("vipHolder");
+  if (holder) holder.textContent = name;
+  flipVIPCard();
+}
 
-    /* ——— COUNTDOWN (IF PRESENT) ——— */
-    const dropDate = new Date();
-    dropDate.setDate(dropDate.getDate() + 10);
-    dropDate.setHours(dropDate.getHours() + 12, 0, 0, 0);
-    function tick() {
-      const d = Math.max(0, dropDate - new Date());
-      const elD = document.getElementById("cdD");
-      const elH = document.getElementById("cdH");
-      const elM = document.getElementById("cdM");
-      const elS = document.getElementById("cdS");
-      if (elD) elD.textContent = String(Math.floor(d / 86400000)).padStart(2, "0");
-      if (elH) elH.textContent = String(Math.floor(d % 86400000 / 3600000)).padStart(2, "0");
-      if (elM) elM.textContent = String(Math.floor(d % 3600000 / 60000)).padStart(2, "0");
-      if (elS) elS.textContent = String(Math.floor(d % 60000 / 1000)).padStart(2, "0");
-    }
-    if (document.getElementById("countdown") || document.getElementById("cdD")) {
-      tick();
-      setInterval(tick, 1000);
-    }
+/* ——— COUNTDOWN (IF PRESENT) ——— */
+const dropDate = new Date();
+dropDate.setDate(dropDate.getDate() + 10);
+dropDate.setHours(dropDate.getHours() + 12, 0, 0, 0);
+function tick() {
+  const d = Math.max(0, dropDate - new Date());
+  const elD = document.getElementById("cdD");
+  const elH = document.getElementById("cdH");
+  const elM = document.getElementById("cdM");
+  const elS = document.getElementById("cdS");
+  if (elD) elD.textContent = String(Math.floor(d / 86400000)).padStart(2, "0");
+  if (elH) elH.textContent = String(Math.floor(d % 86400000 / 3600000)).padStart(2, "0");
+  if (elM) elM.textContent = String(Math.floor(d % 3600000 / 60000)).padStart(2, "0");
+  if (elS) elS.textContent = String(Math.floor(d % 60000 / 1000)).padStart(2, "0");
+}
+if (document.getElementById("countdown") || document.getElementById("cdD")) {
+  tick();
+  setInterval(tick, 1000);
+}
 
-    /* ——— SCROLL REVEAL ——— */
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold: .12 });
-    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+/* ——— SCROLL REVEAL ——— */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+}, { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-    /* ——— HEADER SCROLL ——— */
-    const hdr = document.getElementById("siteHeader");
-    if (hdr) {
-      window.addEventListener("scroll", () => hdr.classList.toggle("scrolled", window.scrollY > 28), { passive: true });
-    }
+/* ——— HEADER SCROLL ——— */
+const hdr = document.getElementById("siteHeader");
+if (hdr) {
+  window.addEventListener("scroll", () => hdr.classList.toggle("scrolled", window.scrollY > 28), { passive: true });
+}
 
-    /* ——— MOBILE NAV ——— */
-    const mob = document.getElementById("mobile-nav") || document.getElementById("mobileDrawerScrim");
-    const openMobBtn = document.getElementById("openMob");
-    const closeMobBtn = document.getElementById("closeMob");
+/* ——— MOBILE NAV ——— */
+const mob = document.getElementById("mobile-nav") || document.getElementById("mobileDrawerScrim");
+const openMobBtn = document.getElementById("openMob");
+const closeMobBtn = document.getElementById("closeMob");
 
-    function openMobileNav() {
-      if (mob) { mob.classList.add("open"); document.body.style.overflow = "hidden"; }
-    }
-    function closeMobileNav() {
-      if (mob) { mob.classList.remove("open"); document.body.style.overflow = ""; }
-    }
+function openMobileNav() {
+  if (mob) { mob.classList.add("open"); document.body.style.overflow = "hidden"; }
+}
+function closeMobileNav() {
+  if (mob) { mob.classList.remove("open"); document.body.style.overflow = ""; }
+}
 
-    if (openMobBtn) openMobBtn.addEventListener("click", openMobileNav);
-    if (closeMobBtn) closeMobBtn.addEventListener("click", closeMobileNav);
+if (openMobBtn) openMobBtn.addEventListener("click", openMobileNav);
+if (closeMobBtn) closeMobBtn.addEventListener("click", closeMobileNav);
 
-    if (mob) {
-      mob.addEventListener("click", function (e) {
-        if (e.target === mob) closeMobileNav();
-      });
-    }
+if (mob) {
+  mob.addEventListener("click", function (e) {
+    if (e.target === mob) closeMobileNav();
+  });
+}
 
-    /* ——— CUSTOM CURSOR ——— */
-    if (matchMedia("(min-width:1025px)").matches) {
-      const cr = document.getElementById("cr"), crd = document.getElementById("crd");
-      if (cr && crd) {
-        window.addEventListener("mousemove", e => {
-          cr.style.left = e.clientX + "px"; cr.style.top = e.clientY + "px";
-          crd.style.left = e.clientX + "px"; crd.style.top = e.clientY + "px";
-          cr.classList.add("vis");
-        });
-        document.querySelectorAll("a,button,.pc,.lk,.cs-card,.ed-card,.hero-visual").forEach(el => {
-          el.addEventListener("mouseenter", () => cr.classList.add("big"));
-          el.addEventListener("mouseleave", () => cr.classList.remove("big"));
-        });
-      }
-    }
-
-    /* ——— NEWSLETTER ——— */
-    function handleNewsletter(e) {
-      e.preventDefault();
-      const el = e.target.querySelector("input[type=email]");
-      if (el) {
-        toast(`Updates activated for ${el.value}`);
-        el.value = "";
-      }
-    }
-
-    /* ——— TOAST ——— */
-    function toast(msg) {
-      const tc = document.getElementById("toasts");
-      if (!tc) return;
-      const t = document.createElement("div");
-      t.className = "toast"; t.textContent = msg;
-      tc.appendChild(t);
-      setTimeout(() => { t.style.opacity = "0"; t.style.transition = "opacity .4s"; setTimeout(() => t.remove(), 400); }, 2800);
-    }
-
-    /* ——— PRELOADER ——— */
-    window.addEventListener("load", () => {
-      const pl = document.getElementById("preloader");
-      if (pl) setTimeout(() => pl.classList.add("done"), 600);
+/* ——— CUSTOM CURSOR ——— */
+if (matchMedia("(min-width:1025px)").matches) {
+  const cr = document.getElementById("cr"), crd = document.getElementById("crd");
+  if (cr && crd) {
+    window.addEventListener("mousemove", e => {
+      cr.style.left = e.clientX + "px"; cr.style.top = e.clientY + "px";
+      crd.style.left = e.clientX + "px"; crd.style.top = e.clientY + "px";
+      cr.classList.add("vis");
     });
-
-    /* ——— ESC ——— */
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") {
-        if (typeof closeProduct === 'function') closeProduct();
-        if (typeof closeSizeChart === 'function') closeSizeChart();
-        hideCart();
-        if (searchModal) searchModal.classList.remove("on");
-        closeMobileNav();
-      }
+    document.querySelectorAll("a,button,.pc,.lk,.cs-card,.ed-card,.hero-visual").forEach(el => {
+      el.addEventListener("mouseenter", () => cr.classList.add("big"));
+      el.addEventListener("mouseleave", () => cr.classList.remove("big"));
     });
+  }
+}
 
-    /* ——— LIVE DESKTOP & MOBILE SEARCH ——— */
-    const headerSearch = document.getElementById("headerSearchInput");
-    const mobileSearch = document.getElementById("mobileSearchInput");
-    const clearMobSearch = document.getElementById("clearMobileSearch");
+/* ——— NEWSLETTER ——— */
+function handleNewsletter(e) {
+  e.preventDefault();
+  const el = e.target.querySelector("input[type=email]");
+  if (el) {
+    toast(`Updates activated for ${el.value}`);
+    el.value = "";
+  }
+}
 
-    function syncSearch(query) {
-      currentSearchQuery = (query || "").toLowerCase().trim();
-      if (headerSearch && headerSearch.value !== query) headerSearch.value = query;
-      if (mobileSearch && mobileSearch.value !== query) mobileSearch.value = query;
-      if (clearMobSearch) {
-        clearMobSearch.style.display = (query && query.length > 0) ? "block" : "none";
-      }
-      renderProducts();
-    }
+/* ——— TOAST ——— */
+function toast(msg) {
+  const tc = document.getElementById("toasts");
+  if (!tc) return;
+  const t = document.createElement("div");
+  t.className = "toast"; t.textContent = msg;
+  tc.appendChild(t);
+  setTimeout(() => { t.style.opacity = "0"; t.style.transition = "opacity .4s"; setTimeout(() => t.remove(), 400); }, 2800);
+}
 
-    if (headerSearch) {
-      headerSearch.addEventListener("input", (e) => syncSearch(e.target.value));
-    }
-    if (mobileSearch) {
-      mobileSearch.addEventListener("input", (e) => syncSearch(e.target.value));
-    }
-    if (clearMobSearch) {
-      clearMobSearch.addEventListener("click", () => {
-        syncSearch("");
-        if (mobileSearch) mobileSearch.focus();
-      });
-    }
+/* ——— PRELOADER ——— */
+window.addEventListener("load", () => {
+  const pl = document.getElementById("preloader");
+  if (pl) setTimeout(() => pl.classList.add("done"), 600);
+});
 
-    /* ——— THEME TOGGLE (DESKTOP & MOBILE IN DRAWER) ——— */
-    function applyTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('sh-theme', theme);
-      const mobText = document.getElementById("mobThemeModeText");
-      if (mobText) {
-        mobText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
-      }
-    }
+/* ——— ESC ——— */
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    if (typeof closeProduct === 'function') closeProduct();
+    if (typeof closeSizeChart === 'function') closeSizeChart();
+    hideCart();
+    if (searchModal) searchModal.classList.remove("on");
+    closeMobileNav();
+  }
+});
 
-    const savedTheme = localStorage.getItem('sh-theme') || 'light';
-    applyTheme(savedTheme);
+/* ——— LIVE DESKTOP & MOBILE SEARCH ——— */
+const headerSearch = document.getElementById("headerSearchInput");
+const mobileSearch = document.getElementById("mobileSearchInput");
+const clearMobSearch = document.getElementById("clearMobileSearch");
 
-    function toggleThemeHandler() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-    }
+function syncSearch(query) {
+  currentSearchQuery = (query || "").toLowerCase().trim();
+  if (headerSearch && headerSearch.value !== query) headerSearch.value = query;
+  if (mobileSearch && mobileSearch.value !== query) mobileSearch.value = query;
+  if (clearMobSearch) {
+    clearMobSearch.style.display = (query && query.length > 0) ? "block" : "none";
+  }
+  renderProducts();
+}
 
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) themeToggle.addEventListener('click', toggleThemeHandler);
+if (headerSearch) {
+  headerSearch.addEventListener("input", (e) => syncSearch(e.target.value));
+}
+if (mobileSearch) {
+  mobileSearch.addEventListener("input", (e) => syncSearch(e.target.value));
+}
+if (clearMobSearch) {
+  clearMobSearch.addEventListener("click", () => {
+    syncSearch("");
+    if (mobileSearch) mobileSearch.focus();
+  });
+}
 
-    const mobThemeToggle = document.getElementById('mobThemeToggle');
-    if (mobThemeToggle) mobThemeToggle.addEventListener('click', toggleThemeHandler);
+/* ——— THEME TOGGLE (DESKTOP & MOBILE IN DRAWER) ——— */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('sh-theme', theme);
+  const mobText = document.getElementById("mobThemeModeText");
+  if (mobText) {
+    mobText.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
+  }
+}
 
-    /* ——— MOBILE BOTTOM BAR SYNC ——— */
-    const mobBottomItems = document.querySelectorAll('.mob-bar-item');
-    mobBottomItems.forEach(item => {
-      item.addEventListener('click', function(e) {
-        if (this.id === 'mobBarCart') return; // cart modal toggle
-        mobBottomItems.forEach(el => el.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
+const savedTheme = localStorage.getItem('sh-theme') || 'light';
+applyTheme(savedTheme);
 
-    window.addEventListener('scroll', () => {
-      const storefrontEl = document.getElementById('storefront');
-      const homeBtn = document.getElementById('mobBarHome');
-      const catBtn = document.getElementById('mobBarCatalogue');
-      if (!storefrontEl || !homeBtn || !catBtn) return;
-      const rect = storefrontEl.getBoundingClientRect();
-      if (rect.top <= 200 && rect.bottom >= 150) {
-        catBtn.classList.add('active');
-        homeBtn.classList.remove('active');
-      } else if (window.scrollY < 200) {
-        homeBtn.classList.add('active');
-        catBtn.classList.remove('active');
-      }
-    }, { passive: true });
+function toggleThemeHandler() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+}
 
-    /* ——— INIT ——— */
-    renderProducts();
-    renderCart();
-    checkHashRoute();
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) themeToggle.addEventListener('click', toggleThemeHandler);
+
+const mobThemeToggle = document.getElementById('mobThemeToggle');
+if (mobThemeToggle) mobThemeToggle.addEventListener('click', toggleThemeHandler);
+
+/* ——— MOBILE BOTTOM BAR SYNC ——— */
+const mobBottomItems = document.querySelectorAll('.mob-bar-item');
+mobBottomItems.forEach(item => {
+  item.addEventListener('click', function (e) {
+    if (this.id === 'mobBarCart') return; // cart modal toggle
+    mobBottomItems.forEach(el => el.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+window.addEventListener('scroll', () => {
+  const storefrontEl = document.getElementById('storefront');
+  const homeBtn = document.getElementById('mobBarHome');
+  const catBtn = document.getElementById('mobBarCatalogue');
+  if (!storefrontEl || !homeBtn || !catBtn) return;
+  const rect = storefrontEl.getBoundingClientRect();
+  if (rect.top <= 200 && rect.bottom >= 150) {
+    catBtn.classList.add('active');
+    homeBtn.classList.remove('active');
+  } else if (window.scrollY < 200) {
+    homeBtn.classList.add('active');
+    catBtn.classList.remove('active');
+  }
+}, { passive: true });
+
+/* ——— INIT ——— */
+renderProducts();
+renderCart();
+updateWishlistBadges();
+checkHashRoute();

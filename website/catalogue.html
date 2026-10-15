@@ -20,6 +20,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/checkout.css">
   <style>
     .cat-hero-strip{padding:36px 0 24px;background:linear-gradient(135deg,var(--bg-secondary) 0%,var(--bg-primary) 100%);border-bottom:1px solid var(--border-color);}
     .cat-hero-inner{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
@@ -109,8 +110,8 @@
     .cat-pdp-cta-row{display:flex;gap:10px;flex-wrap:wrap;}
     .cat-pdp-btn-cart{flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;background:var(--text-primary);color:var(--bg-primary);border:none;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:opacity .15s;}
     .cat-pdp-btn-cart:hover{opacity:.85;}
-    .cat-pdp-btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;background:#25d366;color:#fff;border:none;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:opacity .15s;}
-    .cat-pdp-btn-wa:hover{opacity:.9;}
+    .cat-pdp-btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;background:#111111;color:#ffffff;border:1px solid #111111;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .15s ease;}
+    .cat-pdp-btn-wa:hover{background:#252525;opacity:.95;}
     .cat-pdp-desc{font-size:13px;color:var(--text-secondary);line-height:1.65;}
     .cat-pdp-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .cat-pdp-spec-cell{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:6px;padding:10px 12px;}
@@ -128,9 +129,9 @@
     .cat-mob-filter-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-light);}
     .cat-mob-filter-title{font-family:var(--f-display);font-size:15px;font-weight:800;color:var(--text-primary);}
     .cat-mob-filter-close{background:none;border:none;font-size:20px;color:var(--text-muted);cursor:pointer;padding:2px 6px;}
-    /* WA float */
-    .cat-wa-float{position:fixed;bottom:calc(76px + env(safe-area-inset-bottom,0px));right:16px;background:#25d366;color:#fff;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,.4);text-decoration:none;z-index:200;transition:transform .2s,box-shadow .2s;}
-    .cat-wa-float:hover{transform:scale(1.08);}
+    /* WA float (Luxury Monochromatic Black) */
+    .cat-wa-float{position:fixed;bottom:calc(76px + env(safe-area-inset-bottom,0px));right:16px;background:#111111;color:#ffffff;border:1.5px solid rgba(255,255,255,.2);border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.35);text-decoration:none;z-index:200;transition:transform .2s,box-shadow .2s,background .2s;}
+    .cat-wa-float:hover{transform:scale(1.08);background:#222222;}
     @media(min-width:769px){.cat-wa-float{bottom:28px;right:28px;width:54px;height:54px;}}
     /* Active filter pills */
     .active-filters-bar{display:none;flex-wrap:wrap;gap:6px;padding:8px 0;}
@@ -193,8 +194,8 @@
     .sz-measure-label{font-family:var(--f-display);font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--text-primary);}
     .sz-measure-desc{font-size:11.5px;color:var(--text-muted);line-height:1.5;}
     .sz-modal-foot{display:flex;align-items:center;gap:10px;padding:20px 28px;border-top:1px solid var(--border-color);flex-wrap:wrap;}
-    .sz-wa-btn{display:flex;align-items:center;gap:8px;background:#25d366;color:#fff;border:none;border-radius:0;padding:12px 20px;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.04em;cursor:pointer;text-decoration:none;transition:opacity .15s;}
-    .sz-wa-btn:hover{opacity:.9;}
+    .sz-wa-btn{display:flex;align-items:center;gap:8px;background:#111111;color:#ffffff;border:1px solid #111111;border-radius:0;padding:12px 20px;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.04em;cursor:pointer;text-decoration:none;transition:all .15s ease;}
+    .sz-wa-btn:hover{background:#252525;opacity:.95;}
     .sz-close-btn{background:none;border:1px solid var(--border-color);border-radius:0;padding:12px 20px;font-family:var(--f-display);font-size:12px;font-weight:700;color:var(--text-secondary);cursor:pointer;letter-spacing:.04em;transition:all .15s;}
     .sz-close-btn:hover{border-color:var(--text-primary);color:var(--text-primary);}
     @media(max-width:640px){
@@ -268,11 +269,32 @@
           <img src="assets/logo-light.png" alt="Shelby Hiver" class="brand-logo-img logo-for-dark">
         </a>
       </div>
+
+      <!-- DESKTOP NAV LINKS -->
+      <nav class="header-nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="nav-item-link">Home</a>
+        <a href="catalogue.html" class="nav-item-link active">Catalogue <span class="nav-live-pill">LIVE</span></a>
+        <a href="wishlist.html" class="nav-item-link">Wishlist</a>
+        <a href="index.html#craftsmanship" class="nav-item-link">Fabric Dossier</a>
+        <a href="index.html#lookbook" class="nav-item-link">Lookbook</a>
+        <a href="javascript:void(0)" onclick="openSizeChart()" class="nav-item-link">Fit Guide</a>
+      </nav>
+
       <div class="header-actions-group">
         <button type="button" class="theme-switch-btn" id="themeToggle" title="Toggle Theme" aria-label="Toggle Theme">
           <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           <svg class="theme-icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
+        <!-- Wishlist Action -->
+        <a href="wishlist.html" class="h-act-btn h-act-wishlist" aria-label="Wishlist">
+          <div class="h-act-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="h-act-badge" id="wishlistCount" style="display:none;">0</span>
+          </div>
+          <span class="h-act-label">Wishlist</span>
+        </a>
         <button type="button" class="h-act-btn" id="openCart" aria-label="Shopping Bag">
           <div class="h-act-icon">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
@@ -305,7 +327,8 @@
       <nav class="mob-drawer-nav">
         <a href="index.html" class="mob-nav-item"><span class="mob-nav-text">Home</span><span class="mob-nav-arrow">&rsaquo;</span></a>
         <a href="catalogue.html" class="mob-nav-item"><span class="mob-nav-text">Shop Catalogue</span><span class="mob-nav-tag">LIVE</span></a>
-        <a href="javascript:void(0)" onclick="closeMobileNavLocal();openSizeChart();" class="mob-nav-item"><span class="mob-nav-text">Size &amp; Fit Guide (Inches) 📏</span><span class="mob-nav-arrow">&rsaquo;</span></a>
+        <a href="wishlist.html" class="mob-nav-item"><span class="mob-nav-text">Saved Wishlist</span><span class="mob-nav-badge" id="mobWishBadge">0 items</span></a>
+        <a href="javascript:void(0)" onclick="closeMobileNavLocal();openSizeChart();" class="mob-nav-item"><span class="mob-nav-text">Size &amp; Fit Guide (Inches)</span><span class="mob-nav-arrow">&rsaquo;</span></a>
         <a href="profile.html" class="mob-nav-item"><span class="mob-nav-text">My Account</span><span class="mob-nav-arrow">&rsaquo;</span></a>
       </nav>
     </div>
@@ -451,7 +474,7 @@
         <div class="cat-filter-group">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
             <div class="cat-filter-group-title" style="margin-bottom:0;">Size</div>
-            <button type="button" class="cat-size-guide-inline-btn" onclick="openSizeChart()">Size Guide 📏</button>
+            <button type="button" class="cat-size-guide-inline-btn" onclick="openSizeChart()">Size Guide</button>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;" id="catSizeFilters"></div>
         </div>
@@ -475,35 +498,50 @@
             <img src="assets/logo-light.png" alt="Shelby Hiver" class="foot-logo-img logo-for-dark">
           </a>
           <p class="foot-brand-desc">
-            High-luxury heavyweight streetwear engineered for modern aesthetics. Direct to consumer with
-            pan-India delivery.
+            Architectural heavyweight streetwear cut from bespoke 220 GSM combed cotton. Engineered for structure, permanence, and zero shrinkage.
           </p>
         </div>
 
         <div class="footer-nav-col">
-          <h5>Shop Categories</h5>
-          <a href="catalogue.html">All Products</a>
-          <a href="catalogue.html">Oversized T-Shirts (220 GSM)</a>
-          <a href="catalogue.html">Acid Wash Archive</a>
-          <a href="index.html#lookbook">Drop 01 Editorial Lookbook</a>
+          <h5>COLLECTION</h5>
+          <a href="catalogue.html">Shop All Drop 01</a>
+          <a href="catalogue.html?cat=tees">Oversized Heavy Tees</a>
+          <a href="wishlist.html">Client Wishlist</a>
+          <a href="index.html#lookbook">Editorial Lookbook</a>
         </div>
 
         <div class="footer-nav-col">
-          <h5>Atelier Dossier</h5>
-          <a href="index.html#craftsmanship">Fabric Architecture</a>
-          <a href="index.html#comparison">Fast Fashion vs Shelby</a>
-          <a href="javascript:void(0)" onclick="openSizeChart()">Silhouette Fit Guide</a>
-          <a href="index.html#faq">Client Inquiries (FAQ)</a>
+          <h5>ATELIER ARCHITECTURE</h5>
+          <a href="index.html#craftsmanship">220 GSM Fabric Dossier</a>
+          <a href="javascript:void(0)" onclick="openSizeChart()">Size Guide (Inches)</a>
+          <a href="index.html#fit-architecture">Drop-Shoulder Silhouette</a>
+          <a href="index.html#faq">Care &amp; Washing Instructions</a>
         </div>
 
         <div class="footer-nav-col">
-          <h5>WhatsApp Atelier</h5>
-          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">Order directly or inquire with our concierge team 24/7:</p>
-          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer" class="footer-sub-btn">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <h5>CLIENT SERVICES</h5>
+          <a href="profile.html">Track Orders &amp; Profile</a>
+          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer">WhatsApp Concierge</a>
+          <a href="login.html">Sign In / Register</a>
+        </div>
+
+        <div class="footer-nav-col foot-dispatch-col">
+          <h5>ATELIER DISPATCH</h5>
+          <p class="foot-dispatch-sub">
+            Subscribe for private Drop 02 invitations, confidential restock notices, and express dispatch tracking:
+          </p>
+          <form class="foot-dispatch-form" onsubmit="event.preventDefault();if(window.toast){toast('Subscribed to Atelier Dispatch');this.reset();}else{alert('Subscribed to Atelier Dispatch');}">
+            <div class="foot-dispatch-input-row">
+              <input type="email" class="foot-dispatch-input" placeholder="client@shelbyhiver.com" required aria-label="Email for Atelier Dispatch">
+              <button type="submit" class="foot-dispatch-submit" aria-label="Join Atelier Dispatch">Join</button>
+            </div>
+            <span class="foot-dispatch-badge">24H EXPRESS DISPATCH &middot; Pan-India</span>
+          </form>
+          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer" class="footer-sub-btn" style="margin-top:6px;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
             </svg>
-            <span>Chat on WhatsApp (+91 9286511557)</span>
+            <span>WhatsApp Concierge (+91 9286511557)</span>
           </a>
         </div>
 
@@ -723,25 +761,66 @@
 
   <div id="toasts" style="position:fixed;bottom:80px;right:16px;z-index:600;display:flex;flex-direction:column;gap:8px;pointer-events:none;"></div>
 
-  <!-- MOBILE BOTTOM BAR -->
+  <!-- ============================================================
+     MOBILE BOTTOM NAVIGATION DOCK (5-BUTTON FASHION BAR)
+     ============================================================ -->
   <nav class="mobile-bottom-bar" id="mobileBottomBar" aria-label="Mobile Navigation">
-    <a href="index.html#hero" class="mob-bar-item" id="mobBarHome" aria-label="Home">
-      <div class="mob-bar-icon"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"></path></svg></div>
+    <a href="index.html" class="mob-bar-item" id="mobBarHome" aria-label="Home">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"></path>
+        </svg>
+      </div>
       <span class="mob-bar-label">Home</span>
     </a>
+
     <a href="catalogue.html" class="mob-bar-item active" id="mobBarCatalogue" aria-label="Catalogue">
-      <div class="mob-bar-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg></div>
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+        </svg>
+      </div>
       <span class="mob-bar-label">Catalogue</span>
     </a>
-    <button type="button" class="mob-bar-item" id="mobBarCart" onclick="showCart();" aria-label="Cart">
+
+    <a href="wishlist.html" class="mob-bar-item" id="mobBarWishlist" aria-label="Wishlist">
       <div class="mob-bar-icon">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        <span class="mob-bar-badge" id="mobBottomWishCount" style="display:none;">0</span>
+      </div>
+      <span class="mob-bar-label">Wishlist</span>
+    </a>
+
+    <button type="button" class="mob-bar-item" id="mobBarCart" onclick="showCart()" aria-label="Cart">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="8" width="16" height="13" rx="2"></rect>
+          <path d="M8 8V6a4 4 0 0 1 8 0v2"></path>
+        </svg>
         <span class="mob-bar-badge" id="mobBottomBagCount">0</span>
       </div>
       <span class="mob-bar-label">Cart</span>
     </button>
+
     <a href="profile.html" class="mob-bar-item" id="mobBarProfile" aria-label="Profile">
-      <div class="mob-bar-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></div>
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
       <span class="mob-bar-label" id="mobBarProfileLabel">Profile</span>
     </a>
   </nav>
@@ -750,7 +829,7 @@
 (function(){
 'use strict';
 var WA='919286511557',PRODUCTS_KEY='sh_products_db_v4';
-var PRODUCTS=[],CART=[],WISHLIST=new Set(JSON.parse(localStorage.getItem('sh-wishlist')||'[]'));
+var PRODUCTS=[],CART=JSON.parse(localStorage.getItem('sh_cart')||'[]'),WISHLIST=new Set(JSON.parse(localStorage.getItem('sh-wishlist')||'[]'));
 var discount=1.0,selectedSizes={};
 var catCurrentCat='all',catCurrentSort='featured',catSearchQuery='',catPriceMin=null,catPriceMax=null;
 var catActivePDP=null,catActivePDPSize=null,catActiveSizes=new Set();
@@ -1031,7 +1110,11 @@ window.catRender=function(){
       card.innerHTML='<div class="pc-media" onclick="catOpenPdp(\''+p.id+'\')">'
         +'<img class="pri" src="'+primary+'" alt="'+p.name+'" loading="lazy">'
         +'<img class="sec" src="'+secondary+'" alt="'+p.name+'" loading="lazy">'
-        +'<button class="wish-btn'+(isWish?' wishlisted':'')+'" onclick="catToggleWish(event,\''+p.id+'\')" aria-label="Wishlist">'+(isWish?'&#x2665;':'&#x2661;')+'</button>'
+        +'<button class="wish-btn'+(isWish?' wishlisted':'')+'" onclick="catToggleWish(event,\''+p.id+'\')" aria-label="Wishlist">'
+        +(isWish
+          ?'<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>'
+          :'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>')
+        +'</button>'
         +'<span class="pc-disc-tag'+(isLive?'':' coming-soon-tag')+'">'+discText+'</span>'
         +'</div>'
         +'<div class="pc-info"><div class="pc-brand-name">SHELBY HIVER</div>'
@@ -1070,7 +1153,30 @@ function updateActiveFilterPills(){
 
 window.clearFilterPill=function(i){if(window._catFilterPills&&window._catFilterPills[i])window._catFilterPills[i].clear();};
 
-window.catToggleWish=function(e,id){if(e)e.stopPropagation();if(WISHLIST.has(id)){WISHLIST.delete(id);toast('Removed from Wishlist');}else{WISHLIST.add(id);toast('Added to Wishlist \u2665');}localStorage.setItem('sh-wishlist',JSON.stringify([...WISHLIST]));catRender();};
+function updateCatWishBadges(){
+  var count=WISHLIST.size;
+  var b=document.getElementById('wishlistCount');
+  if(b){b.textContent=count;b.style.display=count>0?'flex':'none';}
+  var mb=document.getElementById('mobWishBadge');
+  if(mb){mb.textContent=count+' '+(count===1?'item':'items');}
+  var mbw=document.getElementById('mobBottomWishCount');
+  if(mbw){mbw.textContent=count;mbw.style.display=count>0?'flex':'none';}
+}
+
+window.catToggleWish=function(e,id){
+  if(e)e.stopPropagation();
+  if(WISHLIST.has(id)){
+    WISHLIST.delete(id);
+    toast('Removed from Wishlist');
+  }else{
+    WISHLIST.add(id);
+    toast('Added to Wishlist \u2665');
+  }
+  localStorage.setItem('sh-wishlist',JSON.stringify([...WISHLIST]));
+  window.dispatchEvent(new Event('storage'));
+  catRender();
+  updateCatWishBadges();
+};
 
 window.catPickSz=function(id,sz,btn,e){if(e)e.stopPropagation();selectedSizes[id]=sz;var card=btn.closest('.pc');if(card){card.querySelectorAll('.pc-size-pill').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}toast('Selected Size '+sz);};
 
@@ -1080,6 +1186,8 @@ window.catAddToCart=function(id,sizeArg){
   var sz=sizeArg||selectedSizes[id]||(p.sizes&&p.sizes[0])||'M';
   var existing=CART.find(function(i){return i.id===id&&i.size===sz;});
   if(existing)existing.qty++;else CART.push({id:id,size:sz,qty:1});
+  localStorage.setItem('sh_cart',JSON.stringify(CART));
+  window.dispatchEvent(new Event('storage'));
   toast('Added '+p.name+' ('+sz+') to Bag');renderCartUI();showCart();
 };
 
@@ -1109,7 +1217,13 @@ function renderCartUI(){
   var st=document.getElementById('cartTotalVal');if(st)st.textContent='\u20B9 '+total.toLocaleString();
 }
 
-window.catUpdateQty=function(idx,d){CART[idx].qty+=d;if(CART[idx].qty<=0)CART.splice(idx,1);renderCartUI();};
+window.catUpdateQty=function(idx,d){
+  CART[idx].qty+=d;
+  if(CART[idx].qty<=0)CART.splice(idx,1);
+  localStorage.setItem('sh_cart',JSON.stringify(CART));
+  window.dispatchEvent(new Event('storage'));
+  renderCartUI();
+};
 
 window.showCart=function(){var dr=document.getElementById('cartDrawer'),sc=document.getElementById('cartScrim');if(dr)dr.classList.add('open','on');if(sc)sc.classList.add('open','on');renderCartUI();};
 window.hideCart=function(){var dr=document.getElementById('cartDrawer'),sc=document.getElementById('cartScrim');if(dr)dr.classList.remove('open','on');if(sc)sc.classList.remove('open','on');};
@@ -1126,6 +1240,10 @@ window.recordCatalogueOrder = function(order) {
 };
 
 window.checkoutViaWhatsApp=function(){
+  if (window.openShelbyCheckout) {
+    window.openShelbyCheckout({ source: 'cart' });
+    return;
+  }
   if(!CART.length){toast('Bag is empty!');return;}
   var lines='',grand=0;
   var orderItems = [];
@@ -1163,8 +1281,8 @@ window.checkoutViaWhatsApp=function(){
     console.error("Order dispatch error:", err);
   }
 
-  var msg='Hello Shelby Hiver! \uD83D\uDC4B\n\nI\'d like to place an order:\n\n'+lines+'\n\uD83D\uDCB0 TOTAL: \u20B9'+grand.toLocaleString()+'\n\nPlease share payment details and confirm delivery.\n\nName: \nAddress: \nPin Code: \nPhone: ';
-  toast('Opening WhatsApp checkout...');setTimeout(function(){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');},400);
+  var msg='SHELBY HIVER ATELIER \u2014 ORDER MANIFEST\n\nI would like to place an order:\n\n'+lines+'\nTotal Amount: \u20B9'+grand.toLocaleString()+'\n\nPlease confirm delivery address and payment verification.\n\nName: \nAddress: \nPin Code: \nPhone: ';
+  toast('Opening WhatsApp concierge...');setTimeout(function(){window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');},400);
 };
 
 window.catRecordPdpOrder=function(id){
@@ -1194,6 +1312,26 @@ window.catRecordPdpOrder=function(id){
     });
   } catch(err) {
     console.error("Order dispatch error:", err);
+  }
+};
+
+window.catBuyNowModal = function(id) {
+  var p = PRODUCTS.find(function(item){return item.id===id;}) || catActivePDP;
+  if (!p) return;
+  var sz = catActivePDPSize || selectedSizes[id] || (p.sizes && p.sizes[0]) || 'M';
+  var finalPrice = Math.round(p.price * discount);
+  if (window.openShelbyCheckout) {
+    window.openShelbyCheckout({
+      items: [{
+        id: p.id,
+        name: p.name,
+        size: sz,
+        qty: 1,
+        price: finalPrice,
+        img: (Array.isArray(p.images) && p.images.length > 0) ? p.images[0] : (p.img || 'assets/model-tee.jpg')
+      }],
+      source: 'buynow'
+    });
   }
 };
 
@@ -1229,8 +1367,7 @@ window.catOpenPdp=function(id){
     +'<div class="cat-pdp-divider"></div>'
     +(isLive?'<div class="cat-pdp-urgency">\u26A1 Only '+Math.floor(2+(p.name.length%5))+' left in Size '+catActivePDPSize+' \u2014 Order now!</div>':'')
     +(isLive?'<div class="cat-pdp-cta-row">'
-      +'<button type="button" class="cat-pdp-btn-cart" onclick="catAddToCart(\''+p.id+'\',catActivePDPSize)"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>Add to Bag</button>'
-      +'<a class="cat-pdp-btn-wa" href="https://wa.me/'+WA+'?text='+encodeURIComponent(waMsg)+'" target="_blank" onclick="catRecordPdpOrder(\''+p.id+'\')"><svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Buy Now</a>'
+      +'<button type="button" class="cat-pdp-btn-wa" onclick="catBuyNowModal(\''+p.id+'\')"><svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Buy Now</button>'
       +'</div>'
     :'<div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:6px;padding:14px;text-align:center;margin-bottom:16px;"><div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Coming Soon</div><div style="font-size:12px;color:var(--text-muted);">Get notified when this drops via WhatsApp.</div></div>')
     +'<div class="cat-pdp-divider"></div>'
@@ -1338,7 +1475,7 @@ window.closeSizeChart=function(){
   if(m)m.classList.remove('on');
   document.body.style.overflow='';
 };
-window.catCheckPincode=function(){var inp=document.getElementById('catPinInput'),res=document.getElementById('catPinResult');var pin=inp.value.trim();if(!pin||pin.length<6||!/^\d{6}$/.test(pin)){res.innerHTML='<span style="color:#e63946;">\u26A0\uFE0F Please enter a valid 6-digit pincode.</span>';return;}var days=(parseInt(pin[0])%2===0)?'2\u20133':'3\u20134';res.innerHTML='<span style="color:#25d366;font-weight:700;">\u2713 Express Delivery to '+pin+' in '+days+' business days!</span><div style="color:var(--text-secondary);margin-top:4px;font-size:11px;">Tracked Shipping \u00B7 COD &amp; UPI Accepted</div>';};
+window.catCheckPincode=function(){var inp=document.getElementById('catPinInput'),res=document.getElementById('catPinResult');var pin=inp.value.trim();if(!pin||pin.length<6||!/^\d{6}$/.test(pin)){res.innerHTML='<span style="color:#e63946;">Please enter a valid 6-digit postal code.</span>';return;}var days=(parseInt(pin[0])%2===0)?'2–3':'3–4';res.innerHTML='<span style="color:var(--text-primary);font-weight:700;">Express Delivery available to '+pin+' in '+days+' business days</span><div style="color:var(--text-secondary);margin-top:4px;font-size:11px;">Tracked Dispatch · COD &amp; Direct UPI Settlement</div>';};
 
 // Filter sidebar toggle
 var catFilterToggle=document.getElementById('catFilterToggle'),catFilterSidebar=document.getElementById('catFilterSidebar');
@@ -1402,11 +1539,24 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){catClosePdp
 function checkHashRoute(){var hash=window.location.hash;if(hash.startsWith('#product-')){var id=hash.replace('#product-','');setTimeout(function(){catOpenPdp(id);},300);}}
 window.addEventListener('hashchange',checkHashRoute);
 
+window.addEventListener('storage',function(e){
+  if(!e.key||e.key==='sh-wishlist'){
+    WISHLIST=new Set(JSON.parse(localStorage.getItem('sh-wishlist')||'[]'));
+    catRender();
+    updateCatWishBadges();
+  }
+  if(!e.key||e.key==='sh_cart'){
+    CART=JSON.parse(localStorage.getItem('sh_cart')||'[]');
+    renderCartUI();
+  }
+});
+
 // INIT
-initProducts();renderCartUI();checkHashRoute();
+initProducts();renderCartUI();updateCatWishBadges();checkHashRoute();
 })();
   </script>
 
   <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
 </body>
 </html>

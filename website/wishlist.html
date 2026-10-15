@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>My Atelier Wishlist | Shelby Hiver</title>
+  <meta name="description"
+    content="View your saved Shelby Hiver luxury streetwear silhouettes. Select your sizes, review fabric dossier specs, and claim your bespoke combed cotton tees before drop runs sell out.">
+  <link rel="canonical" href="https://shelbyhiver.in/wishlist.html">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="My Atelier Wishlist | Shelby Hiver">
+  <meta property="og:description"
+    content="Curated wishlist of Shelby Hiver 220 GSM heavyweight combed cotton boxy oversized t-shirts.">
+  <meta property="og:image" content="https://shelbyhiver.in/drops/01.png">
+  <meta property="og:url" content="https://shelbyhiver.in/wishlist.html">
+  <meta property="og:site_name" content="Shelby Hiver">
+  <meta name="theme-color" content="#ffffff">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/wishlist.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body>
+
+  <!-- ============================================================
+     TOP PROMO BANNER
+     ============================================================ -->
+  <div class="top-promo-bar">
+    [ DROP 01 LIVE ] &middot; 220 GSM BESPOKE COMBED COTTON &middot; STARTING &#x20B9;699 &middot; <span
+      class="accent">PRE-SHRUNK &middot; LIMITED BATCH RUN</span>
+  </div>
+
+  <!-- ============================================================
+     HEADER NAVIGATION
+     ============================================================ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+      <!-- LEFT: BRAND LOGO -->
+      <div class="header-left-cluster">
+        <a href="index.html" class="brand-link" aria-label="Shelby Hiver Home">
+          <img src="assets/logo-dark.png" alt="Shelby Hiver" class="brand-logo-img logo-for-light"
+            style="height:34px;width:auto;">
+          <img src="assets/logo-light.png" alt="Shelby Hiver" class="brand-logo-img logo-for-dark"
+            style="height:34px;width:auto;">
+        </a>
+      </div>
+
+      <!-- DESKTOP NAV LINKS -->
+      <nav class="header-nav-links" aria-label="Main Navigation">
+        <a href="index.html" class="nav-item-link">Home</a>
+        <a href="catalogue.html" class="nav-item-link">Catalogue <span class="nav-live-pill">LIVE</span></a>
+        <a href="wishlist.html" class="nav-item-link active">Wishlist</a>
+        <a href="index.html#craftsmanship" class="nav-item-link">Fabric Dossier</a>
+        <a href="index.html#lookbook" class="nav-item-link">Lookbook</a>
+        <a href="javascript:void(0)" onclick="openSizeChart()" class="nav-item-link">Fit Guide</a>
+      </nav>
+
+      <!-- SEARCH BAR (DIRECTS TO CATALOGUE) -->
+      <div class="header-search-wrap">
+        <form action="catalogue.html" method="GET" class="header-search-box">
+          <svg class="header-search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" name="q" class="header-search-input" placeholder="Search silhouettes, fabric, drop 01..."
+            autocomplete="off">
+        </form>
+      </div>
+
+      <!-- RIGHT ACTIONS: THEME, WISHLIST, SHOPPING BAG, USER AUTH, MOBILE HAMBURGER -->
+      <div class="header-actions-group">
+
+        <!-- Theme Toggle -->
+        <button type="button" class="theme-switch-btn" id="themeToggle" title="Toggle Light / Dark Mode"
+          aria-label="Toggle Theme">
+          <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Wishlist Active Action -->
+        <a href="wishlist.html" class="h-act-btn h-act-wishlist" style="color:var(--text-primary);" aria-label="Wishlist">
+          <div class="h-act-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+              </path>
+            </svg>
+            <span class="h-act-badge" id="wishlistCount" style="display:none;">0</span>
+          </div>
+          <span class="h-act-label">Wishlist</span>
+        </a>
+
+        <!-- Shopping Bag Action -->
+        <button type="button" class="h-act-btn" id="openCart" aria-label="Shopping Bag">
+          <div class="h-act-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="8" width="16" height="13" rx="2"></rect>
+              <path d="M8 8V6a4 4 0 0 1 8 0v2"></path>
+            </svg>
+            <span class="h-act-badge" id="bagCount">0</span>
+          </div>
+          <span class="h-act-label">Bag</span>
+        </button>
+
+        <!-- Desktop Profile / Auth Widget -->
+        <div id="userAuthWidget" class="user-auth-widget desktop-auth-widget"></div>
+
+        <!-- Mobile Menu Hamburger Button -->
+        <button type="button" class="mob-menu-btn" id="openMob" aria-label="Open Navigation Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+     MOBILE NAVIGATION DRAWER
+     ============================================================ -->
+  <div class="mobile-drawer-scrim" id="mobileDrawerScrim">
+    <div class="mobile-drawer-panel" id="mobileDrawerPanel">
+      <div class="mob-drawer-head">
+        <a href="index.html" class="mob-drawer-brand">
+          <img src="assets/logo-dark.png" alt="Shelby Hiver" class="brand-logo-img logo-for-light" style="height:28px;">
+          <img src="assets/logo-light.png" alt="Shelby Hiver" class="brand-logo-img logo-for-dark" style="height:28px;">
+        </a>
+        <button type="button" id="closeMob" class="mob-drawer-close" aria-label="Close Navigation">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div id="mobUserProfileCard" class="mob-user-card-wrap"></div>
+
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title">ATELIER DIRECTORY</div>
+        <nav class="mob-drawer-nav">
+          <a href="index.html" class="mob-nav-item">
+            <span class="mob-nav-text">Home</span>
+            <span class="mob-nav-arrow">&rsaquo;</span>
+          </a>
+          <a href="catalogue.html" class="mob-nav-item">
+            <span class="mob-nav-text">Shop All Catalogue</span>
+            <span class="mob-nav-tag">LIVE</span>
+          </a>
+          <a href="wishlist.html" class="mob-nav-item active">
+            <span class="mob-nav-text">Saved Wishlist</span>
+            <span class="mob-nav-badge" id="mobWishBadge">0 items</span>
+          </a>
+          <a href="javascript:void(0)" onclick="closeMobileNav();openSizeChart();" class="mob-nav-item">
+            <span class="mob-nav-text">Size &amp; Fit Guide (Inches)</span>
+            <span class="mob-nav-arrow">&rsaquo;</span>
+          </a>
+          <a href="profile.html" class="mob-nav-item">
+            <span class="mob-nav-text">Client Account &amp; Orders</span>
+            <span class="mob-nav-arrow">&rsaquo;</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title">APPEARANCE</div>
+        <div class="mob-theme-toggle-row">
+          <div class="mob-theme-label">
+            <span class="mob-theme-mode-text" id="mobThemeModeText">Light Mode</span>
+            <span class="mob-theme-subtext">Atelier interface theme</span>
+          </div>
+          <button type="button" class="theme-switch-btn" id="mobThemeToggle" aria-label="Toggle Theme">
+            <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+            </svg>
+            <svg class="theme-icon-moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="mob-drawer-section">
+        <div class="mob-drawer-sec-title" style="text-align:center;">ATELIER CHANNELS</div>
+        <div class="mob-social-row-centered">
+          <a href="https://www.instagram.com/shelbyhiver" target="_blank" rel="noopener noreferrer"
+            class="mob-social-btn-colored btn-instagram" aria-label="Instagram">
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61594037143588" target="_blank" rel="noopener noreferrer"
+            class="mob-social-btn-colored btn-facebook" aria-label="Facebook">
+            <span>Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+     MAIN WISHLIST PAGE CONTENT
+     ============================================================ -->
+  <main class="wl-page-wrapper">
+
+    <!-- BREADCRUMB -->
+    <div class="wl-breadcrumb-bar">
+      <div class="container">
+        <nav class="wl-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Shelby Hiver</a>
+          <span class="sep">/</span>
+          <a href="catalogue.html">Shop</a>
+          <span class="sep">/</span>
+          <span class="current">Atelier Wishlist</span>
+        </nav>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="wl-hero-section">
+      <div class="container">
+        <div class="wl-hero-header">
+          <div>
+            <div class="wl-hero-badge" id="heroCountBadge">CLIENT SHORTLIST &middot; VAULT</div>
+            <h1 class="wl-hero-title">My Atelier Wishlist</h1>
+            <p class="wl-hero-subtitle">
+              Your curated shortlist of heavyweight combed cotton silhouettes. Select your sizes, claim your pieces
+              before limited drop quantities sell out, or order directly via Concierge.
+            </p>
+          </div>
+          <div class="wl-hero-actions">
+            <button type="button" class="wl-btn-primary" onclick="moveAllToBag()" id="moveAllBtn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="8" width="16" height="13" rx="2"></rect>
+                <path d="M8 8V6a4 4 0 0 1 8 0v2"></path>
+              </svg>
+              <span>Move All to Bag</span>
+            </button>
+            <button type="button" class="wl-btn-secondary" onclick="clearWishlist()" title="Clear All Wishlist Items">
+              <span>Clear Wishlist</span>
+            </button>
+            <a href="catalogue.html" class="wl-btn-secondary">
+              <span>Explore Catalogue &rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- STATS DASHBOARD STRIP -->
+        <div class="wl-stats-grid" id="wishlistStatsSection">
+          <div class="wl-stat-card">
+            <span class="wl-stat-label">Saved Silhouettes</span>
+            <span class="wl-stat-value" id="metricCountVal">0 Items</span>
+            <span class="wl-stat-sub">Personal Atelier Vault</span>
+          </div>
+          <div class="wl-stat-card">
+            <span class="wl-stat-label">Estimated Value</span>
+            <span class="wl-stat-value" id="metricTotalVal">₹ 0</span>
+            <span class="wl-stat-sub">Current Drop 01 Pricing</span>
+          </div>
+          <div class="wl-stat-card">
+            <span class="wl-stat-label">Total Savings</span>
+            <span class="wl-stat-value" id="metricSavingsVal" style="color:#10b981;">₹ 0</span>
+            <span class="wl-stat-sub">42% Off Launch Benefit</span>
+          </div>
+          <div class="wl-stat-card">
+            <span class="wl-stat-label">Dispatch Guarantee</span>
+            <span class="wl-stat-value" style="font-size:16px;">24h Express</span>
+            <span class="wl-stat-sub">Zero Shrinkage Pre-Shrunk</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLBAR & FILTERS -->
+    <div class="wl-toolbar-section" id="wishlistToolbarSection">
+      <div class="container">
+        <div class="wl-toolbar-inner">
+          <div class="wl-filter-chips">
+            <button type="button" class="wl-filter-chip active" onclick="filterWishlist('all', this)">
+              <span>All Saved</span>
+            </button>
+            <button type="button" class="wl-filter-chip" onclick="filterWishlist('tees', this)">
+              <span>Oversized Tees</span>
+            </button>
+            <button type="button" class="wl-filter-chip" onclick="filterWishlist('live', this)">
+              <span>In Stock Only</span>
+            </button>
+          </div>
+
+          <div class="wl-sort-wrap">
+            <label for="wishlistSortSelect" class="wl-sort-label">Sort By:</label>
+            <select id="wishlistSortSelect" class="wl-sort-select" onchange="sortWishlist(this.value)">
+              <option value="recent">Recently Added</option>
+              <option value="price-low">Price: Low &rarr; High</option>
+              <option value="price-high">Price: High &rarr; Low</option>
+              <option value="discount">Biggest Discount</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WISHLIST PRODUCTS GRID -->
+    <div class="container wl-grid-section">
+      <div class="wl-products-grid" id="wishlistGrid">
+        <!-- Rendered dynamically by wishlist.js -->
+      </div>
+
+      <!-- EMPTY STATE CONTAINER (Hidden when items exist) -->
+      <div class="wl-empty-wrapper" id="wishlistEmptyState" style="display:none;">
+        <div class="wl-empty-heart-ring">
+          <svg class="wl-empty-heart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+        </div>
+        <div class="wl-empty-eyebrow">CLIENT ARCHIVE &middot; ATELIER VAULT</div>
+        <h2 class="wl-empty-title">Your Saved Wishlist is Empty</h2>
+        <p class="wl-empty-desc">
+          No bespoke combed cotton silhouettes currently saved in your client dossier. Explore our limited batch Drop 01 archive and select the heart icon on any piece to preserve it.
+        </p>
+        <div class="wl-empty-cta-row">
+          <a href="catalogue.html" class="wl-btn-primary">
+            <span>Explore All Products &rarr;</span>
+          </a>
+          <a href="index.html#lookbook" class="wl-btn-secondary">
+            <span>View Editorial Lookbook</span>
+          </a>
+        </div>
+
+        <!-- QUICK ADD RECOMMENDATIONS SECTION -->
+        <div class="wl-rec-section">
+          <div class="wl-rec-header">
+            <div class="wl-rec-eyebrow">DROP 01 &middot; CURATED RECOMMENDATIONS</div>
+            <h3 class="wl-rec-title">Trending Silhouettes — Archive to Shortlist</h3>
+          </div>
+          <div class="wl-products-grid" id="recommendedGrid">
+            <!-- Populated dynamically by wishlist.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+  <!-- ============================================================
+     SITE FOOTER (MYNTRA CLEAN FOOTER)
+     ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main-grid">
+
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand-link" aria-label="Shelby Hiver">
+            <img src="assets/logo-dark.png" alt="Shelby Hiver" class="foot-logo-img logo-for-light">
+            <img src="assets/logo-light.png" alt="Shelby Hiver" class="foot-logo-img logo-for-dark">
+          </a>
+          <p class="foot-brand-desc">
+            Architectural heavyweight streetwear cut from bespoke 220 GSM combed cotton. Engineered for structure, permanence, and zero shrinkage.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>COLLECTION</h5>
+          <a href="catalogue.html">Shop All Drop 01</a>
+          <a href="catalogue.html?cat=tees">Oversized Heavy Tees</a>
+          <a href="wishlist.html">Client Wishlist</a>
+          <a href="index.html#lookbook">Editorial Lookbook</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>ATELIER ARCHITECTURE</h5>
+          <a href="index.html#craftsmanship">220 GSM Fabric Dossier</a>
+          <a href="javascript:void(0)" onclick="openSizeChart()">Size Guide (Inches)</a>
+          <a href="index.html#fit-architecture">Drop-Shoulder Silhouette</a>
+          <a href="index.html#faq">Care &amp; Washing Instructions</a>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5>CLIENT SERVICES</h5>
+          <a href="profile.html">Track Orders &amp; Profile</a>
+          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer">WhatsApp Concierge</a>
+          <a href="login.html">Sign In / Register</a>
+        </div>
+
+        <div class="footer-nav-col foot-dispatch-col">
+          <h5>ATELIER DISPATCH</h5>
+          <p class="foot-dispatch-sub">
+            Subscribe for private Drop 02 invitations, confidential restock notices, and express dispatch tracking:
+          </p>
+          <form class="foot-dispatch-form" onsubmit="event.preventDefault();if(window.toast){toast('Subscribed to Atelier Dispatch');this.reset();}else{alert('Subscribed to Atelier Dispatch');}">
+            <div class="foot-dispatch-input-row">
+              <input type="email" class="foot-dispatch-input" placeholder="client@shelbyhiver.com" required aria-label="Email for Atelier Dispatch">
+              <button type="submit" class="foot-dispatch-submit" aria-label="Join Atelier Dispatch">Join</button>
+            </div>
+            <span class="foot-dispatch-badge">24H EXPRESS DISPATCH &middot; Pan-India</span>
+          </form>
+          <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer" class="footer-sub-btn" style="margin-top:6px;">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+            <span>WhatsApp Concierge (+91 9286511557)</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Centered Official Social Channels -->
+      <div class="footer-social-center">
+        <span class="fsc-label">Follow The Official Atelier</span>
+        <div class="fsc-icons-row">
+          <a href="https://www.instagram.com/shelbyhiver" target="_blank" rel="noopener noreferrer"
+            class="social-circle-btn btn-instagram" aria-label="Shelby Hiver on Instagram"
+            title="Follow @shelbyhiver on Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+            <span class="sc-tooltip">Instagram @shelbyhiver</span>
+          </a>
+
+          <a href="https://www.facebook.com/profile.php?id=61594037143588" target="_blank" rel="noopener noreferrer"
+            class="social-circle-btn btn-facebook" aria-label="Shelby Hiver on Facebook"
+            title="Follow Shelby Hiver on Facebook">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff">
+              <path
+                d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.52-.14-2.82-.14-2.78 0-4.68 1.7-4.68 4.8v2.7H7v4h3v9.5h4v-9.5z" />
+            </svg>
+            <span class="sc-tooltip">Facebook Official</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <span>&copy; 2026 SHELBY HIVER. ALL RIGHTS RESERVED.</span>
+        <span>100% COMBED COTTON &middot; ZERO SHRINKAGE &middot; PRE-SHRUNK</span>
+        <span>MADE IN INDIA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+     CART DRAWER (SLIDE-OUT)
+     ============================================================ -->
+  <div class="scrim" id="cartScrim" onclick="hideCart()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-head">
+      <h3>Shopping Bag (<span id="cartHeaderCount">0</span>)</h3>
+      <button type="button" class="close-x" id="closeCart" onclick="hideCart()" aria-label="Close Bag">✕</button>
+    </div>
+    <div class="cart-body" id="cartItemsList">
+      <!-- Populated by JS -->
+    </div>
+    <div class="cart-foot">
+      <div class="cart-total-row">
+        <span>Total Amount</span>
+        <span id="cartTotalVal">₹ 0</span>
+      </div>
+      <button type="button" class="cart-checkout-btn" onclick="checkoutViaWhatsApp()">
+        Proceed to Checkout &rarr;
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============================================================
+     QUICK VIEW PRODUCT DETAILS MODAL (PDP)
+     ============================================================ -->
+  <div class="scrim" id="pdpScrim" onclick="closeProduct()"></div>
+  <div id="productModal"
+    style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:92%;max-width:820px;max-height:90vh;background:var(--bg-primary);border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,0.35);z-index:600;overflow-y:auto;padding:24px;">
+    <!-- Injected dynamically by openProduct() -->
+  </div>
+
+  <!-- ============================================================
+     SIZE CHART MODAL
+     ============================================================ -->
+  <div class="sz-modal-overlay" id="sizeChartScrim" onclick="closeSizeChart()"></div>
+  <div class="sz-modal-panel" id="sizeChartModal">
+    <div class="sz-modal-inner">
+      <div class="sz-modal-head">
+        <div>
+          <div class="sz-modal-eyebrow">SHELBY HIVER ATELIER</div>
+          <h2 class="sz-modal-title">Size Guide</h2>
+          <p class="sz-modal-sub">All measurements in inches. Engineered for a relaxed boxy oversized fit.</p>
+        </div>
+        <button type="button" class="sz-modal-close" onclick="closeSizeChart()" aria-label="Close Size Guide">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="sz-modal-body">
+        <div class="sz-table-wrap">
+          <table class="sz-table">
+            <thead>
+              <tr>
+                <th>SIZE</th>
+                <th>CHEST</th>
+                <th>LENGTH</th>
+                <th>SHOULDER</th>
+                <th>SLEEVE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="sz-size-label">S</td>
+                <td>40&rdquo;</td>
+                <td>27.5&rdquo;</td>
+                <td>19.5&rdquo;</td>
+                <td>8.5&rdquo;</td>
+              </tr>
+              <tr>
+                <td class="sz-size-label">M</td>
+                <td>42&rdquo;</td>
+                <td>28.5&rdquo;</td>
+                <td>20.5&rdquo;</td>
+                <td>9&rdquo;</td>
+              </tr>
+              <tr>
+                <td class="sz-size-label">L</td>
+                <td>44&rdquo;</td>
+                <td>29.5&rdquo;</td>
+                <td>21.5&rdquo;</td>
+                <td>9.5&rdquo;</td>
+              </tr>
+              <tr>
+                <td class="sz-size-label">XL</td>
+                <td>46&rdquo;</td>
+                <td>30.5&rdquo;</td>
+                <td>22.5&rdquo;</td>
+                <td>10&rdquo;</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="sz-modal-foot">
+        <a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver!%20I%20need%20help%20choosing%20my%20size."
+          target="_blank" class="sz-wa-btn">
+          <span>Need Fit Advice? Ask on WhatsApp &rarr;</span>
+        </a>
+        <button type="button" class="sz-close-btn" onclick="closeSizeChart()">Close Guide</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+     MOBILE BOTTOM NAVIGATION DOCK (5-BUTTON FASHION BAR)
+     ============================================================ -->
+  <nav class="mobile-bottom-bar" id="mobileBottomBar" aria-label="Mobile Navigation">
+    <a href="index.html" class="mob-bar-item" id="mobBarHome" aria-label="Home">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1V9.5z"></path>
+        </svg>
+      </div>
+      <span class="mob-bar-label">Home</span>
+    </a>
+
+    <a href="catalogue.html" class="mob-bar-item" id="mobBarCatalogue" aria-label="Catalogue">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+          <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+          <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+        </svg>
+      </div>
+      <span class="mob-bar-label">Catalogue</span>
+    </a>
+
+    <a href="wishlist.html" class="mob-bar-item active" id="mobBarWishlist" aria-label="Wishlist">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+          </path>
+        </svg>
+        <span class="mob-bar-badge" id="mobBottomWishCount" style="display:none;">0</span>
+      </div>
+      <span class="mob-bar-label">Wishlist</span>
+    </a>
+
+    <button type="button" class="mob-bar-item" id="mobBarCart" onclick="showCart()" aria-label="Cart">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="8" width="16" height="13" rx="2"></rect>
+          <path d="M8 8V6a4 4 0 0 1 8 0v2"></path>
+        </svg>
+        <span class="mob-bar-badge" id="mobBottomBagCount">0</span>
+      </div>
+      <span class="mob-bar-label">Cart</span>
+    </button>
+
+    <a href="profile.html" class="mob-bar-item" id="mobBarProfile" aria-label="Profile">
+      <div class="mob-bar-icon">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <span class="mob-bar-label" id="mobBarProfileLabel">Profile</span>
+    </a>
+  </nav>
+
+  <!-- Modular Scripts -->
+  <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/wishlist.js"></script>
+</body>
+
+</html>
