@@ -131,11 +131,11 @@ const SEED_PRODUCTS = [
     subtitle: "220 GSM Combed Cotton · Boxy Oversized",
     price: 699,
     mrp: 1199,
-    discountText: "42% OFF",
-    badge: "DROP 01 LIVE",
+    discountText: "OUT OF STOCK",
+    badge: "OUT OF STOCK",
     isLive: true,
-    inStock: true,
-    outOfStock: false,
+    inStock: false,
+    outOfStock: true,
     disabledSizes: ["S", "XL"],
     rating: 4.9,
     reviewCount: 156,
@@ -171,11 +171,11 @@ const SEED_PRODUCTS = [
     subtitle: "220 GSM Combed Cotton · Boxy Oversized",
     price: 699,
     mrp: 1199,
-    discountText: "42% OFF",
-    badge: "DROP 01 LIVE",
+    discountText: "OUT OF STOCK",
+    badge: "OUT OF STOCK",
     isLive: true,
-    inStock: true,
-    outOfStock: false,
+    inStock: false,
+    outOfStock: true,
     disabledSizes: ["S", "XL"],
     rating: 4.9,
     reviewCount: 148,
@@ -219,7 +219,7 @@ function isSizeDisabled(s, p) {
 
 function isProductOutOfStock(p) {
   if (!p) return false;
-  if (p.inStock === false || p.outOfStock === true) return true;
+  if (p.inStock === false || p.outOfStock === true || p.id === 'SH-DROP01-FRAGMENTS' || p.id === 'SH-DROP01-BETTERDAYS') return true;
   return false;
 }
 
