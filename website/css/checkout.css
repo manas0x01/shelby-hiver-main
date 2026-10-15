@@ -397,15 +397,15 @@
 }
 
 .chk-qr-img-box {
-  width: 190px;
-  max-width: 85%;
-  margin: 0 auto 14px;
-  border-radius: 6px;
+  width: 290px;
+  max-width: 90%;
+  margin: 0 auto 16px;
+  border-radius: 8px;
   overflow: hidden;
   background: #ffffff;
-  padding: 8px;
-  border: 1px solid var(--border-color, #e0e0e0);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+  border: 1.5px solid var(--border-color, #dcdcdc);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 .chk-qr-img {
@@ -857,7 +857,9 @@
   }
 
   .chk-qr-img-box {
-    width: 170px;
+    width: 250px;
+    max-width: 88%;
+    padding: 10px;
   }
 
   .chk-submit-btn {

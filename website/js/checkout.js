@@ -713,37 +713,26 @@
     var proofFile = activeCheckoutState.uploadedProofFile;
     var proofDataUrl = activeCheckoutState.uploadedProofDataUrl;
 
-    // ATTEMPT 1: Native Web Share API (Attaches actual image file + text message on mobile)
-    var sharedViaNative = false;
-    if (isQR && proofFile && navigator.canShare && navigator.canShare({ files: [proofFile] })) {
-      try {
-        await navigator.share({
-          files: [proofFile],
-          title: 'Shelby Hiver Order #' + orderId,
-          text: waMessage
-        });
-        sharedViaNative = true;
-      } catch (shareError) {
-        // User cancelled or system fallback
-        if (shareError.name !== 'AbortError') {
-          console.warn("Share failed, falling back to direct URL", shareError);
-        }
+    // DIRECT TRANSMISSION TO SHELBY HIVER OFFICIAL WHATSAPP (+91 9286511557)
+    var waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(waMessage);
+
+    // Copy screenshot image to system clipboard (for instant Ctrl+V into WhatsApp chat)
+    if (isQR && proofFile) {
+      try { copyImageToClipboard(proofFile); } catch (e) {}
+    }
+
+    // Directly open Shelby Hiver WhatsApp chat without intermediate share dialogs
+    var isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = waUrl;
+    } else {
+      var directTab = window.open(waUrl, '_blank');
+      if (!directTab || directTab.closed || typeof directTab.closed === 'undefined') {
+        window.location.href = waUrl;
       }
     }
 
-    // ATTEMPT 2: Fallback (Desktop / Web URL)
-    if (!sharedViaNative) {
-      // Try copying screenshot image to clipboard for easy Ctrl+V in WhatsApp Web
-      if (isQR && proofFile) {
-        copyImageToClipboard(proofFile);
-      }
-
-      // Open WhatsApp direct chat
-      var waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(waMessage);
-      window.open(waUrl, '_blank');
-    }
-
-    // RENDER FORMAL CONFIRMATION SCREEN
+    // Render formal confirmation screen
     renderConfirmationScreen(orderId, isQR, proofFile, proofDataUrl, waMessage);
   };
 
