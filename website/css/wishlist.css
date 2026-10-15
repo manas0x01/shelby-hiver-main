@@ -446,6 +446,12 @@
   color: #fff;
 }
 
+.wl-badge-soldout {
+  background: #991b1b !important;
+  color: #fff !important;
+  letter-spacing: 0.08em;
+}
+
 /* Fabric Pill */
 .wl-fabric-pill {
   position: absolute;
@@ -603,11 +609,30 @@
   border-color: var(--text-primary);
 }
 
+.wl-size-pill.disabled {
+  opacity: 0.35;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  text-decoration: line-through;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  border-style: dashed;
+}
+
 /* Card Action Buttons */
 .wl-card-actions {
   display: flex;
   gap: 8px;
   margin-top: auto;
+}
+
+.wl-btn-add-bag.wl-btn-soldout,
+.wl-btn-add-bag.disabled {
+  background: var(--bg-secondary) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border-color) !important;
+  cursor: not-allowed !important;
+  pointer-events: none;
 }
 
 .wl-btn-add-bag {

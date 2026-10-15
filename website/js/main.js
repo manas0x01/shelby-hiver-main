@@ -4,6 +4,46 @@ const WA = "919286511557";
 /* ——— PRODUCTS DATABASE & REAL-TIME SYNCHRONIZATION ——— */
 const SEED_PRODUCTS = [
   {
+    id: "SH-DROP01-FRAGMENTS-LB",
+    sku: "SH-D01-FRG-05",
+    category: "tees",
+    name: "Fragments Still Speak Boxy Tee",
+    subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+    price: 699,
+    mrp: 1199,
+    discountText: "42% OFF",
+    badge: "NEW COLLECTION",
+    isLive: true,
+    inStock: true,
+    outOfStock: false,
+    disabledSizes: ["S", "XL"],
+    rating: 4.9,
+    reviewCount: 142,
+    img: "drops/lb1.png",
+    altImg: "drops/lb2.png",
+    images: [
+      "drops/lb1.png",
+      "drops/lb2.png",
+      "drops/lb3.png",
+      "drops/lb4.png"
+    ],
+    fabric: "220 GSM Pure Combed Cotton",
+    fit: "Boxy Drop-Shoulder Oversized",
+    colors: [
+      { name: "Light Brown", hex: "#8d5b4c" }
+    ],
+    sizes: ["S", "M", "L", "XL"],
+    desc: "Drop 01 flagship silhouette in Light Brown. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and a statement archival artwork across the back, depicting a fragmented classical sculpture surrounded by celestial geometry and the words “FRAGMENTS STILL SPEAK.”",
+    specs: {
+      "Fabric Weight": "220 GSM Pure Combed Cotton",
+      "Silhouette": "Boxy Drop-Shoulder Oversized",
+      "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork": "Fragments Still Speak · High-Density Print",
+      "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch": "Dispatched within 24 hours"
+    }
+  },
+  {
     id: "SH-DROP01-DRAGON",
     sku: "SH-D01-DRG-01",
     category: "tees",
@@ -14,6 +54,9 @@ const SEED_PRODUCTS = [
     discountText: "42% OFF",
     badge: "DROP 01 LIVE",
     isLive: true,
+    inStock: true,
+    outOfStock: false,
+    disabledSizes: ["S", "XL"],
     rating: 4.9,
     reviewCount: 164,
     img: "drops/01.png",
@@ -52,6 +95,9 @@ const SEED_PRODUCTS = [
     discountText: "42% OFF",
     badge: "DROP 01 LIVE",
     isLive: true,
+    inStock: true,
+    outOfStock: false,
+    disabledSizes: ["S", "XL"],
     rating: 4.9,
     reviewCount: 182,
     img: "drops/winter-arc-01.png",
@@ -88,6 +134,9 @@ const SEED_PRODUCTS = [
     discountText: "42% OFF",
     badge: "DROP 01 LIVE",
     isLive: true,
+    inStock: true,
+    outOfStock: false,
+    disabledSizes: ["S", "XL"],
     rating: 4.9,
     reviewCount: 156,
     img: "drops/c1.png",
@@ -125,6 +174,9 @@ const SEED_PRODUCTS = [
     discountText: "42% OFF",
     badge: "DROP 01 LIVE",
     isLive: true,
+    inStock: true,
+    outOfStock: false,
+    disabledSizes: ["S", "XL"],
     rating: 4.9,
     reviewCount: 148,
     img: "drops/nb1.png",
@@ -154,6 +206,29 @@ const SEED_PRODUCTS = [
   }
 ];
 
+/* Global Availability Rules */
+const UNAVAILABLE_SIZES = ['S', 'XL'];
+
+function isSizeDisabled(s, p) {
+  if (!s) return false;
+  const norm = String(s).toUpperCase();
+  if (UNAVAILABLE_SIZES.includes(norm)) return true;
+  if (p && Array.isArray(p.disabledSizes) && p.disabledSizes.map(x => String(x).toUpperCase()).includes(norm)) return true;
+  return false;
+}
+
+function isProductOutOfStock(p) {
+  if (!p) return false;
+  if (p.inStock === false || p.outOfStock === true) return true;
+  return false;
+}
+
+function getDefaultSize(p, preferred) {
+  if (preferred && !isSizeDisabled(preferred, p)) return preferred;
+  const available = ((p && p.sizes) || ['M', 'L']).filter(s => !isSizeDisabled(s, p));
+  return available[0] || 'M';
+}
+
 /* Dynamic database initialization & real-time synchronization */
 function getStorefrontProducts() {
   try {
@@ -165,13 +240,42 @@ function getStorefrontProducts() {
         SEED_PRODUCTS.forEach(seed => {
           const existingIdx = parsed.findIndex(p => p.id === seed.id);
           if (existingIdx === -1) {
-            parsed.push(seed);
+            parsed.unshift(seed);
             updated = true;
-          } else if (parsed[existingIdx].img !== seed.img) {
-            parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
-            updated = true;
+          } else {
+            if (parsed[existingIdx].inStock !== seed.inStock) {
+              parsed[existingIdx].inStock = seed.inStock;
+              updated = true;
+            }
+            if (parsed[existingIdx].outOfStock !== seed.outOfStock) {
+              parsed[existingIdx].outOfStock = seed.outOfStock;
+              updated = true;
+            }
+            if (parsed[existingIdx].badge !== seed.badge) {
+              parsed[existingIdx].badge = seed.badge;
+              updated = true;
+            }
+            if (parsed[existingIdx].discountText !== seed.discountText) {
+              parsed[existingIdx].discountText = seed.discountText;
+              updated = true;
+            }
+            if (parsed[existingIdx].disabledSizes !== seed.disabledSizes) {
+              parsed[existingIdx].disabledSizes = seed.disabledSizes;
+              updated = true;
+            }
+            if (parsed[existingIdx].img !== seed.img) {
+              parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
+              updated = true;
+            }
           }
         });
+        // Ensure newest collection (SH-DROP01-FRAGMENTS-LB) appears at the top
+        const topIdx = parsed.findIndex(p => p.id === 'SH-DROP01-FRAGMENTS-LB');
+        if (topIdx > 0) {
+          const [topItem] = parsed.splice(topIdx, 1);
+          parsed.unshift(topItem);
+          updated = true;
+        }
         parsed.forEach(p => {
           if (Array.isArray(p.sizes)) {
             const filtered = p.sizes.filter(s => !['XS', 'XXL', 'XXXL', '2XL', '3XL'].includes(String(s).toUpperCase()));
@@ -242,8 +346,9 @@ let WISHLIST = new Set(JSON.parse(localStorage.getItem('sh-wishlist') || '[]'));
 let CART = JSON.parse(localStorage.getItem('sh_cart') || '[]');
 let discount = 1.0;
 const selectedSizes = {};
+window.selectedSizes = selectedSizes;
 PRODUCTS.forEach(p => {
-  if (p.sizes && p.sizes.length) selectedSizes[p.id] = p.sizes[0];
+  selectedSizes[p.id] = getDefaultSize(p, selectedSizes[p.id]);
 });
 
 /* Real-time sync listener with Admin panel & other tabs */
@@ -252,9 +357,7 @@ window.addEventListener('storage', (e) => {
     PRODUCTS = getStorefrontProducts();
     TEES = PRODUCTS;
     PRODUCTS.forEach(p => {
-      if (!selectedSizes[p.id] && p.sizes && p.sizes.length) {
-        selectedSizes[p.id] = p.sizes[0];
-      }
+      selectedSizes[p.id] = getDefaultSize(p, selectedSizes[p.id]);
     });
     if (typeof renderProducts === 'function') renderProducts();
   }
@@ -344,14 +447,18 @@ function renderProducts() {
       }
     };
 
-    const currentSz = selectedSizes[tee.id] || tee.sizes[0];
+    const outOfStock = isProductOutOfStock(tee);
+    const currentSz = getDefaultSize(tee, selectedSizes[tee.id]);
+    selectedSizes[tee.id] = currentSz;
     const pImgs = (Array.isArray(tee.images) && tee.images.length > 0) ? tee.images : [tee.img || 'assets/model-tee.jpg'];
     const primaryImg = pImgs[0];
     const secondaryImg = pImgs[1] || tee.altImg || primaryImg;
     const isLive = tee.isLive !== false;
-    const discountText = isLive
-      ? (tee.discountText || `${Math.round(((tee.mrp - tee.price) / tee.mrp) * 100)}% OFF`)
-      : "COMING SOON";
+    const discountText = outOfStock
+      ? "OUT OF STOCK"
+      : (isLive
+        ? (tee.discountText || `${Math.round(((tee.mrp - tee.price) / tee.mrp) * 100)}% OFF`)
+        : "COMING SOON");
 
     card.innerHTML = `
           <div class="pc-media" onclick="openProduct('${tee.id}')">
@@ -362,7 +469,7 @@ function renderProducts() {
                 ? `<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
                 : `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`}
             </button>
-            <span class="pc-disc-tag ${!isLive ? 'coming-soon-tag' : ''}">${isLive ? discountText : 'COMING SOON'}</span>
+            <span class="pc-disc-tag ${outOfStock ? 'out-of-stock-tag' : (!isLive ? 'coming-soon-tag' : '')}">${discountText}</span>
           </div>
           <div class="pc-info">
             <div class="pc-brand-name">SHELBY HIVER</div>
@@ -371,18 +478,30 @@ function renderProducts() {
               ${isLive ? `
                 <span class="pc-price">₹&nbsp;${(tee.price).toLocaleString()}</span>
                 <del class="pc-mrp">₹&nbsp;${tee.mrp.toLocaleString()}</del>
-                <span class="pc-discount">${(discountText || '').replace(/\s+/g, '&nbsp;')}</span>
+                <span class="pc-discount">${outOfStock ? 'OUT OF STOCK' : (discountText || '').replace(/\s+/g, '&nbsp;')}</span>
               ` : `
                 <span class="pc-price" style="color:var(--text-muted);font-size:12.5px;letter-spacing:0.04em;">PREVIEW ARCHIVE</span>
                 <span class="pc-discount" style="color:var(--text-muted);font-size:11px;font-weight:600;">(DROP 02)</span>
               `}
             </div>
             <div class="pc-size-pills" onclick="event.stopPropagation()">
-              ${tee.sizes.map(s => `<button type="button" class="pc-size-pill ${currentSz === s ? 'active' : ''} ${!isLive ? 'disabled' : ''}" ${!isLive ? 'disabled' : ''} onclick="pickSz2('${tee.id}','${s}',this,event)">${s}</button>`).join('')}
+              ${tee.sizes.map(s => {
+                const isSzDisabled = isSizeDisabled(s, tee);
+                const isDisabled = !isLive || outOfStock || isSzDisabled;
+                const titleText = isSzDisabled ? `Size ${s} is currently out of stock` : (outOfStock ? 'Piece is currently out of stock' : `Size ${s}`);
+                return `<button type="button" class="pc-size-pill ${currentSz === s && !isDisabled ? 'active' : ''} ${isDisabled ? 'disabled' : ''}" ${isDisabled ? 'disabled' : ''} title="${titleText}" onclick="pickSz2('${tee.id}','${s}',this,event)">${s}</button>`;
+              }).join('')}
             </div>
             <div class="pc-action-row" onclick="event.stopPropagation()">
-              ${isLive ? `
-                <button type="button" class="pc-btn-cart" onclick="addToCart('${tee.id}', selectedSizes['${tee.id}'])">
+              ${outOfStock ? `
+                <button type="button" class="pc-btn-cart pc-btn-disabled pc-btn-soldout" disabled title="Currently Out of Stock">
+                  Out of Stock
+                </button>
+                <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Quick View">
+                  View
+                </button>
+              ` : (isLive ? `
+                <button type="button" class="pc-btn-cart" onclick="addToCart('${tee.id}')">
                   Add to Bag
                 </button>
                 <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Quick View">
@@ -395,7 +514,7 @@ function renderProducts() {
                 <button type="button" class="pc-btn-view" onclick="openProduct('${tee.id}')" title="Preview Details">
                   Preview
                 </button>
-              `}
+              `)}
             </div>
           </div>`;
     grid.appendChild(card);
@@ -504,12 +623,13 @@ function updatePDPWishlistUI() {
 }
 
 /* ——— PRODUCT DETAIL QUICK VIEW (PDP) ——— */
-let modalActiveSize = 'L';
+let modalActiveSize = 'M';
 
 function openProduct(id) {
   const p = PRODUCTS.find(item => item.id === id) || PRODUCTS[0];
+  const outOfStock = isProductOutOfStock(p);
   activePDPProduct = p;
-  activePDPSize = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || 'L';
+  activePDPSize = getDefaultSize(p, selectedSizes[p.id]);
   modalActiveSize = activePDPSize;
 
   const modal = document.getElementById("productModal") || document.getElementById("productDetailPage");
@@ -567,13 +687,17 @@ function openProduct(id) {
               <h2 style="font-family:var(--f-display);font-size:21px;font-weight:700;color:var(--text-primary);line-height:1.25;margin-bottom:10px;">${p.name}</h2>
               
               <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
-                ${isLive ? `
+                ${outOfStock ? `
+                  <span style="font-family:var(--f-display);font-size:20px;font-weight:700;color:var(--text-primary);">₹ ${finalPrice.toLocaleString()}</span>
+                  <del style="font-size:13.5px;color:var(--text-muted);">₹ ${(p.mrp || p.price).toLocaleString()}</del>
+                  <span style="font-size:11.5px;font-weight:700;color:#ef4444;background:rgba(239,68,68,0.12);padding:2px 8px;border-radius:4px;letter-spacing:0.04em;">OUT OF STOCK</span>
+                ` : (isLive ? `
                   <span style="font-family:var(--f-display);font-size:20px;font-weight:700;color:var(--text-primary);">₹ ${finalPrice.toLocaleString()}</span>
                   <del style="font-size:13.5px;color:var(--text-muted);">₹ ${(p.mrp || p.price).toLocaleString()}</del>
                   <span style="font-size:11.5px;font-weight:700;color:#047857;background:rgba(4,120,87,0.08);padding:2px 8px;border-radius:4px;">${p.discountText || 'OFFER'}</span>
                 ` : `
                   <span style="font-family:var(--f-display);font-size:14px;color:var(--text-muted);">PREVIEW ARCHIVE · COMING SOON</span>
-                `}
+                `)}
               </div>
 
               <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px;">Inclusive of all taxes · Free express delivery</div>
@@ -586,23 +710,43 @@ function openProduct(id) {
                   <button type="button" onclick="openSizeChart()" style="background:none;border:none;font-size:11.5px;color:var(--text-muted);text-decoration:underline;cursor:pointer;">Size Guide →</button>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;">
-                  ${p.sizes.map(s => `
-                    <button type="button" class="pc-size-pill ${s === modalActiveSize ? 'active' : ''} ${!isLive ? 'disabled' : ''}" ${!isLive ? 'disabled' : ''} onclick="selectModalSize('${p.id}', '${s}', this)" style="min-width:44px;padding:8px 12px;font-weight:600;cursor:pointer;">${s}</button>
-                  `).join('')}
+                  ${p.sizes.map(s => {
+                    const isSzDisabled = isSizeDisabled(s, p);
+                    const isDisabled = !isLive || outOfStock || isSzDisabled;
+                    const titleText = isSzDisabled ? `Size ${s} is currently out of stock` : (outOfStock ? 'Piece is currently out of stock' : `Size ${s}`);
+                    return `
+                      <button type="button" class="pc-size-pill ${s === modalActiveSize && !isDisabled ? 'active' : ''} ${isDisabled ? 'disabled' : ''}" ${isDisabled ? 'disabled' : ''} title="${titleText}" onclick="selectModalSize('${p.id}', '${s}', this)" style="min-width:44px;padding:8px 12px;font-weight:600;cursor:${isDisabled ? 'not-allowed' : 'pointer'};">${s}</button>
+                    `;
+                  }).join('')}
                 </div>
               </div>
 
+              ${outOfStock ? `
+                <div style="font-size:12px;color:#ef4444;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);padding:8px 12px;border-radius:6px;margin:12px 0;display:flex;align-items:center;gap:6px;">
+                  <span>⚠️</span><strong>Out of Stock:</strong> This silhouette colorway is currently sold out. Restock in progress.
+                </div>
+              ` : ''}
+
               <!-- CTAs -->
-              ${isLive ? `
+              ${outOfStock ? `
                 <div style="display:flex;gap:10px;margin-bottom:16px;">
-                  <button type="button" class="cart-checkout-btn" style="flex:1;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;" onclick="addToCart('${p.id}', modalActiveSize); toast('Added to Bag'); closeProduct();">
+                  <button type="button" class="cart-checkout-btn pc-btn-soldout" style="flex:1;background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color);padding:12px 16px;font-size:13px;font-weight:700;cursor:not-allowed;" disabled>
+                    Out of Stock
+                  </button>
+                  <button type="button" class="cart-checkout-btn" style="flex:1;background:var(--bg-secondary);color:var(--text-primary);border:1px solid var(--border-color);padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;" onclick="directWA('${p.id}')">
+                    Enquire Restock
+                  </button>
+                </div>
+              ` : (isLive ? `
+                <div style="display:flex;gap:10px;margin-bottom:16px;">
+                  <button type="button" class="cart-checkout-btn" style="flex:1;padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;" onclick="closeProduct(); addToCart('${p.id}', modalActiveSize);">
                     Add to Bag
                   </button>
                   <button type="button" class="cart-checkout-btn" style="flex:1;background:var(--text-primary,#111);color:var(--bg-primary,#fff);padding:12px 16px;font-size:13px;font-weight:700;cursor:pointer;border:none;border-radius:6px;" onclick="closeProduct();if(window.openShelbyCheckout){window.openShelbyCheckout({items:[{id:'${p.id}',name:'${p.name.replace(/'/g, "\\'")}',size:modalActiveSize,qty:1,price:${finalPrice},img:'${p.img}'}],source:'buynow'});}else{directWA('${p.id}');}">
                     Buy Now
                   </button>
                 </div>
-              ` : ''}
+              ` : '')}
 
               <!-- Specs -->
               <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px;">
@@ -718,6 +862,11 @@ function attachSwipeGesture(el, onLeft, onRight) {
 }
 
 function selectModalSize(prodId, sz, btn) {
+  const p = PRODUCTS.find(t => t.id === prodId);
+  if (isSizeDisabled(sz, p)) {
+    toast(`Size ${sz} is currently unavailable.`);
+    return;
+  }
   modalActiveSize = sz;
   selectedSizes[prodId] = sz;
   if (btn && btn.parentElement) {
@@ -849,6 +998,11 @@ function pickSz(e, id, sz) {
 
 function pickSz2(id, sz, btn, e) {
   if (e) e.stopPropagation();
+  const p = PRODUCTS.find(t => t.id === id);
+  if (isSizeDisabled(sz, p)) {
+    toast(`Size ${sz} is currently unavailable.`);
+    return;
+  }
   selectedSizes[id] = sz;
   const card = btn.closest('.pc');
   if (card) {
@@ -861,11 +1015,19 @@ function pickSz2(id, sz, btn, e) {
 /* ——— ADD TO CART ——— */
 function addToCart(id, sizeArg) {
   const p = PRODUCTS.find(t => t.id === id);
+  if (p && isProductOutOfStock(p)) {
+    toast(`${p.name} is currently out of stock.`);
+    return;
+  }
   if (p && p.isLive === false) {
     toast(`${p.name} is Coming Soon in Drop 02.`);
     return;
   }
-  const sz = sizeArg || selectedSizes[id] || (p ? p.sizes[0] : "L");
+  const sz = (typeof modalActiveSize !== 'undefined' && modalActiveSize && document.getElementById('productModal')?.classList.contains('active') ? modalActiveSize : null) || sizeArg || selectedSizes[id] || getDefaultSize(p);
+  if (isSizeDisabled(sz, p)) {
+    toast(`Size ${sz} is currently unavailable.`);
+    return;
+  }
   const existing = CART.find(i => i.id === id && i.size === sz);
   if (existing) { existing.qty++; }
   else { CART.push({ id, size: sz, qty: 1 }); }
@@ -887,6 +1049,7 @@ function addToCart(id, sizeArg) {
     pb.textContent = CART.reduce((s, i) => s + i.qty, 0);
   }
 }
+window.addToCart = addToCart;
 
 function updateQty(idx, d) {
   CART[idx].qty += d;
@@ -1010,7 +1173,17 @@ window.checkoutViaWhatsApp = checkoutWA;
 function directWA(id) {
   const tee = TEES.find(t => t.id === id);
   if (!tee) return;
-  const sz = selectedSizes[id] || (tee.sizes && tee.sizes[0]) || 'M';
+  if (isProductOutOfStock(tee)) {
+    const colorName = (tee.colors && tee.colors[0] && tee.colors[0].name) || '';
+    const msg = `Hello Shelby Hiver! 👋\n\nI want to inquire about a restock for:\n• ${tee.name} (${colorName})\n• SKU: ${tee.sku || tee.id}\n\nPlease notify me when this silhouette is back in stock. Thank you!`;
+    window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`, "_blank");
+    return;
+  }
+  const sz = getDefaultSize(tee, selectedSizes[id]);
+  if (isSizeDisabled(sz, tee)) {
+    toast(`Size ${sz} is currently unavailable.`);
+    return;
+  }
   const finalPrice = Math.round(tee.price * discount);
 
   if (window.openShelbyCheckout) {
@@ -1080,6 +1253,8 @@ function hideCart() {
   if (drawer) drawer.classList.remove("open", "on");
   if (scrim) scrim.classList.remove("open", "on");
 }
+window.showCart = showCart;
+window.hideCart = hideCart;
 const openCartEl = document.getElementById("openCart");
 if (openCartEl) openCartEl.addEventListener("click", showCart);
 const closeCartEl = document.getElementById("closeCart");

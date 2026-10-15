@@ -1689,6 +1689,46 @@
 
     const SEED_PRODUCTS = [
       {
+        id: "SH-DROP01-FRAGMENTS-LB",
+        sku: "SH-D01-FRG-05",
+        category: "tees",
+        name: "Fragments Still Speak Boxy Tee",
+        subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+        price: 699,
+        mrp: 1199,
+        discountText: "42% OFF",
+        badge: "NEW COLLECTION",
+        isLive: true,
+        inStock: true,
+        outOfStock: false,
+        disabledSizes: ["S", "XL"],
+        rating: 4.9,
+        reviewCount: 142,
+        img: "drops/lb1.png",
+        altImg: "drops/lb2.png",
+        images: [
+          "drops/lb1.png",
+          "drops/lb2.png",
+          "drops/lb3.png",
+          "drops/lb4.png"
+        ],
+        fabric: "220 GSM Pure Combed Cotton",
+        fit: "Boxy Drop-Shoulder Oversized",
+        colors: [
+          { name: "Light Brown", hex: "#8d5b4c" }
+        ],
+        sizes: ["S", "M", "L", "XL"],
+        desc: "Drop 01 flagship silhouette in Light Brown. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and a statement archival artwork across the back, depicting a fragmented classical sculpture surrounded by celestial geometry and the words “FRAGMENTS STILL SPEAK.”",
+        specs: {
+          "Fabric Weight": "220 GSM Pure Combed Cotton",
+          "Silhouette": "Boxy Drop-Shoulder Oversized",
+          "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+          "Back Artwork": "Fragments Still Speak · High-Density Print",
+          "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+          "Dispatch": "Dispatched within 24 hours"
+        }
+      },
+      {
         id: "SH-DROP01-DRAGON",
         sku: "SH-D01-DRG-01",
         category: "tees",
@@ -1699,6 +1739,9 @@
         discountText: "42% OFF",
         badge: "DROP 01 LIVE",
         isLive: true,
+        inStock: true,
+        outOfStock: false,
+        disabledSizes: ["S", "XL"],
         rating: 4.9,
         reviewCount: 164,
         img: "drops/01.png",
@@ -1737,6 +1780,9 @@
         discountText: "42% OFF",
         badge: "DROP 01 LIVE",
         isLive: true,
+        inStock: true,
+        outOfStock: false,
+        disabledSizes: ["S", "XL"],
         rating: 4.9,
         reviewCount: 182,
         img: "drops/winter-arc-01.png",
@@ -1773,6 +1819,9 @@
         discountText: "42% OFF",
         badge: "DROP 01 LIVE",
         isLive: true,
+        inStock: true,
+        outOfStock: false,
+        disabledSizes: ["S", "XL"],
         rating: 4.9,
         reviewCount: 156,
         img: "drops/c1.png",
@@ -1810,6 +1859,9 @@
         discountText: "42% OFF",
         badge: "DROP 01 LIVE",
         isLive: true,
+        inStock: true,
+        outOfStock: false,
+        disabledSizes: ["S", "XL"],
         rating: 4.9,
         reviewCount: 148,
         img: "drops/nb1.png",
@@ -1852,13 +1904,42 @@
             SEED_PRODUCTS.forEach(seed => {
               const existingIdx = parsed.findIndex(p => p.id === seed.id);
               if (existingIdx === -1) {
-                parsed.push(seed);
+                parsed.unshift(seed);
                 updated = true;
-              } else if (parsed[existingIdx].img !== seed.img) {
-                parsed[existingIdx] = { ...parsed[existingIdx], ...seed };
-                updated = true;
+              } else {
+                if (parsed[existingIdx].img !== seed.img) {
+                  parsed[existingIdx].img = seed.img;
+                  updated = true;
+                }
+                if (seed.inStock !== undefined && parsed[existingIdx].inStock !== seed.inStock) {
+                  parsed[existingIdx].inStock = seed.inStock;
+                  updated = true;
+                }
+                if (seed.outOfStock !== undefined && parsed[existingIdx].outOfStock !== seed.outOfStock) {
+                  parsed[existingIdx].outOfStock = seed.outOfStock;
+                  updated = true;
+                }
+                if (seed.badge && parsed[existingIdx].badge !== seed.badge) {
+                  parsed[existingIdx].badge = seed.badge;
+                  updated = true;
+                }
+                if (seed.discountText && parsed[existingIdx].discountText !== seed.discountText) {
+                  parsed[existingIdx].discountText = seed.discountText;
+                  updated = true;
+                }
+                if (seed.disabledSizes && (!parsed[existingIdx].disabledSizes || parsed[existingIdx].disabledSizes.length !== seed.disabledSizes.length)) {
+                  parsed[existingIdx].disabledSizes = seed.disabledSizes;
+                  updated = true;
+                }
               }
             });
+            // Ensure the newest collection piece appears at the top
+            const newCollIdx = parsed.findIndex(p => p.id === 'SH-DROP01-FRAGMENTS-LB');
+            if (newCollIdx > 0) {
+              const [newCollItem] = parsed.splice(newCollIdx, 1);
+              parsed.unshift(newCollItem);
+              updated = true;
+            }
             parsed.forEach(p => {
               if (Array.isArray(p.sizes)) {
                 const filtered = p.sizes.filter(s => !['XS', 'XXL', 'XXXL', '2XL', '3XL'].includes(String(s).toUpperCase()));
@@ -2244,11 +2325,14 @@
           </td>
           <td>
             <div style="display:flex;gap:3px;">
-              ${(p.sizes || []).map(s => `<span style="font-family:var(--f-display);font-size:9.5px;font-weight:700;padding:2px 5px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:3px;">${s}</span>`).join('')}
+              ${(p.sizes || []).map(s => {
+                const isDis = ['S', 'XL'].includes(String(s).toUpperCase()) || (p.disabledSizes && p.disabledSizes.map(x=>String(x).toUpperCase()).includes(String(s).toUpperCase()));
+                return `<span style="font-family:var(--f-display);font-size:9.5px;font-weight:700;padding:2px 5px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:3px;${isDis ? 'opacity:0.4;text-decoration:line-through;' : ''}" title="${isDis ? 'Unavailable' : 'Available'}">${s}</span>`;
+              }).join('')}
             </div>
           </td>
           <td>
-            <span class="status-pill ${isLive ? 'live' : 'disabled'}">${isLive ? 'Live' : 'Coming Soon'}</span>
+            ${(p.inStock === false || p.outOfStock === true) ? '<span class="status-pill disabled" style="background:rgba(239,68,68,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.3);">Out of Stock</span>' : `<span class="status-pill ${isLive ? 'live' : 'disabled'}">${isLive ? 'Live' : 'Coming Soon'}</span>`}
           </td>
           <td>
             <div class="table-actions">

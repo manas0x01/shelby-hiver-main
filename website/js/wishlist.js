@@ -8,6 +8,46 @@
 
   const SEED_PRODUCTS = [
     {
+      id: "SH-DROP01-FRAGMENTS-LB",
+      sku: "SH-D01-FRG-05",
+      category: "tees",
+      name: "Fragments Still Speak Boxy Tee",
+      subtitle: "220 GSM Combed Cotton · Boxy Oversized",
+      price: 699,
+      mrp: 1199,
+      discountText: "42% OFF",
+      badge: "NEW COLLECTION",
+      isLive: true,
+      inStock: true,
+      outOfStock: false,
+      disabledSizes: ["S", "XL"],
+      rating: 4.9,
+      reviewCount: 142,
+      img: "drops/lb1.png",
+      altImg: "drops/lb2.png",
+      images: [
+        "drops/lb1.png",
+        "drops/lb2.png",
+        "drops/lb3.png",
+        "drops/lb4.png"
+      ],
+      fabric: "220 GSM Pure Combed Cotton",
+      fit: "Boxy Drop-Shoulder Oversized",
+      colors: [
+        { name: "Light Brown", hex: "#8d5b4c" }
+      ],
+      sizes: ["S", "M", "L", "XL"],
+      desc: "Drop 01 flagship silhouette in Light Brown. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and a statement archival artwork across the back, depicting a fragmented classical sculpture surrounded by celestial geometry and the words “FRAGMENTS STILL SPEAK.”",
+      specs: {
+        "Fabric Weight": "220 GSM Pure Combed Cotton",
+        "Silhouette": "Boxy Drop-Shoulder Oversized",
+        "Collar": "24mm Anti-Sag Reinforced Ribbed Collar",
+        "Back Artwork": "Fragments Still Speak · High-Density Print",
+        "Shrinkage": "Pre-Shrunk 0% Shrinkage Guaranteed",
+        "Dispatch": "Dispatched within 24 hours"
+      }
+    },
+    {
       id: "SH-DROP01-DRAGON",
       sku: "SH-D01-DRG-01",
       category: "tees",
@@ -18,6 +58,9 @@
       discountText: "42% OFF",
       badge: "DROP 01 LIVE",
       isLive: true,
+      inStock: true,
+      outOfStock: false,
+      disabledSizes: ["S", "XL"],
       rating: 4.9,
       reviewCount: 164,
       img: "drops/01.png",
@@ -54,6 +97,9 @@
       discountText: "42% OFF",
       badge: "DROP 01 LIVE",
       isLive: true,
+      inStock: true,
+      outOfStock: false,
+      disabledSizes: ["S", "XL"],
       rating: 4.9,
       reviewCount: 182,
       img: "drops/winter-arc-01.png",
@@ -88,6 +134,9 @@
       discountText: "42% OFF",
       badge: "DROP 01 LIVE",
       isLive: true,
+      inStock: true,
+      outOfStock: false,
+      disabledSizes: ["S", "XL"],
       rating: 4.9,
       reviewCount: 156,
       img: "drops/c1.png",
@@ -123,6 +172,9 @@
       discountText: "42% OFF",
       badge: "DROP 01 LIVE",
       isLive: true,
+      inStock: true,
+      outOfStock: false,
+      disabledSizes: ["S", "XL"],
       rating: 4.9,
       reviewCount: 148,
       img: "drops/nb1.png",
@@ -149,6 +201,34 @@
       }
     }
   ];
+
+  /* Size Availability & Stock Helpers */
+  const UNAVAILABLE_SIZES = ['S', 'XL'];
+
+  function isSizeDisabled(s, p) {
+    if (!s) return false;
+    const szUpper = String(s).toUpperCase();
+    if (UNAVAILABLE_SIZES.indexOf(szUpper) !== -1) return true;
+    if (p && Array.isArray(p.disabledSizes) && p.disabledSizes.map(x => String(x).toUpperCase()).indexOf(szUpper) !== -1) {
+      return true;
+    }
+    return false;
+  }
+
+  function isProductOutOfStock(p) {
+    if (!p) return false;
+    if (p.inStock === false || p.outOfStock === true) return true;
+    return false;
+  }
+
+  function getDefaultSize(p, preferred) {
+    if (preferred && !isSizeDisabled(preferred, p)) return preferred;
+    const sizes = (p && Array.isArray(p.sizes) && p.sizes.length > 0) ? p.sizes : ['M', 'L'];
+    for (let i = 0; i < sizes.length; i++) {
+      if (!isSizeDisabled(sizes[i], p)) return sizes[i];
+    }
+    return 'M';
+  }
 
   /* One-time reset of old/seeded wishlist across all accounts */
   if (!localStorage.getItem('sh_wishlist_clean_reset')) {
@@ -189,6 +269,29 @@
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) {
+          let updated = false;
+          SEED_PRODUCTS.forEach(seed => {
+            const existingIdx = parsed.findIndex(p => p.id === seed.id);
+            if (existingIdx === -1) {
+              parsed.unshift(seed);
+              updated = true;
+            } else {
+              if (seed.inStock !== undefined && parsed[existingIdx].inStock !== seed.inStock) { parsed[existingIdx].inStock = seed.inStock; updated = true; }
+              if (seed.outOfStock !== undefined && parsed[existingIdx].outOfStock !== seed.outOfStock) { parsed[existingIdx].outOfStock = seed.outOfStock; updated = true; }
+              if (seed.badge && parsed[existingIdx].badge !== seed.badge) { parsed[existingIdx].badge = seed.badge; updated = true; }
+              if (seed.discountText && parsed[existingIdx].discountText !== seed.discountText) { parsed[existingIdx].discountText = seed.discountText; updated = true; }
+              if (seed.disabledSizes && (!parsed[existingIdx].disabledSizes || parsed[existingIdx].disabledSizes.length !== seed.disabledSizes.length)) { parsed[existingIdx].disabledSizes = seed.disabledSizes; updated = true; }
+            }
+          });
+          const topIdx = parsed.findIndex(p => p.id === 'SH-DROP01-FRAGMENTS-LB');
+          if (topIdx > 0) {
+            const [topItem] = parsed.splice(topIdx, 1);
+            parsed.unshift(topItem);
+            updated = true;
+          }
+          if (updated) {
+            try { localStorage.setItem('sh_products_db_v4', JSON.stringify(parsed)); } catch(e){}
+          }
           return parsed;
         }
       }
@@ -323,14 +426,15 @@
     card.className = "wl-card";
     card.setAttribute("data-id", p.id);
 
+    const isSoldOut = isProductOutOfStock(p);
     const isLive = p.isLive !== false;
-    const currentSz = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || "L";
+    const currentSz = getDefaultSize(p, selectedSizes[p.id]);
     selectedSizes[p.id] = currentSz;
 
     const pImgs = (Array.isArray(p.images) && p.images.length > 0) ? p.images : [p.img || 'drops/01.png'];
     const priImg = pImgs[0];
     const secImg = pImgs[1] || p.altImg || priImg;
-    const discountText = p.discountText || `${Math.round(((p.mrp - p.price) / p.mrp) * 100)}% OFF`;
+    const discountText = isSoldOut ? 'OUT OF STOCK' : (p.discountText || `${Math.round(((p.mrp - p.price) / p.mrp) * 100)}% OFF`);
     const savings = Math.max(0, p.mrp - p.price);
 
     card.innerHTML = `
@@ -345,8 +449,10 @@
         </button>
 
         <div class="wl-card-badges">
-          <span class="wl-badge-tag wl-badge-discount">${discountText}</span>
-          ${isLive ? '<span class="wl-badge-tag wl-badge-live">DROP 01 LIVE</span>' : '<span class="wl-badge-tag" style="background:#555;color:#fff;">COMING SOON</span>'}
+          ${isSoldOut ? '<span class="wl-badge-tag wl-badge-soldout" style="background:#991b1b;color:#fff;">OUT OF STOCK</span>' : `
+            <span class="wl-badge-tag wl-badge-discount">${discountText}</span>
+            ${isLive ? '<span class="wl-badge-tag wl-badge-live">DROP 01 LIVE</span>' : '<span class="wl-badge-tag" style="background:#555;color:#fff;">COMING SOON</span>'}
+          `}
         </div>
 
         <div class="wl-fabric-pill">220 GSM Combed Cotton</div>
@@ -359,7 +465,7 @@
         <div class="wl-card-price-row">
           <span class="wl-price-current">₹ ${p.price.toLocaleString()}</span>
           <del class="wl-price-mrp">₹ ${p.mrp.toLocaleString()}</del>
-          <span class="wl-price-savings">Save ₹ ${savings}</span>
+          ${isSoldOut ? '<span class="wl-price-savings" style="color:#ef4444;font-weight:700;">Sold Out</span>' : `<span class="wl-price-savings">Save ₹ ${savings}</span>`}
         </div>
 
         <div class="wl-size-wrap">
@@ -368,14 +474,20 @@
             <button type="button" class="wl-size-guide-btn" onclick="openSizeChart()">Size Guide</button>
           </div>
           <div class="wl-size-pills">
-            ${(p.sizes || ["S", "M", "L", "XL"]).map(sz => `
-              <button type="button" class="wl-size-pill ${sz === currentSz ? 'active' : ''}" onclick="pickCardSize('${p.id}', '${sz}', this, event)">${sz}</button>
-            `).join('')}
+            ${(p.sizes || ["S", "M", "L", "XL"]).map(sz => {
+              const dis = isSoldOut || isSizeDisabled(sz, p);
+              const act = !dis && (sz === currentSz);
+              return `<button type="button" class="wl-size-pill ${act ? 'active' : ''} ${dis ? 'disabled' : ''}" ${dis ? 'disabled title="Size ' + sz + ' unavailable"' : ''} onclick="pickCardSize('${p.id}', '${sz}', this, event)">${sz}</button>`;
+            }).join('')}
           </div>
         </div>
 
         <div class="wl-card-actions">
-          ${isLive ? `
+          ${isSoldOut ? `
+            <button type="button" class="wl-btn-add-bag wl-btn-soldout disabled" style="background:#262626;color:#737373;border-color:#404040;cursor:not-allowed;" disabled>
+              Out of Stock
+            </button>
+          ` : (isLive ? `
             <button type="button" class="wl-btn-add-bag" onclick="moveToBag('${p.id}')">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
               <span>Move to Bag</span>
@@ -388,7 +500,7 @@
             <button type="button" class="wl-btn-add-bag" style="background:var(--bg-secondary);color:var(--text-muted);border-color:var(--border-color);cursor:not-allowed;" disabled>
               Drop 02 Preview
             </button>
-          `}
+          `)}
         </div>
       </div>
     `;
@@ -402,8 +514,9 @@
     if (!recGrid) return;
     recGrid.innerHTML = "";
 
-    SEED_PRODUCTS.forEach(p => {
+    PRODUCTS.forEach(p => {
       const isWish = WISHLIST.has(p.id);
+      const isSoldOut = isProductOutOfStock(p);
       const div = document.createElement("div");
       div.className = "wl-card";
       const pImgs = (Array.isArray(p.images) && p.images.length > 0) ? p.images : [p.img || 'drops/01.png'];
@@ -418,7 +531,9 @@
             </svg>
           </button>
           <div class="wl-card-badges">
-            <span class="wl-badge-tag wl-badge-discount">${p.discountText || '42% OFF'}</span>
+            ${isSoldOut ? '<span class="wl-badge-tag wl-badge-soldout" style="background:#991b1b;color:#fff;">OUT OF STOCK</span>' : `
+              <span class="wl-badge-tag wl-badge-discount">${p.discountText || '42% OFF'}</span>
+            `}
           </div>
           <div class="wl-fabric-pill">220 GSM Combed Cotton</div>
         </div>
@@ -430,9 +545,15 @@
             <del class="wl-price-mrp">₹ ${p.mrp.toLocaleString()}</del>
           </div>
           <div style="display:flex;gap:6px;margin-top:auto;">
-            <button type="button" class="wl-btn-add-bag" style="flex:1;justify-content:center;" onclick="buyNowWishlistItem('${p.id}')">
-              Buy Now
-            </button>
+            ${isSoldOut ? `
+              <button type="button" class="wl-btn-add-bag" style="flex:1;justify-content:center;background:#262626;color:#737373;border-color:#404040;cursor:not-allowed;" disabled>
+                Out of Stock
+              </button>
+            ` : `
+              <button type="button" class="wl-btn-add-bag" style="flex:1;justify-content:center;" onclick="buyNowWishlistItem('${p.id}')">
+                Buy Now
+              </button>
+            `}
             <button type="button" class="wl-btn-secondary" style="padding:0 12px;border:1.5px solid var(--text-primary);color:var(--text-primary);display:flex;align-items:center;justify-content:center;" onclick="toggleWishFromRec('${p.id}')" title="Save to Wishlist" aria-label="Save to Wishlist">
               <svg viewBox="0 0 24 24" width="15" height="15" fill="${isWish ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -471,6 +592,15 @@
 
   window.pickCardSize = function(id, sz, btn, e) {
     if (e) e.stopPropagation();
+    const p = PRODUCTS.find(t => t.id === id);
+    if (isProductOutOfStock(p)) {
+      toast(`${p ? p.name : 'This item'} is currently out of stock.`);
+      return;
+    }
+    if (isSizeDisabled(sz, p)) {
+      toast(`Size ${sz} is currently unavailable.`);
+      return;
+    }
     selectedSizes[id] = sz;
     const card = btn.closest('.wl-card');
     if (card) {
@@ -483,11 +613,22 @@
   window.moveToBag = function(id) {
     const p = PRODUCTS.find(t => t.id === id);
     if (!p) return;
+    if (isProductOutOfStock(p)) {
+      toast(`${p.name} is currently out of stock.`);
+      return;
+    }
     if (p.isLive === false) {
       toast(`${p.name} is a Drop 02 Preview.`);
       return;
     }
-    const sz = selectedSizes[id] || (p.sizes && p.sizes[0]) || "L";
+    let sz = selectedSizes[id] || getDefaultSize(p);
+    if (isSizeDisabled(sz, p)) {
+      sz = getDefaultSize(p);
+    }
+    if (isSizeDisabled(sz, p)) {
+      toast(`Selected size is currently unavailable.`);
+      return;
+    }
     const existing = CART.find(i => i.id === id && i.size === sz);
     if (existing) {
       existing.qty++;
@@ -502,14 +643,15 @@
   };
 
   window.moveAllToBag = function() {
-    const wishlistedProducts = PRODUCTS.filter(p => WISHLIST.has(p.id) && p.isLive !== false);
+    const wishlistedProducts = PRODUCTS.filter(p => WISHLIST.has(p.id) && p.isLive !== false && !isProductOutOfStock(p));
     if (wishlistedProducts.length === 0) {
-      toast("No live silhouettes in your wishlist.");
+      toast("No in-stock live silhouettes in your wishlist.");
       return;
     }
     let addedCount = 0;
     wishlistedProducts.forEach(p => {
-      const sz = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || "L";
+      let sz = getDefaultSize(p, selectedSizes[p.id]);
+      if (isSizeDisabled(sz, p)) return;
       const existing = CART.find(i => i.id === p.id && i.size === sz);
       if (existing) {
         existing.qty++;
@@ -520,7 +662,7 @@
     });
     localStorage.setItem('sh_cart', JSON.stringify(CART));
     window.dispatchEvent(new Event('storage'));
-    toast(`Moved ${addedCount} silhouettes to your Shopping Bag! 🛍️`);
+    toast(`Moved ${addedCount} available silhouettes to your Shopping Bag! 🛍️`);
     renderCart();
     showCart();
   };
@@ -695,7 +837,9 @@
 
   window.openProduct = function(id) {
     const p = PRODUCTS.find(item => item.id === id) || PRODUCTS[0];
-    modalActiveSize = selectedSizes[p.id] || (p.sizes && p.sizes[0]) || 'L';
+    const isSoldOut = isProductOutOfStock(p);
+    modalActiveSize = getDefaultSize(p, selectedSizes[p.id]);
+    selectedSizes[p.id] = modalActiveSize;
     const modal = document.getElementById("productModal");
     const scrim = document.getElementById("pdpScrim");
     if (!modal) return;
@@ -727,26 +871,37 @@
             <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:12px;">
               <span style="font-family:var(--f-display);font-size:20px;font-weight:800;color:var(--text-primary);">₹ ${p.price.toLocaleString()}</span>
               <del style="font-size:13px;color:var(--text-muted);">₹ ${p.mrp.toLocaleString()}</del>
-              <span style="font-size:11px;font-weight:800;color:#10b981;">${p.discountText || '42% OFF'}</span>
+              ${isSoldOut ? '<span style="font-size:11px;font-weight:800;color:#ef4444;background:rgba(239,68,68,0.1);padding:3px 8px;border-radius:4px;">OUT OF STOCK</span>' : `<span style="font-size:11px;font-weight:800;color:#10b981;">${p.discountText || '42% OFF'}</span>`}
             </div>
             <p style="font-size:12.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;">${p.desc || ''}</p>
             <div style="margin-bottom:14px;">
               <div style="font-size:11px;font-weight:800;text-transform:uppercase;margin-bottom:6px;">Select Size:</div>
               <div style="display:flex;gap:6px;">
-                ${(p.sizes || ["S", "M", "L", "XL"]).map(s => `
-                  <button type="button" class="wl-size-pill ${s === modalActiveSize ? 'active' : ''}" onclick="pickModalSize('${p.id}','${s}',this)">${s}</button>
-                `).join('')}
+                ${(p.sizes || ["S", "M", "L", "XL"]).map(s => {
+                  const dis = isSoldOut || isSizeDisabled(s, p);
+                  const act = !dis && (s === modalActiveSize);
+                  return `<button type="button" class="wl-size-pill ${act ? 'active' : ''} ${dis ? 'disabled' : ''}" ${dis ? 'disabled title="Size ' + s + ' unavailable"' : ''} onclick="pickModalSize('${p.id}','${s}',this)">${s}</button>`;
+                }).join('')}
               </div>
             </div>
+            ${isSoldOut ? `
+              <div style="background:rgba(153,27,27,0.12);border:1px solid rgba(153,27,27,0.35);border-radius:6px;padding:10px;margin-bottom:14px;color:#fca5a5;font-size:12px;font-family:var(--f-display);text-align:center;">
+                Out of Stock &mdash; Restock is underway
+              </div>
+            ` : ''}
             <div style="display:flex;gap:10px;margin-top:18px;">
-              ${isLive ? `
+              ${isSoldOut ? `
+                <button type="button" class="wl-btn-primary" style="flex:1;justify-content:center;background:#262626;color:#737373;border:1px solid #404040;cursor:not-allowed;" disabled>
+                  Out of Stock
+                </button>
+              ` : (isLive ? `
                 <button type="button" class="wl-btn-primary" style="flex:1;justify-content:center;" onclick="buyNowFromModal('${p.id}');closeProduct();">
                   Buy Now &rarr;
                 </button>
                 <button type="button" class="wl-btn-secondary" style="flex:1;justify-content:center;" onclick="moveToBag('${p.id}');closeProduct();">
                   Add to Bag
                 </button>
-              ` : ''}
+              ` : '')}
               <button type="button" class="wl-btn-secondary" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid var(--text-primary);color:var(--text-primary);" onclick="toggleWishFromRec('${p.id}');closeProduct();">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="${isWish ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -776,6 +931,15 @@
   };
 
   window.pickModalSize = function(id, sz, btn) {
+    const p = PRODUCTS.find(t => t.id === id);
+    if (isProductOutOfStock(p)) {
+      toast(`${p ? p.name : 'This item'} is currently out of stock.`);
+      return;
+    }
+    if (isSizeDisabled(sz, p)) {
+      toast(`Size ${sz} is currently unavailable.`);
+      return;
+    }
     modalActiveSize = sz;
     selectedSizes[id] = sz;
     if (btn && btn.parentElement) {
@@ -795,9 +959,20 @@
   };
 
   window.buyNowWishlistItem = function(id) {
-    const p = SEED_PRODUCTS.find(item => item.id === id);
+    const p = PRODUCTS.find(item => item.id === id) || SEED_PRODUCTS.find(item => item.id === id);
     if (!p) return;
-    const sz = selectedSizes[id] || (p.sizes && p.sizes[0]) || 'M';
+    if (isProductOutOfStock(p)) {
+      toast(`${p.name} is currently out of stock.`);
+      return;
+    }
+    let sz = selectedSizes[id] || getDefaultSize(p);
+    if (isSizeDisabled(sz, p)) {
+      sz = getDefaultSize(p);
+    }
+    if (isSizeDisabled(sz, p)) {
+      toast(`Selected size is currently unavailable.`);
+      return;
+    }
     if (window.openShelbyCheckout) {
       window.openShelbyCheckout({
         items: [{
@@ -814,9 +989,20 @@
   };
 
   window.buyNowFromModal = function(id) {
-    const p = SEED_PRODUCTS.find(item => item.id === id);
+    const p = PRODUCTS.find(item => item.id === id) || SEED_PRODUCTS.find(item => item.id === id);
     if (!p) return;
-    const sz = modalActiveSize || selectedSizes[id] || (p.sizes && p.sizes[0]) || 'M';
+    if (isProductOutOfStock(p)) {
+      toast(`${p.name} is currently out of stock.`);
+      return;
+    }
+    let sz = modalActiveSize || selectedSizes[id] || getDefaultSize(p);
+    if (isSizeDisabled(sz, p)) {
+      sz = getDefaultSize(p);
+    }
+    if (isSizeDisabled(sz, p)) {
+      toast(`Selected size is currently unavailable.`);
+      return;
+    }
     if (window.openShelbyCheckout) {
       window.openShelbyCheckout({
         items: [{

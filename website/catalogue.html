@@ -105,13 +105,19 @@
     .cat-pdp-sizes{display:flex;gap:8px;flex-wrap:wrap;}
     .cat-pdp-size-chip{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--border-color);font-family:var(--f-display);font-size:12px;font-weight:700;color:var(--text-secondary);cursor:pointer;background:transparent;transition:all .12s;letter-spacing:.04em;}
     .cat-pdp-size-chip:hover,.cat-pdp-size-chip.active{border-color:var(--text-primary);background:var(--text-primary);color:var(--bg-primary);}
+    .cat-pdp-size-chip.disabled{opacity:0.35;cursor:not-allowed !important;pointer-events:none;text-decoration:line-through;border-style:dashed;color:var(--text-muted);}
+    .cat-pdp-discount-tag.soldout{background:rgba(185,28,28,0.12);color:#ef4444;border:1px solid rgba(239,68,68,0.3);}
+    .pc-btn-cart.pc-btn-soldout{background:var(--bg-tertiary);color:var(--text-muted);border:1px solid var(--border-color);cursor:not-allowed;pointer-events:none;}
+    .pc-disc-tag.out-of-stock-tag{background:#991b1b;color:#fff;}
     .cat-pdp-size-guide-link{font-size:11.5px;color:var(--text-muted);text-decoration:underline;cursor:pointer;background:none;border:none;padding:4px 0;margin-top:6px;display:inline-block;font-family:var(--f-body);}
     .cat-pdp-urgency{background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:6px;padding:8px 12px;font-family:var(--f-display);font-size:11.5px;font-weight:700;color:var(--text-primary);letter-spacing:.02em;margin-bottom:14px;}
-    .cat-pdp-cta-row{display:flex;gap:10px;flex-wrap:wrap;}
-    .cat-pdp-btn-cart{flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 20px;background:var(--text-primary);color:var(--bg-primary);border:none;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:opacity .15s;}
-    .cat-pdp-btn-cart:hover{opacity:.85;}
-    .cat-pdp-btn-wa{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;background:#111111;color:#ffffff;border:1px solid #111111;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .15s ease;}
+    .cat-pdp-cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+    .cat-pdp-btn-cart{flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;background:var(--text-primary);color:var(--bg-primary);border:1px solid var(--text-primary);font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:all .15s ease;border-radius:0;}
+    .cat-pdp-btn-cart:hover{background:var(--accent-coral,#ff3f6c);border-color:var(--accent-coral,#ff3f6c);color:#fff;}
+    .cat-pdp-btn-wa{flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;background:#111111;color:#ffffff;border:1px solid #111111;font-family:var(--f-display);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .15s ease;border-radius:0;}
     .cat-pdp-btn-wa:hover{background:#252525;opacity:.95;}
+    #cartDrawer{z-index:650 !important;}
+    #cartScrim{z-index:649 !important;}
     .cat-pdp-desc{font-size:13px;color:var(--text-secondary);line-height:1.65;}
     .cat-pdp-specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
     .cat-pdp-spec-cell{background:var(--bg-secondary);border:1px solid var(--border-light);border-radius:6px;padding:10px 12px;}
@@ -834,10 +840,51 @@ if(!localStorage.getItem('sh_wishlist_clean_reset')){
 }
 var PRODUCTS=[],CART=JSON.parse(localStorage.getItem('sh_cart')||'[]'),WISHLIST=new Set(JSON.parse(localStorage.getItem('sh-wishlist')||'[]'));
 var discount=1.0,selectedSizes={};
+window.selectedSizes=selectedSizes;
 var catCurrentCat='all',catCurrentSort='featured',catSearchQuery='',catPriceMin=null,catPriceMax=null;
 var catActivePDP=null,catActivePDPSize=null,catActiveSizes=new Set();
 
 var SEED_PRODUCTS=[
+  {
+    id:"SH-DROP01-FRAGMENTS-LB",
+    sku:"SH-D01-FRG-05",
+    category:"tees",
+    name:"Fragments Still Speak Boxy Tee",
+    subtitle:"220 GSM Combed Cotton · Boxy Oversized",
+    price:699,
+    mrp:1199,
+    discountText:"42% OFF",
+    badge:"NEW COLLECTION",
+    isLive:true,
+    inStock:true,
+    outOfStock:false,
+    disabledSizes:["S","XL"],
+    rating:4.9,
+    reviewCount:142,
+    img:"drops/lb1.png",
+    altImg:"drops/lb2.png",
+    images:[
+      "drops/lb1.png",
+      "drops/lb2.png",
+      "drops/lb3.png",
+      "drops/lb4.png"
+    ],
+    fabric:"220 GSM Pure Combed Cotton",
+    fit:"Boxy Drop-Shoulder Oversized",
+    colors:[
+      {name:"Light Brown",hex:"#8d5b4c"}
+    ],
+    sizes:["S","M","L","XL"],
+    desc:"Drop 01 flagship silhouette in Light Brown. 220 GSM high-density combed cotton heavyweight t-shirt cut in a relaxed, architectural boxy fit with structured drop shoulders. Features minimal SH chest typography and a statement archival artwork across the back, depicting a fragmented classical sculpture surrounded by celestial geometry and the words “FRAGMENTS STILL SPEAK.”",
+    specs:{
+      "Fabric Weight":"220 GSM Pure Combed Cotton",
+      "Silhouette":"Boxy Drop-Shoulder Oversized",
+      "Collar":"24mm Anti-Sag Reinforced Ribbed Collar",
+      "Back Artwork":"Fragments Still Speak · High-Density Print",
+      "Shrinkage":"Pre-Shrunk 0% Shrinkage Guaranteed",
+      "Dispatch":"Dispatched within 24 hours"
+    }
+  },
   {
     id:"SH-DROP01-DRAGON",
     sku:"SH-D01-DRG-01",
@@ -849,6 +896,9 @@ var SEED_PRODUCTS=[
     discountText:"42% OFF",
     badge:"DROP 01 LIVE",
     isLive:true,
+    inStock:true,
+    outOfStock:false,
+    disabledSizes:["S","XL"],
     rating:4.9,
     reviewCount:164,
     img:"drops/01.png",
@@ -887,6 +937,9 @@ var SEED_PRODUCTS=[
     discountText:"42% OFF",
     badge:"DROP 01 LIVE",
     isLive:true,
+    inStock:true,
+    outOfStock:false,
+    disabledSizes:["S","XL"],
     rating:4.9,
     reviewCount:182,
     img:"drops/winter-arc-01.png",
@@ -923,6 +976,9 @@ var SEED_PRODUCTS=[
     discountText:"42% OFF",
     badge:"DROP 01 LIVE",
     isLive:true,
+    inStock:true,
+    outOfStock:false,
+    disabledSizes:["S","XL"],
     rating:4.9,
     reviewCount:156,
     img:"drops/c1.png",
@@ -960,6 +1016,9 @@ var SEED_PRODUCTS=[
     discountText:"42% OFF",
     badge:"DROP 01 LIVE",
     isLive:true,
+    inStock:true,
+    outOfStock:false,
+    disabledSizes:["S","XL"],
     rating:4.9,
     reviewCount:148,
     img:"drops/nb1.png",
@@ -989,6 +1048,25 @@ var SEED_PRODUCTS=[
   }
 ];
 
+var UNAVAILABLE_SIZES=['S','XL'];
+function isSizeDisabled(s,p){
+  if(!s)return false;
+  var norm=String(s).toUpperCase();
+  if(UNAVAILABLE_SIZES.indexOf(norm)!==-1)return true;
+  if(p&&Array.isArray(p.disabledSizes)&&p.disabledSizes.map(function(x){return String(x).toUpperCase();}).indexOf(norm)!==-1)return true;
+  return false;
+}
+function isProductOutOfStock(p){
+  if(!p)return false;
+  if(p.inStock===false||p.outOfStock===true)return true;
+  return false;
+}
+function getDefaultSize(p,preferred){
+  if(preferred&&!isSizeDisabled(preferred,p))return preferred;
+  var available=((p&&p.sizes)||['M','L']).filter(function(s){return !isSizeDisabled(s,p);});
+  return available[0]||'M';
+}
+
 function loadProducts(){
   try{
     var r=localStorage.getItem(PRODUCTS_KEY);
@@ -999,13 +1077,41 @@ function loadProducts(){
         SEED_PRODUCTS.forEach(function(seed){
           var existingIdx=p.findIndex(function(item){return item.id===seed.id;});
           if(existingIdx===-1){
-            p.push(seed);
+            p.unshift(seed);
             updated=true;
-          }else if(p[existingIdx].img!==seed.img){
-            p[existingIdx]=Object.assign({},p[existingIdx],seed);
-            updated=true;
+          }else{
+            if(p[existingIdx].inStock!==seed.inStock){
+              p[existingIdx].inStock=seed.inStock;
+              updated=true;
+            }
+            if(p[existingIdx].outOfStock!==seed.outOfStock){
+              p[existingIdx].outOfStock=seed.outOfStock;
+              updated=true;
+            }
+            if(p[existingIdx].badge!==seed.badge){
+              p[existingIdx].badge=seed.badge;
+              updated=true;
+            }
+            if(p[existingIdx].discountText!==seed.discountText){
+              p[existingIdx].discountText=seed.discountText;
+              updated=true;
+            }
+            if(p[existingIdx].disabledSizes!==seed.disabledSizes){
+              p[existingIdx].disabledSizes=seed.disabledSizes;
+              updated=true;
+            }
+            if(p[existingIdx].img!==seed.img){
+              p[existingIdx]=Object.assign({},p[existingIdx],seed);
+              updated=true;
+            }
           }
         });
+        var topIdx=p.findIndex(function(item){return item.id==='SH-DROP01-FRAGMENTS-LB';});
+        if(topIdx>0){
+          var topItem=p.splice(topIdx,1)[0];
+          p.unshift(topItem);
+          updated=true;
+        }
         p.forEach(function(item){
           if(Array.isArray(item.sizes)){
             var filtered=item.sizes.filter(function(s){return !['XS','XXL','XXXL','2XL','3XL'].includes(String(s).toUpperCase());});
@@ -1028,18 +1134,21 @@ function loadProducts(){
 
 function initProducts(){
   PRODUCTS=loadProducts();
-  PRODUCTS.forEach(function(p){if(!selectedSizes[p.id]&&p.sizes&&p.sizes.length)selectedSizes[p.id]=p.sizes[0];});
+  PRODUCTS.forEach(function(p){selectedSizes[p.id]=getDefaultSize(p,selectedSizes[p.id]);});
   buildSizeFilters();catRender();
 }
 
-window.addEventListener('storage',function(e){if(!e.key||e.key===PRODUCTS_KEY){PRODUCTS=loadProducts();PRODUCTS.forEach(function(p){if(!selectedSizes[p.id]&&p.sizes&&p.sizes.length)selectedSizes[p.id]=p.sizes[0];});buildSizeFilters();catRender();}});
+window.addEventListener('storage',function(e){if(!e.key||e.key===PRODUCTS_KEY){PRODUCTS=loadProducts();PRODUCTS.forEach(function(p){selectedSizes[p.id]=getDefaultSize(p,selectedSizes[p.id]);});buildSizeFilters();catRender();}});
 
 function buildSizeFilters(){
   var seen=new Set();PRODUCTS.forEach(function(p){(p.sizes||[]).forEach(function(s){seen.add(s);});});
   var c=document.getElementById('catSizeFilters');if(!c)return;
   var order=['S','M','L','XL'];
   var sizes=[...seen].sort(function(a,b){var ia=order.indexOf(a),ib=order.indexOf(b);if(ia!==-1&&ib!==-1)return ia-ib;if(ia!==-1)return-1;if(ib!==-1)return 1;return a.localeCompare(b);});
-  c.innerHTML=sizes.map(function(s){return'<button type="button" class="cat-pdp-size-chip'+(catActiveSizes.has(s)?' active':'')+'" style="width:40px;height:40px;font-size:11px;" onclick="catToggleSizeFilter(\''+s+'\',this)">'+s+'</button>';}).join('');
+  c.innerHTML=sizes.map(function(s){
+    var isSzDisabled=isSizeDisabled(s);
+    return'<button type="button" class="cat-pdp-size-chip'+(catActiveSizes.has(s)?' active':'')+(isSzDisabled?' disabled':'')+'" style="width:40px;height:40px;font-size:11px;'+(isSzDisabled?'opacity:0.35;text-decoration:line-through;cursor:not-allowed;':'')+'" title="'+(isSzDisabled?'Size '+s+' - Currently Unavailable':'Filter by size '+s)+'" onclick="catToggleSizeFilter(\''+s+'\',this)">'+s+'</button>';
+  }).join('');
 }
 
 window.catToggleSizeFilter=function(sz,btn){if(catActiveSizes.has(sz)){catActiveSizes.delete(sz);btn.classList.remove('active');}else{catActiveSizes.add(sz);btn.classList.add('active');}catRender();};
@@ -1103,11 +1212,12 @@ window.catRender=function(){
     return;
   }
   items.forEach(function(p){
-    var isWish=WISHLIST.has(p.id),isLive=p.isLive!==false;
+    var isWish=WISHLIST.has(p.id),isLive=p.isLive!==false,isOutOfStock=isProductOutOfStock(p);
     var pImgs=(Array.isArray(p.images)&&p.images.length>0)?p.images:[p.img||'assets/model-tee.jpg'];
     var primary=pImgs[0],secondary=pImgs[1]||pImgs[0];
-    var discText=isLive?(p.discountText||Math.round(((p.mrp-p.price)/p.mrp)*100)+'% OFF'):'COMING SOON';
-    var sz=selectedSizes[p.id]||(p.sizes&&p.sizes[0])||'M';
+    var discText=isOutOfStock?'OUT OF STOCK':(isLive?(p.discountText||Math.round(((p.mrp-p.price)/p.mrp)*100)+'% OFF'):'COMING SOON');
+    var sz=getDefaultSize(p,selectedSizes[p.id]);
+    selectedSizes[p.id]=sz;
     var card=document.createElement('div');card.className='pc';card.setAttribute('data-product-id',p.id);
     card.onclick=function(e){if(!e.target.closest('button'))catOpenPdp(p.id);};
       card.innerHTML='<div class="pc-media" onclick="catOpenPdp(\''+p.id+'\')">'
@@ -1118,13 +1228,18 @@ window.catRender=function(){
           ?'<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>'
           :'<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>')
         +'</button>'
-        +'<span class="pc-disc-tag'+(isLive?'':' coming-soon-tag')+'">'+discText+'</span>'
+        +'<span class="pc-disc-tag'+(isOutOfStock?' out-of-stock-tag':(!isLive?' coming-soon-tag':''))+'">'+discText+'</span>'
         +'</div>'
         +'<div class="pc-info"><div class="pc-brand-name">SHELBY HIVER</div>'
         +'<h3 class="pc-name" onclick="catOpenPdp(\''+p.id+'\')" title="'+p.name+'">'+p.name+'</h3>'
-        +'<div class="pc-price-wrap">'+(isLive?'<span class="pc-price">&#x20B9;&nbsp;'+p.price.toLocaleString()+'</span><del class="pc-mrp">&#x20B9;&nbsp;'+(p.mrp||p.price).toLocaleString()+'</del><span class="pc-discount">'+discText.replace(/\s+/g,'&nbsp;')+'</span>':'<span class="pc-price" style="color:var(--text-muted);font-size:12.5px;">PREVIEW</span>')+'</div>'
-        +'<div class="pc-size-pills" onclick="event.stopPropagation()">'+(p.sizes||['S','M','L','XL']).map(function(s){return'<button type="button" class="pc-size-pill'+(sz===s?' active':'')+(!isLive?' disabled':'')+'"'+(isLive?'':' disabled')+' onclick="catPickSz(\''+p.id+'\',\''+s+'\',this,event)">'+s+'</button>';}).join('')+'</div>'
-        +'<div class="pc-action-row" onclick="event.stopPropagation()">'+(isLive?'<button type="button" class="pc-btn-cart" onclick="catAddToCart(\''+p.id+'\',selectedSizes[\''+p.id+'\'])">Add to Bag</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">View</button>':'<button type="button" class="pc-btn-cart pc-btn-disabled" disabled>Coming Soon</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">Preview</button>')+'</div>'
+        +'<div class="pc-price-wrap">'+(isLive?'<span class="pc-price">&#x20B9;&nbsp;'+p.price.toLocaleString()+'</span><del class="pc-mrp">&#x20B9;&nbsp;'+(p.mrp||p.price).toLocaleString()+'</del><span class="pc-discount">'+(isOutOfStock?'OUT OF STOCK':discText.replace(/\s+/g,'&nbsp;'))+'</span>':'<span class="pc-price" style="color:var(--text-muted);font-size:12.5px;">PREVIEW</span>')+'</div>'
+        +'<div class="pc-size-pills" onclick="event.stopPropagation()">'+(p.sizes||['S','M','L','XL']).map(function(s){
+          var isSzDisabled=isSizeDisabled(s,p);
+          var isDisabled=!isLive||isOutOfStock||isSzDisabled;
+          var titleText=isSzDisabled?'Size '+s+' is currently out of stock':(isOutOfStock?'Piece is currently out of stock':'Size '+s);
+          return'<button type="button" class="pc-size-pill'+(sz===s&&!isDisabled?' active':'')+(isDisabled?' disabled':'')+'"'+(isDisabled?' disabled':'')+' title="'+titleText+'" onclick="catPickSz(\''+p.id+'\',\''+s+'\',this,event)">'+s+'</button>';
+        }).join('')+'</div>'
+        +'<div class="pc-action-row" onclick="event.stopPropagation()">'+(isOutOfStock?'<button type="button" class="pc-btn-cart pc-btn-disabled pc-btn-soldout" disabled title="Currently Out of Stock">Out of Stock</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">View</button>':(isLive?'<button type="button" class="pc-btn-cart" onclick="catAddToCart(\''+p.id+'\')">Add to Bag</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">View</button>':'<button type="button" class="pc-btn-cart pc-btn-disabled" disabled>Coming Soon</button><button type="button" class="pc-btn-view" onclick="catOpenPdp(\''+p.id+'\')">Preview</button>'))+'</div>'
         +'</div>';
     grid.appendChild(card);
   });
@@ -1181,17 +1296,30 @@ window.catToggleWish=function(e,id){
   updateCatWishBadges();
 };
 
-window.catPickSz=function(id,sz,btn,e){if(e)e.stopPropagation();selectedSizes[id]=sz;var card=btn.closest('.pc');if(card){card.querySelectorAll('.pc-size-pill').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}toast('Selected Size '+sz);};
+window.catPickSz=function(id,sz,btn,e){
+  if(e)e.stopPropagation();
+  var p=PRODUCTS.find(function(t){return t.id===id;});
+  if(isSizeDisabled(sz,p)){toast('Size '+sz+' is currently unavailable.');return;}
+  selectedSizes[id]=sz;
+  var card=btn.closest('.pc');
+  if(card){card.querySelectorAll('.pc-size-pill').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+  toast('Selected Size '+sz);
+};
 
 window.catAddToCart=function(id,sizeArg){
   var p=PRODUCTS.find(function(t){return t.id===id;});if(!p)return;
+  if(isProductOutOfStock(p)){toast(p.name+' is currently out of stock.');return;}
   if(p.isLive===false){toast(p.name+' is Coming Soon.');return;}
-  var sz=sizeArg||selectedSizes[id]||(p.sizes&&p.sizes[0])||'M';
+  var sz=(catActivePDP&&catActivePDP.id===id&&catActivePDPSize)?catActivePDPSize:(sizeArg||selectedSizes[id]||getDefaultSize(p));
+  if(isSizeDisabled(sz,p)){toast('Size '+sz+' is currently unavailable.');return;}
   var existing=CART.find(function(i){return i.id===id&&i.size===sz;});
   if(existing)existing.qty++;else CART.push({id:id,size:sz,qty:1});
   localStorage.setItem('sh_cart',JSON.stringify(CART));
   window.dispatchEvent(new Event('storage'));
-  toast('Added '+p.name+' ('+sz+') to Bag');renderCartUI();showCart();
+  toast('Added '+p.name+' ('+sz+') to Bag');
+  renderCartUI();
+  catClosePdp();
+  showCart();
 };
 
 function renderCartUI(){
@@ -1321,7 +1449,18 @@ window.catRecordPdpOrder=function(id){
 window.catBuyNowModal = function(id) {
   var p = PRODUCTS.find(function(item){return item.id===id;}) || catActivePDP;
   if (!p) return;
-  var sz = catActivePDPSize || selectedSizes[id] || (p.sizes && p.sizes[0]) || 'M';
+  if (isProductOutOfStock(p)) {
+    toast((p.name || 'This piece') + ' is currently out of stock.');
+    return;
+  }
+  var sz = catActivePDPSize || selectedSizes[id] || getDefaultSize(p);
+  if (isSizeDisabled(sz, p)) {
+    sz = getDefaultSize(p);
+    if (isSizeDisabled(sz, p)) {
+      toast('Selected size is currently unavailable.');
+      return;
+    }
+  }
   var finalPrice = Math.round(p.price * discount);
   if (window.openShelbyCheckout) {
     window.openShelbyCheckout({
@@ -1340,10 +1479,14 @@ window.catBuyNowModal = function(id) {
 
 window.catOpenPdp=function(id){
   var p=PRODUCTS.find(function(item){return item.id===id;});if(!p){toast('Product not found.');return;}
-  catActivePDP=p;catActivePDPSize=selectedSizes[p.id]||(p.sizes&&p.sizes[0])||'M';
+  catActivePDP=p;
+  var isSoldOut=isProductOutOfStock(p);
+  var defSz=getDefaultSize(p, selectedSizes[p.id]);
+  catActivePDPSize=defSz;
+  if(p.id) selectedSizes[p.id]=defSz;
   var pImgs=(Array.isArray(p.images)&&p.images.length>0)?p.images:[p.img||'assets/model-tee.jpg'];
   var isLive=p.isLive!==false;var finalPrice=Math.round(p.price*discount);
-  var discText=isLive?(p.discountText||Math.round(((p.mrp-p.price)/p.mrp)*100)+'% OFF'):'COMING SOON';
+  var discText=isSoldOut?'OUT OF STOCK':(isLive?(p.discountText||Math.round(((p.mrp-p.price)/p.mrp)*100)+'% OFF'):'COMING SOON');
   var isWish=WISHLIST.has(p.id);
   var waMsg='Hello Shelby Hiver! \uD83D\uDC4B\n\nI want to BUY:\n\u2022 '+p.name+'\n\u2022 Size: '+catActivePDPSize+'\n\u2022 Price: \u20B9'+finalPrice.toLocaleString()+' ('+discText+')\n\nPlease share payment details.';
   catActivePdpImgIdx = 0;
@@ -1360,19 +1503,22 @@ window.catOpenPdp=function(id){
     +'</div>'
     +'<div class="cat-pdp-brand-label">SHELBY HIVER / '+(p.category||'tees').toUpperCase()+'</div>'
     +'<div class="cat-pdp-product-name">'+p.name+'</div>'
-    +(isLive?'<div class="cat-pdp-price-row"><span class="cat-pdp-price">\u20B9 '+finalPrice.toLocaleString()+'</span><span class="cat-pdp-mrp">\u20B9 '+(p.mrp||p.price).toLocaleString()+'</span><span class="cat-pdp-discount-tag">'+discText+'</span></div><div style="font-size:11.5px;color:var(--text-muted);margin-bottom:12px;">Inclusive of all taxes \u00B7 Free express delivery</div>'
-    :'<div class="cat-pdp-price-row"><span class="cat-pdp-price" style="font-size:16px;color:var(--text-muted);">PREVIEW ARCHIVE \u2014 Coming Soon</span></div>')
+    +(isSoldOut?'<div class="cat-pdp-price-row"><span class="cat-pdp-price">\u20B9 '+finalPrice.toLocaleString()+'</span><span class="cat-pdp-mrp">\u20B9 '+(p.mrp||p.price).toLocaleString()+'</span><span class="cat-pdp-discount-tag soldout">OUT OF STOCK</span></div><div style="font-size:11.5px;color:var(--text-muted);margin-bottom:12px;">Currently unavailable \u00B7 Restock in progress</div>'
+    : (isLive?'<div class="cat-pdp-price-row"><span class="cat-pdp-price">\u20B9 '+finalPrice.toLocaleString()+'</span><span class="cat-pdp-mrp">\u20B9 '+(p.mrp||p.price).toLocaleString()+'</span><span class="cat-pdp-discount-tag">'+discText+'</span></div><div style="font-size:11.5px;color:var(--text-muted);margin-bottom:12px;">Inclusive of all taxes \u00B7 Free express delivery</div>'
+    :'<div class="cat-pdp-price-row"><span class="cat-pdp-price" style="font-size:16px;color:var(--text-muted);">PREVIEW ARCHIVE \u2014 Coming Soon</span></div>'))
     +'<div class="cat-pdp-divider"></div>'
     +(p.colors&&p.colors.length>1?'<div class="cat-pdp-section-title">COLOUR: <span id="catPdpColorLabel" style="color:var(--text-primary);text-transform:none;">'+(p.colors[0].name)+'</span></div><div class="cat-pdp-swatches" id="catPdpSwatches">'+p.colors.map(function(c,i){return'<div class="cat-pdp-swatch'+(i===0?' active':'')+'" onclick="catSelectPdpColor('+i+',\''+c.name+'\',this)"><span class="cat-pdp-swatch-dot" style="background:'+c.hex+'"></span><span>'+c.name+'</span></div>';}).join('')+'</div><div class="cat-pdp-divider"></div>':'')
     +'<div class="cat-pdp-section-title">SELECT SIZE</div>'
-    +'<div class="cat-pdp-sizes" id="catPdpSizes">'+(p.sizes||['S','M','L','XL']).map(function(s){return'<button type="button" class="cat-pdp-size-chip'+(s===catActivePDPSize?' active':'')+(!isLive?' disabled':'')+'"'+(isLive?'':' disabled')+' onclick="catSelectPdpSize(\''+s+'\',this)">'+s+'</button>';}).join('')+'</div>'
+    +'<div class="cat-pdp-sizes" id="catPdpSizes">'+(p.sizes||['S','M','L','XL']).map(function(s){
+      var sDis = isSoldOut || isSizeDisabled(s, p) || !isLive;
+      var sAct = !sDis && (s === catActivePDPSize);
+      return '<button type="button" class="cat-pdp-size-chip'+(sAct?' active':'')+(sDis?' disabled':'')+'"'+(sDis?' disabled title="Size '+s+' unavailable"':'')+' onclick="catSelectPdpSize(\''+s+'\',this)">'+s+'</button>';
+    }).join('')+'</div>'
     +'<button type="button" class="cat-pdp-size-guide-link" onclick="catOpenSizeChart()">View Size Guide \u2192</button>'
     +'<div class="cat-pdp-divider"></div>'
-    +(isLive?'<div class="cat-pdp-urgency">\u26A1 Only '+Math.floor(2+(p.name.length%5))+' left in Size '+catActivePDPSize+' \u2014 Order now!</div>':'')
-    +(isLive?'<div class="cat-pdp-cta-row">'
-      +'<button type="button" class="cat-pdp-btn-wa" onclick="catBuyNowModal(\''+p.id+'\')"><svg viewBox="0 0 24 24" width="15" height="15" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Buy Now</button>'
-      +'</div>'
-    :'<div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:6px;padding:14px;text-align:center;margin-bottom:16px;"><div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Coming Soon</div><div style="font-size:12px;color:var(--text-muted);">Get notified when this drops via WhatsApp.</div></div>')
+    +(isSoldOut?'<div style="background:rgba(153,27,27,0.12);border:1px solid rgba(153,27,27,0.4);border-radius:6px;padding:12px;text-align:center;margin-bottom:14px;color:#fca5a5;font-size:12px;font-family:var(--f-display);letter-spacing:0.04em;">SOLD OUT \u2014 This piece is currently out of stock. Restock coming soon.</div><div class="cat-pdp-cta-row"><button type="button" class="cat-pdp-btn-wa" disabled style="background:#262626;color:#737373;cursor:not-allowed;box-shadow:none;border:1px solid #404040;">Out of Stock</button></div>'
+    : (isLive?'<div class="cat-pdp-urgency">\u26A1 Only '+Math.floor(2+(p.name.length%5))+' left in Size '+catActivePDPSize+' \u2014 Order now!</div><div class="cat-pdp-cta-row"><button type="button" class="cat-pdp-btn-cart" onclick="catAddToCart(\''+p.id+'\')"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>Add to Bag</button><button type="button" class="cat-pdp-btn-wa" onclick="catBuyNowModal(\''+p.id+'\')"><svg viewBox="0 0 24 24" width="15" height="15" fill="white" style="margin-right:4px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Buy Now</button></div>'
+    : '<div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:6px;padding:14px;text-align:center;margin-bottom:16px;"><div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Coming Soon</div><div style="font-size:12px;color:var(--text-muted);">Get notified when this drops via WhatsApp.</div></div>'))
     +'<div class="cat-pdp-divider"></div>'
     +'<div class="cat-pdp-section-title">PRODUCT DETAILS</div>'
     +'<div class="cat-pdp-desc"><p>'+(p.desc||'Premium 220 GSM heavyweight oversized tee.')+'</p>'+(p.fit?'<p style="margin-top:8px;"><strong>Silhouette:</strong> '+p.fit+'.</p>':'')+'</div>'
@@ -1461,7 +1607,18 @@ function attachCatSwipe(el, onLeft, onRight){
     }
   }, { passive: true });
 }
-window.catSelectPdpSize=function(sz,btn){catActivePDPSize=sz;if(catActivePDP)selectedSizes[catActivePDP.id]=sz;document.querySelectorAll('#catPdpSizes .cat-pdp-size-chip').forEach(function(b){b.classList.remove('active');});if(btn)btn.classList.add('active');var u=document.querySelector('.cat-pdp-urgency');if(u)u.textContent='\u26A1 Only '+Math.floor(2+(sz.charCodeAt(0)%5))+' units left in size '+sz+'!';};
+window.catSelectPdpSize=function(sz,btn){
+  if(catActivePDP && (isProductOutOfStock(catActivePDP) || isSizeDisabled(sz, catActivePDP))){
+    if(window.toast) toast('Size ' + sz + ' is currently unavailable.');
+    return;
+  }
+  catActivePDPSize=sz;
+  if(catActivePDP)selectedSizes[catActivePDP.id]=sz;
+  document.querySelectorAll('#catPdpSizes .cat-pdp-size-chip').forEach(function(b){b.classList.remove('active');});
+  if(btn)btn.classList.add('active');
+  var u=document.querySelector('.cat-pdp-urgency');
+  if(u)u.textContent='\u26A1 Only '+Math.floor(2+(sz.charCodeAt(0)%5))+' units left in size '+sz+'!';
+};
 window.catSelectPdpColor=function(idx,name,btn){document.querySelectorAll('#catPdpSwatches .cat-pdp-swatch').forEach(function(b){b.classList.remove('active');});if(btn)btn.classList.add('active');var lbl=document.getElementById('catPdpColorLabel');if(lbl)lbl.textContent=name;if(catActivePDP&&catActivePDP.images&&catActivePDP.images[idx])catSelectPdpThumb(idx,catActivePDP.images[idx],null);};
 window.catOpenSizeChart=function(){
   var s=document.getElementById('sizeModalScrim')||document.getElementById('sizeChartScrim');

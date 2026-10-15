@@ -438,7 +438,19 @@
     options = options || {};
 
     var items = [];
+    var UNAVAILABLE_SIZES = ['S', 'XL'];
+
     if (options.items && Array.isArray(options.items) && options.items.length > 0) {
+      var hasUnavailable = options.items.some(function (it) {
+        var sz = String(it.size || '').toUpperCase();
+        return UNAVAILABLE_SIZES.indexOf(sz) !== -1;
+      });
+      if (hasUnavailable) {
+        var unavailMsg = 'Sizes S and XL are currently unavailable. Please select size M or L.';
+        if (window.toast) window.toast(unavailMsg);
+        else alert(unavailMsg);
+        return;
+      }
       items = options.items;
       activeCheckoutState.source = options.source || 'buynow';
     } else {
@@ -450,7 +462,17 @@
           else alert('Your shopping bag is empty.');
           return;
         }
-        items = cartData.map(function (ci) {
+        var activeCartData = cartData.filter(function (ci) {
+          var sz = String(ci.size || 'M').toUpperCase();
+          return UNAVAILABLE_SIZES.indexOf(sz) === -1;
+        });
+        if (cartData.length > 0 && activeCartData.length === 0) {
+          var msg = 'Sizes S and XL are currently out of stock. Please select size M or L to complete checkout.';
+          if (window.toast) window.toast(msg);
+          else alert(msg);
+          return;
+        }
+        items = activeCartData.map(function (ci) {
           var p = productsDb.find(function (prod) { return prod.id === ci.id; }) || {
             id: ci.id,
             name: ci.id,
