@@ -706,9 +706,38 @@
     if (activeCheckoutState.source === 'cart') {
       try {
         localStorage.removeItem('sh_cart');
-        window.dispatchEvent(new Event('storage'));
       } catch (e) {}
     }
+
+    // Remove checked-out item(s) from wishlist ('sh-wishlist') and update count
+    try {
+      var currentWishlist = JSON.parse(localStorage.getItem('sh-wishlist') || '[]');
+      if (Array.isArray(currentWishlist) && currentWishlist.length > 0) {
+        var orderedIds = (activeCheckoutState.items || []).map(function (it) { return it.id; });
+        var updatedWishlist = currentWishlist.filter(function (id) {
+          return orderedIds.indexOf(id) === -1;
+        });
+        if (updatedWishlist.length !== currentWishlist.length) {
+          localStorage.setItem('sh-wishlist', JSON.stringify(updatedWishlist));
+        }
+      }
+    } catch (wErr) {
+      console.warn("Wishlist update error on checkout", wErr);
+    }
+
+    // Notify all open components and views of cart & wishlist updates
+    try {
+      window.dispatchEvent(new Event('storage'));
+      if (typeof window.refreshShelbyWishlist === 'function') {
+        window.refreshShelbyWishlist();
+      }
+      if (typeof window.updateWishlistBadges === 'function') {
+        window.updateWishlistBadges();
+      }
+      if (typeof window.catUpdateBadges === 'function') {
+        window.catUpdateBadges();
+      }
+    } catch (dispErr) {}
 
     var proofFile = activeCheckoutState.uploadedProofFile;
     var proofDataUrl = activeCheckoutState.uploadedProofDataUrl;

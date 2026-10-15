@@ -201,6 +201,7 @@
 
   /* Render Wishlist */
   function renderWishlist() {
+    WISHLIST = new Set(JSON.parse(localStorage.getItem('sh-wishlist') || '[]'));
     const grid = document.getElementById("wishlistGrid");
     const emptyState = document.getElementById("wishlistEmptyState");
     const statsSection = document.getElementById("wishlistStatsSection");
@@ -255,6 +256,7 @@
       grid.appendChild(card);
     });
   }
+  window.refreshShelbyWishlist = renderWishlist;
 
   function updateMetrics(items) {
     const totalCount = items.length;
@@ -543,10 +545,12 @@
     if (!CART.length) {
       container.innerHTML = `
         <div style="text-align:center;padding:50px 20px;color:var(--text-muted);">
-          <div style="font-size:36px;margin-bottom:12px;">🛍️</div>
+          <div style="width:48px;height:48px;border-radius:50%;background:var(--bg-secondary);border:1px solid var(--border-color);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;color:var(--text-primary);">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="8" width="16" height="13" rx="2"></rect><path d="M8 8V6a4 4 0 0 1 8 0v2"></path></svg>
+          </div>
           <p style="font-family:var(--f-display);font-size:15px;font-weight:700;color:var(--text-primary);margin-bottom:6px;">Your Bag is Empty</p>
           <p style="font-size:12px;margin-bottom:18px;">Move items from your wishlist or browse catalogue</p>
-          <button type="button" class="wl-btn-primary" style="font-size:11.5px;padding:10px 20px;" onclick="hideCart()">Return to Wishlist →</button>
+          <button type="button" class="wl-btn-primary" style="font-size:11.5px;padding:10px 20px;" onclick="hideCart()">Return to Wishlist &rarr;</button>
         </div>
       `;
       const subtotalEl = document.getElementById("cartTotalVal");
