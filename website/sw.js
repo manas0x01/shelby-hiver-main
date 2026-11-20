@@ -5,7 +5,7 @@
    - Drop-alert feed (drops.json) checked on open + periodic sync
    - Push handler ready for a real push server (VAPID)
    ============================================================ */
-const VERSION = 'sh-v7';
+const VERSION = 'sh-v8';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 const IMAGE_CACHE = VERSION + '-images';
