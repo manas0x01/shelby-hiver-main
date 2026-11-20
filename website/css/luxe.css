@@ -744,7 +744,7 @@ body .cat-pdp-nav-btn, body .cat-pdp-back { border-radius: 999px; }
   .lx-hdr-btn[data-lx="install"] .lx-i { color: var(--ac); }
   .lx-hdr-btn.is-on { background: var(--ac-soft); border-color: var(--ac-ring); }
   .lx-hdr-btn.is-on .lx-i { color: var(--ac); }
-  .mobile-search-strip { background: transparent; padding: 0 0 12px; }
+  .mobile-search-strip { background: transparent; border: 0; padding: 0 0 12px; }
   .mobile-search-box { height: 52px; background: var(--bg-card); border: 1.5px solid var(--border-color); border-radius: 999px; padding: 0 18px; gap: 12px; box-shadow: var(--sh-1); }
   .mobile-search-box:focus-within { border-color: var(--ac); box-shadow: 0 0 0 4px var(--ac-soft); }
   .mobile-search-icon { width: 19px; height: 19px; color: var(--text-muted); stroke-width: 1.7; }
