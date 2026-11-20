@@ -1,0 +1,12 @@
+{
+  "_readme": "Drop alert feed. Add a NEW item (unique id) at the top of 'items' to notify every installed app that has alerts enabled. The app checks this file when it opens and, on Android, periodically in the background. For instant server push, wire a push service to the 'push' handler in sw.js.",
+  "items": [
+    {
+      "id": "drop01-live",
+      "title": "Drop 01 is live",
+      "body": "Heavyweight 220 GSM archive tees are in stock. Sizes move fast.",
+      "url": "/catalogue.html",
+      "date": "2026-11-20"
+    }
+  ]
+}

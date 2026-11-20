@@ -4,6 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#fbf9f6">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Shelby Hiver">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/icon-192.png">
 
   <!-- ═══ PRIMARY SEO ═══ -->
   <title>Shelby Hiver — Premium Heavyweight Oversized Streetwear | Shop India</title>
@@ -14,9 +22,6 @@
   <link rel="canonical" href="https://shelbyhiver.in/">
 
   <!-- ═══ FAVICON ═══ -->
-  <link rel="icon" type="image/png" href="assets/logo.png">
-  <link rel="apple-touch-icon" href="assets/logo.png">
-  <meta name="theme-color" content="#111111">
 
   <!-- ═══ OPEN GRAPH (Facebook, WhatsApp, LinkedIn previews) ═══ -->
   <meta property="og:type" content="website">
@@ -128,9 +133,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/auth.css">
-  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/main.css?v=20261120d">
+  <link rel="stylesheet" href="css/auth.css?v=20261120d">
+  <link rel="stylesheet" href="css/checkout.css?v=20261120d">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/luxe.css?v=20261120d">
 </head>
 
 <body>
@@ -428,45 +435,46 @@
     <!-- ============================================================
        01 HERO PROMO BANNER (MYNTRA FASHION EDITORIAL BANNER)
        ============================================================ -->
-    <section class="hero-banner-sec" id="hero">
+    <section class="lx-hero" id="hero">
       <div class="container">
-        <div class="hero-banner-grid">
+        <div class="lx-hero-card" id="lxHero">
+          <img class="lx-hero-phone" src="assets/lookbook-02.png" alt="Shelby Hiver Dragon Archive tee" loading="lazy" decoding="async">
+          <div class="lx-hero-bgtext" aria-hidden="true">DROP 01</div>
 
-          <div class="hero-banner-content">
-            <span class="hero-promo-badge">
-              <span>●</span> DROP 01 LIVE · HEAVYWEIGHT ARCHIVE
-            </span>
-            <h1 class="hero-main-title">
-              <span class="hero-brand-eyebrow">Shelby Hiver</span>
-              Where Luxury<br>Meets Attitude.
-            </h1>
-            <p class="hero-main-desc">
-              High-density combed cotton tailored into a relaxed boxy silhouette. Engineered to hold its
-              structural drape, feel soft on your skin, and make an effortless streetwear statement.
+          <div class="lx-hero-copy">
+            <span class="lx-pill"><span class="lx-dot"></span>Drop 01 &middot; Now live</span>
+            <h1 class="lx-hero-title">Where luxury<br>meets <em>attitude.</em></h1>
+            <p class="lx-hero-desc">
+              High-density 220 GSM combed cotton cut into a relaxed boxy silhouette. Built to hold its drape,
+              soft on the skin, loud on the street.
             </p>
-            <div class="hero-price-callout">
-              <span class="hero-deal-price">Starting ₹699</span>
-              <span class="hero-deal-discount">ORIGINAL ₹1,199 · 42% OFF</span>
+            <div class="lx-hero-price"><b>&#8377;699</b><s>&#8377;1,199</s><span>42% off</span></div>
+            <div class="lx-hero-cta">
+              <a href="#storefront" class="lx-btn lx-btn-light">Shop the drop <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-arrow-right"></use></svg></a>
+              <a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver!%20I%20want%20to%20order." target="_blank" rel="noopener" class="lx-btn lx-btn-ghost"><span class="lx-wa-label">Order on WhatsApp</span> <svg class="lx-i lx-wa-arrow" viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-arrow-up-right"></use></svg><svg class="lx-i lx-wa-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-message-circle"></use></svg></a>
             </div>
-            <div class="hero-cta-row">
-              <a href="#storefront" class="btn-primary-action">
-                Shop Collection ↓
-              </a>
-              <a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver!%20I%20want%20to%20order." target="_blank"
-                class="btn-secondary-action">
-                Order via WhatsApp ↗
-              </a>
-            </div>
+            <ul class="lx-hero-feats">
+              <li><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-gem"></use></svg> <span>220 GSM cotton</span></li>
+              <li><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-truck"></use></svg> <span>24h dispatch</span></li>
+              <li><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-shield-check"></use></svg> <span>Pre-shrunk</span></li>
+            </ul>
           </div>
 
-          <div class="hero-banner-visual">
-            <img src="assets/hero-banner-new.png" alt="Shelby Hiver Heavyweight T-Shirt"
-              class="hero-visual-img">
+          <div class="lx-hero-visual" id="lxHeroVis">
+            <div class="lx-layer lx-card-sub" style="--d:-18;--r:-7deg"><img src="assets/lookbook-04.png" alt="" loading="lazy"></div>
+            <div class="lx-layer lx-card-main" style="--d:12;--r:2.5deg"><img src="assets/hero-banner-new.png" alt="Shelby Hiver Heavyweight T-Shirt" loading="lazy"></div>
+            <div class="lx-layer lx-chip lx-chip-price" style="--d:26"><small>Starting at</small><b>&#8377;699</b><s>&#8377;1,199</s></div>
+            <div class="lx-layer lx-chip lx-chip-off" style="--d:-28">42% OFF</div>
+            <div class="lx-layer lx-spin-wrap" style="--d:20">
+              <svg class="lx-spin" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="lxCircle" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs><text><textPath href="#lxCircle" textLength="280">SHELBY HIVER &#8226; DROP 01 &#8226; HEAVYWEIGHT &#8226;</textPath></text></svg>
+              <span class="lx-spin-core"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-arrow-up-right"></use></svg></span>
+            </div>
           </div>
-
         </div>
       </div>
     </section>
+
+    <div class="lx-band" aria-hidden="true"><div class="lx-band-track"><span class="lx-band-item">Heavyweight 220 GSM<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Drop Shoulder<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Pre-Shrunk Bio-Wash<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Limited Archive Drops<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Made in India<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Heavyweight 220 GSM<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Drop Shoulder<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Pre-Shrunk Bio-Wash<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Limited Archive Drops<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span><span class="lx-band-item">Made in India<svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg></span></div></div>
 
     <!-- ============================================================
        02 CATEGORY PILL STRIP (MYNTRA QUICK FILTER CHIPS)
@@ -475,22 +483,22 @@
       <div class="container">
         <div class="cat-chips-scroll" id="catNav">
           <button type="button" class="cat-chip-btn active" onclick="filterCategory('all', this)">
-            All Collection <span class="cat-chip-count" id="chipCountAll">0</span>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-sparkles"></use></svg> All Collection <span class="cat-chip-count" id="chipCountAll">0</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('tees', this)">
-            Oversized Tees <span class="cat-chip-count" id="chipCountTees">0</span>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-shirt"></use></svg> Oversized Tees <span class="cat-chip-count" id="chipCountTees">0</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('hoodies', this)">
-            French Terry Hoodies <span class="cat-chip-count soon" id="chipCountHoodies">COMING SOON</span>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-layers"></use></svg> French Terry Hoodies <span class="cat-chip-count soon" id="chipCountHoodies">COMING SOON</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('acid', this)">
-            Acid Wash Archive <span class="cat-chip-count" id="chipCountAcid">0</span>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-droplets"></use></svg> Acid Wash Archive <span class="cat-chip-count" id="chipCountAcid">0</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('bottoms', this)">
-            Tactical Cargos <span class="cat-chip-count soon" id="chipCountBottoms">COMING SOON</span>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-ruler"></use></svg> Tactical Cargos <span class="cat-chip-count soon" id="chipCountBottoms">COMING SOON</span>
           </button>
           <button type="button" class="cat-chip-btn" onclick="filterCategory('accessories', this)">
-            Caps &amp; Accessories <span class="cat-chip-count soon" id="chipCountAccessories">COMING SOON</span>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-gem"></use></svg> Caps &amp; Accessories <span class="cat-chip-count soon" id="chipCountAccessories">COMING SOON</span>
           </button>
         </div>
       </div>
@@ -534,49 +542,28 @@
       <div class="container">
         <div class="trust-strip-grid">
           <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-            </div>
+            <div class="trust-icon-box"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-gem"></use></svg></div>
             <div>
               <h4>Premium Combed Cotton</h4>
               <p>Dense 100% combed cotton jersey maintaining structural boxy drape.</p>
             </div>
           </div>
           <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="1" y="3" width="15" height="13"></rect>
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                <circle cx="18.5" cy="18.5" r="2.5"></circle>
-              </svg>
-            </div>
+            <div class="trust-icon-box"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-truck"></use></svg></div>
             <div>
               <h4>24-Hour Dispatch</h4>
               <p>Tracked express shipping with live updates sent directly to your phone.</p>
             </div>
           </div>
           <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="23 4 23 10 17 10"></polyline>
-                <polyline points="1 20 1 14 7 14"></polyline>
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-              </svg>
-            </div>
+            <div class="trust-icon-box"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-ruler"></use></svg></div>
             <div>
               <h4>Architectural Silhouette</h4>
               <p>Engineered proportions for the definitive luxury oversized drape.</p>
             </div>
           </div>
           <div class="trust-item">
-            <div class="trust-icon-box">
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
+            <div class="trust-icon-box"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-shield-check"></use></svg></div>
             <div>
               <h4>100% Pre-Shrunk Bio-Wash</h4>
               <p>Zero post-wash shrinkage and authentic colorfast dye fastness.</p>
@@ -602,6 +589,7 @@
 
         <div class="craft-cards-grid">
           <div class="craft-card">
+            <div class="lx-craft-ico"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-layers"></use></svg></div>
             <div class="craft-card-num">/ PILLAR 01</div>
             <div class="craft-card-title">Dense Interlock Knit</div>
             <p class="craft-card-desc">
@@ -610,6 +598,7 @@
             </p>
           </div>
           <div class="craft-card">
+            <div class="lx-craft-ico"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-circle-dot"></use></svg></div>
             <div class="craft-card-num">/ PILLAR 02</div>
             <div class="craft-card-title">Anti-Sag Ribbed Neckline</div>
             <p class="craft-card-desc">
@@ -618,6 +607,7 @@
             </p>
           </div>
           <div class="craft-card">
+            <div class="lx-craft-ico"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-shirt"></use></svg></div>
             <div class="craft-card-num">/ PILLAR 03</div>
             <div class="craft-card-title">Sculpted Drop Shoulder</div>
             <p class="craft-card-desc">
@@ -626,6 +616,7 @@
             </p>
           </div>
           <div class="craft-card">
+            <div class="lx-craft-ico"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-droplets"></use></svg></div>
             <div class="craft-card-num">/ PILLAR 04</div>
             <div class="craft-card-title">Bio-Polished Enzyme Wash</div>
             <p class="craft-card-desc">
@@ -708,8 +699,7 @@
             <h2 class="sec-title" style="margin-bottom:6px;">Drop 01 Visual Archive</h2>
             <p class="sec-subtitle" style="margin-bottom:0;">Styling compositions from the Shelby Hiver atelier.</p>
           </div>
-          <a href="#storefront" class="btn-secondary-action" style="padding:10px 20px;font-size:12px;">Shop Silhouettes
-            ↓</a>
+          <a href="#storefront" class="btn-secondary-action" style="padding:10px 20px;font-size:12px;">Shop Silhouettes <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-arrow-down"></use></svg></a>
         </div>
 
         <div class="lookbook-grid">
@@ -809,11 +799,11 @@
 
             <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
               <button type="button" class="btn-primary-action" onclick="openSizeChart()">
-                View Size Guide (Inches) →
+                View Size Guide (Inches) <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-arrow-right"></use></svg>
               </button>
               <a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver!%20I%20need%20size%20guidance."
                 target="_blank" class="btn-secondary-action">
-                Consult Fit Stylist ↗
+                Consult Fit Stylist <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-arrow-up-right"></use></svg>
               </a>
             </div>
           </div>
@@ -964,11 +954,7 @@
           <div class="concierge-banner-actions">
             <a href="https://wa.me/919286511557?text=Hello%20Shelby%20Hiver!%20I%20need%20styling%20and%20sizing%20help."
               target="_blank" class="btn-concierge-white">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-                <path
-                  d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
-                </path>
-              </svg>
+              <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-message-circle"></use></svg>
               <span>Chat With Concierge</span>
             </a>
             <button type="button" class="btn-concierge-outline" onclick="openSizeChart()">
@@ -1034,9 +1020,7 @@
             <span class="foot-dispatch-badge">24H EXPRESS DISPATCH &middot; Pan-India</span>
           </form>
           <a href="https://wa.me/919286511557" target="_blank" rel="noopener noreferrer" class="footer-sub-btn" style="margin-top:6px;">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-message-circle"></use></svg>
             <span>WhatsApp Concierge (+91 9286511557)</span>
           </a>
         </div>
@@ -1048,19 +1032,23 @@
         <span class="fsc-label">Follow The Official Atelier</span>
         <div class="fsc-icons-row">
           <a href="https://www.instagram.com/shelbyhiver" target="_blank" rel="noopener noreferrer" class="social-circle-btn btn-instagram" aria-label="Shelby Hiver on Instagram" title="Follow @shelbyhiver on Instagram">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-instagram"></use></svg>
             <span class="sc-tooltip">Instagram @shelbyhiver</span>
           </a>
 
           <a href="https://www.facebook.com/profile.php?id=61594037143588" target="_blank" rel="noopener noreferrer" class="social-circle-btn btn-facebook" aria-label="Shelby Hiver on Facebook" title="Follow Shelby Hiver on Facebook">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="#ffffff">
-              <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.52-.14-2.82-.14-2.78 0-4.68 1.7-4.68 4.8v2.7H7v4h3v9.5h4v-9.5z"/>
-            </svg>
+            <svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-facebook"></use></svg>
             <span class="sc-tooltip">Facebook Official</span>
           </a>
         </div>
+      </div>
+
+      <div class="lx-pay-row">
+        <span class="lx-pay-item"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-smartphone"></use></svg> UPI</span>
+        <span class="lx-pay-item"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-banknote"></use></svg> Cash on Delivery</span>
+        <span class="lx-pay-item"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-lock"></use></svg> Secure Checkout</span>
+        <span class="lx-pay-item"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-truck"></use></svg> Pan-India Delivery</span>
+        <span class="lx-pay-item"><svg class="lx-i " viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-rotate-ccw"></use></svg> Easy Exchanges</span>
       </div>
 
       <div class="footer-bottom-bar">
@@ -1310,9 +1298,10 @@
   </nav>
 
   <!-- Modular Scripts -->
-  <script src="js/main.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/checkout.js"></script>
+  <script src="js/main.js?v=20261120d"></script>
+  <script src="js/auth.js?v=20261120d"></script>
+  <script src="js/checkout.js?v=20261120d"></script>
+  <script src="js/luxe.js?v=20261120d"></script>
 </body>
 
 </html>

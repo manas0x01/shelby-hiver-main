@@ -1,0 +1,11 @@
+{
+  "name": "shelby-hiver",
+  "version": "1.0.0",
+  "description": "Shelby Hiver Brand & Application",
+  "scripts": {
+    "start": "node website/server.js",
+    "dev": "node website/server.js",
+    "start:website": "node website/server.js",
+    "start:app": "cd react-app && npm start"
+  }
+}

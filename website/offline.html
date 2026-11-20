@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fbf9f6">
+  <title>Offline | Shelby Hiver</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh; min-height: 100dvh; display: flex; align-items: center; justify-content: center; text-align: center;
+      padding: 32px 24px; background: #fbf9f6; color: #141210;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    .wrap { max-width: 360px; }
+    .ico { width: 64px; height: 64px; margin: 0 auto 28px; color: #a8844d; }
+    .eyebrow { font-size: 10px; letter-spacing: .32em; text-transform: uppercase; color: #a8844d; margin-bottom: 14px; }
+    h1 { font-family: 'Bricolage Grotesque', -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 500; font-size: 38px; line-height: 1.05; margin-bottom: 14px; }
+    p { font-size: 14px; line-height: 1.7; color: #4b463f; margin-bottom: 30px; }
+    button { width: 100%; padding: 17px; border: 0; background: #0b0b0c; color: #fbf9f6; font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 20h.01"/><path d="M8.5 16.43a5 5 0 0 1 7 0"/><path d="M5 12.86a10 10 0 0 1 5.17-2.7"/><path d="M19 12.86a10 10 0 0 0-2.01-1.53"/><path d="M2 8.82a15 15 0 0 1 4.17-2.65"/><path d="M22 8.82a15 15 0 0 0-11.29-3.76"/><path d="m2 2 20 20"/>
+    </svg>
+    <div class="eyebrow">Shelby Hiver</div>
+    <h1>You're offline</h1>
+    <p>We can't reach the atelier right now. Pages you've already visited are still available. Reconnect to browse the latest drop.</p>
+    <button type="button" onclick="location.reload()">Try again</button>
+  </div>
+</body>
+</html>

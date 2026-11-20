@@ -70,8 +70,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-coral, #ff3f6c);
-  background: rgba(255, 63, 108, 0.08);
-  border: 1px solid rgba(255, 63, 108, 0.2);
+  background: rgba(255, 90, 44, 0.10);
+  border: 1px solid rgba(255, 90, 44, 0.35);
   padding: 4px 10px;
   border-radius: 4px;
   margin-bottom: 12px;

@@ -223,13 +223,13 @@ function updateNavbarAuth() {
 
       if (mobProfileCard) {
         mobProfileCard.innerHTML = `
-          <a href="${profileUrl}" style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;text-decoration:none;cursor:pointer;">
-            <div class="user-avatar-circle" style="width:36px;height:36px;font-size:13px;">${initials}</div>
-            <div style="flex:1;">
-              <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--text-primary);">${user.name}</div>
-              <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">View Account &amp; Orders →</div>
+          <a href="${profileUrl}" class="mob-acct-card">
+            <div class="user-avatar-circle mob-acct-avatar">${initials}</div>
+            <div class="mob-acct-info">
+              <div class="mob-acct-name">${user.name}</div>
+              <div class="mob-acct-sub">Account &amp; Orders</div>
             </div>
-            <span style="color:var(--text-muted);font-size:16px;">›</span>
+            <svg class="lx-i mob-acct-chev" viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-chevron-right"></use></svg>
           </a>
         `;
       }
@@ -257,9 +257,7 @@ function updateNavbarAuth() {
               <div class="udm-welcome">Client Welcome</div>
               <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">Access orders, wishlist &amp; drop alerts</div>
             </div>
-            <a href="${loginUrl}" class="btn-primary-action" style="padding:10px;text-align:center;justify-content:center;font-size:12px;margin-bottom:8px;background:var(--btn-primary-bg, #111);border-radius:6px;color:#fff;text-decoration:none;font-family:var(--f-display);letter-spacing:0.06em;font-weight:700;">
-              SIGN IN / REGISTER
-            </a>
+            <a href="${loginUrl}" class="udm-signin-btn">Sign in / Register</a>
             <a href="wishlist.html" class="udm-item">
               <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
               <span>Saved Wishlist</span>
@@ -274,11 +272,14 @@ function updateNavbarAuth() {
 
       if (mobProfileCard) {
         mobProfileCard.innerHTML = `
-          <div style="background:var(--bg-secondary);border:1px solid var(--border-color);border-radius:8px;padding:14px;text-align:center;">
-            <div style="font-family:var(--f-display);font-size:13px;font-weight:700;color:var(--text-primary);margin-bottom:4px;">Welcome to Shelby Hiver</div>
-            <div style="font-size:11.5px;color:var(--text-muted);margin-bottom:12px;">Sign in to access your orders &amp; bag</div>
-            <a href="${loginUrl}" class="btn-primary-action" style="display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:10px;font-size:12px;text-decoration:none;border-radius:6px;background:var(--auth-coral);color:#fff;font-weight:700;">
-              LOGIN / REGISTER
+          <div class="mob-acct-guest">
+            <div class="mob-acct-guest-text">
+              <div class="mob-acct-guest-title">Welcome to Shelby Hiver</div>
+              <div class="mob-acct-guest-sub">Sign in to track orders, save pieces and get drop alerts.</div>
+            </div>
+            <a href="${loginUrl}" class="mob-acct-btn">
+              <svg class="lx-i" viewBox="0 0 24 24" aria-hidden="true"><use href="#lx-log-in"></use></svg>
+              <span>Sign in / Register</span>
             </a>
           </div>
         `;
