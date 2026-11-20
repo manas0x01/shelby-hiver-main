@@ -767,8 +767,7 @@ body .cat-pdp-nav-btn, body .cat-pdp-back { border-radius: 999px; }
   .lx-chip-price { left: 0; top: 10%; padding: 10px 14px; border-radius: 18px; }
   .lx-chip-price b { font-size: 26px; }
   .lx-chip-off { font-size: 12.5px; padding: 8px 13px; right: 0; }
-  .lx-spin-wrap { width: 92px; height: 92px; right: -2%; bottom: 4%; }
-  .lx-spin-core { width: 38px; height: 38px; }
+  .lx-spin-wrap { display: none; } /* Mobile: hide the rotating circle badge; full-screen preloader stays */
   .lx-band { padding: 20px 0 0; }
   .lx-band-item { gap: 22px; padding-right: 22px; font-size: 34px; }
 
@@ -940,6 +939,8 @@ html, body { overflow-x: clip !important; overflow-y: visible !important; }
   .site-header { position: relative; padding: 0 16px; }
   .header-inner { height: 60px; }
   .brand-logo-img { height: 40px; }
+  /* Mobile header: show only the "SH" monogram (hide the "SHELBY HIVER" wordmark below it) */
+  .header-left-cluster .brand-logo-img { height: 40px; max-width: none; width: auto; clip-path: inset(0 0 20% 0); margin-top: 8px; }
   .lx-hdr-actions { gap: 10px; }
   .lx-hdr-btn { width: 44px; height: 44px; background: var(--bg-card); border: 0; box-shadow: 0 1px 0 rgba(10, 10, 11, .05), 0 6px 16px -8px rgba(10, 10, 11, .25); }
   .lx-hdr-btn .lx-i { color: var(--text-primary); }
@@ -948,8 +949,8 @@ html, body { overflow-x: clip !important; overflow-y: visible !important; }
   .lx-hdr-btn.is-on { background: var(--bg-card); }
   .lx-hdr-btn.is-on .lx-i { color: #1f9d55; }
   .mobile-search-strip { padding: 2px 0 14px; }
-  .mobile-search-box { height: 50px; border: 0; background: var(--bg-card); box-shadow: 0 1px 0 rgba(10, 10, 11, .05), 0 8px 20px -12px rgba(10, 10, 11, .3); }
-  .mobile-search-box:focus-within { box-shadow: 0 0 0 2px var(--text-primary); }
+  .mobile-search-box { height: 50px; border: 0; outline: none; background: var(--bg-card); box-shadow: 0 8px 20px -12px rgba(10, 10, 11, .3); }
+  .mobile-search-box:focus-within { border: 0; outline: none; box-shadow: 0 8px 20px -12px rgba(10, 10, 11, .3); }
 
   /* ——— Hero: full-bleed photo card, text on image ——— */
   .lx-hero { padding: 0 0 4px; }
